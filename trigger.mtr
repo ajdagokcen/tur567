@@ -1,0 +1,18 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+;;; Semantically Empty Lexical Entries
+
+mi_gr := arg0e_gtr &
+  [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+    FLAGS.TRIGGER "mi" ].
+
+mı_gr := arg0e_gtr &
+  [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+    FLAGS.TRIGGER "mı" ].
+
+mu_gr := arg0e_gtr &
+  [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+    FLAGS.TRIGGER "mu" ].
+
+mü_gr := arg0e_gtr &
+  [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+    FLAGS.TRIGGER "mü" ].
