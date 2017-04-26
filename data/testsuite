@@ -334,7 +334,7 @@ Benim			gel-di-m
 pronoun.1SG.GEN	come-PF-1SG
 'I arrived.'
 
-###### TRANSITIVE VERBS ######
+###### (ACC-TR) TRANSITIVE VERBS ######
 
 ### NOM subject, ACC object (g) ###
 Source: author
@@ -383,6 +383,68 @@ Aileyi			hediyeyi		getirdi
 Aile-yi			hediye-yi		getir-di
 family.3SG-ACC	present.3SG-ACC	bring-PF.NPST.3SG
 'The family brought the present.'
+
+##### (OBL-TR) TRANSITIVE VERBS #####
+
+### DAT object + DAT-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+O				kadına			bayıldı
+O				kadın-a			bayıl-dı
+pronoun.3SG.NOM	woman.3SG-DAT	adore-PF.NPST.3SG
+'He/she/it adored the woman.'
+
+### ABL object + ABL-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+O				kadından		korktu
+O				kadın-dan		kork-tu
+pronoun.3SG.NOM	woman.3SG-ABL	fear-PF.NPST.3SG
+'He/she/it feared the woman.'
+
+### LOC object + LOC-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+O				evde			diretti
+O				ev-de			diret-ti
+pronoun.3SG.NOM	house.3SG-LOC	insist-PF.NPST.3SG
+'He/she/it insisted on the house.'
+
+### COM object + COM-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+O				kediyle			ilgilendi
+O				kedi-yle		ilgilen-di
+pronoun.3SG.NOM	cat.3SG-COM		care-PF.NPST.3SG
+'He/she/it was interested in the cat.'
+
+### COM object + COM-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+O				kedi	ile			ilgilendi
+O				kedi	ile			ilgilen-di
+pronoun.3SG.NOM	cat.3SG	postpos.COM	care-PF.NPST.3SG
+'He/she/it was interested in the cat.'
+
+### ABL object + DAT-TR (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+O				kadından		bayıldı
+O				kadın-dan		bayıl-dı
+pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST.3SG
+'He/she/it adored the woman.'
 
 ########################
 ###### DETERMINERS #####
@@ -849,6 +911,9 @@ I.1SG.NOM	exit-1SG-PF
 # ARGUMENT OPTIONALITY #
 ########################
 
+###### DROPPED SUBJECT ######
+
+### ITR SUBJ-DROP (g) ###
 Source: author
 Vetted: f
 Judgment: g
@@ -858,6 +923,7 @@ Phenomena: {argument optionality}
 exit-PF.NPST.3SG
 'He/she/it left.'
 
+### ACC-TR SUBJ-DROP (g) ###
 Source: author
 Vetted: f
 Judgment: g
@@ -877,6 +943,48 @@ Kadın			gör-dü
 woman.3SG.NOM	see-PF.NPST.3SG
 'He/she/it saw the woman.'
 
+### DAT-TR SUBJECT DROP (g) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {argument optionality}
+Kadına			bayıldı
+Kadın-a			bayıl-dı
+woman.3SG-DAT	adore-PF.NPST.3SG
+'He/she/it adored the woman.'
+
+###### DROPPED OBJECT ######
+
+### ACC-TR OBJECT DROP (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {argument optionality}
+Gördü
+Gör-dü
+see-PF.NPST.3SG
+'He/she/it saw.'
+
+### DAT-TR OBJECT DROP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {argument optionality}
+Bayıldı
+Bayıl-dı
+adore-PF.NPST.3SG
+'He/she/it adored.'
+
+### ABL-TR OBJECT DROP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {argument optionality}
+Korkuyor
+Kork-uyor
+fear-IMPF.NPST.3SG
+'He/she/it is afraid.'
+
 ########################
 ###### POSSESSIVES #####
 ########################
@@ -890,7 +998,7 @@ Judgment: g
 Phenomena: {possessives}
 Benim			ailem					geldi
 benim			aile-m					gel-di
-pronoun.1SG.GEN	family.3SG.NOM-POSS.1SG	come-PF.NPST.3SG
+pronoun.1SG.GEN	family.3SG.NOM-1SGPOSS	come-PF.NPST.3SG
 'My family arrived.'
 
 ### 1SG, without genitive ###
@@ -901,7 +1009,7 @@ Judgment: g
 Phenomena: {possessives}
 Ailem					geldi
 Aile-m					gel-di
-family.3SG.NOM-POSS.1SG	come-PF.NPST.3SG
+family.3SG.NOM-1SGPOSS	come-PF.NPST.3SG
 'My family arrived.'
 
 ### 1SG, without possessive ###
@@ -921,7 +1029,7 @@ Judgment: g
 Phenomena: {possessives, word order}
 Ailem					benim			geldi
 Aile-m					benim			gel-di
-family.3SG.NOM-POSS.1SG	pronoun.1SG.GEN	come-PF.NPST.3SG
+family.3SG.NOM-1SGPOSS	pronoun.1SG.GEN	come-PF.NPST.3SG
 'My family arrived.'
 
 #########################
@@ -1506,9 +1614,9 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {embedded declaratives, argument optionality}
-Senin			piyano			çaldığını				bilmiyordum
-Senin			piyano			çal-dığ-ın-ı			bil-m-iyor-du-m
-pronoun.2SG.GEN piano.3SG.ACC	play-VN-2SG.POSS-ACC	know-NEG-IMPF-PST-1SG
+Senin			piyano			çaldığını			bilmiyordum
+Senin			piyano			çal-dığ-ın-ı		bil-m-iyor-du-m
+pronoun.2SG.GEN piano.3SG.ACC	play-VN-2SGPOSS-ACC	know-NEG-IMPF-PST-1SG
 "I didn't know (that) you played the piano."
 
 #########################
@@ -1642,7 +1750,7 @@ pronoun.1SG.NOM	student
 ###### STUFF THAT PARSES WITH NUTSO SEMANTICS ######
 
 ### ACC subject (u) ###
-# ends up parsing with the 3SG-ACC as 3SG.POSS, i.e., "His woman arrived."
+# ends up parsing with the 3SG-ACC as 3SGPOSS, i.e., "His woman arrived."
 # which is technically, syntactically OK
 Source: author
 Vetted: f
@@ -1654,7 +1762,7 @@ woman.3SG-ACC	come-PF.NPST.3SG
 'The woman arrived.'
 
 ### GEN subject (u) ###
-# ends up parsing with the 3SG-GEN as 2SG.POSS, i.e., "Your woman arrived."
+# ends up parsing with the 3SG-GEN as 2SGPOSS, i.e., "Your woman arrived."
 # which is technically, syntactically OK
 Source: author
 Vetted: f
