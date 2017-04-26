@@ -1,0 +1,16 @@
+Language: Turkish
+Language code: tur
+Lines: orth orth-seg gloss translat
+Author: Ajda Gokcen and Kekoa Riggin
+Date: April 28, 2017
+Source a: Aslı Göksel and Celia Kerslake. Turkish: A comprehensive grammar. Routledge, 2004.
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {}
+Kadın			çıktı
+Kadın			çık-tı
+woman.3SG.NOM	exit-PF.NPST.3SG
+'The woman left.'
+

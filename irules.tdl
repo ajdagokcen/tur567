@@ -113,37 +113,41 @@ pl-lex-rule-lex-rule.
 %suffix (* nüz)
 2pl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix1 :=
+3sgpl-poss-lex-rule-suffix1 :=
 %suffix (* si)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix2 :=
+3sgpl-poss-lex-rule-suffix2 :=
 %suffix (* sı)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix3 :=
+3sgpl-poss-lex-rule-suffix3 :=
 %suffix (* su)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix4 :=
+3sgpl-poss-lex-rule-suffix4 :=
 %suffix (* sü)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix5 :=
+3sgpl-poss-lex-rule-suffix5 :=
 %suffix (* i)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix6 :=
+3sgpl-poss-lex-rule-suffix6 :=
 %suffix (* ı)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix7 :=
+3sgpl-poss-lex-rule-suffix7 :=
 %suffix (* u)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
 
-3sg-poss-lex-rule-suffix8 :=
+3sgpl-poss-lex-rule-suffix8 :=
 %suffix (* ü)
-3sg-poss-lex-rule-lex-rule.
+3sgpl-poss-lex-rule-lex-rule.
+
+3sgpl-poss-lex-rule-suffix9 :=
+%suffix (* yu)
+3sgpl-poss-lex-rule-lex-rule.
 
 3pl-poss-lex-rule-suffix1 :=
 %suffix (* leri)
@@ -153,53 +157,53 @@ pl-lex-rule-lex-rule.
 %suffix (* ları)
 3pl-poss-lex-rule-lex-rule.
 
-acc-lex-rule-suffix1 :=
+def-acc-lex-rule-suffix1 :=
 %suffix (* yi)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix2 :=
+def-acc-lex-rule-suffix2 :=
 %suffix (* yı)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix3 :=
+def-acc-lex-rule-suffix3 :=
 %suffix (* yu)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix4 :=
+def-acc-lex-rule-suffix4 :=
 %suffix (* yü)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix5 :=
+def-acc-lex-rule-suffix5 :=
 %suffix (* i)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix6 :=
+def-acc-lex-rule-suffix6 :=
 %suffix (* ı)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix7 :=
+def-acc-lex-rule-suffix7 :=
 %suffix (* u)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix8 :=
+def-acc-lex-rule-suffix8 :=
 %suffix (* ü)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix9 :=
+def-acc-lex-rule-suffix9 :=
 %suffix (* ni)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix10 :=
+def-acc-lex-rule-suffix10 :=
 %suffix (* nı)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix11 :=
+def-acc-lex-rule-suffix11 :=
 %suffix (* nu)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
-acc-lex-rule-suffix12 :=
+def-acc-lex-rule-suffix12 :=
 %suffix (* nü)
-acc-lex-rule-lex-rule.
+def-acc-lex-rule-lex-rule.
 
 dat-lex-rule-suffix1 :=
 %suffix (* ye)

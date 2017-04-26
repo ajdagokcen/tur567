@@ -77,6 +77,10 @@ ayva := common-noun-lex &
   [ STEM < "ayva" >,
     SYNSEM.LKEYS.KEYREL.PRED "_quince_n_rel" ].
 
+adam := common-noun-lex &
+  [ STEM < "adam" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_man_n_rel" ].
+
 ben_1 := nom-1sg-pronoun-noun-lex &
   [ STEM < "ben" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -494,6 +498,16 @@ açık := basic-adjective-adj-lex &
 kapalı := basic-adjective-adj-lex &
   [ STEM < "kapalı" >,
     SYNSEM.LKEYS.KEYREL.PRED "_closed_a_rel" ].
+
+;;; Case-marking adpositions
+
+com-marker := case-marking-adp-lex &
+  [ STEM < "ile" >,
+    SYNSEM.LOCAL [ CONT [ HOOK [ ICONS-KEY.IARG1 #clause,
+                                 CLAUSE-KEY #clause ],
+                          ICONS <!  !> ],
+                   CAT.HEAD [ CASE com,
+                              CASE-MARKED + ] ] ].
 
 ;;; Verbs
 
