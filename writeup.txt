@@ -330,7 +330,23 @@ Lab 5
 				
 		3.	TDL snippets & descriptions
 
-		...
+		Here are the types we defined for adverbs (the former taken verbatim from the 
+		assignment instructions page) and added to turkish.tdl:
+
+			adverb-lex := basic-adverb-lex & intersective-mod-lex &
+			  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD verb ]>,
+						   VAL [ SPR < >,
+							 SUBJ < >,
+							 COMPS < >,
+							 SPEC < > ]]]]].
+
+			manner-adverb-adv-lex := adverb-lex.
+
+		And here is the single adverbial lexical entry we added to lexicon.tdl:
+
+			hızlı := manner-adverb-adv-lex &
+			  [ STEM < "hızlı" >,
+			    SYNSEM.LKEYS.KEYREL.PRED "_quickly_a_rel" ].
 
 		4.	Problems encountered
 
@@ -591,6 +607,16 @@ Lab 5
 		3.	TDL snippets & descriptions
 
 		4.	Problems encountered
+
+	OTHER
+
+		Coordination was adding way too many parses, so I commented out all of the many, many
+		coordination and coordination agreement rules in rules.tdl, e.g.,
+
+			> rules.tdl
+			;n1-1st-any-1st-any-any-pl-top-coord := n1-1st-any-1st-any-any-pl-top-coord-rule.
+			(...)
+			;s4-bottom-coord := s4-bottom-coord-rule.
 
 ##### PART 5 #####
 #	In addition, your write up should include a statement of the current coverage of your 

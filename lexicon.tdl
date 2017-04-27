@@ -764,3 +764,10 @@ ve3 := conj-lex &
   [ STEM < "ve" >,
     SYNSEM.LKEYS.KEYREL.PRED "_and_coord_rel",
     CFORM "3" ].
+
+;;; Adverbs
+
+hızlı := manner-adverb-adv-lex &
+  [ STEM < "hızlı" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_quickly_a_rel" ].
+
