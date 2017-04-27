@@ -19,456 +19,187 @@ Lab 5
 
 	1.	case [c], argument optionality [pro-d]
 
-		Before editing the TDL files, we made some final changes 
+		Before editing the TDL files, we made some more changes to the case choices, grammar, 
+		and testsuite.  Namely, we ensured that object drop is allowed for verbs with oblique 
+		(non-accusative-case) objects, and disallowed for verbs with accusative-case objects. 
+		We added several examples of verbs with oblique objects to the testsuite, including 
+		examples of object drop.
 
-		-	pronominal examples to effectively demonstrate that subjects can't be accusative
-		-	accusative now has indefinite -0 morph and definite -I morph
-		-	added in comitative/instrumental ("-(y)lA") case, because...
-		-	added verbs that take (optional) dative, ablative, locative, and comitative 
-			oblique objects
-		-	did not have time yet to add examples into testsuite; efforts ongoing
+		Some examples of a verb that takes dative-case objects, which do indeed receive 
+		parses in the baseline grammar, including subject and object drop:
 
-	2.	tense aspect mood [tam], negation [neg], agreement [agr] (morphology)
+			### DAT object + DAT-TR (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {case}
+			O				kadına			bayıldı
+			O				kadın-a			bayıl-dı
+			pronoun.3SG.NOM	woman.3SG-DAT	adore-PF.NPST.3SG
+			'He/she/it adored the woman.'
 
-		-	made tense morphemes impart a finite form feature as well, with a sister -0 rule 
-			that imparts a non-finite form feature
-		-	also just noting that the phonological generation would be really hard to make 
-			rules to get around (we tried) because there are usually a MINIMUM of four 
-			allomorphs, plus some stem changes :(
-			-	we could change the suffixes and testsuite so only one version of each suffix 
-				is included and the rest is left to phonology, but Ajda doesn't want to do that 
-				because the superficial lack of vowel harmony makes her sad and she prefers 
-				overgenerating to that
+			### DAT-TR SUBJECT DROP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {argument optionality}
+			Kadına			bayıldı
+			Kadın-a			bayıl-dı
+			woman.3SG-DAT	adore-PF.NPST.3SG
+			'He/she/it adored the woman.'
+
+			### DAT-TR OBJECT DROP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {argument optionality}
+			Bayıldı
+			Bayıl-dı
+			adore-PF.NPST.3SG
+			'He/she/it adored.'
+
+		Some examples of a verb that takes ablative-case objects, which do indeed receive 
+		parses in the baseline grammar, including object drop:
+
+			### ABL object + ABL-TR (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {case}
+			O				kadından		korktu
+			O				kadın-dan		kork-tu
+			pronoun.3SG.NOM	woman.3SG-ABL	fear-PF.NPST.3SG
+			'He/she/it feared the woman.'
+
+			### ABL-TR OBJECT DROP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {argument optionality}
+			Korkuyor
+			Kork-uyor
+			fear-IMPF.NPST.3SG
+			'He/she/it is afraid.'
+
+		An example of a verb that takes locative-case objects, which does indeed receive a 
+		parse in the baseline grammar:
+
+			### LOC object + LOC-TR (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {case}
+			O				evde			diretti
+			O				ev-de			diret-ti
+			pronoun.3SG.NOM	house.3SG-LOC	insist-PF.NPST.3SG
+			'He/she/it insisted on the house.'
+
+		Some examples of a verb that takes comitative-case objects (which can be marked either 
+		by suffix or via postposition), which do indeed receive parses in the baseline grammar:
+
+			### COM object + COM-TR (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {case}
+			O				kediyle			ilgilendi
+			O				kedi-yle		ilgilen-di
+			pronoun.3SG.NOM	cat.3SG-COM		care-PF.NPST.3SG
+			'He/she/it was interested in the cat.'
+
+			### COM object + COM-TR (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {case, case-marking adpositions}
+			O				kedi	ile			ilgilendi
+			O				kedi	ile			ilgilen-di
+			pronoun.3SG.NOM	cat.3SG	postpos.COM	care-PF.NPST.3SG
+			'He/she/it was interested in the cat.'
+
+		An ungrammatical example of a verb that takes accusative-case objects with would-be 
+		object dropping, which indeed does NOT receive a parse in the baseline grammar:
+
+			### ACC-TR OBJECT DROP (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {argument optionality}
+			Gördü
+			Gör-dü
+			see-PF.NPST.3SG
+			'He/she/it saw.'
+
+		And, finally, an example of something ungrammatical that shouldn't parse but 
+		incorrectly receives a parse anyway, with wacky semantics:
+
+			### ABL object + DAT-TR (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {case}
+			O				kadından		bayıldı
+			O				kadın-dan		bayıl-dı
+			pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST.3SG
+			'He/she/it adored the woman.'
+
+		The verb requires an object in the dative case, but because asyndetic coordination 
+		doesn't restrict which cases can combine with which, the would-be subject and the 
+		would-be object coordinate and the resultant phrase is apparently nominative (and 
+		therefore interpreted as the subject of the verb), so the grammar interprets this 
+		sentence as having no explicit object. Again, this should not be possible if 
+		coordination were properly restricted only to combine Ns/NPs with matching (or 
+		underspecified) case features.
+
+		All we did in the customization suite to allow for these examples was to create 
+		new types of transitive verbs based on the required case features of their objects, 
+		and give these types the features that their subjects be nominative, their objects 
+		be whatever the type-specific case must be, and the OPT feature on the object a minus 
+		value for accusative-object verbs and a plus for all oblique-object verbs.
+
+	2.	cognitive status [cogst], determiners [det]
+
+		Since definiteness / demonstrative determiners / cognitive status was the only cluster 
+		of concepts not really covered in the testsuite prior to this lab, we went ahead and 
+		added some related examples to the testsuite before gathering the baseline stats.
+
+		We won't get into detail about the phenomena here, since they are explained in detail 
+		below (including the examples from the testsuite), but they were indeed in the 
+		testsuite at the time of the baseline coverage/overgeneration calcualtions.
 
 	BASELINE TESTSUITE STATS
 
 		Coverage:
 
-			Positive Items #:		104
-			Total Results #:		79
-			Word String 0:			3.12
-			Lexical Items 0:		8.02
-			Distinct Analyses 0:	13.84
-			Overall Coverage %:		76.0
+			Positive Items #:		111
+			Total Results #:		86
+			Word String 0:			3.09
+			Lexical Items 0:		8.51
+			Distinct Analyses 0:	15.34
+			Overall Coverage %:		77.5
 
 		Overgeneration:
 
-			Negative Items #:		61
-			Total Results #:		14
-			Word String 0:			2.82
-			Lexical Items 0:		8.18
-			Distinct Analyses 0:	8.21
-			Overall Coverage %:		23.0
-
-##### PART 1 & 2 #####
-#	Documentation of the phenomena you have added to your testsuite, illustrated with 
-#	examples from the testsuite.
-#	Documentation of the choices you made in the customization system, illustrated with 
-#	examples from your test suite.
-
-	1.	matrix yes-no questions [q]
-
-		Turkish employs an interrogative auxiliary to form matrix yes-no questions.  This 
-		auxiliary follows its VP complement, raises the subject (which it requires to be 
-		nominative, as do all verbs), and requires that the complement be non-finite (meaning 
-		it may be inflected for negation and aspect, but not for tense or agreement).
-
-		The auxiliary itself cannot take negation or aspect morphemes, and must be inflected 
-		for tense and subject agreement (i.e., it must be finite).  The tense and agreement 
-		suffixes are the same as they are for any non-auxiliary verb.
-
-		However, matrix yes-no questions which draw focus to certain arguments use the 
-		interrogative marker as an uninflected particle instead, appearing immediately after 
-		the element that is being focused.
-
-		Here are some examples of properly finite interrogative auxiliaries with non-finite 
-		VP complements:
-
-			### IMPF comp, NPST+3SG aux (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {matrix yes-no questions}
-			Kadın			çıkıyor			mu
-			Kadın			çık-ıyor		mu
-			woman.3SG.NOM	exit-IMPF		question.NPST.3SG
-			'Is the woman leaving?'
-
-			### IMPF comp, PST+3SG aux (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {matrix yes-no questions}
-			Kadın			çıkıyor			muydu
-			Kadın			çık-ıyor		mu-ydu
-			woman.3SG.NOM	exit-IMPF		question-PST.3SG
-			'Was the woman leaving?'
-
-		And here are some ungrammatical examples where the auxiliary has an aspect suffix and 
-		the VP complement is finite, respectively:
-
-			### _ comp, IMPF+NPST+3SG aux (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {matrix yes-no questions}
-			Kadın			çık		mııyor
-			Kadın			çık		mı-ıyor
-			woman.3SG.NOM	exit	question-IMPF.NPST.3SG
-			'Is the woman leaving?'
-
-			### IMPF+PST+3SG comp, _ aux (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {matrix yes-no questions}
-			Kadın			çıkıyordu				mu
-			Kadın			çık-ıyor-du				mu
-			woman.3SG.NOM	exit-IMPF-PST.3SG		question
-			'Is the woman leaving?'
-
-		Finally, here is an example of the question marker instead acting as a particle and 
-		appearing directly after the focused argument under question:
-
-			### questioning subject (g) ###
-			# unclear whether tense+person is actually on the auxiliary in this case?
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {matrix yes-no questions, word order}
-			Kadın			mı			çıkıyor
-			Kadın			mı			çık-ıyor
-			woman.3SG.NOM	question	exit-IMPF.NPST.3SG
-			'Is it the woman who is leaving?'
-
-		Since interrogative auxiliaries are not given as an option for yes-no question 
-		formation in the customization quite, we did not select any of the options in 
-		the Matrix Yes-No Questions section.
-
-		Instead, we added an auxiliary verb "mi" to the lexicon and simply left it as 
-		being semantically empty.  We specified that it requires a non-finite complement 
-		and a nominative subject, and we added it as a possible input to the tense/
-		finiteness position class that otherwise applies to aspect-inflected verbs.
-
-		We (reluctantly) adjusted the negation/tense/aspect/mood/agreement rules for verbs 
-		so that they're all optional, because otherwise we couldn't figure out a way to 
-		ensure that a VP complement of an auxiliary CANNOT be finite, but the highest verb 
-		(final auxiliary or matrix verb without an auxiliary) MUST be finite, and the 
-		interrogative auxiliary CANNOT take negation or aspect suffixes, but other verbs 
-		MUST take negation and aspect suffixes.  We made sure to carefully specify which 
-		words and rules could apply to one another, but only making all of the affixes 
-		optional resulted in the yes-no questions actually parsing in the end.  Hopefully 
-		in tdl editing we will be able to define more specifically when morphological 
-		rules are obligatory and when they aren't -- and without having to define separate, 
-		otherwise-redundant morphological rules to do so.
-
-		As for the argument focusing particle phenomenon, this does not fall in the realm 
-		of the particle described in the Matrix Yes-No Questions section, nor is it 
-		otherwise within the scope of the customization suite to describe, so this facet of 
-		question formation remains unaccounted for in the grammar.
-
-	2.	matrix wh questions [wh]
-
-		Turkish allows matrix wh questions to be formed without any changes to word order 
-		or employment of auxiliaries; all that need be done is to use a wh pronoun (with 
-		the proper case feature) as the subject or object, exactly as one would use a 
-		regular 3rd person pronoun.
-
-		Here is an example of a matrix wh question where the questioned argument is the 
-		subject:
-
-			### NOM WH-SUBJECT (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {matrix wh questions}
-			Kim			çıktı
-			Kim			çık-tı
-			who.3SG.NOM	exit-PF.NPST.3SG
-			'Who left?'
-
-		And here is an example of a matrix wh question where the questioned argument is 
-		the object:
-
-			### ACC WH-OBJECT (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {matrix wh questions, argument optionality}
-			Ne				gördün
-			Ne				gör-dü-n
-			what.3SG.ACC	see-PF.NPST-2SG
-			'What did you see?'
-
-		And finally, an ungrammatical example where the would-be wh pronoun subject is 
-		in the incorrect case:
-
-			### DAT WH-SUBJECT (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {matrix wh questions}
-			Kime		çıktı
-			Kime		çık-tı
-			who.3SG.DAT	exit-PF.NPST.3SG
-			'Who left?'
-
-		Since the customization suite does not include a way to implement wh question 
-		formation, we didn't do much in that regard to account for these phenomena.
-
-		As a temporary holdover to at least allow the sentences to parse, we added all of 
-		the declined case forms of the wh-pronouns "ne" ('what') and "kim" ('who') as 
-		possible 3rd person (sg & pl) pronouns, since they effectively act as such for most 
-		intents and purposes (agreement and the like).  There is no way in the customization 
-		suite for these wh pronouns to make the sentence interrogative; perhaps in tdl editing 
-		we will be able to specify these semantics, though I'm not sure what the features for 
-		wh questions (as opposed to yes-no questions) we would be aiming for.
-
-	3.	coordination [crd]
-
-		Coordination in Turkish can be expressed either via asyndeton, where one simply 
-		lists all coordinands with no conjunctions between them, or via monosyndeton, where 
-		there is a conjunction prior to the final coordinand.  This applies to elements 
-		of all types (N, NP, VP, S, etc.).
-
-		There is a restriction, however, that either (a) all coordinands have the exact 
-		same morphological rules applied to them, or that (b) all non-final coordinands omit 
-		the same inflection suffixes across the board (and the values of the missing features 
-		are given to be those of the final, obligatorily inflected coordinand).  This latter 
-		phenomenon is often referred to as "suspended affixation."
-
-		For verb phrases, if the non-final coordinands omit all inflection, they must take the 
-		coordination suffix -ip (and all tense/aspect/mood, negation, and agreement features 
-		will still be equivalent to the inflectionally-supplied features of the final 
-		coordinand).
-
-		Here are some examples of asyndeton:
-
-			### len=2 N/NP asyndeton (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Elma			armut			yedim
-			Elma			armut			ye-di-m
-			apple.3SG.ACC	pear.3SG.ACC	eat-PF.NPST-1SG
-			'I ate an apple and (a) pear.'
-
-			### len=2 NP asyndeton (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Her			elma			her			armut			yedim
-			Her			elma			her			armut			ye-di-m
-			every.SG	apple.3SG.ACC	every.SG	pear.3SG.ACC	eat-PF.NPST-1SG
-			'I ate every apple and every pear.'
-
-			### len=2 VP asyndeton (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Ben				geldim				çıktım
-			Ben				gel-di-m			çık-tı-m
-			pronoun.1SG.NOM	come-PF.NPST-1SG	exit-PF.NPST-1SG
-			'I arrived and left.'
-
-		And some examples of monosyndeton:
-
-			### len=2 N/NP mono/polysyndeton (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Elma			ve	armut			yedim
-			Elma			ve	armut			ye-di-m
-			apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG
-			'I ate an apple and (a) pear.'
-
-			### len=2 NP monosyndeton (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Her			elma			ve	her			armut			yedim
-			Her			elma			ve	her			armut			ye-di-m
-			every.SG	apple.3SG.ACC	and	every.SG	pear.3SG.ACC	eat-PF.NPST-1SG
-			'I ate every apple and every pear.'
-
-			### len=2 VP mono/polysyndeton (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Ben				geldim				ve	çıktım
-			Ben				gel-di-m			ve	çık-tı-m
-			pronoun.1SG.NOM	come-PF.NPST-1SG	and	exit-PF.NPST-1SG
-			'I arrived and left.'
-
-		An ungrammatical example of omnisyndeton:
-
-			### len=2 N/NP omnisyndeton (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {coordination}
-			Ve	elma			ve	armut			yedim
-			Ve	elma			ve	armut			ye-di-m
-			and	apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG
-			'I ate an apple and (a) pear.'
-
-		An ungrammatical example of coordinands with clashing morphology:
-
-			### ACC+DAT (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {coordination}
-			Elma			ve	armuda			yedim
-			Elma			ve	armud-a			ye-di-m
-			apple.3SG.ACC	and	pear.3SG-DAT	eat-PF.NPST-1SG
-			'I ate an apple and (a) pear.'
-
-		And some examples of suspended affixation:
-
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Ben				geldi				ve	çıktım
-			Ben				gel-di				ve	çık-tı-m
-			pronoun.1SG.NOM	come-PF.NPST		and	exit-PF.NPST-1SG
-			'I arrived and left.'
-
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Ben				gelip				çıktım
-			Ben				gel-ip				çık-tı-m
-			pronoun.1SG.NOM	come-CONV		exit-PF.NPST-1SG
-			'I arrived and left.'
-
-		In the Coordination section of the customization suite, we added both asyndeton and 
-		monosyndeton strategies, splitting up the strategies further so that there are 
-		asyndeton and monosyndeton strategies for Ns and NPs (which then get agreement 
-		patterns) and separate asyndeton and monosyndeton strategies for VPs and Ss.
-
-		In both monosyndeton strategies, we said that the pattern is marked by a word that 
-		comes after the coordinand, and that word is the basic conjunction "ve" ('and').
-
-	4.	coordination agreement [crdagr]
-
-		In Turkish, 
-
-		Here are some examples of coordinated NPs where one of the coordinands has the 1st 
-		person feature, and so the resultant phrase is 1st person and plural:
-
-			### 3SG+1SG subj, 1PL agreement (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination agreement}
-			O				ve	ben				çıktık
-			O				ve	ben				çık-tı-k
-			pronoun.3SG.NOM	ve	pronoun.1SG.NOM	exit-PF.NPST-1PL
-			'He/she/it and I left.'
-
-			### 1SG+2SG subj, 1PL agreement (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination agreement}
-			Ben				ve	sen				çıktık
-			Ben				ve	sen				çık-tı-k
-			pronoun.1SG.NOM	ve	pronoun.2SG.NOM	exit-PF.NPST-1PL
-			'You (sg) and I left.'
-
-		Here are some examples where one of the coordinands has the 2nd person feature, and 
-		none of the others have the 1st person feature, so the resultant phrase is 2nd person 
-		and plural:
-
-			### 3SG+2SG subj, 2PL agreement (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination agreement}
-			O				ve	sen				çıktınız
-			O				ve	sen				çık-tı-nız
-			pronoun.3SG.NOM	ve	pronoun.2SG.NOM	exit-PF.NPST-2PL
-			'He/she/it and you left.'
-
-			### 2SG+3SG subj, 2PL agreement (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination agreement}
-			Sen				ve	o				çıktınız
-			Sen				ve	o				çık-tı-nız
-			pronoun.2SG.NOM	ve	pronoun.3SG.NOM	exit-PF.NPST-2PL
-			'He/she/it and you left.'
-
-		Here is an example of all 3rd person coordinands resulting in a 3PL phrase:
-
-			### 3SG+3SG subj, 3PL agreement (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination}
-			Kadın			ve	kedi			çıktılar
-			Kadın			ve	kedi			çık-tı-lar
-			woman.3SG.NOM	ve	kedi.3SG.NOM	exit-PF.NPST-3PL
-			'The woman and the cat left.'
-
-		And finally, some examples of incorrect agreement patterns:
-
-			### 2SG+1SG subj, 2PL agreement (u) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {coordination agreement}
-			Sen				ve	ben				çıktınız
-			Sen				ve	ben				çık-tı-nız
-			pronoun.2SG.NOM	ve	pronoun.1SG.NOM	exit-PF.NPST-2PL
-			'You (sg) and I left.'
-
-			### 3SG+2SG subj, 3PL agreement (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {coordination agreement}
-			O				ve	sen				çıktılar
-			O				ve	sen				çık-tı-lar
-			pronoun.3SG.NOM	ve	pronoun.2SG.NOM	exit-PF.NPST-3PL
-			'He/she/it and you left.'
-
-			### 3SG+3SG subj, 1PL agreement (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {coordination}
-			Kadın			ve	kedi			çıktık
-			Kadın			ve	kedi			çık-tı-k
-			woman.3SG.NOM	ve	kedi.3SG.NOM	exit-PF.NPST-1PL
-			'The woman and the cat left.'
-
-		In the Agreement Features in Coordinated Phrases part of the Coordination section 
-		of the customization suite, we created one Feature Resolution agreement pattern that 
-		we then applied to both the asyndeton and monosyndeton strategies of N/NP 
-		coordination.  In this we specified that any coordinated NP parent has a plural count 
-		feature, for one.  Regarding person features, we specified that a 1st person coordinand 
-		followed by anything OR anything followed by a 1st person coordinand results in a 1st 
-		person parent; that a 2nd person coordinand followed or preceded by anything but a 1st 
-		person coordinand results in a 2nd person parent; and that combinations of 3rd person 
-		coordinands result in a 3rd person parent.
-
-		We did not see a way to restrict case in coordinated NPs such that only Ns and NPs 
-		with the same case suffixes may be coordinated (let alone to allow nouns to omit 
-		case suffixes if and only if they are non-final coordinands), so we did not include 
-		case features in our agreement patterns.
-
-	5.	adjectives [adj]
+			Negative Items #:		62
+			Total Results #:		15
+			Word String 0:			2.84
+			Lexical Items 0:		8.88
+			Distinct Analyses 0:	10.20
+			Overall Coverage %:		24.2
+
+##### PART 1, 2, 3, & 4 #####
+#1:	A descriptive statement of the facts of your language.
+#2:	Illustrative IGT examples from your testsuite.
+#3:	A statement of how you implemented the phenomenon, in terms of types you added/modified 
+#	and particular tdl constraints. That is, I want to see actual tdl snippets with prose 
+#	descriptions around them. If the tdl as given on this page worked, please include it 
+#	anyway, and note that it wasn't changed. If you needed to make modifications, document 
+#	what those were.
+#4:	If the analysis is not (fully) working, a description of the problems you are encountering.
+
+	ADJECTIVAL AND ADVERBIAL MODIFIERS {adj, adv}
+
+		1.	Description of linguistic facts
 
 		Attributive adjectives in Turkish must precede the nouns they modify, but they have 
 		flexible word order with regard to any quantifiers -- that is, nouns must be the final 
@@ -477,6 +208,11 @@ Lab 5
 
 		Attributive adjectives take no suffixes.  They do not have or need any agreement 
 		features with the nouns they modify -- no number, no person, no case, nothing.
+
+		In Turkish, adverbs of manner can appear before or after a saturated VP or at either 
+		end of the sentence, suggesting that they can modify VPs and Ss but not Vs.
+
+		2.	Examples from testsuite
 
 		Here are some grammatical configurations of NPs including attributive adjectives:
 
@@ -532,24 +268,6 @@ Lab 5
 			Bir		kedi		güzel		gör-dü-m
 			a.SG	cat.3SG.ACC	beautiful	see-PF.NPST-1SG
 			'I saw a beautiful cat.'
-
-		In the Adjective part of the Lexicon section of the customization suite, we specified 
-		a basic type of adjective that can act as a predicate on its own, via copula, or act 
-		attributively.
-
-		Additionally, in the Morphology section, this required that we include morphological 
-		rules that determine which role a given instance of an adjective is taking.  All three 
-		of these happen to be zero suffixes, so we specified them as such.  It's worth noting 
-		that while the customization automatically made two rules based on the optionality 
-		of copulas for predicative adjectives, it did not automatically create a rule for 
-		licensing attributive adjectives and behaved oddly until we added such a rule, without 
-		making it clear that the lack of attributive-licensing morphological rule was the 
-		problem.
-
-	6.	adverbs [adv]
-
-		In Turkish, adverbs of manner can appear before or after a saturated VP or at either 
-		end of the sentence, suggesting that they can modify VPs and Ss but not Vs.
 
 		Here are some examples of grammatical manner adverb usage at the edges of a 
 		sentence:
@@ -610,432 +328,303 @@ Lab 5
 			pronoun.1SG.NOM	apple.3SG.ACC	quickly	eat-PF-1SG
 			'I quickly ate the apple.'
 				
-		Since the customization suite does not include a way to implement adverbs,
-		we did not do anything in the questionnaire to account for these phenomena.
+		3.	TDL snippets & descriptions
 
-	7.	embedded declaratives [emb-d]
+		...
 
-		Finite embedded declaratives are a little tricky in Turkish because non-finite 
-		complements are much preferred, but the former still does exist.  These can occur 
-		as complements of verbs like "düşünmek" ('think') or "demek" ('say').
+		4.	Problems encountered
 
-		No complementizer is needed if the matrix verb is "demek."  Otherwise, the 
-		complementizer "ki" licenses the sentential complement after the matrix verb, while 
-		the complementizer "diye" licenses the sentential complement before.
+		...
 
-		Here's an example of a quotative construction where no complementizer is needed:
+	AGREEMENT BETWEEN ADJECTIVES AND HEAD NOUN {adj, agr}
 
-			### no complementizer (g) ###
+		Turkish does not have any notion of agreement between adjectives and head nouns.
+
+	DEMONSTRATIVES AND/OR MARKERS OF DEFINITENESS {cogst}
+
+		1.	Description of linguistic facts
+
+		Turkish has an array of optional determiners that select for common nouns with agreeing
+		number features (sg/pl, but possibly underpecified).  When there is a determiner in a 
+		NP, it must precede the noun, and one can never appear with a pronoun.
+
+		The following are numerically-underspecified, definite pronouns: her (every),
+			bu (this), şu (this/that), o (that)
+
+		The following is a plural, definite pronoun: bütün (all)
+
+		The following is the singular, indefinite pronoun: bir (a/an)
+
+		The following are plural, indefinite pronouns: bazı (some), çok (many)
+
+
+		Additionally, the overt accusative suffix actually doubles as a definiteness marker; 
+		there is also a zero accusative suffix which denotes indefiniteness.
+
+		2.	Examples from testsuite
+
+		Examples of indefinite pronoun usage with the indefinite accusative (grammatical) 
+		and definite accusative (ungrammatical):
+
+			### indef-pronoun + indef-acc (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {embedded declaratives}
-			Kedi		uyudu				diyorlar
-			Kedi		uyu-du				d-iyor-lar
-			cat.3SG.NOM	sleep-PF.NPST.3SG	say-IMPF.NPST-3PL
-			"They're saying (that) the cat slept."
+			Phenomena: {cognitive status, determiners}
+			Bir		mektup			okudum
+			Bir		mektup			oku-du-m
+			a.SG	letter.3SG.ACC	read-PF.NPST-1SG
+			'I read a letter.'
 
-		Here are examples of properly ordered constructions with "diye" and "ki" 
-		complementizers:
-
-			### diye-complementizer before verb (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {embedded declaratives, word order}
-			Kedi		uyudu				diye	köpek		düşünür
-			Kedi		uyu-du				diye	köpek		düşün-ür
-			cat.3SG.NOM	sleep-PF.NPST.3SG	that	dog.3SG.NOM	think-HAB.NPST.3SG
-			"The dog thinks that the cat slept."
-
-			### ki-complementizer after verb (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {embedded declaratives, word order}
-			Köpek		düşünür				ki		kedi		uyudu
-			Köpek		düşün-ür			ki		kedi		uyu-du
-			dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF.NPST.3SG
-			"The dog thinks that the cat slept."
-
-		And here are examples of improperly ordered constructions with "diye" and "ki" 
-		complementizers:
-
-			### diye-complementizer after verb (u) ###
+			### indef-pronoun + def-acc (u) ###
 			Source: author
 			Vetted: f
 			Judgment: u
-			Phenomena: {embedded declaratives, word order}
-			Köpek		düşünür				diye	kedi		uyudu
-			Köpek		düşün-ür			diye	kedi		uyu-du
-			dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF.NPST.3SG
-			"The dog thinks that the cat slept."
+			Phenomena: {cognitive status, determiners}
+			Bir		mektubu			okudum
+			Bir		mektub-u		oku-du-m
+			a.SG	letter.3SG-ACC	read-PF.NPST-1SG
+			'I read a letter.'
 
-			### ki-complementizer before verb (u) ###
+		Examples of indefinite and definite accusatives without determiners, with indefinite 
+		and definite semantics nonetheless:
+
+			### bare zero-acc (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {cognitive status}
+			Mektup			okudum
+			Mektup			oku-du-m
+			letter.3SG.ACC	read-PF.NPST-1SG
+			'I read a letter.'
+
+			### bare zero-acc (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {cognitive status}
+			Mektubu			okudum
+			Mektub-u		oku-du-m
+			letter.3SG-ACC	read-PF.NPST-1SG
+			'I read the letter.'
+
+		Examples of definite pronoun usage with the indefinite accusative (ungrammatical) and 
+		definite accusative (grammatical):
+
+			### def-pronoun + indef-acc (u) ###
 			Source: author
 			Vetted: f
 			Judgment: u
-			Phenomena: {embedded declaratives, word order}
-			Kedi		uyudu				ki		köpek		düşünür
-			Kedi		uyu-du				ki		köpek		düşün-ür
-			cat.3SG.NOM	sleep-PF.NPST.3SG	that	dog.3SG.NOM	think-HAB.NPST.3SG
-			"The dog thinks that the cat slept."
+			Phenomena: {cognitive status, determiners}
+			Bu		mektup			okudum
+			Bu		mektup			oku-du-m
+			this	letter.3SG.ACC	read-PF.NPST-1SG
+			'I read a/this letter.'
 
-		Non-finite participle complements, meanwhile, are formed by suffixing a verb with 
-		-dIk, allowing it to combine with its complement if it has one, and then treating it 
-		as a noun.  In this form, the subject is expressed through a genitive-possessive 
-		construction, with a possessive suffix on the verbal and an optional genitive agreeing 
-		with the possessive suffix in person and number.  The verbal also takes case suffixes.
-
-		Here is an example of such a verbal noun / participle complement construction:
-
-			### verbal noun / participle (g) ###
+			### def-pronoun + def-acc (g) ###
+			### proximal-demonstrative ###
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {embedded declaratives, argument optionality}
-			Senin			piyano			çaldığını				bilmiyordum
-			Senin			piyano			çal-dığ-ın-ı			bil-m-iyor-du-m
-			pronoun.2SG.GEN piano.3SG.ACC	play-VN-2SG.POSS-ACC	know-NEG-IMPF-PST-1SG
-			"I didn't know (that) you played the piano."
+			Phenomena: {cognitive status, determiners}
+			Bu		mektubu			okudum
+			Bu		mektub-u		oku-du-m
+			this	letter.3SG-ACC	read-PF.NPST-1SG
+			'I read this letter.'
 
-		Since the customization suite does not include a way to implement embedded 
-		declaratives, we did not do anything in the questionnaire to account for these 
-		phenomena.
+		And finally, since the last two examples showed the proximal demonstrative determiner 
+		"bu," here are some examples with the medial and distal determiners:
 
-	8.	embedded interrogatives [emb-q]
-
-		Embedded interrogatives are pretty rare in Turkish, but as long as they're in a 
-		quotation-like context, they can occur as complements of the verb "demek" ('say'), 
-		or with the complementizer "diye."  They cannot occur with the complement "ki,"
-		regardless of the word order.
-
-		Here's an example of a quotative construction where no complementizer is needed:
-
-			### no complementizer (g) ###
+			### medial-demonstrative ###
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {embedded interrogatives}
-			Kedi		uyudu				mu					diyorlar
-			Kedi		uyu-du				mu					d-iyor-lar
-			cat.3SG.NOM	sleep-PF.NPST.3SG	question.NPST.3SG	say-IMPF.NPST-3PL
-			"They're asking, did the cat sleep?"
+			Phenomena: {cognitive status, determiners}
+			Şu		mektubu			okudum
+			Şu		mektub-u		oku-du-m
+			this	letter.3SG-ACC	read-PF.NPST-1SG
+			'I read this/that letter.'
 
-		Here is an example with the complementizer "diye":
-
-			### diye-complementizer after verb (g) ###
+			### distal-demonstrative ###
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {embedded interrogatives}
-			Kedi		uyudu		mu					diye	sordu
-			Kedi		uyu-du		mu					diye	sor-du
-			cat.3SG.NOM	sleep-PF	question.NPST.3SG	that	ask-PF.NPST.3SG
-			"They're asking, did the cat sleep?"
+			Phenomena: {cognitive status, determiners}
+			O		mektubu			okudum
+			O		mektub-u		oku-du-m
+			that	letter.3SG-ACC	read-PF.NPST-1SG
+			'I read that letter.'
 
-		And here is an ungrammatical example with the complementizer "ki" (order irrelevant):
+		3.	TDL snippets & descriptions
 
-			### ki-complementizer after verb (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {embedded declaratives}
-			Köpek		düşünür				ki		kedi		uyudu		mu
-			Köpek		düşün-ür			ki		kedi		uyu-du		mu
-			dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF	question.NPST.3SG
-			"The dog wonders whether the cat slept."
+		4.	Problems encountered
 
-		Since the customization suite does not include a way to implement embedded 
-		interrogatives, we did not do anything in the questionnaire to account for these 
-		phenomena.
+	ARGUMENT OPTIONALITY {pro-d}
 
-	9.	non-verbal predicates [cop]
+		1.	Description of linguistic facts
 
-		Adjectives and NPs can act as predicates in Turkish, with or without a copula.  If 
-		there is no copula, then the adjective or noun must take tense and agreement suffixes, 
-		just as a normal verb does (but, importantly, these non-verbal predicates cannot take 
-		negation or aspect suffixes).  If there is a copula, then the adjective or noun 
-		must remain non-finite, and the copula must be finite.
+		Because Turkish is a pro-drop language, the subject is always optional. Person and
+		number agreement inflection is required on the verb regardless. Objects of VPs cannot
+		be dropped.
 
-		There are two copulas.  One copula is a to-be verb "ol" that must be used if one wishes 
-		to introduce aspect to a non-verbal predicate.  This copula can and must take all of the 
-		suffixes of a normal verb.  The other is the negative copula "değil," which has an 
-		inherent negation feature and must take tense and agreement suffixes but cannot take 
-		negation or aspect suffixes.
+		***I believe the interpretation is always that the subject, if dropped, is in-focus
 
-		Here are examples of predicative adjectives and nouns without copulas:
+		2.	Examples from testsuite
 
-			### FINITE ADJ + NO-COP (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {non-verbal predicates}
-			Ben				mutluyum
-			Ben				mutlu-yum
-			pronoun.1SG.NOM	happy.NPST-1SG
-			"I am happy."
+		Examples of argument optionality, first showing the explicit subject for reference:
 
-			### FINITE NOUN + NO-COP (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {non-verbal predicates}
-			Ben				oğrenciyim
-			Ben				oğrenci-yim
-			pronoun.1SG.NOM	student.NPST-1SG
-			"I am a student."
-
-		Here are examples of predicative adjectives and nouns with copulas:
-
-			### NON-FINITE ADJ + POS-COP (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {non-verbal predicates}
-			Ben				mutlu	olurum
-			Ben				mutlu	ol-ur-um
-			pronoun.1SG.NOM	happy	be-HAB.NPST-1SG
-			"I am happy."
-
-			### NON-FINITE NOUN + POS-COP (g) ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {non-verbal predicates}
-			Ben				oğrenci	değilim
-			Ben				oğrenci	değil-im
-			pronoun.1SG.NOM	student	neg.NPST-1SG
-			"I am not a student."
-
-		And here are ungrammatical examples where there are neither copulas nor finite 
-		suffixes on the nouns and adjectives:
-
-			### NON-FINITE ADJ + NO-COP (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {non-verbal predicates}
-			Ben				mutlu
-			Ben				mutlu
-			pronoun.1SG.NOM	happy
-			"I am happy."
-
-			### NON-FINITE NOUN + NO-COP (u) ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {non-verbal predicates}
-			Ben				oğrenci
-			Ben				oğrenci
-			pronoun.1SG.NOM	student
-			"I am a student."
-
-		In the Adjective part of the Lexicon section of the customization suite, we specified 
-		a basic type of adjective that can act as a predicate on its own, via copula, or act 
-		attributively.  This required saying that predicative adjectives could OPTIONALLY 
-		appear as complements of a copula.
-
-		Additionally, in the Morphology section, this required that we include morphological 
-		rules that determine which role a given instance of an adjective is taking.  All three 
-		of these happen to be zero suffixes, so we specified them as such.
-
-		The negative copula and copula-less predicative adjectives we specified as requiring 
-		tense and agreement suffixes and being unable to take negation and aspect suffixes, 
-		while the other copula takes all of the suffixes of a regular verb.  The copulas, 
-		of course, require their complements (adjectives) to be non-finite.
-
-		Predicative nouns are not accounted for in the customization suite, so we did not 
-		do anything in that regard.
-
-##### PART 3 #####
-#	Descriptions of any properties of your language illustrated in your test suite but not
-#	covered by your starter grammar and/or the customization system.
-
-	As described above, the semantics of wh-questions, suspended affixation in coordinated
-	phrases, the flexible word order of attributive adjectives with regard to quantifiers, 
-	anything to do with adverbs, embedded declaratives, embedded interrogatives, and 
-	nominal predicates (copular and otherwise) are all illustrated in our testsuite but 
-	not accounted for by our grammar.
-
-	In addition, we tried to account for the notion that the topmost copula/auxiliary (or the 
-	predicate/verb itself if there are no copulas/auxiliaries) must be finite while all 
-	verbs/predicates/auxiliaries/copulas that are complements of others must be non-finite, 
-	but the interaction of "in this case these suffixes are required and in this case they 
-	are disallowed" proved too difficult for us to implement in the customization suite.
-
-##### PART 4 #####
-#	Documentation the coverage of your grammar over the testsuite. This should include both
-#	summary numbers, which you can get by using the Analyze | Coverage and Analyze |
-#	Overgeneration options in [incr tsdb()], and discussion of specific examples. If there are
-#	examples that thare parsed incorrectly (unanalyzed grammatical examples, analyzed
-#	ungrammatical examples, or grammatical examples assigned surprising parses), reflect on why
-#	that might be.
-
-	1.	Coverage & Overgeneration
-
-		Coverage:
-
-			Positive Items #:		97
-			Total Results #:		73
-			Word String 0:			3.16
-			Lexical Items 0:		8.10
-			Distinct Analyses 0:	11.23
-			Overall Coverage %:		75.3
-
-		Overgeneration:
-
-			Negative Items #:		58
-			Total Results #:		13
-			Word String 0:			2.86
-			Lexical Items 0:		8.34
-			Distinct Analyses 0:	13.08
-			Overall Coverage %:		22.4
-
-		The majority of the parses for this lab produces more than one analysis. Some produced 
-		few and some produced many. We believe that we can account for most analyses with the 
-		rules that we have incorporated in the grammar; however, some of these analyses were 
-		unexpected at first. 
-
-	2.	Surprising Parses: Subject Dropping Object Dropping SUBJ-HEAD
-		
-		We were surpised to see three tree structures that brought the two NPs and the VP 
-		gether. These parses are affected by other phenomena that are seen below, but primarily 
-		are the result of subject and object dropping in Turkish that we have modeled in our 
-		grammar. 
-		
-		This sentence produced 51 parses:
-		
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {word order}
-			Gördü		kadın			evi
-			Gör-dü		kadın			ev-i
-			see-PF.3SG	woman.3SG.NOM	house.3SG-ACC
+			Kadın           çıktı
+			Kadın           çık-tı
+			woman.3SG.NOM   exit-PF.3SG
+			'The woman left.'
+
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {word order}
+			Kadın			evi				gördü
+			Kadın			ev-i			gör-dü
+			woman.3SG.NOM	house.3SG-ACC	see-PF.3SG
 			'The woman saw the house.'
-			
-		The three tree structures that resulted from this sentence, as well as others, are 
-		licensed by the HEAD-SUBJ rule, the DECL-HEAD-OPT-SUBJ rule, and the 
-		BASIC-HEAD-OPT-COMP rule. 
-		
-		When the HEAD-SUBJ rule is in effect, the verb combines with the subject of the 
-		sentence. Other ambiguity- causing phenomena can affect whether the verb takes one of 
-		the nouns as a complement or not, but this is addressed in the coordination section 
-		below. 
-		
-		When the OPT-SUBJ or OPT-COMP rule are in effect, the two nouns form the individual 
-		parts of a coordinated phrase. This means that the transitive verb is missing one of 
-		it's arguments: the subject or the object. However, Turkih allows for argument 
-		optionality for both subject and object. Therefore, although these parses were not 
-		initially anticipated, they are reasonable and grammatical.
 
-	3.	Surprising Parses: Coordination
-		
-		We introduced coordination to our grammar this week and allowed asyndeton as grammatical.
-		This, in conjunction with other rules, allowed for some overgeneration. However, in 
-		isolation, the coordination rule generated several analyses for single sentences. 
-		
-		This sentence produced 27 parses, many of which were caused by our coordination rule:
+		...and then remembering, of course, that the subject is optional:
 
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {determiners}
-			Her			kadın			mektubu			okudu
-			Her			kadın			mektub-u		oku-du
-			every.SG	woman.3SG.NOM	letter.3SG-ACC	read-PF.3SG
-			'Every woman read the letter.'
-			
-		Allowing asyndeton coordination enables our grammar to parse the NN sequence, which 
-		should be processed as subject object, as two parts of a coordinated phrase. In this 
-		given example, the coordination rule in conjunction with the optionality of the subject 
-		create a case where both the woman and the letter are being read by a dropped subject 
-		in addition to the expected analysis that the woman reads the letter. For this 
-		analysis, there must also be some changes in case, which problem is addressed below. 
+			Phenomena: {argument optionality}
+			Çıktı
+			Çık-tı
+			exit-PF.3SG
+			'He/she/it left.'
 
-	4.	Things That Should've Parsed But Didn't: Yes-No Questions and Non-Verbal Predicates
-
-		Matrix yes-no questions and non-verbal predicates don't currently parse, though they 
-		ought to.  Some examples of sentences that should receive parses but don't:
-
-			### IMPF comp, NPST+3SG aux (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {matrix yes-no questions}
-			Kadın			çıkıyor			mu
-			Kadın			çık-ıyor		mu
-			woman.3SG.NOM	exit-IMPF		question.NPST.3SG
-			'Is the woman leaving?'
+			Phenomena: {argument optionality}
+			Evi				gördü
+			Ev-i			gör-dü
+			house.3SG-ACC	see-PF.3SG
+			'He/she/it saw the house.'
 
-			### FINITE ADJ + NO-COP (g) ###
+		The first example follows all other rules implemented in our grammar and includes the
+		verb's subject. The second example follows all other grammar rules but excludes the
+		subject of the verb. All contain the required agreement feature on the verb (zero
+		for 3rd person singular).
+
+		This example does not parse (since it cannot recognize the NOM-marked noun as an object
+		and therefore lacks an object, which cannot be dropped) but should because accusative
+		optionality:
+
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {non-verbal predicates}
-			Ben				mutluyum
-			Ben				mutlu-yum
-			pronoun.1SG.NOM	happy.NPST-1SG
-			"I am happy."
+			Phenomena: {word order}
+			Kadın			gördü
+			Kadın			gör-dü
+			woman.3SG.NOM	see-PF.3SG
+			'He/she/it saw the woman.'
 
-		The reason for this is that all morphological rules are required for all verbs and 
-		predicative adjectives in the current grammar, but in fact some need to be forbidden 
-		when a predicate is acting as a complement to a copula or auxiliary.
+		3.	TDL snippets & descriptions
 
-		We tried getting around this by making everything optional, but the result was about 
-		800 parses for some of the sentences.  Not a worthy tradeoff.
+		4.	Problems encountered
 
-	5.	Rampant Ambiguity (and resultant overgeneration)
+	POSSESSIVES {poss}
 
-		Our grammar features two cases for the subject of a sentence with a transitive verb: 
-		nominative and accusative. However, because the accusative marker doubles as the 
-		indefinite marker for subjects, there are two rules that license accusative CASE. The 
-		rule that causes the multiple analyses is the zero-marking accusative rule that is meant 
-		to allow indefinite subjects to be accusative in CASE. This is an expected analysis, 
-		however, we were surprised by the parses at first. 
-		
-		This sentence produced 51 parses by our grammar: 
-		
+		1.	Description of linguistic facts
+
+		Turkish allows for an optional possessor (which must have genitive case) on either 
+		(left or right) edge of the NP, along with a required (head noun) possessee that must 
+		be inflected with a possessive suffix whose number and person features agree with those 
+		of the possessor.
+
+		2.	Examples from testsuite
+
+		Here are a few examples of possession as they currently exist in our grammar:
+
+			### 1SG, with genitive ###
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {case}
-			Kadın			mektubu			okudu
-			Kadın			mektub-u		oku-du
-			woman.3SG.NOM	letter.3SG-ACC	read-PF.3SG
-			'The woman read the letter.'
-		
-		First, the Zero-marking Accusative Lexical Rule allows for subjects of transitive verbs 
-		that would be nominative in CASE when definite, to be accusative when indefinite. This 
-		means that in any sentence with a transitive verb, there will be one parse for a 
-		subject with CASE accusative and one with CASE nominative. The number of analyses is 
-		compounded as multiple analyses as a result of other phenomena occur because for each 
-		analysis, there must be one for accusative and one for definite CASE. 
-		
-		Secondly, our grammar currently allows free word order. This means that both the 
-		subject and the object of a sentence with a transitive verb get a chance to be 
-		processed as the subject--both definite (CASE accusative) and indefinite (CASE 
-		nominative)--and the object.
+			Phenomena: {possessives}
+			Benim			ailem					geldi
+			benim			aile-m					gel-di
+			pronoun.1SG.GEN	family.3SG.NOM-POSS.1SG	come-PF.3SG
+			'My family arrived.'
+
+		This example doesn't currently parse although it should. This is due to the genitive
+		case not being active in our grammar as it is. Some rule must allow genitive case
+		nouns to be processed as determiners.
+
+			### 1SG, without genitive ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {possessives}
+			Ailem					geldi
+			Aile-m					gel-di
+			family.3SG.NOM-POSS.1SG	come-PF.3SG
+			'My family arrived.'
+
+		This sentence currently parses in our grammar; however, the possessive suffix is
+		semantically empty.
+
+			### 1SG, without possessive ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {possessives}
+			Benim			aile			geldi
+			benim			aile			gel-di
+			pronoun.1SG.GEN	family.3SG.NOM	come-PF.3SG
+			'My family arrived.'
+
+		This sentence is ungrammatical because the subject does not carry the possessive suffix.
+		But it does not parse because of the presence of the genitive (i.e., it is treated as
+		ungrammatical for the wrong reason).
+
+		3.	TDL snippets & descriptions
+
+		4.	Problems encountered
 
 ##### PART 5 #####
-#	Finally, if there are any places where the customization system seems unable to cope with
-#	the properties of your language (within the phenomena addressed in this lab), describe them
-#	here.
+#	In addition, your write up should include a statement of the current coverage of your 
+#	grammar over your test suite (using numbers you can get from Analyze | Coverage and 
+#	Analyze | Overgeneration in [incr tsdb()]) and a comparison between your baseline test 
+#	suite run and your final one for this lab (see Compare | Competence).
 
-	The main sticking points for handling the Turkish phenomena in this lab:
+	BASELINE TESTSUITE STATS
 
-		1.	The interrogative auxiliary!  It's interesting that yes-no questions are so rarely 
-			formed with auxiliaries, cross-linguistically.  If languages use interrogative 
-			particles you'd think interrogative auxiliaries wouldn't be too far off from that. 
-			In any case, the lack of option for interrogative auxiliaries in yes-no question 
-			formation meant that we had to implement a semantically empty auxiliary instead.
+		Coverage:
 
-		2.	Conditional morphological obligatoriness and suspended affixation!  The complex 
-			interplay of some verbs/predicates requiring certain suffixes while others forbid 
-			them, and the omission of some affixes from VP complements of auxiliaries, all while 
-			the suffixes are identical when they are applied in various situations in which they 
-			are required.... There sure was no easy way to account for this, going through the 
-			customization suite.  Making a bunch of redundant lexical rules was untenable and 
-			might not have even solved the problems.
+			Positive Items #:		111
+			Total Results #:		86
+			Word String 0:			3.09
+			Lexical Items 0:		8.51
+			Distinct Analyses 0:	15.34
+			Overall Coverage %:		77.5
+
+		Overgeneration:
+
+			Negative Items #:		62
+			Total Results #:		15
+			Word String 0:			2.84
+			Lexical Items 0:		8.88
+			Distinct Analyses 0:	10.20
+			Overall Coverage %:		24.2
+
+	FINAL TESTSUITE STATS
+
+		...
+
+##### PART 6 #####
+#	Finally please briefly describe your test corpus, including: where you collected it, how 
+#	many sentences it contains, and what format (transliterated, etc) it is in.
+
+	...
 

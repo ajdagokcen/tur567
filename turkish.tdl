@@ -2,7 +2,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Grammar of Turkish
 ;;; created at:
-;;;     Wed Apr 26 12:10:38 UTC 2017
+;;;     Thu Apr 27 07:33:44 UTC 2017
 ;;; based on Matrix customization system version of:
 ;;;     Tue Apr 25 03:52:37 UTC 2017
 ;;;
@@ -25,37 +25,37 @@ head :+ [ PRD bool,
     FORM form,
     AUX bool ].
 
-inflected :+ [ TENSE-COPULA-FLAG luk,
-    NEG-LEX-RULE-FLAG luk,
+inflected :+ [ NEG-LEX-RULE-FLAG luk,
     NUMBER-COMMON-NOUN-FLAG luk,
-    ASPECT-COPULA-FLAG luk,
-    NEG-COP-LEX-RULE-FLAG luk,
-    CASE-COMMON-NOUN-FLAG luk,
-    ASPECT-VERB-FLAG luk,
-    AGREEMENT-COPULA-FLAG luk,
     BASIC-ADJECTIVE_OPT_COP-FLAG luk,
+    NEG-COP-LEX-RULE-FLAG luk,
+    TENSE-VERB-FLAG luk,
+    ASPECT-VERB-FLAG luk,
+    CASE-COMMON-NOUN-FLAG luk,
     AGREEMENT-VERB-FLAG luk,
     TENSE-ADJECTIVE-FLAG luk,
-    AGREEMENT-ADJECTIVE-FLAG luk,
+    POLARITY-VERB-FLAG luk,
+    AGREEMENT-COPULA-FLAG luk,
     POLARITY-COPULA-FLAG luk,
-    TENSE-VERB-FLAG luk,
-    POLARITY-VERB-FLAG luk ].
+    TENSE-COPULA-FLAG luk,
+    AGREEMENT-ADJECTIVE-FLAG luk,
+    ASPECT-COPULA-FLAG luk ].
 
-infl-satisfied :+ [ TENSE-COPULA-FLAG na-or-+,
-    NEG-LEX-RULE-FLAG na-or-+,
+infl-satisfied :+ [ NEG-LEX-RULE-FLAG na-or-+,
     NUMBER-COMMON-NOUN-FLAG na-or-+,
-    ASPECT-COPULA-FLAG na-or-+,
-    NEG-COP-LEX-RULE-FLAG na-or-+,
-    CASE-COMMON-NOUN-FLAG na-or-+,
-    ASPECT-VERB-FLAG na-or-+,
-    AGREEMENT-COPULA-FLAG na-or-+,
     BASIC-ADJECTIVE_OPT_COP-FLAG na-or-+,
+    NEG-COP-LEX-RULE-FLAG na-or-+,
+    TENSE-VERB-FLAG na-or-+,
+    ASPECT-VERB-FLAG na-or-+,
+    CASE-COMMON-NOUN-FLAG na-or-+,
     AGREEMENT-VERB-FLAG na-or-+,
     TENSE-ADJECTIVE-FLAG na-or-+,
-    AGREEMENT-ADJECTIVE-FLAG na-or-+,
+    POLARITY-VERB-FLAG na-or-+,
+    AGREEMENT-COPULA-FLAG na-or-+,
     POLARITY-COPULA-FLAG na-or-+,
-    TENSE-VERB-FLAG na-or-+,
-    POLARITY-VERB-FLAG na-or-+ ].
+    TENSE-COPULA-FLAG na-or-+,
+    AGREEMENT-ADJECTIVE-FLAG na-or-+,
+    ASPECT-COPULA-FLAG na-or-+ ].
 
 png :+ [ PER person,
     NUM number ].
@@ -183,7 +183,7 @@ nom-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
                             CASE-MARKED + ] ].
 
-acc-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
+def-acc-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
                             CASE-MARKED + ] ].
 
@@ -211,7 +211,7 @@ nom-1pl-pronoun-noun-lex := 1pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
                             CASE-MARKED + ] ].
 
-acc-1pl-pronoun-noun-lex := 1pl-pronoun-noun-lex &
+def-acc-1pl-pronoun-noun-lex := 1pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
                             CASE-MARKED + ] ].
 
@@ -239,7 +239,7 @@ nom-2sg-pronoun-noun-lex := 2sg-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
                             CASE-MARKED + ] ].
 
-acc-2sg-pronoun-noun-lex := 2sg-pronoun-noun-lex &
+def-acc-2sg-pronoun-noun-lex := 2sg-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
                             CASE-MARKED + ] ].
 
@@ -267,7 +267,7 @@ nom-2pl-pronoun-noun-lex := 2pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
                             CASE-MARKED + ] ].
 
-acc-2pl-pronoun-noun-lex := 2pl-pronoun-noun-lex &
+def-acc-2pl-pronoun-noun-lex := 2pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
                             CASE-MARKED + ] ].
 
@@ -287,31 +287,30 @@ loc-2pl-pronoun-noun-lex := 2pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE loc,
                             CASE-MARKED + ] ].
 
-3sg-pronoun-noun-lex := no-spr-noun-lex &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ PER 3rd,
-                                       NUM sg ] ].
+3sgpl-pronoun-noun-lex := no-spr-noun-lex &
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.PER 3rd ].
 
-nom-3sg-pronoun-noun-lex := 3sg-pronoun-noun-lex &
+nom-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
                             CASE-MARKED + ] ].
 
-acc-3sg-pronoun-noun-lex := 3sg-pronoun-noun-lex &
+def-acc-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
                             CASE-MARKED + ] ].
 
-dat-3sg-pronoun-noun-lex := 3sg-pronoun-noun-lex &
+dat-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE dat,
                             CASE-MARKED + ] ].
 
-abl-3sg-pronoun-noun-lex := 3sg-pronoun-noun-lex &
+abl-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE abl,
                             CASE-MARKED + ] ].
 
-gen-3sg-pronoun-noun-lex := 3sg-pronoun-noun-lex &
+gen-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE gen,
                             CASE-MARKED + ] ].
 
-loc-3sg-pronoun-noun-lex := 3sg-pronoun-noun-lex &
+loc-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE loc,
                             CASE-MARKED + ] ].
 
@@ -323,7 +322,7 @@ nom-3pl-pronoun-noun-lex := 3pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
                             CASE-MARKED + ] ].
 
-acc-3pl-pronoun-noun-lex := 3pl-pronoun-noun-lex &
+def-acc-3pl-pronoun-noun-lex := 3pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
                             CASE-MARKED + ] ].
 
@@ -343,6 +342,54 @@ loc-3pl-pronoun-noun-lex := 3pl-pronoun-noun-lex &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE loc,
                             CASE-MARKED + ] ].
 
+indef-acc-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
+                            CASE-MARKED + ] ].
+
+indef-acc-1pl-pronoun-noun-lex := 1pl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
+                            CASE-MARKED + ] ].
+
+indef-acc-2sg-pronoun-noun-lex := 2sg-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
+                            CASE-MARKED + ] ].
+
+indef-acc-2pl-pronoun-noun-lex := 2pl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
+                            CASE-MARKED + ] ].
+
+indef-acc-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
+                            CASE-MARKED + ] ].
+
+indef-acc-3pl-pronoun-noun-lex := 3pl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE acc,
+                            CASE-MARKED + ] ].
+
+com-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE com,
+                            CASE-MARKED + ] ].
+
+com-1pl-pronoun-noun-lex := 1pl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE com,
+                            CASE-MARKED + ] ].
+
+com-2sg-pronoun-noun-lex := 2sg-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE com,
+                            CASE-MARKED + ] ].
+
+com-2pl-pronoun-noun-lex := 2pl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE com,
+                            CASE-MARKED + ] ].
+
+com-3sgpl-pronoun-noun-lex := 3sgpl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE com,
+                            CASE-MARKED + ] ].
+
+com-3pl-pronoun-noun-lex := 3pl-pronoun-noun-lex &
+  [ SYNSEM.LOCAL.CAT.HEAD [ CASE com,
+                            CASE-MARKED + ] ].
+
 ;;; Verbs
 
 verb-lex := non-mod-lex-item &
@@ -360,9 +407,9 @@ main-verb-lex := verb-lex & basic-verb-lex & agreement-verb-rule-dtr & aspect-ve
                                      COMPS < > ],
                            CONT.HOOK.INDEX #xarg ] ],
     INFLECTED [ AGREEMENT-VERB-FLAG -,
+                POLARITY-VERB-FLAG -,
                 TENSE-VERB-FLAG -,
-                ASPECT-VERB-FLAG -,
-                POLARITY-VERB-FLAG - ] ].
+                ASPECT-VERB-FLAG - ] ].
 
 aux-lex := verb-lex & agreement-verb-rule-dtr & tense-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.HEAD.AUX +,
@@ -494,23 +541,23 @@ adj-comp-copula-verb-lex := cop-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD adj ].
 
 positive-copula-cop-lex := adj-comp-copula-verb-lex & aspect-copula-rule-dtr &
-  [ INFLECTED [ AGREEMENT-COPULA-FLAG -,
-                POLARITY-COPULA-FLAG -,
+  [ INFLECTED [ POLARITY-COPULA-FLAG -,
                 TENSE-COPULA-FLAG -,
-                ASPECT-COPULA-FLAG - ] ].
+                ASPECT-COPULA-FLAG -,
+                AGREEMENT-COPULA-FLAG - ] ].
 
 negative-copula-cop-lex := adj-comp-copula-verb-lex &
-  [ INFLECTED [ AGREEMENT-COPULA-FLAG -,
-                TENSE-COPULA-FLAG - ] ].
+  [ INFLECTED [ TENSE-COPULA-FLAG -,
+                AGREEMENT-COPULA-FLAG - ] ].
 
 ;;; Adjectives
 
 adj-lex := basic-intersective-adjective-lex & agreement-adjective-rule-dtr & tense-adjective-rule-dtr.
 
 basic-adjective-adj-lex := adj-lex &
-  [ INFLECTED [ BASIC-ADJECTIVE_OPT_COP-FLAG -,
-                AGREEMENT-ADJECTIVE-FLAG -,
-                TENSE-ADJECTIVE-FLAG - ] ].
+  [ INFLECTED [ AGREEMENT-ADJECTIVE-FLAG -,
+                TENSE-ADJECTIVE-FLAG -,
+                BASIC-ADJECTIVE_OPT_COP-FLAG - ] ].
 
 ;;; Others
 
@@ -540,8 +587,7 @@ determiner-lex := basic-determiner-lex & norm-zero-arg & non-mod-lex-item &
                            COMPS < >,
                            SUBJ < > ] ].
 
-sg-definite-determiner-lex := determiner-lex & no-icons-lex-item &
-  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
+sgpl-definite-determiner-lex := determiner-lex & no-icons-lex-item.
 
 pl-definite-determiner-lex := determiner-lex & no-icons-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
@@ -549,7 +595,8 @@ pl-definite-determiner-lex := determiner-lex & no-icons-lex-item &
 sg-indefinite-determiner-lex := determiner-lex & no-icons-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
 
-pl-indefinite-determiner-lex := determiner-lex & no-icons-lex-item.
+pl-indefinite-determiner-lex := determiner-lex & no-icons-lex-item &
+  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; Lexical Rules
@@ -592,34 +639,34 @@ case-common-noun-rule-dtr := word-or-lexrule.
 number-common-noun-lex-rule-super := add-only-no-ccont-rule & case-common-noun-rule-dtr & poss-common-noun-rule-dtr &
   [ INFLECTED [ NUMBER-COMMON-NOUN-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
                 BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                TENSE-COPULA-FLAG #tense-copula,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
+                TENSE-ADJECTIVE-FLAG #tense-adjective,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR common-noun-lex &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
                       BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      TENSE-COPULA-FLAG #tense-copula,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
+                      TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 sg-lex-rule-lex-rule := const-lex-rule & number-common-noun-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
@@ -647,34 +694,34 @@ poss-common-noun-lex-rule-super := add-only-no-ccont-rule & case-common-noun-rul
 case-common-noun-lex-rule-super := add-only-no-ccont-rule &
   [ INFLECTED [ CASE-COMMON-NOUN-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
                 POLARITY-COPULA-FLAG #polarity-copula,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                TENSE-COPULA-FLAG #tense-copula,
+                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR case-common-noun-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
                       POLARITY-COPULA-FLAG #polarity-copula,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      TENSE-COPULA-FLAG #tense-copula,
+                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 nom-lex-rule-lex-rule := case-common-noun-lex-rule-super & const-lex-rule &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
@@ -714,33 +761,33 @@ case-common-noun-synth-com-lex-rule := case-common-noun-lex-rule-super & const-l
 
 polarity-verb-lex-rule-super := agreement-verb-rule-dtr & aspect-verb-rule-dtr & lex-rule & tense-verb-rule-dtr &
   [ INFLECTED [ POLARITY-VERB-FLAG +,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR polarity-verb-rule-dtr &
-        [ INFLECTED [ TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
+        [ INFLECTED [ TENSE-ADJECTIVE-FLAG #tense-adjective,
                       BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 ; This adds negative semantics to the verb's
 ; RELS list.
@@ -771,34 +818,34 @@ pos-lex-rule-lex-rule := add-only-no-ccont-rule & const-lex-rule & polarity-verb
 aspect-verb-lex-rule-super := add-only-no-ccont-rule & agreement-verb-rule-dtr & tense-verb-rule-dtr &
   [ INFLECTED [ ASPECT-VERB-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
+                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR aspect-verb-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
+                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 neg-hab-lex-rule-lex-rule := aspect-verb-lex-rule-super & const-lex-rule &
   [ DTR.INFLECTED.NEG-LEX-RULE-FLAG +,
@@ -819,34 +866,34 @@ prsp-lex-rule-lex-rule := aspect-verb-lex-rule-super & infl-lex-rule &
 tense-verb-lex-rule-super := add-only-no-ccont-rule &
   [ INFLECTED [ TENSE-VERB-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+                ASPECT-COPULA-FLAG #aspect-copula,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
+                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ],
     DTR tense-verb-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+                      ASPECT-COPULA-FLAG #aspect-copula,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
+                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ] ] ].
 
 npst-lex-rule-lex-rule := const-lex-rule & no-aux-lex-rule-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE nonpast ].
@@ -863,34 +910,34 @@ no-aux-lex-rule-lex-rule := agreement-verb-rule-dtr & tense-verb-lex-rule-super 
 agreement-verb-lex-rule-super := add-only-no-ccont-rule &
   [ INFLECTED [ AGREEMENT-VERB-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
+                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR agreement-verb-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
+                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 1sg-lex-rule-lex-rule := agreement-verb-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 1st,
@@ -918,34 +965,34 @@ agreement-verb-lex-rule-super := add-only-no-ccont-rule &
 basic-adjective_opt_cop-lex-rule-super := add-only-no-ccont-rule & agreement-adjective-rule-dtr & const-lex-rule & tense-adjective-rule-dtr &
   [ INFLECTED [ BASIC-ADJECTIVE_OPT_COP-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR basic-adjective-adj-lex &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 basic-adjective_adj_comp-lex-rule := basic-adjective_opt_cop-lex-rule-super & stative-pred-lex-rule &
   [ SYNSEM.LOCAL.CAT.HEAD [ MOD < >,
@@ -963,34 +1010,34 @@ basic-adjective_attr-lex-rule := attr-adj-lex-rule & basic-adjective_opt_cop-lex
 tense-adjective-lex-rule-super := add-only-no-ccont-rule &
   [ INFLECTED [ TENSE-ADJECTIVE-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
                 BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR tense-adjective-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
                       BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 npst-adj-lex-rule-lex-rule := const-lex-rule & no-aux-adj-lex-rule-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE nonpast ].
@@ -1007,34 +1054,34 @@ no-aux-adj-lex-rule-lex-rule := agreement-adjective-rule-dtr & tense-adjective-l
 agreement-adjective-lex-rule-super := add-only-no-ccont-rule &
   [ INFLECTED [ AGREEMENT-ADJECTIVE-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR agreement-adjective-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 1sg-adj-lex-rule-lex-rule := agreement-adjective-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.XARG.PNG [ PER 1st,
@@ -1062,32 +1109,32 @@ agreement-adjective-lex-rule-super := add-only-no-ccont-rule &
 polarity-copula-lex-rule-super := add-only-no-ccont-rule & agreement-copula-rule-dtr & aspect-copula-rule-dtr & tense-copula-rule-dtr &
   [ INFLECTED [ POLARITY-COPULA-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
+                TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+                TENSE-VERB-FLAG #tense-verb,
+                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
+                AGREEMENT-COPULA-FLAG #agreement-copula,
                 TENSE-COPULA-FLAG #tense-copula,
                 ASPECT-COPULA-FLAG #aspect-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                CASE-COMMON-NOUN-FLAG #case-common-noun ],
     DTR positive-copula-cop-lex &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
+                      TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+                      TENSE-VERB-FLAG #tense-verb,
+                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
+                      AGREEMENT-COPULA-FLAG #agreement-copula,
                       TENSE-COPULA-FLAG #tense-copula,
                       ASPECT-COPULA-FLAG #aspect-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      CASE-COMMON-NOUN-FLAG #case-common-noun ] ] ].
 
 neg-cop-lex-rule-lex-rule := infl-lex-rule & polarity-copula-lex-rule-super &
   [ INFLECTED.NEG-COP-LEX-RULE-FLAG + ].
@@ -1099,34 +1146,34 @@ pos-cop-lex-rule-lex-rule := const-lex-rule & polarity-copula-lex-rule-super &
 aspect-copula-lex-rule-super := add-only-no-ccont-rule & agreement-copula-rule-dtr & tense-copula-rule-dtr &
   [ INFLECTED [ ASPECT-COPULA-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
+                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ],
     DTR aspect-copula-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
+                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ] ] ].
 
 neg-hab-cop-lex-rule-lex-rule := aspect-copula-lex-rule-super & const-lex-rule &
   [ DTR.INFLECTED.NEG-COP-LEX-RULE-FLAG +,
@@ -1148,33 +1195,33 @@ tense-copula-lex-rule-super := add-only-no-ccont-rule &
   [ INFLECTED [ TENSE-COPULA-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
                 BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 AGREEMENT-COPULA-FLAG #agreement-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                POLARITY-COPULA-FLAG #polarity-copula,
+                ASPECT-COPULA-FLAG #aspect-copula,
+                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ],
     DTR tense-copula-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
                       BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       AGREEMENT-COPULA-FLAG #agreement-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      POLARITY-COPULA-FLAG #polarity-copula,
+                      ASPECT-COPULA-FLAG #aspect-copula,
+                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ] ] ].
 
 npst-cop-lex-rule-lex-rule := const-lex-rule & no-aux-cop-lex-rule-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE nonpast ].
@@ -1191,34 +1238,34 @@ no-aux-cop-lex-rule-lex-rule := agreement-copula-rule-dtr & tense-copula-lex-rul
 agreement-copula-lex-rule-super := add-only-no-ccont-rule &
   [ INFLECTED [ AGREEMENT-COPULA-FLAG +,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                ASPECT-VERB-FLAG #aspect-verb,
-                POLARITY-VERB-FLAG #polarity-verb,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-ADJECTIVE-FLAG #tense-adjective,
+                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                 TENSE-VERB-FLAG #tense-verb,
                 AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                ASPECT-VERB-FLAG #aspect-verb,
+                AGREEMENT-VERB-FLAG #agreement-verb,
+                CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                POLARITY-VERB-FLAG #polarity-verb,
                 POLARITY-COPULA-FLAG #polarity-copula,
+                TENSE-COPULA-FLAG #tense-copula,
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                AGREEMENT-VERB-FLAG #agreement-verb ],
+                ASPECT-COPULA-FLAG #aspect-copula ],
     DTR agreement-copula-rule-dtr &
         [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-ADJECTIVE-FLAG #tense-adjective,
+                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
                       TENSE-VERB-FLAG #tense-verb,
                       AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+                      ASPECT-VERB-FLAG #aspect-verb,
+                      AGREEMENT-VERB-FLAG #agreement-verb,
+                      CASE-COMMON-NOUN-FLAG #case-common-noun,
                       NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+                      POLARITY-VERB-FLAG #polarity-verb,
                       POLARITY-COPULA-FLAG #polarity-copula,
+                      TENSE-COPULA-FLAG #tense-copula,
                       NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      AGREEMENT-VERB-FLAG #agreement-verb ] ] ].
+                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
 
 1sg-cop-lex-rule-lex-rule := agreement-copula-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 1st,
