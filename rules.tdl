@@ -27,6 +27,8 @@ bare-pronoun-np := bare-pronoun-np-phrase.
 
 bare-common-np := bare-common-np-phrase.
 
+bare-poss-np := bare-poss-np-phrase.
+
 ;;; yeah, fuck all this noise for now
 ;
 ;n1-1st-any-1st-any-any-pl-top-coord := n1-1st-any-1st-any-any-pl-top-coord-rule.
