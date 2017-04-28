@@ -97,6 +97,14 @@ synsem :+ [ ATTACH xmod ].
 head-mod-phrase :+ [ SYNSEM.ATTACH #attach,
     HEAD-DTR.SYNSEM.ATTACH #attach ].
 
+;;; Demonstrative relations
+
+demonstrative_a_rel := predsort.
+proximal+dem_a_rel := demonstrative_a_rel. ; close to speaker
+distal+dem_a_rel := demonstrative_a_rel.   ; away from speaker
+remote+dem_a_rel := distal+dem_a_rel.      ; away from speaker and hearer
+hearer+dem_a_rel := distal+dem_a_rel.      ; near hearer
+
 ;;;;;;;;;;;;;;
 ;;; Features
 ;;;;;;;;;;;;;;
@@ -582,21 +590,63 @@ case-marking-adp-lex := basic-one-arg & raise-sem-lex-item &
 ;;; Determiners
 ;;; SPEC is non-empty, and already specified by basic-determiner-lex.
 
-determiner-lex := basic-determiner-lex & norm-zero-arg & non-mod-lex-item &
-  [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
-                           COMPS < >,
-                           SUBJ < > ] ].
+;determiner-lex := basic-determiner-lex & norm-zero-arg & non-mod-lex-item &
+;  [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
+;                           COMPS < >,
+;                           SUBJ < > ] ].
 
-sgpl-definite-determiner-lex := determiner-lex & no-icons-lex-item.
+sgpl-definite-determiner-lex := determiner-lex-supertype & no-icons-lex-item.
 
-pl-definite-determiner-lex := determiner-lex & no-icons-lex-item &
+pl-definite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
 
-sg-indefinite-determiner-lex := determiner-lex & no-icons-lex-item &
+sg-indefinite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
 
-pl-indefinite-determiner-lex := determiner-lex & no-icons-lex-item &
+pl-indefinite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
+
+;;; Demonstrative determiners
+
+determiner-lex-supertype := norm-hook-lex-item & basic-zero-arg &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD det & [ MOD < > ],
+			   VAL [ SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind,
+                                                  LTOP #larg ],
+                                SPR < >,
+                                SUBJ < >,
+                                COMPS < >] ],
+		     CONT.HCONS < ! qeq &
+				 [ HARG #harg,
+				   LARG #larg ] ! > ], 
+	     LKEYS.KEYREL quant-relation &
+		   [ ARG0 #ind,
+		     RSTR #harg ] ] ].
+
+demonstrative-determiner-lex := determiner-lex-supertype &
+  [ SYNSEM 
+     [ LKEYS.ALTKEYREL #evrel,
+       LOCAL [ CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind & [ COG-ST activ+fam ],
+                                                    LTOP #ltop ],
+               CONT.RELS <! [ PRED "exist_q_rel" ],
+                            #evrel & arg1-ev-relation & [ LBL #ltop, 
+                                                          ARG1 #ind ] !> ] ] ].
+
+ordinary-determiner-lex := determiner-lex-supertype & single-rel-lex-item.
+
+demonstrative-sgpl-definite-determiner-lex := demonstrative-determiner-lex & 
+                                              sgpl-definite-determiner-lex.
+
+ordinary-sgpl-definite-determiner-lex := ordinary-determiner-lex & 
+                                         sgpl-definite-determiner-lex.
+
+ordinary-pl-definite-determiner-lex := ordinary-determiner-lex & 
+                                       pl-definite-determiner-lex.
+
+ordinary-sg-indefinite-determiner-lex := ordinary-determiner-lex & 
+                                         sg-indefinite-determiner-lex.
+
+ordinary-pl-indefinite-determiner-lex := ordinary-determiner-lex & 
+                                         pl-indefinite-determiner-lex.
 
 ;;; Adverbs
 

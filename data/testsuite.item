@@ -2,12 +2,12 @@
 2@author@@@1@wo@Çıktı		kadın@@@@1@2@exit-PF.NPST.3SG	woman.3SG.NOM'The woman left.'@ajda gokcen and kekoa riggin@april 28, 2017
 3@author@@@1@wo@Aile			geldi@@@@1@2@family.3SG.NOM	come-PF.NPST.3SG'The family arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
 4@author@@@1@wo@Geldi		aile@@@@1@2@come-PF.NPST.3SG	family.3SG.NOM'The family arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
-5@author@@@1@wo@Kadın			evi				gördü@@@@1@3@woman.3SG.NOM	house.3SG-ACC	see-PF.NPST.3SG'The woman saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
-6@author@@@1@wo@Evi				kadın			gördü@@@@1@3@house.3SG-ACC	woman.3SG.NOM	see-PF.NPST.3SG'The woman saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
-7@author@@@1@wo@Kadın			gördü		evi@@@@1@3@woman.3SG.NOM	see-PF.NPST.3SG	house.3SG-ACC'The woman saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
-8@author@@@1@wo@Evi				gördü		kadın@@@@1@3@house.3SG-ACC	see-PF.NPST.3SG	woman.3SG.NOM'The woman saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
-9@author@@@1@wo@Gördü		kadın			evi@@@@1@3@see-PF.NPST.3SG	woman.3SG.NOM	house.3SG-ACC'The woman saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
-10@author@@@1@wo@Gördü		evi				kadın@@@@1@3@see-PF.NPST.3SG	house.3SG-ACC	woman.3SG.NOM'The woman saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+5@author@@@1@wo@Kadın			kediyi		gördü@@@@1@3@woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+6@author@@@1@wo@Kediyi		kadın			gördü@@@@1@3@cat.3SG-ACC	woman.3SG.NOM	see-PF.NPST.3SG'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+7@author@@@1@wo@Kadın			gördü			kediyi@@@@1@3@woman.3SG.NOM	see-PF.NPST.3SG	cat.3SG-ACC'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+8@author@@@1@wo@Kediyi		gördü		kadın@@@@1@3@cat.3SG-ACC	see-PF.NPST.3SG	woman.3SG.NOM'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+9@author@@@1@wo@Gördü		kadın				kediyi@@@@1@3@see-PF.NPST.3SG	woman.3SG.NOM	cat.3SG-ACC'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+10@author@@@1@wo@Gördü			kediyi		kadın@@@@1@3@see-PF.NPST.3SG	cat.3SG-ACC	woman.3SG.NOM'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
 11@author@@@1@wo@Aile			hediyeyi		getirdi@@@@1@3@family.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG'The family brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
 12@author@@@1@wo@Hediyeyi		aile			getirdi@@@@1@3@present.3SG-ACC	family.3SG.NOM	bring-PF.NPST.3SG'The family brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
 13@author@@@1@wo@Aile			getirdi			hediyeyi@@@@1@3@family.3SG.NOM	bring-PF.NPST.3SG	present.3SG-ACC'The family brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
@@ -27,23 +27,23 @@
 27@author@@@1@c@Aileye			geldi@@@@0@2@family.3SG-DAT	come-PF.NPST.3SG'The family arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
 28@author@@@1@c@Aileden			geldi@@@@0@2@family.3SG-ABL	come-PF.NPST.3SG'The family arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
 29@author@@@1@c@Benim			geldim@@@@0@2@pronoun.1SG.GEN	come-PF-1SG'I arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
-30@author@@@1@c@Kadın			mektubu			okudu@@@@1@3@woman.3SG.NOM	letter.3SG-ACC	read-PF.NPST.3SG'The woman read the letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-31@author@@@1@c@Kadın			mektup			okudu@@@@1@3@woman.3SG.NOM	letter.3SG.ACC	read-PF.NPST.3SG'The woman read a letter.'@ajda gokcen and kekoa riggin@april 28, 2017
+30@author@@@1@c@Kadın			hediyeyi		getirdi@@@@1@3@woman.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG'The woman brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
+31@author@@@1@c@Kadın			hediye			getirdi@@@@1@3@woman.3SG.NOM	letter.3SG.ACC	bring-PF.NPST.3SG'The woman brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
 32@author@@@1@c@Beni			seni			gördüm@@@@0@3@pronoun.1SG.ACC	pronoun.2SG.ACC	see-PF-1SG'I saw you.'@ajda gokcen and kekoa riggin@april 28, 2017
 33@author@@@1@c@Aile			hediyeyi		getirdi@@@@1@3@family.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG'The family brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
 34@author@@@1@c@Aileyi			hediyeyi		getirdi@@@@0@3@family.3SG-ACC	present.3SG-ACC	bring-PF.NPST.3SG'The family brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
-35@author@@@1@c@O				kadına			bayıldı@@@@1@3@pronoun.3SG.NOM	woman.3SG-DAT	adore-PF.NPST.3SG'He/she/it adored the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
-36@author@@@1@c@O				kadından		korktu@@@@1@3@pronoun.3SG.NOM	woman.3SG-ABL	fear-PF.NPST.3SG'He/she/it feared the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
-37@author@@@1@c@O				evde			diretti@@@@1@3@pronoun.3SG.NOM	house.3SG-LOC	insist-PF.NPST.3SG'He/she/it insisted on the house.'@ajda gokcen and kekoa riggin@april 28, 2017
-38@author@@@1@c@O				kediyle			ilgilendi@@@@1@3@pronoun.3SG.NOM	cat.3SG-COM		care-PF.NPST.3SG'He/she/it was interested in the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
-39@author@@@1@c,adp@O				kedi	ile			ilgilendi@@@@1@4@pronoun.3SG.NOM	cat.3SG	postpos.COM	care-PF.NPST.3SG'He/she/it was interested in the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
-40@author@@@1@c@O				kadından		bayıldı@@@@0@3@pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST.3SG'He/she/it adored the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
+35@author@@@1@c@Ben				kadına			bayıldım@@@@1@3@pronoun.1SG.NOM	woman.3SG-DAT	adore-PF.NPST-1SG'I adored the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
+36@author@@@1@c@Ben				kadından		korktum@@@@1@3@pronoun.1SG.NOM	woman.3SG-ABL	fear-PF.NPST-1SG'I feared the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
+37@author@@@1@c@Ben				evde			direttim@@@@1@3@pronoun.1SG.NOM	house.3SG-LOC	insist-PF.NPST-1SG'I insisted on the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+38@author@@@1@c@Ben				kediyle			ilgilendim@@@@1@3@pronoun.1SG.NOM	cat.3SG-COM		care-PF.NPST-1SG'I was interested in the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+39@author@@@1@c,adp@Ben				kedi	ile			ilgilendim@@@@1@4@pronoun.1SG.NOM	cat.3SG	postpos.COM	care-PF.NPST-1SG'I was interested in the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+40@author@@@1@c@Ben				kadından		bayıldım@@@@0@3@pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST-1SG'I adored the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
 41@author@@@1@det@O			kadın			çıktı@@@@1@3@that		woman.3SG.NOM	exit-PF.NPST.3SG'That woman left.'@ajda gokcen and kekoa riggin@april 28, 2017
-42@author@@@1@det@Her			kadın			mektubu			okudu@@@@1@4@every.SG	woman.3SG.NOM	letter.3SG-ACC	read-PF.NPST.3SG'Every woman read the letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-43@author@@@1@det@Kadın			bir		mektup			okudu@@@@1@4@woman.3SG.NOM	a.SG	letter.3SG.ACC	read-PF.NPST.3SG'The woman read a letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-44@author@@@1@det@Her			kadın			bir		mektup			okudu@@@@1@5@every.SG	woman.3SG.NOM	a.SG	letter.3SG.ACC	read-PF.NPST.3SG'Every woman read a letter.'@ajda gokcen and kekoa riggin@april 28, 2017
+42@author@@@1@det@Her			kadın			kediyi		gördü@@@@1@4@every.SG	woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG'Every woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+43@author@@@1@det@Kadın			bir		kedi		gördü@@@@1@4@woman.3SG.NOM	a.SG	cat.3SG.ACC	see-PF.NPST.3SG'The woman saw a cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+44@author@@@1@det@Her			kadın			bir		kedi		gördü@@@@1@5@every.SG	woman.3SG.NOM	a.SG	cat.3SG.ACC	see-PF.NPST.3SG'Every woman saw a cat.'@ajda gokcen and kekoa riggin@april 28, 2017
 45@author@@@1@det,wo@Kadın			o		çıktı@@@@0@3@woman.3SG.NOM	that	exit-PF.NPST.3SG'That woman left.'@ajda gokcen and kekoa riggin@april 28, 2017
-46@author@@@1@det,wo@Kadın			mektup			bir		okudu@@@@0@4@woman.3SG.NOM	letter.3SG.ACC	a.SG	read-PF.NPST.3SG'The woman read a letter.'@ajda gokcen and kekoa riggin@april 28, 2017
+46@author@@@1@det,wo@Kadın			kedi		bir		gördü@@@@0@4@woman.3SG.NOM	cat.3SG.ACC	a.SG	see-PF.NPST.3SG'The woman saw a cat.'@ajda gokcen and kekoa riggin@april 28, 2017
 47@author@@@1@det,pn@Bir		sen			çıktın@@@@0@3@a.SG	you.2SG.NOM	exit-PF-2SG'You left.'@ajda gokcen and kekoa riggin@april 28, 2017
 48@author@@@1@det,pn@Kadın			bir		sen			gördüm@@@@0@4@woman.3SG.NOM	a.SG	you.2SG.ACC	see-PF-1SG'The woman saw you.'@ajda gokcen and kekoa riggin@april 28, 2017
 49@author@@@1@det@O		aile			geldi@@@@1@3@that	family.3SG.NOM	come-PF.NPST.3SG'That family arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
@@ -82,7 +82,7 @@
 82@author@@@1@pn,agr@Ben				geldiler@@@@0@2@pronoun.1SG.NOM	come-PF.NPST-3PL'I/they arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
 83@author@@@1@pn,agr,tam@Ben			çıkımdı@@@@0@2@I.1SG.NOM	exit-1SG-PF'I left.'@ajda gokcen and kekoa riggin@april 28, 2017
 84@author@@@1@pro-d@Çıktı@@@@1@1@exit-PF.NPST.3SG'He/she/it left.'@ajda gokcen and kekoa riggin@april 28, 2017
-85@author@@@1@pro-d@Evi				gördü@@@@1@2@house.3SG-ACC	see-PF.NPST.3SG'He/she/it saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+85@author@@@1@pro-d@Kediyi		gördü@@@@1@2@cat.3SG-ACC	see-PF.NPST.3SG'He/she/it saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
 86@author@@@1@wo@Kadın			gördü@@@@1@2@woman.3SG.NOM	see-PF.NPST.3SG'He/she/it saw the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
 87@author@@@1@pro-d@Kadına			bayıldı@@@@1@2@woman.3SG-DAT	adore-PF.NPST.3SG'He/she/it adored the woman.'@ajda gokcen and kekoa riggin@april 28, 2017
 88@author@@@1@pro-d@Gördü@@@@0@1@see-PF.NPST.3SG'He/she/it saw.'@ajda gokcen and kekoa riggin@april 28, 2017
@@ -156,18 +156,18 @@
 156@author@@@1@non-verbalpredicates@Ben				oğrenci	olurum@@@@1@3@pronoun.1SG.NOM	student	be-HAB.NPST-1SG"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
 157@author@@@1@non-verbalpredicates@Ben				oğrenci	değilim@@@@1@3@pronoun.1SG.NOM	student	neg.NPST-1SG"I am not a student."@ajda gokcen and kekoa riggin@april 28, 2017
 158@author@@@1@non-verbalpredicates@Ben				oğrenci@@@@0@2@pronoun.1SG.NOM	student"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
-159@author@@@1@cognitivestatus,det@Bir		mektup			okudum@@@@1@3@a.SG	letter.3SG.ACC	read-PF.NPST-1SG'I read a letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-160@author@@@1@cognitivestatus,det@Bir		mektubu			okudum@@@@0@3@a.SG	letter.3SG-ACC	read-PF.NPST-1SG'I read a letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-161@author@@@1@cognitivestatus@Mektup			okudum@@@@1@2@letter.3SG.ACC	read-PF.NPST-1SG'I read a letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-162@author@@@1@cognitivestatus@Mektubu			okudum@@@@1@2@letter.3SG-ACC	read-PF.NPST-1SG'I read the letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-163@author@@@1@cognitivestatus,det@Bu		mektup			okudum@@@@0@3@this	letter.3SG.ACC	read-PF.NPST-1SG'I read a/this letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-164@author@@@1@cognitivestatus,det@Bu		mektubu			okudum@@@@1@3@this	letter.3SG-ACC	read-PF.NPST-1SG'I read this letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-165@author@@@1@cognitivestatus,det@Şu		mektubu			okudum@@@@1@3@this	letter.3SG-ACC	read-PF.NPST-1SG'I read this/that letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-166@author@@@1@cognitivestatus,det@O		mektubu			okudum@@@@1@3@that	letter.3SG-ACC	read-PF.NPST-1SG'I read that letter.'@ajda gokcen and kekoa riggin@april 28, 2017
+159@author@@@1@cognitivestatus,det@Bir		hediye			getirdim@@@@1@3@a.SG	present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
+160@author@@@1@cognitivestatus,det@Bir		hediyeyi		getirdim@@@@0@3@a.SG	present.3SG-ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
+161@author@@@1@cognitivestatus@Hediye			getirdim@@@@1@2@present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
+162@author@@@1@cognitivestatus@Hediyeyi		getirdim@@@@1@2@present.3SG-ACC	bring-PF.NPST-1SG'I brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
+163@author@@@1@cognitivestatus,det@Bu		hediye			getirdim@@@@0@3@this	present.3SG.ACC	bring-PF.NPST-1SG'I brought a/this present.'@ajda gokcen and kekoa riggin@april 28, 2017
+164@author@@@1@cognitivestatus,det@Bu		hediyeyi		getirdim@@@@1@3@this	present.3SG-ACC	bring-PF.NPST-1SG'I brought this present.'@ajda gokcen and kekoa riggin@april 28, 2017
+165@author@@@1@cognitivestatus,det@Şu		hediyeyi		getirdim@@@@1@3@this	present.3SG-ACC	bring-PF.NPST-1SG'I brought this/that present.'@ajda gokcen and kekoa riggin@april 28, 2017
+166@author@@@1@cognitivestatus,det@O		hediyeyi		getirdim@@@@1@3@that	present.3SG-ACC	bring-PF.NPST-1SG'I brought that present.'@ajda gokcen and kekoa riggin@april 28, 2017
 167@author@@@1@c@Kadını			geldi@@@@0@2@woman.3SG-ACC	come-PF.NPST.3SG'The woman arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
 168@author@@@1@c@Kadının			geldi@@@@0@2@woman.3SG-GEN	come-PF.NPST.3SG'The woman arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
 169@author@@@1@c@Kadını			mektubu			okudu@@@@0@3@woman.3SG-ACC	letter.3SG-ACC	read-PF.NPST.3SG'The woman read the letter.'@ajda gokcen and kekoa riggin@april 28, 2017
 170@author@@@1@tam@Kadın			çıktu@@@@0@2@woman.3SG.NOM	exit-PF.NPST.3SG'The woman left.'@ajda gokcen and kekoa riggin@april 28, 2017
-171@author@@@1@c@Kadın			evu				gördü@@@@0@3@woman.3SG.NOM	house.3SG-ACC	see-PF.NPST.3SG'The woman saw the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+171@author@@@1@c@Kadın			kediyı		gördü@@@@0@3@woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
 172@author@@@1@agr@Biz				çıktıız@@@@0@2@pronoun.1PL.NOM	exit-PF.NPST-1PL'We left.'@ajda gokcen and kekoa riggin@april 28, 2017
 173@author@@@1@agr@Biz				çıkıyork@@@@0@2@pronoun.1PL.NOM	exit-IMPF.NPST-1PL'We are leaving.'@ajda gokcen and kekoa riggin@april 28, 2017

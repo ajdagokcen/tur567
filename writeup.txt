@@ -151,7 +151,7 @@ Lab 5
 		coordination were properly restricted only to combine Ns/NPs with matching (or 
 		underspecified) case features.
 
-		All we did in the customization suite to allow for these examples was to create 
+		All we did in the customization system to allow for these examples was to create 
 		new types of transitive verbs based on the required case features of their objects, 
 		and give these types the features that their subjects be nominative, their objects 
 		be whatever the type-specific case must be, and the OPT feature on the object a minus 
@@ -167,6 +167,12 @@ Lab 5
 		below (including the examples from the testsuite), but they were indeed in the 
 		testsuite at the time of the baseline coverage/overgeneration calcualtions.
 
+	In general, we changed the particular lexical items in a lot of the testsuite examples 
+	in order to have sentences with minimum ambiguity (i.e., we took out "mektubu," which 
+	could be either the definite accusative or the nominative 3rd person possessum of 'book,'
+	and replaced it with words like "hediyeyi," which is unambiguously the definite accusative 
+	form of 'present').
+
 	BASELINE TESTSUITE STATS
 
 		Coverage:
@@ -174,8 +180,8 @@ Lab 5
 			Positive Items #:		111
 			Total Results #:		86
 			Word String 0:			3.09
-			Lexical Items 0:		8.51
-			Distinct Analyses 0:	15.34
+			Lexical Items 0:		8.30
+			Distinct Analyses 0:	12.59
 			Overall Coverage %:		77.5
 
 		Overgeneration:
@@ -183,8 +189,8 @@ Lab 5
 			Negative Items #:		62
 			Total Results #:		15
 			Word String 0:			2.84
-			Lexical Items 0:		8.88
-			Distinct Analyses 0:	10.20
+			Lexical Items 0:		8.80
+			Distinct Analyses 0:	8.00
 			Overall Coverage %:		24.2
 
 ##### PART 1, 2, 3, & 4 #####
@@ -333,6 +339,8 @@ Lab 5
 		Here are the types we defined for adverbs (the former taken verbatim from the 
 		assignment instructions page) and added to turkish.tdl:
 
+			> turkish.tdl
+
 			adverb-lex := basic-adverb-lex & intersective-mod-lex &
 			  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD verb ]>,
 						   VAL [ SPR < >,
@@ -344,9 +352,32 @@ Lab 5
 
 		And here is the single adverbial lexical entry we added to lexicon.tdl:
 
+			> lexicon.tdl
+
 			hızlı := manner-adverb-adv-lex &
 			  [ STEM < "hızlı" >,
 			    SYNSEM.LKEYS.KEYREL.PRED "_quickly_a_rel" ].
+
+		Here is the rule we added to rules.tdl in order to allow adverbs to appear to the 
+		right of the element being modified:
+
+			> rules.tdl
+
+			head-adj-int := head-adj-int-phrase.
+
+		And here is the part of turkish.tdl, which was already present thanks to the 
+		customization system, which ensured that the addition of the above rule would not 
+		adversely affect adjective distribution (i.e., adjectives still can only appear to 
+		the left of the element being modified), since attributive adjectives are defined 
+		as POSTHEAD -:
+
+			> turkish.tdl
+
+			basic-adjective_attr-lex-rule := attr-adj-lex-rule & 
+                                             basic-adjective_opt_cop-lex-rule-super &
+			  [ SYNSEM.LOCAL.CAT [ VAL.SUBJ < >,
+								   HEAD.PRD -,
+								   POSTHEAD - ] ].
 
 		4.	Problems encountered
 
@@ -362,27 +393,26 @@ Lab 5
 
 		Turkish has an array of optional determiners that select for common nouns with agreeing
 		number features (sg/pl, but possibly underpecified).  When there is a determiner in a 
-		NP, it must precede the noun, and one can never appear with a pronoun.
+		NP, it must precede the noun, and one can never appear with a determiner.
 
-		The following are numerically-underspecified, definite pronouns: her (every),
+		The following are numerically-underspecified, definite determiners: her (every),
 			bu (this), şu (this/that), o (that)
 
-		The following is a plural, definite pronoun: bütün (all)
+		The following is a plural, definite determiner: bütün (all)
 
-		The following is the singular, indefinite pronoun: bir (a/an)
+		The following is the singular, indefinite determiner: bir (a/an)
 
-		The following are plural, indefinite pronouns: bazı (some), çok (many)
-
+		The following are plural, indefinite determiners: bazı (some), çok (many)
 
 		Additionally, the overt accusative suffix actually doubles as a definiteness marker; 
 		there is also a zero accusative suffix which denotes indefiniteness.
 
 		2.	Examples from testsuite
 
-		Examples of indefinite pronoun usage with the indefinite accusative (grammatical) 
+		Examples of indefinite determiner usage with the indefinite accusative (grammatical) 
 		and definite accusative (ungrammatical):
 
-			### indef-pronoun + indef-acc (g) ###
+			### indef-det + indef-acc (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
@@ -392,7 +422,7 @@ Lab 5
 			a.SG	letter.3SG.ACC	read-PF.NPST-1SG
 			'I read a letter.'
 
-			### indef-pronoun + def-acc (u) ###
+			### indef-det + def-acc (u) ###
 			Source: author
 			Vetted: f
 			Judgment: u
@@ -425,10 +455,10 @@ Lab 5
 			letter.3SG-ACC	read-PF.NPST-1SG
 			'I read the letter.'
 
-		Examples of definite pronoun usage with the indefinite accusative (ungrammatical) and 
+		Examples of definite determiner usage with the indefinite accusative (ungrammatical) and 
 		definite accusative (grammatical):
 
-			### def-pronoun + indef-acc (u) ###
+			### def-det + indef-acc (u) ###
 			Source: author
 			Vetted: f
 			Judgment: u
@@ -438,7 +468,7 @@ Lab 5
 			this	letter.3SG.ACC	read-PF.NPST-1SG
 			'I read a/this letter.'
 
-			### def-pronoun + def-acc (g) ###
+			### def-det + def-acc (g) ###
 			### proximal-demonstrative ###
 			Source: author
 			Vetted: f
@@ -452,7 +482,7 @@ Lab 5
 		And finally, since the last two examples showed the proximal demonstrative determiner 
 		"bu," here are some examples with the medial and distal determiners:
 
-			### medial-demonstrative ###
+			### distal/hearer-demonstrative ###
 			Source: author
 			Vetted: f
 			Judgment: g
@@ -462,7 +492,7 @@ Lab 5
 			this	letter.3SG-ACC	read-PF.NPST-1SG
 			'I read this/that letter.'
 
-			### distal-demonstrative ###
+			### distal/remote-demonstrative ###
 			Source: author
 			Vetted: f
 			Judgment: g
@@ -473,6 +503,103 @@ Lab 5
 			'I read that letter.'
 
 		3.	TDL snippets & descriptions
+
+		Here is the original code for determiners fr
+
+		Here are the types (verbatim from the assignment instructions) we added to the Matrix 
+		Type Addenda section of turkish.tdl:
+
+			> turkish.tdl
+
+			demonstrative_a_rel := predsort.
+			proximal+dem_a_rel := demonstrative_a_rel. ; close to speaker
+			distal+dem_a_rel := demonstrative_a_rel.   ; away from speaker
+			remote+dem_a_rel := distal+dem_a_rel.      ; away from speaker and hearer
+			hearer+dem_a_rel := distal+dem_a_rel.      ; near hearer
+
+		Here is the lexical type defined in turkish.tdl in order to get around the current 
+		version of basic-determiner-lex (verbatim from the assignment instructions except 
+		for the additional specification of an empty MOD list to prevent determiners from 
+		acting as modifiers):
+
+			> turkish.tdl
+
+			determiner-lex-supertype := norm-hook-lex-item & basic-zero-arg &
+			  [ SYNSEM [ LOCAL [ CAT [ HEAD det & [ MOD < > ],
+						   VAL [ SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind,
+															  LTOP #larg ],
+											SPR < >,
+											SUBJ < >,
+											COMPS < >] ],
+						 CONT.HCONS < ! qeq &
+							 [ HARG #harg,
+							   LARG #larg ] ! > ], 
+					 LKEYS.KEYREL quant-relation &
+					   [ ARG0 #ind,
+						 RSTR #harg ] ] ].
+
+		Here are the types, originally from the customization system, which now inherit from 
+		the new determiner-lex-supertype instead of from the originally given determiner-lex 
+		(which in turn inherited from basic-determiner-lex):
+
+			> turkish.tdl
+
+			sgpl-definite-determiner-lex := determiner-lex-supertype & no-icons-lex-item.
+
+			pl-definite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
+			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
+
+			sg-indefinite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
+			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
+
+			pl-indefinite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
+			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
+
+		And here are the subtypes thereof for demonstrative determiners and ordinary (non-
+		demonstrative) determiners, respectively, also in turkish.tdl:
+
+			> turkish.tdl
+
+			demonstrative-determiner-lex := determiner-lex-supertype &
+			  [ SYNSEM 
+				 [ LKEYS.ALTKEYREL #evrel,
+				   LOCAL [ CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind & [ COG-ST activ+fam ],
+																LTOP #ltop ],
+						   CONT.RELS <! [ PRED "exist_q_rel" ],
+										#evrel & arg1-ev-relation & [ LBL #ltop, 
+																	  ARG1 #ind ] !> ] ] ].
+
+			ordinary-determiner-lex := determiner-lex-supertype & single-rel-lex-item.
+
+		(Since lexical entries never inherit from these types without also inheriting from 
+		one of the above definite/indefinite types, it is probably redundant to have these 
+		types inherit from determiner-lex-supertype as well, but it also doesn't seem to have 
+		any adverse effects to leave it in.)
+
+		And of course the specific, multiply inheriting type (again, in turkish.tdl) that the 
+		demonstrative determiners as declared in the lexicon most immediately inherit:
+
+			> turkish.tdl
+
+			demonstrative-sgpl-definite-determiner-lex := demonstrative-determiner-lex & 
+			                                              sgpl-definite-determiner-lex.
+
+		Finally, here are the lexical entries for the demonstrative determiners, with 
+		appropriately adjusted PRED values and inherited types, in lexicon.tdl:
+
+			> lexicon.tdl
+
+			bu_4 := demonstrative-sgpl-definite-determiner-lex &
+			  [ STEM < "bu" >,
+				SYNSEM.LKEYS.ALTKEYREL.PRED proximal+dem_a_rel ].
+
+			şu_4 := demonstrative-sgpl-definite-determiner-lex &
+			  [ STEM < "şu" >,
+				SYNSEM.LKEYS.ALTKEYREL.PRED hearer+dem_a_rel ].
+
+			o_4 := demonstrative-sgpl-definite-determiner-lex &
+			  [ STEM < "o" >,
+				SYNSEM.LKEYS.ALTKEYREL.PRED remote+dem_a_rel ].
 
 		4.	Problems encountered
 
@@ -614,6 +741,7 @@ Lab 5
 		coordination and coordination agreement rules in rules.tdl, e.g.,
 
 			> rules.tdl
+
 			;n1-1st-any-1st-any-any-pl-top-coord := n1-1st-any-1st-any-any-pl-top-coord-rule.
 			(...)
 			;s4-bottom-coord := s4-bottom-coord-rule.
@@ -631,8 +759,8 @@ Lab 5
 			Positive Items #:		111
 			Total Results #:		86
 			Word String 0:			3.09
-			Lexical Items 0:		8.51
-			Distinct Analyses 0:	15.34
+			Lexical Items 0:		8.30
+			Distinct Analyses 0:	12.59
 			Overall Coverage %:		77.5
 
 		Overgeneration:
@@ -640,8 +768,8 @@ Lab 5
 			Negative Items #:		62
 			Total Results #:		15
 			Word String 0:			2.84
-			Lexical Items 0:		8.88
-			Distinct Analyses 0:	10.20
+			Lexical Items 0:		8.80
+			Distinct Analyses 0:	8.00
 			Overall Coverage %:		24.2
 
 	FINAL TESTSUITE STATS

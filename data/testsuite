@@ -63,10 +63,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-Kadın			evi				gördü
-Kadın			ev-i			gör-dü
-woman.3SG.NOM	house.3SG-ACC	see-PF.NPST.3SG
-'The woman saw the house.'
+Kadın			kediyi		gördü
+Kadın			kedi-yi		gör-dü
+woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+'The woman saw the cat.'
 
 ### OSV ###
 # marked; focus/topicalization
@@ -74,10 +74,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-Evi				kadın			gördü
-Ev-i			kadın			gör-dü
-house.3SG-ACC	woman.3SG.NOM	see-PF.NPST.3SG
-'The woman saw the house.'
+Kediyi		kadın			gördü
+Kedi-yi		kadın			gör-dü
+cat.3SG-ACC	woman.3SG.NOM	see-PF.NPST.3SG
+'The woman saw the cat.'
 
 ### SVO ###
 # marked; focus/topicalization
@@ -85,10 +85,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-Kadın			gördü		evi
-Kadın			gör-dü		ev-i
-woman.3SG.NOM	see-PF.NPST.3SG	house.3SG-ACC
-'The woman saw the house.'
+Kadın			gördü			kediyi
+Kadın			gör-dü			kedi-yi
+woman.3SG.NOM	see-PF.NPST.3SG	cat.3SG-ACC
+'The woman saw the cat.'
 
 ### OVS ###
 # marked; focus/topicalization
@@ -96,10 +96,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-Evi				gördü		kadın
-Ev-i			gör-dü		kadın
-house.3SG-ACC	see-PF.NPST.3SG	woman.3SG.NOM
-'The woman saw the house.'
+Kediyi		gördü		kadın
+Kedi-yi		gör-dü		kadın
+cat.3SG-ACC	see-PF.NPST.3SG	woman.3SG.NOM
+'The woman saw the cat.'
 
 ### VSO ###
 # marked; focus/topicalization
@@ -107,10 +107,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-Gördü		kadın			evi
-Gör-dü		kadın			ev-i
-see-PF.NPST.3SG	woman.3SG.NOM	house.3SG-ACC
-'The woman saw the house.'
+Gördü		kadın				kediyi
+Gör-dü		kadın				kedi-yi
+see-PF.NPST.3SG	woman.3SG.NOM	cat.3SG-ACC
+'The woman saw the cat.'
 
 ### VOS ###
 # marked; focus/topicalization
@@ -118,10 +118,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {word order}
-Gördü		evi				kadın
-Gör-dü		ev-i			kadın
-see-PF.NPST.3SG	house.3SG-ACC	woman.3SG.NOM
-'The woman saw the house.'
+Gördü			kediyi		kadın
+Gör-dü			kedi-yi		kadın
+see-PF.NPST.3SG	cat.3SG-ACC	woman.3SG.NOM
+'The woman saw the cat.'
 
 ### SOV ###
 # unmarked
@@ -341,20 +341,20 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {case}
-Kadın			mektubu			okudu
-Kadın			mektub-u		oku-du
-woman.3SG.NOM	letter.3SG-ACC	read-PF.NPST.3SG
-'The woman read the letter.'
+Kadın			hediyeyi		getirdi
+Kadın			hediye-yi		getir-di
+woman.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG
+'The woman brought the present.'
 
 ### NOM subject, zero-ACC object (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {case}
-Kadın			mektup			okudu
-Kadın			mektup			oku-du
-woman.3SG.NOM	letter.3SG.ACC	read-PF.NPST.3SG
-'The woman read a letter.'
+Kadın			hediye			getirdi
+Kadın			hediye			getir-di
+woman.3SG.NOM	letter.3SG.ACC	bring-PF.NPST.3SG
+'The woman brought a present.'
 
 ### NOM subject, NOM object (u) ###
 # since nominative and accusative can both always be -0, this interpretation never happens
@@ -401,60 +401,60 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {case}
-O				kadına			bayıldı
-O				kadın-a			bayıl-dı
-pronoun.3SG.NOM	woman.3SG-DAT	adore-PF.NPST.3SG
-'He/she/it adored the woman.'
+Ben				kadına			bayıldım
+Ben				kadın-a			bayıl-dı-m
+pronoun.1SG.NOM	woman.3SG-DAT	adore-PF.NPST-1SG
+'I adored the woman.'
 
 ### ABL object + ABL-TR (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {case}
-O				kadından		korktu
-O				kadın-dan		kork-tu
-pronoun.3SG.NOM	woman.3SG-ABL	fear-PF.NPST.3SG
-'He/she/it feared the woman.'
+Ben				kadından		korktum
+Ben				kadın-dan		kork-tu-m
+pronoun.1SG.NOM	woman.3SG-ABL	fear-PF.NPST-1SG
+'I feared the woman.'
 
 ### LOC object + LOC-TR (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {case}
-O				evde			diretti
-O				ev-de			diret-ti
-pronoun.3SG.NOM	house.3SG-LOC	insist-PF.NPST.3SG
-'He/she/it insisted on the house.'
+Ben				evde			direttim
+Ben				ev-de			diret-ti-m
+pronoun.1SG.NOM	house.3SG-LOC	insist-PF.NPST-1SG
+'I insisted on the house.'
 
 ### COM object + COM-TR (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {case}
-O				kediyle			ilgilendi
-O				kedi-yle		ilgilen-di
-pronoun.3SG.NOM	cat.3SG-COM		care-PF.NPST.3SG
-'He/she/it was interested in the cat.'
+Ben				kediyle			ilgilendim
+Ben				kedi-yle		ilgilen-di-m
+pronoun.1SG.NOM	cat.3SG-COM		care-PF.NPST-1SG
+'I was interested in the cat.'
 
 ### COM object + COM-TR (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {case, case-marking adpositions}
-O				kedi	ile			ilgilendi
-O				kedi	ile			ilgilen-di
-pronoun.3SG.NOM	cat.3SG	postpos.COM	care-PF.NPST.3SG
-'He/she/it was interested in the cat.'
+Ben				kedi	ile			ilgilendim
+Ben				kedi	ile			ilgilen-di-m
+pronoun.1SG.NOM	cat.3SG	postpos.COM	care-PF.NPST-1SG
+'I was interested in the cat.'
 
 ### ABL object + DAT-TR (u) ###
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {case}
-O				kadından		bayıldı
-O				kadın-dan		bayıl-dı
-pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST.3SG
-'He/she/it adored the woman.'
+Ben				kadından		bayıldım
+Ben				kadın-dan		bayıl-dı-m
+pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST-1SG
+'I adored the woman.'
 
 ########################
 ###### DETERMINERS #####
@@ -475,30 +475,30 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {determiners}
-Her			kadın			mektubu			okudu
-Her			kadın			mektub-u		oku-du
-every.SG	woman.3SG.NOM	letter.3SG-ACC	read-PF.NPST.3SG
-'Every woman read the letter.'
+Her			kadın			kediyi		gördü
+Her			kadın			kedi-yi		gör-dü
+every.SG	woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+'Every woman saw the cat.'
 
 ### bare subject, det+object (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {determiners}
-Kadın			bir		mektup			okudu
-Kadın			bir		mektup			oku-du
-woman.3SG.NOM	a.SG	letter.3SG.ACC	read-PF.NPST.3SG
-'The woman read a letter.'
+Kadın			bir		kedi		gördü
+Kadın			bir		kedi		gör-dü
+woman.3SG.NOM	a.SG	cat.3SG.ACC	see-PF.NPST.3SG
+'The woman saw a cat.'
 
 ### det+subject, det+object (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {determiners}
-Her			kadın			bir		mektup			okudu
-Her			kadın			bir		mektup			oku-du
-every.SG	woman.3SG.NOM	a.SG	letter.3SG.ACC	read-PF.NPST.3SG
-'Every woman read a letter.'
+Her			kadın			bir		kedi		gördü
+Her			kadın			bir		kedi		gör-dü
+every.SG	woman.3SG.NOM	a.SG	cat.3SG.ACC	see-PF.NPST.3SG
+'Every woman saw a cat.'
 
 ### subject+det (u) ###
 Source: author
@@ -515,10 +515,10 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {determiners, word order}
-Kadın			mektup			bir		okudu
-Kadın			mektup			bir		oku-du
-woman.3SG.NOM	letter.3SG.ACC	a.SG	read-PF.NPST.3SG
-'The woman read a letter.'
+Kadın			kedi		bir		gördü
+Kadın			kedi		bir		gör-dü
+woman.3SG.NOM	cat.3SG.ACC	a.SG	see-PF.NPST.3SG
+'The woman saw a cat.'
 
 ### det+pronoun subject (u) ###
 Source: author
@@ -938,10 +938,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {argument optionality}
-Evi				gördü
-Ev-i			gör-dü
-house.3SG-ACC	see-PF.NPST.3SG
-'He/she/it saw the house.'
+Kediyi		gördü
+Kedi-yi		gör-dü
+cat.3SG-ACC	see-PF.NPST.3SG
+'He/she/it saw the cat.'
 
 # this works but not with the expected meaning because accusative optionality
 Source: author
@@ -1757,86 +1757,86 @@ pronoun.1SG.NOM	student
 ### COGNITIVE STATUS ###
 ########################
 
-### indef-pronoun + indef-acc (g) ###
+### indef-det + indef-acc (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {cognitive status, determiners}
-Bir		mektup			okudum
-Bir		mektup			oku-du-m
-a.SG	letter.3SG.ACC	read-PF.NPST-1SG
-'I read a letter.'
+Bir		hediye			getirdim
+Bir		hediye			getir-di-m
+a.SG	present.3SG.ACC	bring-PF.NPST-1SG
+'I brought a present.'
 
-### indef-pronoun + def-acc (u) ###
+### indef-det + def-acc (u) ###
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {cognitive status, determiners}
-Bir		mektubu			okudum
-Bir		mektub-u		oku-du-m
-a.SG	letter.3SG-ACC	read-PF.NPST-1SG
-'I read a letter.'
+Bir		hediyeyi		getirdim
+Bir		hediye-yi		getir-di-m
+a.SG	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought a present.'
 
 ### bare zero-acc (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {cognitive status}
-Mektup			okudum
-Mektup			oku-du-m
-letter.3SG.ACC	read-PF.NPST-1SG
-'I read a letter.'
+Hediye			getirdim
+Hediye			getir-di-m
+present.3SG.ACC	bring-PF.NPST-1SG
+'I brought a present.'
 
 ### bare zero-acc (g) ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {cognitive status}
-Mektubu			okudum
-Mektub-u		oku-du-m
-letter.3SG-ACC	read-PF.NPST-1SG
-'I read the letter.'
+Hediyeyi		getirdim
+Hediye-yi		getir-di-m
+present.3SG-ACC	bring-PF.NPST-1SG
+'I brought the present.'
 
-### def-pronoun + indef-acc (u) ###
+### def-det + indef-acc (u) ###
 Source: author
 Vetted: f
 Judgment: u
 Phenomena: {cognitive status, determiners}
-Bu		mektup			okudum
-Bu		mektup			oku-du-m
-this	letter.3SG.ACC	read-PF.NPST-1SG
-'I read a/this letter.'
+Bu		hediye			getirdim
+Bu		hediye			getir-di-m
+this	present.3SG.ACC	bring-PF.NPST-1SG
+'I brought a/this present.'
 
-### def-pronoun + def-acc (g) ###
+### def-det + def-acc (g) ###
 ### proximal-demonstrative ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {cognitive status, determiners}
-Bu		mektubu			okudum
-Bu		mektub-u		oku-du-m
-this	letter.3SG-ACC	read-PF.NPST-1SG
-'I read this letter.'
+Bu		hediyeyi		getirdim
+Bu		hediye-yi		getir-di-m
+this	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought this present.'
 
-### medial-demonstrative ###
+### distal/hearer-demonstrative ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {cognitive status, determiners}
-Şu		mektubu			okudum
-Şu		mektub-u		oku-du-m
-this	letter.3SG-ACC	read-PF.NPST-1SG
-'I read this/that letter.'
+Şu		hediyeyi		getirdim
+Şu		hediye-yi		getir-di-m
+this	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought this/that present.'
 
-### distal-demonstrative ###
+### distal/remote-demonstrative ###
 Source: author
 Vetted: f
 Judgment: g
 Phenomena: {cognitive status, determiners}
-O		mektubu			okudum
-O		mektub-u		oku-du-m
-that	letter.3SG-ACC	read-PF.NPST-1SG
-'I read that letter.'
+O		hediyeyi		getirdim
+O		hediye-yi		getir-di-m
+that	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought that present.'
 
 ########################
 ######## NONSENSE ######
@@ -1897,10 +1897,10 @@ Source: author
 Vetted: f
 Judgment: u
 Phenomena: {case}
-Kadın			evu				gördü
-Kadın			ev-u			gör-dü
-woman.3SG.NOM	house.3SG-ACC	see-PF.NPST.3SG
-'The woman saw the house.'
+Kadın			kediyı		gördü
+Kadın			kedi-yı		gör-dü
+woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+'The woman saw the cat.'
 
 # wrong agreement form (should be -k)
 Source: author
