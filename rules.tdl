@@ -21,7 +21,11 @@ comp-head-2 := comp-head-phrase-2.
 
 head-spec := head-spec-phrase.
 
-bare-np := bare-np-phrase.
+;bare-np := bare-np-phrase.
+
+bare-pronoun-np := bare-pronoun-np-phrase.
+
+bare-common-np := bare-common-np-phrase.
 
 ;;; yeah, fuck all this noise for now
 ;

@@ -33,10 +33,10 @@ Lab 5
 			Vetted: f
 			Judgment: g
 			Phenomena: {case}
-			O				kadına			bayıldı
-			O				kadın-a			bayıl-dı
-			pronoun.3SG.NOM	woman.3SG-DAT	adore-PF.NPST.3SG
-			'He/she/it adored the woman.'
+			Ben				kadına			bayıldım
+			Ben				kadın-a			bayıl-dı-m
+			pronoun.1SG.NOM	woman.3SG-DAT	adore-PF.NPST-1SG
+			'I adored the woman.'
 
 			### DAT-TR SUBJECT DROP (g) ###
 			Source: author
@@ -66,10 +66,10 @@ Lab 5
 			Vetted: f
 			Judgment: g
 			Phenomena: {case}
-			O				kadından		korktu
-			O				kadın-dan		kork-tu
-			pronoun.3SG.NOM	woman.3SG-ABL	fear-PF.NPST.3SG
-			'He/she/it feared the woman.'
+			Ben				kadından		korktum
+			Ben				kadın-dan		kork-tu-m
+			pronoun.1SG.NOM	woman.3SG-ABL	fear-PF.NPST-1SG
+			'I feared the woman.'
 
 			### ABL-TR OBJECT DROP (g) ###
 			Source: author
@@ -89,10 +89,10 @@ Lab 5
 			Vetted: f
 			Judgment: g
 			Phenomena: {case}
-			O				evde			diretti
-			O				ev-de			diret-ti
-			pronoun.3SG.NOM	house.3SG-LOC	insist-PF.NPST.3SG
-			'He/she/it insisted on the house.'
+			Ben				evde			direttim
+			Ben				ev-de			diret-ti-m
+			pronoun.1SG.NOM	house.3SG-LOC	insist-PF.NPST-1SG
+			'I insisted on the house.'
 
 		Some examples of a verb that takes comitative-case objects (which can be marked either 
 		by suffix or via postposition), which do indeed receive parses in the baseline grammar:
@@ -102,20 +102,20 @@ Lab 5
 			Vetted: f
 			Judgment: g
 			Phenomena: {case}
-			O				kediyle			ilgilendi
-			O				kedi-yle		ilgilen-di
-			pronoun.3SG.NOM	cat.3SG-COM		care-PF.NPST.3SG
-			'He/she/it was interested in the cat.'
+			Ben				kediyle			ilgilendim
+			Ben				kedi-yle		ilgilen-di-m
+			pronoun.1SG.NOM	cat.3SG-COM		care-PF.NPST-1SG
+			'I was interested in the cat.'
 
 			### COM object + COM-TR (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {case, case-marking adpositions}
-			O				kedi	ile			ilgilendi
-			O				kedi	ile			ilgilen-di
-			pronoun.3SG.NOM	cat.3SG	postpos.COM	care-PF.NPST.3SG
-			'He/she/it was interested in the cat.'
+			Ben				kedi	ile			ilgilendim
+			Ben				kedi	ile			ilgilen-di-m
+			pronoun.1SG.NOM	cat.3SG	postpos.COM	care-PF.NPST-1SG
+			'I was interested in the cat.'
 
 		An ungrammatical example of a verb that takes accusative-case objects with would-be 
 		object dropping, which indeed does NOT receive a parse in the baseline grammar:
@@ -138,10 +138,10 @@ Lab 5
 			Vetted: f
 			Judgment: u
 			Phenomena: {case}
-			O				kadından		bayıldı
-			O				kadın-dan		bayıl-dı
-			pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST.3SG
-			'He/she/it adored the woman.'
+			Ben				kadından		bayıldım
+			Ben				kadın-dan		bayıl-dı-m
+			pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST-1SG
+			'I adored the woman.'
 
 		The verb requires an object in the dative case, but because asyndetic coordination 
 		doesn't restrict which cases can combine with which, the would-be subject and the 
@@ -405,68 +405,99 @@ Lab 5
 		The following are plural, indefinite determiners: bazı (some), çok (many)
 
 		Additionally, the overt accusative suffix actually doubles as a definiteness marker; 
-		there is also a zero accusative suffix which denotes indefiniteness.
+		there is also a zero accusative suffix which denotes indefiniteness.  All other case 
+		suffixes are underspecified for definiteness, but the accusative suffixes cannot 
+		co-occur with determiners whose definiteness feature is different from their own.
+
+		Definite forms (bare) are inherently
+
+							COG-ST			SPECI
+			nom (-0)		
+			acc (-0)						-
+			acc (-(y/n)I)					+
+			dat (-(y/n)A)
+			abl (-(n)DAn)
+			loc	(-(n)DA)
+			com (-(y)lA)
+
+							COG-ST			SPECI
+			pronouns		activ-or-more	+
+
+							COG-ST			SPECI
+			bare-np			uniq+fam+act
+			dropped subj	in-focus
+			dropped obj		type-id
+
+							COG-ST			SPECI
+			bu, şu, o		activ+fam		+
+			her				uniq+activ+fam	+
+			bütün			uniq+active+fam	+
+			bir				type-id
+			bazı, çok		type-id
+
+		As for demonstratives, they include the definite determiners "bu" ('this'), "şu" 
+		('this/that'), and "o" ('that'), where the first refers to something close to the 
+		speaker, the second refers to something close to the hearer, and the third refers to 
+		something that is near to neither the speaker nor the hearer.
 
 		2.	Examples from testsuite
 
-		Examples of indefinite determiner usage with the indefinite accusative (grammatical) 
-		and definite accusative (ungrammatical):
+		Examples of indefinite determiner usage with the nonspecific and specific accusatives:
 
 			### indef-det + indef-acc (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {cognitive status, determiners}
-			Bir		mektup			okudum
-			Bir		mektup			oku-du-m
-			a.SG	letter.3SG.ACC	read-PF.NPST-1SG
-			'I read a letter.'
+			Bir		hediye			getirdim
+			Bir		hediye			getir-di-m
+			a.SG	present.3SG.ACC	bring-PF.NPST-1SG
+			'I brought a present.'
 
-			### indef-det + def-acc (u) ###
+			### indef-det + def-acc -- actually indef+specific (g) ###
 			Source: author
 			Vetted: f
-			Judgment: u
+			Judgment: g
 			Phenomena: {cognitive status, determiners}
-			Bir		mektubu			okudum
-			Bir		mektub-u		oku-du-m
-			a.SG	letter.3SG-ACC	read-PF.NPST-1SG
-			'I read a letter.'
+			Bir		hediyeyi		getirdim
+			Bir		hediye-yi		getir-di-m
+			a.SG	present.3SG-ACC	bring-PF.NPST-1SG
+			'I brought a present.'
 
-		Examples of indefinite and definite accusatives without determiners, with indefinite 
-		and definite semantics nonetheless:
+		Examples of nonspecific and specific accusatives without determiners:
 
 			### bare zero-acc (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {cognitive status}
-			Mektup			okudum
-			Mektup			oku-du-m
-			letter.3SG.ACC	read-PF.NPST-1SG
-			'I read a letter.'
+			Hediye			getirdim
+			Hediye			getir-di-m
+			present.3SG.ACC	bring-PF.NPST-1SG
+			'I brought a present.'
 
 			### bare zero-acc (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {cognitive status}
-			Mektubu			okudum
-			Mektub-u		oku-du-m
-			letter.3SG-ACC	read-PF.NPST-1SG
-			'I read the letter.'
+			Hediyeyi		getirdim
+			Hediye-yi		getir-di-m
+			present.3SG-ACC	bring-PF.NPST-1SG
+			'I brought the present.'
 
-		Examples of definite determiner usage with the indefinite accusative (ungrammatical) and 
-		definite accusative (grammatical):
+		Examples of definite determiner usage with the nonspecific accusative (ungrammatical) 
+		and specific accusative (grammatical):
 
-			### def-det + indef-acc (u) ###
+			### def-det + indef-acc -- specificity clash (u) ###
 			Source: author
 			Vetted: f
 			Judgment: u
 			Phenomena: {cognitive status, determiners}
-			Bu		mektup			okudum
-			Bu		mektup			oku-du-m
-			this	letter.3SG.ACC	read-PF.NPST-1SG
-			'I read a/this letter.'
+			Bu		hediye			getirdim
+			Bu		hediye			getir-di-m
+			this	present.3SG.ACC	bring-PF.NPST-1SG
+			'I brought a/this present.'
 
 			### def-det + def-acc (g) ###
 			### proximal-demonstrative ###
@@ -474,37 +505,101 @@ Lab 5
 			Vetted: f
 			Judgment: g
 			Phenomena: {cognitive status, determiners}
-			Bu		mektubu			okudum
-			Bu		mektub-u		oku-du-m
-			this	letter.3SG-ACC	read-PF.NPST-1SG
+			Bu		hediyeyi		getirdim
+			Bu		hediye-yi		getir-di-m
+			this	present.3SG-ACC	bring-PF.NPST-1SG
+			'I brought this present.'
 			'I read this letter.'
 
 		And finally, since the last two examples showed the proximal demonstrative determiner 
-		"bu," here are some examples with the medial and distal determiners:
+		"bu," here are some examples with the distal/hearer and distal/remote determiners:
 
 			### distal/hearer-demonstrative ###
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {cognitive status, determiners}
-			Şu		mektubu			okudum
-			Şu		mektub-u		oku-du-m
-			this	letter.3SG-ACC	read-PF.NPST-1SG
-			'I read this/that letter.'
+			Şu		hediyeyi		getirdim
+			Şu		hediye-yi		getir-di-m
+			this	present.3SG-ACC	bring-PF.NPST-1SG
+			'I brought this/that present.'
 
 			### distal/remote-demonstrative ###
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {cognitive status, determiners}
-			O		mektubu			okudum
-			O		mektub-u		oku-du-m
-			that	letter.3SG-ACC	read-PF.NPST-1SG
-			'I read that letter.'
+			O		hediyeyi		getirdim
+			O		hediye-yi		getir-di-m
+			that	present.3SG-ACC	bring-PF.NPST-1SG
+			'I brought that present.'
 
 		3.	TDL snippets & descriptions
 
-		Here is the original code for determiners fr
+		DEFINITENESS & SPECIFICITY OUTSIDE OF DETERMINERS
+
+		Here are the accusative rules in the Lexical Rules section of turkish.tdl, modified 
+		from the customization system's output to add in the SPECI features (all other case 
+		rules remained the same, since only the accusative variants affect specificity):
+
+			> turkish.tdl
+
+			spec-acc-lex-rule-lex-rule := case-common-noun-lex-rule-super & infl-lex-rule &
+			  [ SYNSEM.LOCAL [ CAT.HEAD [ CASE acc,
+										  CASE-MARKED + ],
+							   CONT.HOOK.INDEX.SPECI + ] ].
+
+			nonspec-acc-lex-rule-lex-rule := case-common-noun-lex-rule-super & const-lex-rule &
+			  [ SYNSEM.LOCAL [ CAT.HEAD [ CASE acc,
+										  CASE-MARKED + ],
+							   CONT.HOOK.INDEX.SPECI - ] ].
+
+		And here is the supertype from which all pronouns in the lexicon inherit (not 
+		directly, but through subtypes thereof), so all of them have "activ-or-more" COG-ST 
+		features and positive SPECI features, per the assignment instructions:
+
+			> turkish.tdl
+
+			personal-pronoun-lex := no-spr-noun-lex & 
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX [ COG-ST activ-or-more, 
+											   SPECI + ] ].
+
+		This supertype has subtypes based on person and number features, e.g.:
+
+			> turkish.tdl
+
+			1sg-pronoun-noun-lex := personal-pronoun-lex &
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG [ PER 1st,
+												   NUM sg ] ].
+
+		And the types that the pronominal lexical entries directly inherit from further 
+		distinguish case features (since pronominal case is pretty irregular), e.g.:
+
+			> turkish.tdl
+
+			nom-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
+			  [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
+										CASE-MARKED + ] ].
+
+		Here's the lexical entry inheriting from the above example type (and thereby 
+		from personal-pronoun-lex, so it gets the proper COG-ST and SPECI features):
+
+			> lexicon.tdl
+
+			ben_1 := nom-1sg-pronoun-noun-lex &
+			  [ STEM < "ben" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
+
+		And here are the two bare NP lexical rules in turkish.tdl, which apply to pronouns 
+		and common nouns respectively, since pronouns and phrases headed by them are 
+		[COG-ST activ-or-more] and [SPECI +], while common-noun-headed bare NPs are treated 
+		as definite in Turkish, i.e., [COG-ST uniq+fam+act]:
+
+			> turkish.tdl
+
+			...
+
+		DEFINITENESS, SPECIFICITY, & DEMONSTRATIVITY OF DETERMINERS
 
 		Here are the types (verbatim from the assignment instructions) we added to the Matrix 
 		Type Addenda section of turkish.tdl:
@@ -524,7 +619,9 @@ Lab 5
 
 			> turkish.tdl
 
-			determiner-lex-supertype := norm-hook-lex-item & basic-zero-arg &
+			determiner-lex-supertype := norm-hook-lex-item & 
+										basic-zero-arg & 
+										no-icons-lex-item &
 			  [ SYNSEM [ LOCAL [ CAT [ HEAD det & [ MOD < > ],
 						   VAL [ SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind,
 															  LTOP #larg ],
@@ -538,32 +635,17 @@ Lab 5
 					   [ ARG0 #ind,
 						 RSTR #harg ] ] ].
 
-		Here are the types, originally from the customization system, which now inherit from 
-		the new determiner-lex-supertype instead of from the originally given determiner-lex 
-		(which in turn inherited from basic-determiner-lex):
+		Here are the types which now inherit from the new determiner-lex-supertype instead of 
+		from the originally given determiner-lex (which in turn inherited from 
+		basic-determiner-lex):
 
 			> turkish.tdl
 
-			sgpl-definite-determiner-lex := determiner-lex-supertype & no-icons-lex-item.
-
-			pl-definite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
-			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
-
-			sg-indefinite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
-			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
-
-			pl-indefinite-determiner-lex := determiner-lex-supertype & no-icons-lex-item &
-			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
-
-		And here are the subtypes thereof for demonstrative determiners and ordinary (non-
-		demonstrative) determiners, respectively, also in turkish.tdl:
-
-			> turkish.tdl
-
-			demonstrative-determiner-lex := determiner-lex-supertype &
+			demonstrative-determiner-lex := determiner-lex-supertype & 
 			  [ SYNSEM 
 				 [ LKEYS.ALTKEYREL #evrel,
-				   LOCAL [ CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind & [ COG-ST activ+fam ],
+				   LOCAL [ CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind & [ COG-ST activ+fam, 
+																			   SPECI + ],
 																LTOP #ltop ],
 						   CONT.RELS <! [ PRED "exist_q_rel" ],
 										#evrel & arg1-ev-relation & [ LBL #ltop, 
@@ -571,37 +653,80 @@ Lab 5
 
 			ordinary-determiner-lex := determiner-lex-supertype & single-rel-lex-item.
 
-		(Since lexical entries never inherit from these types without also inheriting from 
-		one of the above definite/indefinite types, it is probably redundant to have these 
-		types inherit from determiner-lex-supertype as well, but it also doesn't seem to have 
-		any adverse effects to leave it in.)
-
-		And of course the specific, multiply inheriting type (again, in turkish.tdl) that the 
-		demonstrative determiners as declared in the lexicon most immediately inherit:
+		The demonstrative pronouns in the lexicon inherit directly from the above 
+		demonstrative-determiner-lex, but ordinary-determiner-lex has further subtypes based 
+		on definiteness (COG-ST) and specificity (SPECI), with definiteness and indefiniteness 
+		defined featurally per the table in the assignment description, shown here:
 
 			> turkish.tdl
 
-			demonstrative-sgpl-definite-determiner-lex := demonstrative-determiner-lex & 
-			                                              sgpl-definite-determiner-lex.
+			definite-determiner-lex := ordinary-determiner-lex & 
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX [ COG-ST uniq+fam+act, SPECI + ] ].
+
+			indefinite-determiner-lex := ordinary-determiner-lex &
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST type-id ].
+
+		The types which the ordinary determiners' lexical entries immediately inherit from 
+		are further specified for number agreement with the head noun.  Those subtypes are 
+		shown here (also in turkish.tdl):
+
+			> turkish.tdl
+
+			sgpl-definite-determiner-lex := definite-determiner-lex.
+
+			pl-definite-determiner-lex := definite-determiner-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
+
+			sg-indefinite-determiner-lex := indefinite-determiner-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
+
+			pl-indefinite-determiner-lex := indefinite-determiner-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL.SPEC.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
 
 		Finally, here are the lexical entries for the demonstrative determiners, with 
 		appropriately adjusted PRED values and inherited types, in lexicon.tdl:
 
 			> lexicon.tdl
 
-			bu_4 := demonstrative-sgpl-definite-determiner-lex &
+			bu_4 := demonstrative-determiner-lex &
 			  [ STEM < "bu" >,
 				SYNSEM.LKEYS.ALTKEYREL.PRED proximal+dem_a_rel ].
 
-			şu_4 := demonstrative-sgpl-definite-determiner-lex &
+			şu_4 := demonstrative-determiner-lex &
 			  [ STEM < "şu" >,
 				SYNSEM.LKEYS.ALTKEYREL.PRED hearer+dem_a_rel ].
 
-			o_4 := demonstrative-sgpl-definite-determiner-lex &
+			o_4 := demonstrative-determiner-lex &
 			  [ STEM < "o" >,
 				SYNSEM.LKEYS.ALTKEYREL.PRED remote+dem_a_rel ].
 
+		...and for the ordinary determiners:
+
+			> lexicon.tdl
+
+			her := sgpl-definite-determiner-lex &
+			  [ STEM < "her" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_every_q_rel" ].
+
+			bütün := pl-definite-determiner-lex &
+			  [ STEM < "bütün" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_all_q_rel" ].
+
+			bir := sg-indefinite-determiner-lex &
+			  [ STEM < "bir" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_a_q_rel" ].
+
+			bazı := pl-indefinite-determiner-lex &
+			  [ STEM < "bazı" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_some_q_rel" ].
+
+			çok := pl-indefinite-determiner-lex &
+			  [ STEM < "çok" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_many_q_rel" ].
+
 		4.	Problems encountered
+
+		...
 
 	ARGUMENT OPTIONALITY {pro-d}
 

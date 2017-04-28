@@ -3,7 +3,7 @@ sg-lex-rule-lex := sg-lex-rule-lex-rule.
 
 nom-lex-rule-lex := nom-lex-rule-lex-rule.
 
-indef-acc-lex-rule-lex := indef-acc-lex-rule-lex-rule.
+nonspec-acc-lex-rule-lex := nonspec-acc-lex-rule-lex-rule.
 
 case-common-noun-synth-com-lex := case-common-noun-synth-com-lex-rule.
 

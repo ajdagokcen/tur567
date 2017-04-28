@@ -1767,10 +1767,10 @@ Bir		hediye			getir-di-m
 a.SG	present.3SG.ACC	bring-PF.NPST-1SG
 'I brought a present.'
 
-### indef-det + def-acc (u) ###
+### indef-det + def-acc -- actually indef+specific (g) ###
 Source: author
 Vetted: f
-Judgment: u
+Judgment: g
 Phenomena: {cognitive status, determiners}
 Bir		hediyeyi		getirdim
 Bir		hediye-yi		getir-di-m
@@ -1797,7 +1797,7 @@ Hediye-yi		getir-di-m
 present.3SG-ACC	bring-PF.NPST-1SG
 'I brought the present.'
 
-### def-det + indef-acc (u) ###
+### def-det + indef-acc -- specificity clash (u) ###
 Source: author
 Vetted: f
 Judgment: u
