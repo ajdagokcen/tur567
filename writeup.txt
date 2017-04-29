@@ -381,7 +381,9 @@ Lab 5
 
 		4.	Problems encountered
 
-		...
+		We didn't have any problems, really.  Once we added the adverb types in and the 
+		head-adj-int rule, adverbs worked in all the appropriate places and orders, and the 
+		basic-adjective_attr-lex-rule prevented any detriment to adjective behavior.
 
 	AGREEMENT BETWEEN ADJECTIVES AND HEAD NOUN {adj, agr}
 
@@ -404,12 +406,23 @@ Lab 5
 
 		The following are plural, indefinite determiners: bazı (some), çok (many)
 
-		Additionally, the overt accusative suffix actually doubles as a definiteness marker; 
-		there is also a zero accusative suffix which denotes indefiniteness.  All other case 
-		suffixes are underspecified for definiteness, but the accusative suffixes cannot 
-		co-occur with determiners whose definiteness feature is different from their own.
+		Additionally, the overt accusative suffix actually doubles as a specificity marker; 
+		there is also a zero accusative suffix which denotes nonspecificity.  All other case 
+		suffixes are underspecified for specificity, but the accusative suffixes cannot 
+		co-occur with determiners whose specificity feature is different from their own.
 
-		Definite forms (bare) are inherently
+		Bare NPs are inherently definite but ambiguous with regard to specificity.
+
+		As for demonstratives, they include the definite determiners "bu" ('this'), "şu" 
+		('this/that'), and "o" ('that'), where the first refers to something close to the 
+		speaker, the second refers to something close to the hearer, and the third refers to 
+		something that is near to neither the speaker nor the hearer.
+
+		Here is a table indicating the cognitive status and specificity features (or lack 
+		thereof) associated with all the different common noun cases, pronouns, phrase rules, 
+		and determiners:
+
+						COMMON NOUN CASES
 
 							COG-ST			SPECI
 			nom (-0)		
@@ -420,13 +433,22 @@ Lab 5
 			loc	(-(n)DA)
 			com (-(y)lA)
 
+
+							PRONOUNS
+
 							COG-ST			SPECI
 			pronouns		activ-or-more	+
+
+
+						PHRASAL RULES
 
 							COG-ST			SPECI
 			bare-np			uniq+fam+act
 			dropped subj	in-focus
 			dropped obj		type-id
+
+
+						DETERMINERS
 
 							COG-ST			SPECI
 			bu, şu, o		activ+fam		+
@@ -434,11 +456,6 @@ Lab 5
 			bütün			uniq+active+fam	+
 			bir				type-id
 			bazı, çok		type-id
-
-		As for demonstratives, they include the definite determiners "bu" ('this'), "şu" 
-		('this/that'), and "o" ('that'), where the first refers to something close to the 
-		speaker, the second refers to something close to the hearer, and the third refers to 
-		something that is near to neither the speaker nor the hearer.
 
 		2.	Examples from testsuite
 
@@ -509,7 +526,6 @@ Lab 5
 			Bu		hediye-yi		getir-di-m
 			this	present.3SG-ACC	bring-PF.NPST-1SG
 			'I brought this present.'
-			'I read this letter.'
 
 		And finally, since the last two examples showed the proximal demonstrative determiner 
 		"bu," here are some examples with the distal/hearer and distal/remote determiners:
@@ -560,9 +576,10 @@ Lab 5
 
 			> turkish.tdl
 
-			personal-pronoun-lex := no-spr-noun-lex & 
-			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX [ COG-ST activ-or-more, 
-											   SPECI + ] ].
+			personal-pronoun-lex := no-spr-noun-lex &
+			  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX [ COG-ST activ-or-more,
+												 SPECI + ],
+							   CAT.HEAD.PRON + ] ].
 
 		This supertype has subtypes based on person and number features, e.g.:
 
@@ -590,14 +607,48 @@ Lab 5
 			  [ STEM < "ben" >,
 				SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-		And here are the two bare NP lexical rules in turkish.tdl, which apply to pronouns 
-		and common nouns respectively, since pronouns and phrases headed by them are 
+		And here are the bare NP phrases in turkish.tdl, of which the subtypes apply to 
+		pronouns and common nouns respectively, since pronouns and phrases headed by them are 
 		[COG-ST activ-or-more] and [SPECI +], while common-noun-headed bare NPs are treated 
 		as definite in Turkish, i.e., [COG-ST uniq+fam+act]:
 
 			> turkish.tdl
 
-			...
+			bare-np-phrase := basic-bare-np-phrase &
+			  [ C-CONT.RELS <! [ PRED "exist_q_rel" ] !> ].
+
+			bare-pronoun-np-phrase := bare-np-phrase &
+			  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON + ].
+
+			bare-common-np-phrase := bare-np-phrase &
+			  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON -,
+				SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST uniq+fam+act ].
+
+		In order for these phrases to only apply to pronouns and common nouns, respectively, 
+		we created a PRON feature, i.e., in the Matrix Type Addenda of turkish.tdl:
+
+			> turkish.tdl
+
+			head :+ [ PRD bool,
+					  FORM form,
+					  AUX bool,
+					  PRON bool ].
+
+		And then the types where the proper values of this feature are given to pronouns and 
+		common nouns:
+
+			> turkish.tdl
+
+			common-noun-lex := noun-lex & case-common-noun-rule-dtr & poss-common-noun-rule-dtr &
+			  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.PNG.PER 3rd,
+							   CAT.HEAD.PRON - ],
+				INFLECTED [ CASE-COMMON-NOUN-FLAG -,
+							NUMBER-COMMON-NOUN-FLAG - ] ].
+
+			personal-pronoun-lex := no-spr-noun-lex &
+			  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX [ COG-ST activ-or-more,
+												 SPECI + ],
+							   CAT.HEAD.PRON + ] ].
 
 		DEFINITENESS, SPECIFICITY, & DEMONSTRATIVITY OF DETERMINERS
 
@@ -726,7 +777,9 @@ Lab 5
 
 		4.	Problems encountered
 
-		...
+		Everything worked in the end, but it took a bit for us to figure out (with help) how 
+		to distinguish between pronouns and common nouns -- that is, how to enforce a 
+		distinction with a new feature!
 
 	ARGUMENT OPTIONALITY {pro-d}
 
@@ -734,13 +787,19 @@ Lab 5
 
 		Because Turkish is a pro-drop language, the subject is always optional. Person and
 		number agreement inflection is required on the verb regardless. Objects of VPs cannot
-		be dropped.
+		be dropped if the verb requires an accusative direct object, but they can be dropped 
+		if the verb takes an oblique object of a different case.
 
-		***I believe the interpretation is always that the subject, if dropped, is in-focus
+		As far as the cognitive status of dropped arguments goes, the subject, if dropped, 
+		is in-focus, which is why verbs with first or second person subject-agreement suffixes 
+		can always go without explicit subjects.  Dropped oblique objects are assumed to be 
+		activ-or-more, though frankly we were not able to discern this very clearly from 
+		available data.
 
 		2.	Examples from testsuite
 
-		Examples of argument optionality, first showing the explicit subject for reference:
+		Examples of argument optionality, first showing the explicit subject for reference, 
+		for both intransitive and accusative-transitive verbs:
 
 			Source: author
 			Vetted: f
@@ -755,12 +814,12 @@ Lab 5
 			Vetted: f
 			Judgment: g
 			Phenomena: {word order}
-			Kadın			evi				gördü
-			Kadın			ev-i			gör-dü
-			woman.3SG.NOM	house.3SG-ACC	see-PF.3SG
-			'The woman saw the house.'
+			Kadın			kediyi		gördü
+			Kadın			kedi-yi		gör-dü
+			woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+			'The woman saw the cat.'
 
-		...and then remembering, of course, that the subject is optional:
+		...and then remembering, of course, that the subject is optional for both verb types:
 
 			Source: author
 			Vetted: f
@@ -771,49 +830,195 @@ Lab 5
 			exit-PF.3SG
 			'He/she/it left.'
 
+			### ACC-TR SUBJ-DROP (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
 			Phenomena: {argument optionality}
-			Evi				gördü
-			Ev-i			gör-dü
-			house.3SG-ACC	see-PF.3SG
-			'He/she/it saw the house.'
+			Kediyi		gördü
+			Kedi-yi		gör-dü
+			cat.3SG-ACC	see-PF.NPST.3SG
+			'He/she/it saw the cat.'
 
 		The first example follows all other rules implemented in our grammar and includes the
 		verb's subject. The second example follows all other grammar rules but excludes the
 		subject of the verb. All contain the required agreement feature on the verb (zero
 		for 3rd person singular).
 
-		This example does not parse (since it cannot recognize the NOM-marked noun as an object
-		and therefore lacks an object, which cannot be dropped) but should because accusative
-		optionality:
+		Here is an example of a verb that takes a dative oblique object with the subject 
+		dropped, and then with the object dropped as well:
 
+			### DAT-TR SUBJECT DROP (g) ###
 			Source: author
 			Vetted: f
 			Judgment: g
-			Phenomena: {word order}
-			Kadın			gördü
-			Kadın			gör-dü
-			woman.3SG.NOM	see-PF.3SG
-			'He/she/it saw the woman.'
+			Phenomena: {argument optionality}
+			Kadına			bayıldı
+			Kadın-a			bayıl-dı
+			woman.3SG-DAT	adore-PF.NPST.3SG
+			'He/she/it adored the woman.'
+
+			### DAT-TR OBJECT DROP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {argument optionality}
+			Bayıldı
+			Bayıl-dı
+			adore-PF.NPST.3SG
+			'He/she/it adored.'
+
+		Probably a better translation of the above sentence would be "he/she/it was smitten."
+
+		And another example of a verb that takes an ablative oblique object, also with the 
+		object dropped:
+
+			### ABL-TR OBJECT DROP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {argument optionality}
+			Korkuyor
+			Kork-uyor
+			fear-IMPF.NPST.3SG
+			'He/she/it is afraid.'
+
+		And in all of these object drop cases the would-be object is assumed to be 
+		activ-or-more.
+
+		And finally, an ungrammatical example of an accusative-transitive verb ostensibly 
+		dropping its object (but it cannot and indeed does not receive a parse because this 
+		type of transitive verb does not have an optional object):
+
+			### ACC-TR OBJECT DROP (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {argument optionality}
+			Gördü
+			Gör-dü
+			see-PF.NPST.3SG
+			'He/she/it saw.'
 
 		3.	TDL snippets & descriptions
 
+		Here are the types that include the OPT-CS features giving dropped (oblique) 
+		objects the proper [ COG-ST activ-or-more ] status:
+
+			> turkish.tdl
+
+			dat-tr-verb-lex := transitive-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+																   CASE-MARKED + ],
+									   COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE dat,
+																	  CASE-MARKED + ],
+													 OPT +,
+													 OPT-CS activ-or-more ] ] ].
+
+			abl-tr-verb-lex := transitive-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+																   CASE-MARKED + ],
+									   COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE abl,
+																	  CASE-MARKED + ],
+													 OPT +,
+													 OPT-CS activ-or-more ] ] ].
+
+			loc-tr-verb-lex := transitive-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+																   CASE-MARKED + ],
+									   COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE loc,
+																	  CASE-MARKED + ],
+													 OPT +,
+													 OPT-CS activ-or-more ] ] ].
+
+			com-tr-verb-lex := transitive-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+																   CASE-MARKED + ],
+									   COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE com,
+																	  CASE-MARKED + ],
+													 OPT +,
+													 OPT-CS activ-or-more ] ] ].
+
+		And just for good measure, the snippet that prevents accusative-transitive verbs 
+		from dropping their objects at all:
+
+			> turkish.tdl
+
+			acc-tr-verb-lex := nom-acc-transitive-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+																   CASE-MARKED + ],
+									   COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE acc,
+																	  CASE-MARKED + ],
+													 OPT - ] ] ].
+
+		The only other snippets pertaining to argument optionality are where the rules are 
+		instantiated in rules.tdl:
+
+			> rules.tdl
+
+			decl-head-opt-subj := decl-head-opt-subj-phrase.
+
+			basic-head-opt-comp := basic-head-opt-comp-phrase.
+
+		...and the declaration of decl-head-opt-subj-phrase in matrix.tdl inherits from 
+		basic-head-opt-subj-phrase, also in matrix.tdl, where the dropped subject's 
+		[ COG-ST in-foc ] is specified:
+
+			> matrix.tdl (unchanged, of course)
+
+			basic-head-opt-subj-phrase := head-valence-phrase & head-only &
+			  [ INFLECTED #infl,
+				SYNSEM canonical-synsem &
+					  [ LOCAL.CAT [ VAL [ SUBJ < >,
+							  COMPS #comps,
+							  SPR #spr,
+							  SPEC #spec ],
+							POSTHEAD #ph ],
+					MODIFIED #mod ],
+				HEAD-DTR [ INFLECTED #infl & infl-satisfied,
+					   SYNSEM [ LOCAL [ CAT [ HEAD.MOD olist,
+											  VAL [ SUBJ < unexpressed-reg &
+									   [ OPT +,
+										 LOCAL.CONT.HOOK [ INDEX #index & [ COG-ST in-foc ],
+												   ICONS-KEY #ikey,
+												   CLAUSE-KEY #ckey ] ] >,
+									COMPS #comps,
+									SPR #spr,
+									SPEC #spec ],
+								  POSTHEAD #ph ],
+							CONT.HOOK.INDEX event ],
+						MODIFIED #mod ] ],
+				C-CONT [ RELS <! !>,
+					 HCONS <! !>,
+					 ICONS <! #ikey & non-focus & [ IARG1 #ckey,
+									IARG2 #index ] !> ] ].
+
+			; ERB 2007-01-21 Subtypes for declaratives and imperatives
+
+			decl-head-opt-subj-phrase := basic-head-opt-subj-phrase & declarative-clause &
+			  [ SYNSEM.LOCAL.CAT.MC #mc,
+				HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
+
 		4.	Problems encountered
+
+		The only real problem we encountered is it not being entirely clear what the cognitive 
+		status of dropped objects are.  We couldn't find resources that discussed it, and 
+		available native speakers weren't familiar enough with the concept to help.
 
 	POSSESSIVES {poss}
 
 		1.	Description of linguistic facts
 
 		Turkish allows for an optional possessor (which must have genitive case) on either 
-		(left or right) edge of the NP, along with a required (head noun) possessee that must 
+		(left or right) edge of the NP, along with a required (head noun) possessum that must 
 		be inflected with a possessive suffix whose number and person features agree with those 
 		of the possessor.
 
 		2.	Examples from testsuite
 
-		Here are a few examples of possession as they currently exist in our grammar:
+		Here are some examples of possessive constructions with both the required suffix on the 
+		possessum and an explicit genitive pronoun agreeing with it, varying by whether the 
+		possessor comes before or after the possessum:
 
 			### 1SG, with genitive ###
 			Source: author
@@ -825,9 +1030,18 @@ Lab 5
 			pronoun.1SG.GEN	family.3SG.NOM-POSS.1SG	come-PF.3SG
 			'My family arrived.'
 
-		This example doesn't currently parse although it should. This is due to the genitive
-		case not being active in our grammar as it is. Some rule must allow genitive case
-		nouns to be processed as determiners.
+			### 1SG, with genitive, possessive before genitive ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {possessives, word order}
+			Ailem					benim			geldi
+			Aile-m					benim			gel-di
+			family.3SG.NOM-1SGPOSS	pronoun.1SG.GEN	come-PF.NPST.3SG
+			'My family arrived.'
+
+		And here is a similar (and still grammatical) example, but with the genitive pronoun 
+		omitted:
 
 			### 1SG, without genitive ###
 			Source: author
@@ -839,8 +1053,8 @@ Lab 5
 			family.3SG.NOM-POSS.1SG	come-PF.3SG
 			'My family arrived.'
 
-		This sentence currently parses in our grammar; however, the possessive suffix is
-		semantically empty.
+		Finally, here is an ungrammatical example demonstrating that the possessive inflection 
+		on the possessum is required:
 
 			### 1SG, without possessive ###
 			Source: author
@@ -852,18 +1066,290 @@ Lab 5
 			pronoun.1SG.GEN	family.3SG.NOM	come-PF.3SG
 			'My family arrived.'
 
-		This sentence is ungrammatical because the subject does not carry the possessive suffix.
-		But it does not parse because of the presence of the genitive (i.e., it is treated as
-		ungrammatical for the wrong reason).
-
 		3.	TDL snippets & descriptions
+
+		Here is the absolutely unwieldy bit of code that allows for the possessum to be 
+		inflected; it is as unwieldy as it is because we needed to inherit from a valence 
+		changing type but infl-val-change-only-lex-rule prevented C-CONT from being 
+		non-empty, and also because Turkish inflectional morphology is so complicated. 
+		The case-common-noun-rule-dtr supertype means that this rule applies just prior to 
+		the case inflectional rules being applied.
+
+			> turkish.tdl
+
+			poss-common-noun-lex-rule-super := same-ctxt-lex-rule &
+											   same-cont-lex-rule &
+											   same-agr-lex-rule &
+											   same-head-lex-rule &
+											   same-hc-light-lex-rule &
+											   same-posthead-lex-rule &
+											   same-mc-lex-rule &
+											   infl-lex-rule &
+											   case-common-noun-rule-dtr &
+			  [ INFLECTED [ POSS-FLAG +,
+							CASE-COMMON-NOUN-FLAG #case-common-noun,
+							NEG-LEX-RULE-FLAG #neg-lex-rule,
+							TENSE-ADJECTIVE-FLAG #tense-adjective,
+							BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+							TENSE-VERB-FLAG #tense-verb,
+							AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+							ASPECT-VERB-FLAG #aspect-verb,
+							AGREEMENT-VERB-FLAG #agreement-verb,
+							NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+							POLARITY-VERB-FLAG #polarity-verb,
+							AGREEMENT-COPULA-FLAG #agreement-copula,
+							POLARITY-COPULA-FLAG #polarity-copula,
+							TENSE-COPULA-FLAG #tense-copula,
+							NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+							ASPECT-COPULA-FLAG #aspect-copula ],
+			   SYNSEM [ LKEYS.ALTKEYREL.ARG0.PNG #png,
+						LOCAL.CAT.VAL [ SPR < [ LOCAL [ CAT [ HEAD noun & [ CASE gen ] ],
+											  CONT.HOOK.INDEX #index2 ] ] >, 
+										SPEC #spec,
+										COMPS #comps,
+										SUBJ #subj ] ],
+			   DTR poss-common-noun-rule-dtr & [ SYNSEM.LOCAL [ CONT.HOOK [ INDEX #index,
+																			LTOP #lbl ],
+													CAT.VAL [ SPEC #spec,
+															  COMPS #comps,
+															  SUBJ #subj ] ],
+				   INFLECTED [ CASE-COMMON-NOUN-FLAG #case-common-noun,
+							   NEG-LEX-RULE-FLAG #neg-lex-rule,
+							   TENSE-ADJECTIVE-FLAG #tense-adjective,
+							   BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+							   TENSE-VERB-FLAG #tense-verb,
+							   AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+							   ASPECT-VERB-FLAG #aspect-verb,
+							   AGREEMENT-VERB-FLAG #agreement-verb,
+							   NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+							   POLARITY-VERB-FLAG #polarity-verb,
+							   AGREEMENT-COPULA-FLAG #agreement-copula,
+							   POLARITY-COPULA-FLAG #polarity-copula,
+							   TENSE-COPULA-FLAG #tense-copula,
+							   NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+							   ASPECT-COPULA-FLAG #aspect-copula ] ],
+			   C-CONT [ HOOK [ INDEX #index,
+					   LTOP #lbl ],
+					RELS < ! arg12-ev-relation &
+					  [ PRED "poss_rel",
+						LBL #lbl,
+						ARG1 #index,
+						ARG2 #index2 & [ PNG #png ] ] ! >,
+					ICONS < ! ! > ] ].
+
+		This should ostensibly make it so that possession-inflected NPs look for genitive 
+		noun specifiers, but see the "Problems encountered" section for an explanation that, 
+		basically, "it doesn't work and we don't know why."
+
+		Note that the pronoun and existence relations are not in the RELS list, because 
+		those may be supplied later on by either a bare-NP-like phrase or by the genitive 
+		possessor specifier.
+
+		To that end, here is the bare-NP-like phrase that allows inflected possessa to 
+		appear without any specifier:
+
+			> turkish.tdl
+
+			bare-poss-np-phrase := head-only & head-valence-phrase &
+			  [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
+						   SUBJ < >,
+						   COMPS < >,
+						   SPEC < > ],
+				HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD noun,
+							  VAL [ SPR < unexpressed & 
+										  [ LOCAL.CAT [ HEAD noun & [ CASE gen ] ],
+									OPT + ] >,
+								SUBJ < >,
+								COMPS < > ] ],
+							CONT.HOOK [ INDEX #index,
+										LTOP #larg ] ],
+							LKEYS.ALTKEYREL #altkeyrel ],
+				C-CONT [ RELS <! quant-relation &
+								 [ PRED "exist_q_rel",
+								   ARG0 #index, 
+								   RSTR #harg,
+								   BODY #larg ],
+								 quant-relation &
+								 [ PRED "exist_q_rel",
+								   ARG0 #arg2,
+								   RSTR #harg2 ],
+								 #altkeyrel & noun-relation &
+								 [ PRED "pron_rel",			 
+								   LBL #larg2,
+								   ARG0 #arg2 & [ COG-ST activ-or-more,
+												  SPECI + ] ] !>,
+					 HCONS <! qeq & 
+							  [ HARG #harg,
+								LARG #larg ],
+							  qeq &
+							  [ HARG #harg2,
+								LARG #larg2 ] !>,
+					 ICONS <! !>,
+					 HOOK [ INDEX #index ] ] ].
+
+		Here are the person-and-number-specific subtypes of the above rule:
+
+			> turkish.tdl
+
+			1sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM sg ] ].
+
+			1pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM pl ] ].
+
+			2sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 2nd, NUM sg ] ].
+
+			2pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 2nd, NUM pl ] ].
+
+			3sgpl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 3rd ] ].
+
+			3pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 3rd, NUM pl ] ].
+
+		Here is the case inflection rule from which the genitive inflection rule inherits 
+		(unchanged from the customization system's output):
+
+			> turkish.tdl
+
+			case-common-noun-lex-rule-super := add-only-no-ccont-rule &
+			  [ INFLECTED [ CASE-COMMON-NOUN-FLAG +,
+							NEG-LEX-RULE-FLAG #neg-lex-rule,
+							POSS-FLAG #poss,
+							TENSE-ADJECTIVE-FLAG #tense-adjective,
+							BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+							TENSE-VERB-FLAG #tense-verb,
+							AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+							ASPECT-VERB-FLAG #aspect-verb,
+							AGREEMENT-VERB-FLAG #agreement-verb,
+							NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+							POLARITY-VERB-FLAG #polarity-verb,
+							AGREEMENT-COPULA-FLAG #agreement-copula,
+							POLARITY-COPULA-FLAG #polarity-copula,
+							TENSE-COPULA-FLAG #tense-copula,
+							NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+							ASPECT-COPULA-FLAG #aspect-copula ],
+				DTR case-common-noun-rule-dtr &
+					[ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
+								  POSS-FLAG #poss,
+								  TENSE-ADJECTIVE-FLAG #tense-adjective,
+								  BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+								  TENSE-VERB-FLAG #tense-verb,
+								  AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+								  ASPECT-VERB-FLAG #aspect-verb,
+								  AGREEMENT-VERB-FLAG #agreement-verb,
+								  NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+								  POLARITY-VERB-FLAG #polarity-verb,
+								  AGREEMENT-COPULA-FLAG #agreement-copula,
+								  POLARITY-COPULA-FLAG #polarity-copula,
+								  TENSE-COPULA-FLAG #tense-copula,
+								  NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+								  ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+
+		...and the genitive inflectional rule in particular:
+
+			> turkish.tdl
+
+			gen-lex-rule-lex-rule := case-common-noun-lex-rule-super & infl-lex-rule &
+			  [ SYNSEM.LOCAL.CAT.HEAD [ CASE gen,
+										CASE-MARKED + ] ].
+
+		As well as the specific suffixes for the rule (from irules.tdl):
+
+			> irules.tdl
+
+			gen-lex-rule-suffix1 :=
+			%suffix (* nin)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix2 :=
+			%suffix (* nın)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix3 :=
+			%suffix (* nun)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix4 :=
+			%suffix (* nün)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix5 :=
+			%suffix (* in)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix6 :=
+			%suffix (* ın)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix7 :=
+			%suffix (* un)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix8 :=
+			%suffix (* ün)
+			gen-lex-rule-lex-rule.
+
+		And since we declared all pronominal inflections as separate lexical entries because 
+		of their irregularities, here is the most immediately inherited type for the 1SG 
+		genitive pronoun, as an example:
+
+			> turkish.tdl
+
+			gen-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
+			  [ SYNSEM.LOCAL.CAT.HEAD [ CASE gen,
+										CASE-MARKED + ] ].
+
+		And its declaration in the lexicon:
+
+			> lexicon.tdl
+
+			benim := gen-1sg-pronoun-noun-lex &
+			  [ STEM < "benim" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
+
+		Here is the section of rules.tdl where we defined a spec-head rule in addition to 
+		the head-spec rule, to allow for the flexibility of genitive possessors being on 
+		either the right or the left of the noun:
+
+			> rules.tdl
+
+			head-spec := head-spec-phrase.
+
+			spec-head := spec-head-phrase.
+
+		And here is the section where we defined the bare possessive NP (-like) phrase:
+
+			> rules.tdl
+
+			bare-poss-np := bare-poss-np-phrase.
 
 		4.	Problems encountered
 
+		Oh, golly.  This part was tough and we definitely did not get it working.
+
+		Inflectional marking of possession sans the genitive does parse!
+
+		The semantics in the case of the bare-NP-like possessive are mostly correct, but 
+		we could not figure out how to identify the ARG0 of the pron_rel with the ARG2 
+		of the poss_rel.  ARG2 of the poss_rel has the right PNG, features at least, while 
+		ARG0 of the pron_rel has the proper [ COG-ST activ-or-more ].
+
+		...but we could not get the head-spec rule to combine the possessors and possessa. 
+		Presumably the issue lies in the unwieldy poss-common-noun-lex-rule-super, which is 
+		where the [ HEAD noun & [ CASE gen ] ] features of inflected possessa are supposed 
+		to originate.
+
+		At one point the genitive possessors seemed to work, but then we realized that it 
+		was actually combining via head-comp, which was very weird.  The current version 
+		of the grammar does not have this behavior.
+
 	OTHER
 
-		Coordination was adding way too many parses, so I commented out all of the many, many
-		coordination and coordination agreement rules in rules.tdl, e.g.,
+		Coordination was adding way too many parses, so as we worked we commented out all 
+		of the many, many coordination and coordination agreement rules in rules.tdl, e.g.,
 
 			> rules.tdl
 
@@ -871,17 +1357,20 @@ Lab 5
 			(...)
 			;s4-bottom-coord := s4-bottom-coord-rule.
 
+		We un-commented them before getting the final results, but omitting them vastly 
+		fixed a lot of our overgeneration problems.
+
 ##### PART 5 #####
 #	In addition, your write up should include a statement of the current coverage of your 
 #	grammar over your test suite (using numbers you can get from Analyze | Coverage and 
 #	Analyze | Overgeneration in [incr tsdb()]) and a comparison between your baseline test 
 #	suite run and your final one for this lab (see Compare | Competence).
 
-	BASELINE TESTSUITE STATS
+	BASELINE GRAMMAR TESTSUITE STATS
 
 		Coverage:
 
-			Positive Items #:		111
+			Positive Items #:		112
 			Total Results #:		86
 			Word String 0:			3.09
 			Lexical Items 0:		8.30
@@ -890,20 +1379,97 @@ Lab 5
 
 		Overgeneration:
 
-			Negative Items #:		62
+			Negative Items #:		61
 			Total Results #:		15
 			Word String 0:			2.84
 			Lexical Items 0:		8.80
 			Distinct Analyses 0:	8.00
 			Overall Coverage %:		24.2
 
-	FINAL TESTSUITE STATS
+	FINAL GRAMMAR TESTSUITE STATS
 
-		...
+		Coverage:
+
+			Positive Items #:		112
+			Total Results #:		91
+			Word String 0:			3.09
+			Lexical Items 0:		7.71
+			Distinct Analyses 0:	15.97
+			Overall Coverage %:		81.2
+
+		Overgeneration:
+
+			Negative Items #:		61
+			Total Results #:		14
+			Word String 0:			2.84
+			Lexical Items 0:		7.96
+			Distinct Analyses 0:	8.64
+			Overall Coverage %:		23.0
+
+	FROM COMPARE | COMPETENCE
+
+		Baseline:
+
+			Lexical:				2.71
+			Analyses:				11.91
+			In:						77.5
+			Out:					24.2
+
+		Final:
+
+			Lexical:				2.52
+			Analyses:				14.99
+			In:						81.2
+			Out:					23.0
 
 ##### PART 6 #####
 #	Finally please briefly describe your test corpus, including: where you collected it, how 
 #	many sentences it contains, and what format (transliterated, etc) it is in.
 
-	...
+	The test corpus was gathered from the PDF available at the following link:
+
+		http://www.ege-edebiyat.org/docs/519.pdf
+
+	...which originally comes from the following source:
+
+		Felek, Burhan. Nasrettin Hoca, Milliyet Yayınları, İstanbul, 1983.
+
+	And it's basically a collection of sentences from this written version of the tales of 
+	Nasreddin Hodja, so it's got a lot of literary (i.e., evidential) perfective verbs and 
+	that sort of thing.
+
+	The format is exactly like that of the testsuite, with the text essentially unchanged from 
+	the document, but with author-added glosses and translations.  There are XXX items in all. 
+	Here's a sampling:
+
+		### 1 ###
+		Source: a
+		Vetted: f
+		Judgment: g
+		Phenomena: {}
+		Dükkancı			çıkarıp			vermiş
+		Dükkancı			çıkar-ıp		ver-miş
+		shopkeeper.3SG.NOM	remove-CONV		give-EVPF.NPST.3SG
+		'The shopkeeper took it out and handed it over.'
+
+		### 7 ###
+		Source: a
+		Vetted: f
+		Judgment: g
+		Phenomena: {}
+		Hoca'nın		bir		kuzusu				var			imiş
+		Hoca-nın		bir		kuzu-su				var			i-miş
+		Hodja.3SG-GEN	a.SG	lamb.3SG-3SGPOSS	existent	be-EVPF.NPST.3SG
+		'Hodja had a lamb.'
+
+		### 14 ###
+		Source: a
+		Vetted: f
+		Judgment: g
+		Phenomena: {}
+		Kasaptan		iki	kilo		et		alıp		evine					getirmiş
+		Kasap-tan		iki	kilo		et		al-ıp		ev-i-ne					getir-miş
+		butcher.3SG-ABL	two	kilograms	meat	take-CONV	house.3SG-3SGPOSS-DAT	bring-EVPF.NPST.3SG
+		'He bought two kilograms of meat from the butcher and brought it to his house.'
+
 

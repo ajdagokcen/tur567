@@ -457,28 +457,32 @@ dat-tr-verb-lex := transitive-verb-lex &
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE dat,
                                                           CASE-MARKED + ],
-                                         OPT + ] ] ].
+                                         OPT +,
+                                         OPT-CS activ-or-more ] ] ].
 
 abl-tr-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE abl,
                                                           CASE-MARKED + ],
-                                         OPT + ] ] ].
+                                         OPT +,
+                                         OPT-CS activ-or-more ] ] ].
 
 loc-tr-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE loc,
                                                           CASE-MARKED + ],
-                                         OPT + ] ] ].
+                                         OPT +,
+                                         OPT-CS activ-or-more ] ] ].
 
 com-tr-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE com,
                                                           CASE-MARKED + ],
-                                         OPT + ] ] ].
+                                         OPT +,
+                                         OPT-CS activ-or-more ] ] ].
 
 no-obj-drop-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
@@ -735,7 +739,17 @@ pl-lex-rule-lex-rule := infl-lex-rule & number-common-noun-lex-rule-super &
 ;poss-common-noun-lex-rule-super := add-only-no-ccont-rule &
 ;                                   case-common-noun-rule-dtr &
 ;                                   infl-lex-rule &
-poss-common-noun-lex-rule-super := infl-add-only-lex-rule & case-common-noun-rule-dtr &
+;poss-common-noun-lex-rule-super := infl-add-only-lex-rule & case-common-noun-rule-dtr &
+;poss-common-noun-lex-rule-super := infl-val-change-only-lex-rule & case-common-noun-rule-dtr &
+poss-common-noun-lex-rule-super := same-ctxt-lex-rule &
+                                   same-cont-lex-rule &
+                                   same-agr-lex-rule &
+                                   same-head-lex-rule &
+                                   same-hc-light-lex-rule &
+                                   same-posthead-lex-rule &
+                                   same-mc-lex-rule &
+                                   infl-lex-rule &
+                                   case-common-noun-rule-dtr &
   [ INFLECTED [ POSS-FLAG +,
                 CASE-COMMON-NOUN-FLAG #case-common-noun,
                 NEG-LEX-RULE-FLAG #neg-lex-rule,
@@ -753,10 +767,16 @@ poss-common-noun-lex-rule-super := infl-add-only-lex-rule & case-common-noun-rul
                 NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
                 ASPECT-COPULA-FLAG #aspect-copula ],
    SYNSEM [ LKEYS.ALTKEYREL.ARG0.PNG #png,
-            LOCAL.CAT.VAL.SPR < [ SYNSEM.LOCAL [ CAT.HEAD noun & [ CASE gen ],
-                                  CONT.HOOK.INDEX #index2 ] ] > ],
+            LOCAL.CAT.VAL [ SPR < [ LOCAL [ CAT [ HEAD noun & [ CASE gen ] ],
+                                  CONT.HOOK.INDEX #index2 ] ] >, 
+                            SPEC #spec,
+                            COMPS #comps,
+                            SUBJ #subj ] ],
    DTR poss-common-noun-rule-dtr & [ SYNSEM.LOCAL [ CONT.HOOK [ INDEX #index,
-                                                                LTOP #lbl ] ],
+                                                                LTOP #lbl ],
+                                        CAT.VAL [ SPEC #spec,
+                                                  COMPS #comps,
+                                                  SUBJ #subj ] ],
        INFLECTED [ CASE-COMMON-NOUN-FLAG #case-common-noun,
                    NEG-LEX-RULE-FLAG #neg-lex-rule,
                    TENSE-ADJECTIVE-FLAG #tense-adjective,
@@ -780,7 +800,6 @@ poss-common-noun-lex-rule-super := infl-add-only-lex-rule & case-common-noun-rul
             ARG1 #index,
             ARG2 #index2 & [ PNG #png ] ] ! >,
         ICONS < ! ! > ] ].
-;  [ SYNSEM.LOCAL.CAT.VAL.SPR < [ SYNSEM.LOCAL.CAT.HEAD.CASE gen ] > ].
 
 1sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
   [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM sg ] ].
@@ -1485,23 +1504,39 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
 			   SUBJ < >,
 			   COMPS < >,
 			   SPEC < > ],
-    HEAD-DTR.SYNSEM.LOCAL [ CAT [ HEAD noun,
+    HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD noun,
 				  VAL [ SPR < unexpressed & 
-				      	      [ LOCAL.CAT.HEAD noun & [ CASE gen ],
+				      	      [ LOCAL.CAT [ HEAD noun & [ CASE gen ] ],
 						OPT + ] >,
 					SUBJ < >,
 					COMPS < > ] ],
 			    CONT.HOOK [ INDEX #index,
-					LTOP #larg ] ],
+					        LTOP #larg ] ],
+                LKEYS.ALTKEYREL #altkeyrel ],
     C-CONT [ RELS <! quant-relation &
-		   [ ARG0 #index,
-		     RSTR #harg ] !>,
+                     [ PRED "exist_q_rel",
+                       ARG0 #index, 
+                       RSTR #harg,
+                       BODY #larg ],
+                     quant-relation &
+		             [ PRED "exist_q_rel",
+                       ARG0 #arg2,
+		               RSTR #harg2 ],
+                     #altkeyrel & noun-relation &
+		             [ PRED "pron_rel",			 
+		               LBL #larg2,
+		               ARG0 #arg2 & [ COG-ST activ-or-more,
+				                      SPECI + ] ] !>,
 	     HCONS <! qeq & 
-		    [ HARG #harg,
-		      LARG #larg ] !>,
+		          [ HARG #harg,
+		            LARG #larg ],
+                  qeq &
+                  [ HARG #harg2,
+                    LARG #larg2 ] !>,
 	     ICONS <! !>,
 	     HOOK [ INDEX #index ] ] ].
 ;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.CASE gen ].
+;  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM sg ] ].
 
 ;;;;;;;;;;;;;;;;;;
 ;;; Coordination
