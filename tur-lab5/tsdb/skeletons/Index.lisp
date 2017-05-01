@@ -24,7 +24,5 @@
 ; New test suites here. For example:
 ((:path . "lab5_suite") (:content . "Test suite collected for Lab 5."))
 ((:path . "lab5_corpus") (:content . "Test corpus collected for Lab 5."))
-((:path . "lab6_suite") (:content . "Test suite collected for Lab 6."))
-((:path . "lab6_corpus") (:content . "Test corpus collected for Lab 6."))
 )
 

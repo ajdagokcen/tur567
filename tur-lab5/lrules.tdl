@@ -17,9 +17,7 @@ pre-aux-lex-rule-lex := pre-aux-lex-rule-lex-rule.
 
 3sgpl-lex-rule-lex := 3sgpl-lex-rule-lex-rule.
 
-basic-noun_stative_pred-lex := basic-noun_stative_pred-lex-rule.
-
-;basic-adjective_adj_comp-lex := basic-adjective_adj_comp-lex-rule.
+basic-adjective_adj_comp-lex := basic-adjective_adj_comp-lex-rule.
 
 basic-adjective_stative_pred-lex := basic-adjective_stative_pred-lex-rule.
 

@@ -690,19 +690,19 @@ pst-adj-lex-rule-lex-rule.
 1sg-adj-lex-rule-lex-rule.
 
 1sg-adj-lex-rule-suffix5 :=
-%suffix (* yim)
+%suffix (* yiz)
 1sg-adj-lex-rule-lex-rule.
 
 1sg-adj-lex-rule-suffix6 :=
-%suffix (* yım)
+%suffix (* yız)
 1sg-adj-lex-rule-lex-rule.
 
 1sg-adj-lex-rule-suffix7 :=
-%suffix (* yum)
+%suffix (* yuz)
 1sg-adj-lex-rule-lex-rule.
 
 1sg-adj-lex-rule-suffix8 :=
-%suffix (* yüm)
+%suffix (* yüz)
 1sg-adj-lex-rule-lex-rule.
 
 1sg-adj-lex-rule-suffix9 :=
@@ -724,22 +724,6 @@ pst-adj-lex-rule-lex-rule.
 1pl-adj-lex-rule-suffix4 :=
 %suffix (* üz)
 1pl-adj-lex-rule-lex-rule.
-
-1pl-adj-lex-rule-suffix5 :=
-%suffix (* yiz)
-1pl-adj-lex-rule-lex-rule.
-
-1pl-adj-lex-rule-suffix6 :=
-%suffix (* yız)
-1pl-adj-lex-rule-lex-rule.
-
-1pl-adj-lex-rule-suffix7 :=
-%suffix (* yuz)
-1pl-adj-lex-rule-lex-rule.
-
-1pl-adj-lex-rule-suffix8 :=
-%suffix (* yüz)
-1sg-adj-lex-rule-lex-rule.
 
 1pl-adj-lex-rule-suffix5 :=
 %suffix (* k)
