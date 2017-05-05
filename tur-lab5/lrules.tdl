@@ -1,0 +1,40 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+sg-lex-rule-lex := sg-lex-rule-lex-rule.
+
+nom-lex-rule-lex := nom-lex-rule-lex-rule.
+
+nonspec-acc-lex-rule-lex := nonspec-acc-lex-rule-lex-rule.
+
+case-common-noun-synth-com-lex := case-common-noun-synth-com-lex-rule.
+
+pos-lex-rule-lex := pos-lex-rule-lex-rule.
+
+neg-hab-lex-rule-lex := neg-hab-lex-rule-lex-rule.
+
+npst-lex-rule-lex := npst-lex-rule-lex-rule.
+
+pre-aux-lex-rule-lex := pre-aux-lex-rule-lex-rule.
+
+3sgpl-lex-rule-lex := 3sgpl-lex-rule-lex-rule.
+
+basic-adjective_adj_comp-lex := basic-adjective_adj_comp-lex-rule.
+
+basic-adjective_stative_pred-lex := basic-adjective_stative_pred-lex-rule.
+
+basic-adjective_attr-lex := basic-adjective_attr-lex-rule.
+
+npst-adj-lex-rule-lex := npst-adj-lex-rule-lex-rule.
+
+pre-aux-adj-lex-rule-lex := pre-aux-adj-lex-rule-lex-rule.
+
+3sgpl-adj-lex-rule-lex := 3sgpl-adj-lex-rule-lex-rule.
+
+pos-cop-lex-rule-lex := pos-cop-lex-rule-lex-rule.
+
+neg-hab-cop-lex-rule-lex := neg-hab-cop-lex-rule-lex-rule.
+
+npst-cop-lex-rule-lex := npst-cop-lex-rule-lex-rule.
+
+pre-aux-cop-lex-rule-lex := pre-aux-cop-lex-rule-lex-rule.
+
+3sgpl-cop-lex-rule-lex := 3sgpl-cop-lex-rule-lex-rule.

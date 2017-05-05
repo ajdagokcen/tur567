@@ -1,0 +1,1924 @@
+Language: Turkish
+Language code: tur
+Lines: orth orth-seg gloss translat
+Author: Ajda Gokcen and Kekoa Riggin
+Date: April 28, 2017
+Source a: Aslı Göksel and Celia Kerslake. Turkish: A comprehensive grammar. Routledge, 2004.
+
+########################
+###### WORD ORDER ######
+########################
+
+###### INTRANSITIVE VERBS ######
+
+### SV ###
+# unmarked
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Kadın			çıktı
+Kadın			çık-tı
+woman.3SG.NOM	exit-PF.NPST.3SG
+'The woman left.'
+
+### VS ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Çıktı		kadın
+Çık-tı		kadın
+exit-PF.NPST.3SG	woman.3SG.NOM
+'The woman left.'
+
+### SV ###
+# unmarked
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Aile			geldi
+Aile			gel-di
+family.3SG.NOM	come-PF.NPST.3SG
+'The family arrived.'
+
+### VS ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Geldi		aile
+Gel-di		aile
+come-PF.NPST.3SG	family.3SG.NOM
+'The family arrived.'
+
+###### TRANSITIVE VERBS ######
+
+### SOV ###
+# unmarked
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Kadın			kediyi		gördü
+Kadın			kedi-yi		gör-dü
+woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+'The woman saw the cat.'
+
+### OSV ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Kediyi		kadın			gördü
+Kedi-yi		kadın			gör-dü
+cat.3SG-ACC	woman.3SG.NOM	see-PF.NPST.3SG
+'The woman saw the cat.'
+
+### SVO ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Kadın			gördü			kediyi
+Kadın			gör-dü			kedi-yi
+woman.3SG.NOM	see-PF.NPST.3SG	cat.3SG-ACC
+'The woman saw the cat.'
+
+### OVS ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Kediyi		gördü		kadın
+Kedi-yi		gör-dü		kadın
+cat.3SG-ACC	see-PF.NPST.3SG	woman.3SG.NOM
+'The woman saw the cat.'
+
+### VSO ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Gördü		kadın				kediyi
+Gör-dü		kadın				kedi-yi
+see-PF.NPST.3SG	woman.3SG.NOM	cat.3SG-ACC
+'The woman saw the cat.'
+
+### VOS ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Gördü			kediyi		kadın
+Gör-dü			kedi-yi		kadın
+see-PF.NPST.3SG	cat.3SG-ACC	woman.3SG.NOM
+'The woman saw the cat.'
+
+### SOV ###
+# unmarked
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Aile			hediyeyi		getirdi
+Aile			hediye-yi		getir-di
+family.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG
+'The family brought the present.'
+
+### OSV ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Hediyeyi		aile			getirdi
+Hediye-yi		aile			getir-di
+present.3SG-ACC	family.3SG.NOM	bring-PF.NPST.3SG
+'The family brought the present.'
+
+### SVO ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Aile			getirdi			hediyeyi
+Aile			getir-di		hediye-yi
+family.3SG.NOM	bring-PF.NPST.3SG	present.3SG-ACC
+'The family brought the present.'
+
+### OVS ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Hediyeyi		getirdi			aile
+Hediye-yi		getir-di		aile
+present.3SG-ACC	bring-PF.NPST.3SG	family.3SG.NOM
+'The family brought the present.'
+
+### VSO ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Getirdi			aile			hediyeyi
+Getir-di		aile			hediye-yi
+bring-PF.NPST.3SG	family.3SG.NOM	present.3SG-ACC
+'The family brought the present.'
+
+### VOS ###
+# marked; focus/topicalization
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Getirdi			hediyeyi		aile
+Getir-di		hediye-yi		aile
+bring-PF.NPST.3SG	present.3SG-ACC	family.3SG.NOM
+'The family brought the present.'
+
+########################
+####### PRONOUNS #######
+########################
+
+###### INTRANSITIVE VERBS ######
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pronouns}
+Sen			çıktın
+Sen			çık-tı-n
+you.2SG.NOM	exit-PF-2SG
+'You left.'
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pronouns}
+Sen				geldin
+Sen				gel-di-n
+pronoun.2SG.NOM	come-PF-2SG
+'You arrived.'
+
+###### TRANSITIVE VERBS ######
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pronouns}
+Ben			seni		gördüm
+Ben			sen-i		gör-dü-m
+I.1SG.NOM	you.2SG-ACC	see-PF-1SG
+'I saw you.'
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pronouns}
+Ben			onu		getirdim
+Ben			onu		getir-di-m
+I.1SG.NOM	3SG.ACC	bring-PF-1SG
+'I brought him/her/it.'
+
+########################
+######### CASE #########
+########################
+
+###### INTRANSITIVE VERBS ######
+
+### NOM subject (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Kadın			geldi
+Kadın			gel-di
+woman.3SG.NOM	come-PF.NPST.3SG
+'The woman arrived.'
+
+### ACC subject (u) ###
+# see also: final section for nonsense
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Benı			geldim
+Ben-ı			gel-di-m
+pronoun.1SG-ACC	come-PF-1SG
+'I arrived.'
+
+### DAT subject (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Kadına			geldi
+Kadın-a			gel-di
+woman.3SG-DAT	come-PF.NPST.3SG
+'The woman arrived.'
+
+### ABL subject (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Kadından		geldi
+Kadın-dan		gel-di
+woman.3SG-ABL	come-PF.NPST.3SG
+'The woman arrived.'
+
+### GEN subject (u) ###
+# moved to final section for nonsense
+
+### NOM subject (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Aile			geldi
+Aile			gel-di
+family.3SG.NOM	come-PF.NPST.3SG
+'The family arrived.'
+
+### ACC subject (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Aileyı			geldi
+Aile-yı			gel-di
+family.3SG-ACC	come-PF.NPST.3SG
+'The family arrived.'
+
+### DAT subject (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Aileye			geldi
+Aile-ye			gel-di
+family.3SG-DAT	come-PF.NPST.3SG
+'The family arrived.'
+
+### ABL subject (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Aileden			geldi
+Aile-den		gel-di
+family.3SG-ABL	come-PF.NPST.3SG
+'The family arrived.'
+
+### GEN subject (u) ###
+# see also: final section for nonsense
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Benim			geldim
+Benim			gel-di-m
+pronoun.1SG.GEN	come-PF-1SG
+'I arrived.'
+
+###### (ACC-TR) TRANSITIVE VERBS ######
+
+### NOM subject, ACC object (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Kadın			hediyeyi		getirdi
+Kadın			hediye-yi		getir-di
+woman.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG
+'The woman brought the present.'
+
+### NOM subject, zero-ACC object (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Kadın			hediye			getirdi
+Kadın			hediye			getir-di
+woman.3SG.NOM	letter.3SG.ACC	bring-PF.NPST.3SG
+'The woman brought a present.'
+
+### NOM subject, NOM object (u) ###
+# since nominative and accusative can both always be -0, this interpretation never happens
+# moved to final section for nonsense
+
+### ACC subject, ACC object (u) ###
+# see also: final section for nonsense
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Beni			seni			gördüm
+Beni			seni			gör-dü-m
+pronoun.1SG.ACC	pronoun.2SG.ACC	see-PF-1SG
+'I saw you.'
+
+### NOM subject, ACC object (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Aile			hediyeyi		getirdi
+Aile			hediye-yi		getir-di
+family.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG
+'The family brought the present.'
+
+### NOM subject, NOM object (u) ###
+# moved to final section for nonsense
+
+### ACC subject, ACC object (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Aileyi			hediyeyi		getirdi
+Aile-yi			hediye-yi		getir-di
+family.3SG-ACC	present.3SG-ACC	bring-PF.NPST.3SG
+'The family brought the present.'
+
+##### (OBL-TR) TRANSITIVE VERBS #####
+
+### DAT object + DAT-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Ben				kadına			bayıldım
+Ben				kadın-a			bayıl-dı-m
+pronoun.1SG.NOM	woman.3SG-DAT	adore-PF.NPST-1SG
+'I adored the woman.'
+
+### ABL object + ABL-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Ben				kadından		korktum
+Ben				kadın-dan		kork-tu-m
+pronoun.1SG.NOM	woman.3SG-ABL	fear-PF.NPST-1SG
+'I feared the woman.'
+
+### LOC object + LOC-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Ben				evde			direttim
+Ben				ev-de			diret-ti-m
+pronoun.1SG.NOM	house.3SG-LOC	insist-PF.NPST-1SG
+'I insisted on the house.'
+
+### COM object + COM-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case}
+Ben				kediyle			ilgilendim
+Ben				kedi-yle		ilgilen-di-m
+pronoun.1SG.NOM	cat.3SG-COM		care-PF.NPST-1SG
+'I was interested in the cat.'
+
+### COM object + COM-TR (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {case, case-marking adpositions}
+Ben				kedi	ile			ilgilendim
+Ben				kedi	ile			ilgilen-di-m
+pronoun.1SG.NOM	cat.3SG	postpos.COM	care-PF.NPST-1SG
+'I was interested in the cat.'
+
+### ABL object + DAT-TR (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Ben				kadından		bayıldım
+Ben				kadın-dan		bayıl-dı-m
+pronoun.3SG.NOM	woman.3SG-ABL	adore-PF.NPST-1SG
+'I adored the woman.'
+
+########################
+###### DETERMINERS #####
+########################
+
+### det+subject (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+O			kadın			çıktı
+O			kadın			çık-tı
+that		woman.3SG.NOM	exit-PF.NPST.3SG
+'That woman left.'
+
+### det+subject, bare object (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+Her			kadın			kediyi		gördü
+Her			kadın			kedi-yi		gör-dü
+every.SG	woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+'Every woman saw the cat.'
+
+### bare subject, det+object (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+Kadın			bir		kedi		gördü
+Kadın			bir		kedi		gör-dü
+woman.3SG.NOM	a.SG	cat.3SG.ACC	see-PF.NPST.3SG
+'The woman saw a cat.'
+
+### det+subject, det+object (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+Her			kadın			bir		kedi		gördü
+Her			kadın			bir		kedi		gör-dü
+every.SG	woman.3SG.NOM	a.SG	cat.3SG.ACC	see-PF.NPST.3SG
+'Every woman saw a cat.'
+
+### subject+det (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, word order}
+Kadın			o		çıktı
+Kadın			o		çık-tı
+woman.3SG.NOM	that	exit-PF.NPST.3SG
+'That woman left.'
+
+### bare subject, object+det (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, word order}
+Kadın			kedi		bir		gördü
+Kadın			kedi		bir		gör-dü
+woman.3SG.NOM	cat.3SG.ACC	a.SG	see-PF.NPST.3SG
+'The woman saw a cat.'
+
+### det+pronoun subject (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, pronouns}
+Bir		sen			çıktın
+Bir		sen			çık-tı-n
+a.SG	you.2SG.NOM	exit-PF-2SG
+'You left.'
+
+### bare subject, det+pronoun object (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, pronouns}
+Kadın			bir		sen			gördüm
+Kadın			bir		sen			gör-dü-m
+woman.3SG.NOM	a.SG	you.2SG.ACC	see-PF-1SG
+'The woman saw you.'
+
+### det+subject (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+O		aile			geldi
+O		aile			gel-di
+that	family.3SG.NOM	come-PF.NPST.3SG
+'That family arrived.'
+
+### det+subject, bare object (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+Bir		aile			hediyeyi		getirdi
+Bir		aile			hediye-yi		getir-di
+a.SG	family.3SG.NOM	present.3SG-ACC	bring-PF.NPST.3SG
+'A family brought the present.'
+
+### bare subject, det+object (g) ###
+# may want to check on this one for accusative / indefinite determiner interaction
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+Aile			bir		hediye			getirdi
+Aile			bir		hediye			getir-di
+family.3SG.NOM	a.SG	present.3SG.ACC	bring-PF.NPST.3SG
+'The family brought a present.'
+
+### det+subject, det+object (g) ###
+# ditto previous comment
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {determiners}
+Her			aile			bir		hediye			getirdi
+Her			aile			bir		hediye			getir-di
+every.SG	family.3SG.NOM	a.SG	present.3SG.ACC	bring-PF.NPST.3SG
+'Every family brought a present.'
+
+### subject+det (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, word order}
+Aile			o		geldi
+Aile			o		gel-di
+family.3SG.NOM	that	come-PF.NPST.3SG
+'That family arrived.'
+
+### bare subject, object+det (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, word order}
+Aile			hediye			bir		getirdi
+Aile			hediye			bir		getir-di
+family.3SG.NOM	present.3SG.ACC	a.SG	bring-PF.NPST.3SG
+'The family brought a present.'
+
+### det+pronoun subject (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, pronouns}
+Bir		sen				geldin
+Bir		sen				gel-di-n
+a.SG	pronoun.2SG.NOM	come-PF-2SG
+'You arrived.'
+
+### bare subject, det+pronoun object (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {determiners, pronouns}
+Aile			bir		o					getirdim
+Aile			bir		o					getir-di-m
+family.3SG.NOM	a.SG	pronoun.3SG.ACC		bring-PF-1SG
+'The family brought him/her/it.'
+
+########################
+### TENSE ASPECT MOOD ##
+########################
+
+###### NONPAST ######
+
+### imperfective+nonpast (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			geliyor
+Aile			gel-iyor
+family.3SG.NOM	come-IMPF.NPST.3SG
+'The family is coming.'
+
+### perfective+nonpast (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			geldi
+Aile			gel-di
+family.3SG.NOM	come-PF.NPST.3SG
+'The family (has) arrived.'
+
+### habitual+nonpast (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			gelir
+Aile			gel-ir
+family.3SG.NOM	come-HAB.NPST.3SG
+'The family comes often.'
+
+### prospective+nonpast (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			gelecek
+Aile			gel-ecek
+family.3SG.NOM	come-PRSP.NPST.3SG
+'The family will / is going to arrive.'
+
+###### PAST ######
+
+### imperfective+past (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			geliyordu
+Aile			gel-iyor-du
+family.3SG.NOM	come-IMPF-PST.3SG
+'The family was coming.'
+
+### perfective+past (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			geldiydi
+Aile			gel-di-ydi
+family.3SG.NOM	come-PF-PST.3SG
+'The family had arrived.'
+
+### habitual+past (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			gelirdi
+Aile			gel-ir-di
+family.3SG.NOM	come-HAB-PST.3SG
+'The family would come often.'
+
+### prospective+past (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood}
+Aile			gelecekti
+Aile			gel-ecek-ti
+family.3SG.NOM	come-PRSP-PST.3SG
+'The family was going to come.'
+
+###### OUT-OF-ORDER ######
+
+### past+imperfective (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {tense aspect mood}
+Aile			geldiyor
+Aile			gel-di-yor
+family.3SG.NOM	come-PST-IMPF.NPST.3SG
+'The family was coming.'
+
+### past+perfective (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {tense aspect mood}
+Aile			gelydidi
+Aile			gel-ydi-di
+family.3SG.NOM	come-PST-PF.NPST.3SG
+'The family had arrived.'
+
+### past+habitual (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {tense aspect mood}
+Aile			geldir
+Aile			gel-di-r
+family.3SG.NOM	come-PST-HAB.3SG
+'The family would come often.'
+
+### past+habitual (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {tense aspect mood}
+Aile			geldiyecek
+Aile			gel-di-yecek
+family.3SG.NOM	come-PST-PRSP.3SG
+'The family was going to come.'
+
+########################
+####### NEGATION #######
+########################
+
+# overgenerates somewhat because HAB has a zero form
+# ... which should be limited to polarity=neg and agreement=1st person
+# ... but that would take a lot of extra work
+# ... with other potential morphological consequences
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {negation}
+Aile			gelmedi
+Aile			gel-me-di
+family.3SG.NOM	come-NEG-PF.NPST.3SG
+'The family did not arrive / has not arrived.'
+
+###### OUT-OF-ORDER ######
+
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {negation, tense aspect mood}
+Aile			geldime
+Aile			gel-di-me
+family.3SG.NOM	come-PF-NEG.3SG
+'The family did not arrive / has not arrived.'
+
+########################
+###### ARGREEMENT ######
+########################
+
+###### all should be well? ######
+
+### 1SG subject, 1SG verb (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pronouns, agreement}
+Ben			çıktım
+Ben			çık-tı-m
+I.1SG.NOM	exit-PF-1SG
+'I left.'
+
+### 1SG subject, 1PL verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben			çıktık
+Ben			çık-tı-k
+I.1SG.NOM	exit-PF-1PL
+'I/we left.'
+
+### 1SG subject, 2SG verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben			çıktın
+Ben			çık-tı-n
+I.1SG.NOM	exit-PF-2SG
+'I/you(sg) left.'
+
+### 1SG subject, 2PL verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben			çıktınız
+Ben			çık-tı-nız
+I.1SG.NOM	exit-PF-2PL
+'I/you(pl) left.'
+
+### 1SG subject, 3SG verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben			çıktı
+Ben			çık-tı
+I.1SG.NOM	exit-PF.NPST.3SG
+'I/he left.'
+
+### 1SG subject, 3PL verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben			çıktılar
+Ben			çık-tılar
+I.1SG.NOM	exit-PF.NPST.3PL
+'I/they left.'
+
+### 1SG subject, 1SG verb (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {pronouns, agreement}
+Ben				geldim
+Ben				gel-di-m
+pronoun.1SG.NOM	come-PF-1SG
+'I arrived.'
+
+### 1SG subject, 1PL verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben				geldik
+Ben				gel-di-k
+pronoun.1SG.NOM	come-PF-1PL
+'I/we arrived.'
+
+### 1SG subject, 2SG verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben				geldin
+Ben				gel-di-n
+pronoun.1SG.NOM	come-PF-2SG
+'I/you(sg) arrived.'
+
+### 1SG subject, 2PL verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben				geldiniz
+Ben				gel-di-niz
+pronoun.1SG.NOM	come-PF-2PL
+'I/you(pl) arrived.'
+
+### 1SG subject, 3SG verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben				geldi
+Ben				gel-di
+pronoun.1SG.NOM	come-PF.NPST.3SG
+'I/he arrived.'
+
+### 1SG subject, 3PL verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement}
+Ben				geldiler
+Ben				gel-di-ler
+pronoun.1SG.NOM	come-PF.NPST-3PL
+'I/they arrived.'
+
+###### OUT-OF-ORDER ######
+
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {pronouns, agreement, tense aspect mood}
+Ben			çıkımdı
+Ben			çık-ım-dı
+I.1SG.NOM	exit-1SG-PF
+'I left.'
+
+########################
+# ARGUMENT OPTIONALITY #
+########################
+
+###### DROPPED SUBJECT ######
+
+### ITR SUBJ-DROP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {argument optionality}
+Çıktı
+Çık-tı
+exit-PF.NPST.3SG
+'He/she/it left.'
+
+### ACC-TR SUBJ-DROP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {argument optionality}
+Kediyi		gördü
+Kedi-yi		gör-dü
+cat.3SG-ACC	see-PF.NPST.3SG
+'He/she/it saw the cat.'
+
+# this works but not with the expected meaning because accusative optionality
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {word order}
+Kadın			gördü
+Kadın			gör-dü
+woman.3SG.NOM	see-PF.NPST.3SG
+'He/she/it saw the woman.'
+
+### DAT-TR SUBJECT DROP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {argument optionality}
+Kadına			bayıldı
+Kadın-a			bayıl-dı
+woman.3SG-DAT	adore-PF.NPST.3SG
+'He/she/it adored the woman.'
+
+###### DROPPED OBJECT ######
+
+### ACC-TR OBJECT DROP (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {argument optionality}
+Gördü
+Gör-dü
+see-PF.NPST.3SG
+'He/she/it saw.'
+
+### DAT-TR OBJECT DROP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {argument optionality}
+Bayıldı
+Bayıl-dı
+adore-PF.NPST.3SG
+'He/she/it adored.'
+
+### ABL-TR OBJECT DROP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {argument optionality}
+Korkuyor
+Kork-uyor
+fear-IMPF.NPST.3SG
+'He/she/it is afraid.'
+
+########################
+###### POSSESSIVES #####
+########################
+
+###### CURRENTLY PARSELESS BECAUSE GENITIVES ARE USELESS ######
+
+### 1SG, with genitive ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {possessives}
+Benim			ailem					geldi
+benim			aile-m					gel-di
+pronoun.1SG.GEN	family.3SG.NOM-1SGPOSS	come-PF.NPST.3SG
+'My family arrived.'
+
+### 1SG, without genitive ###
+# actually, this should be OK, the possessive is just semantically vacuous
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {possessives}
+Ailem					geldi
+Aile-m					gel-di
+family.3SG.NOM-1SGPOSS	come-PF.NPST.3SG
+'My family arrived.'
+
+### 1SG, without possessive ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {possessives}
+Benim			aile			geldi
+benim			aile			gel-di
+pronoun.1SG.GEN	family.3SG.NOM	come-PF.NPST.3SG
+'My family arrived.'
+
+### 1SG, with genitive, possessive before genitive ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {possessives, word order}
+Ailem					benim			geldi
+Aile-m					benim			gel-di
+family.3SG.NOM-1SGPOSS	pronoun.1SG.GEN	come-PF.NPST.3SG
+'My family arrived.'
+
+#########################
+#MATRIX YES-NO QUESTIONS#
+#########################
+
+### IMPF comp, NPST+3SG aux (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {matrix yes-no questions}
+Kadın			çıkıyor			mu
+Kadın			çık-ıyor		mu
+woman.3SG.NOM	exit-IMPF		question.NPST.3SG
+'Is the woman leaving?'
+
+### IMPF comp, PST+3SG aux (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {matrix yes-no questions}
+Kadın			çıkıyor			muydu
+Kadın			çık-ıyor		mu-ydu
+woman.3SG.NOM	exit-IMPF		question-PST.3SG
+'Was the woman leaving?'
+
+### _ comp, IMPF+NPST+3SG aux (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {matrix yes-no questions}
+Kadın			çık		mııyor
+Kadın			çık		mı-ıyor
+woman.3SG.NOM	exit	question-IMPF.NPST.3SG
+'Is the woman leaving?'
+
+### IMPF+PST+3SG comp, _ aux (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {matrix yes-no questions}
+Kadın			çıkıyordu				mu
+Kadın			çık-ıyor-du				mu
+woman.3SG.NOM	exit-IMPF-PST.3SG		question
+'Is the woman leaving?'
+
+### questioning subject (g) ###
+# unclear whether tense+person is actually on the auxiliary in this case?
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {matrix yes-no questions, word order}
+Kadın			mı 			çıkıyor
+Kadın			mı			çık-ıyor
+woman.3SG.NOM	question	exit-IMPF.NPST.3SG
+'Is it the woman who is leaving?'
+
+########################
+## MATRIX WH QUESTIONS #
+########################
+
+### NOM WH-SUBJECT (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {matrix wh questions}
+Kim			çıktı
+Kim			çık-tı
+who.3SG.NOM	exit-PF.NPST.3SG
+'Who left?'
+
+### ACC WH-OBJECT (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {matrix wh questions, argument optionality}
+Kimi			gördü
+Kim-i			gör-dü
+who.3SG-ACC		see-PF.NPST.3SG
+'Who did he/she/it see?'
+
+### ACC WH-OBJECT (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {matrix wh questions, argument optionality}
+Ne				gördün
+Ne				gör-dü-n
+what.3SG.ACC	see-PF.NPST-2SG
+'What did you see?'
+
+### DAT WH-SUBJECT (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {matrix wh questions}
+Kime		çıktı
+Kime		çık-tı
+who.3SG.DAT	exit-PF.NPST.3SG
+'Who left?'
+
+########################
+##### COORDINATION #####
+########################
+
+##### LEN=2 ASYNDETON #####
+
+### len=2 N/NP asyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Elma			armut			yedim
+Elma			armut			ye-di-m
+apple.3SG.ACC	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple and (a) pear.'
+
+### len=2 N/NP asyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Her			elma			armut			yedim
+Her			elma			armut			ye-di-m
+every.SG	apple.3SG.ACC	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate every apple and pear.'
+
+### len=2 NP asyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Bir		elma			bir		armut			yedim
+Bir		elma			bir		armut			ye-di-m
+a.SG	apple.3SG.ACC	a.SG	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple and a pear.'
+
+### len=2 VP asyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Ben				geldim				çıktım
+Ben				gel-di-m			çık-tı-m
+pronoun.1SG.NOM	come-PF.NPST-1SG	exit-PF.NPST-1SG
+'I arrived and left.'
+
+##### LEN=2 MONO/POLYSYNDETON #####
+
+### len=2 N/NP mono/polysyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Elma			ve	armut			yedim
+Elma			ve	armut			ye-di-m
+apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple and (a) pear.'
+
+### len=2 N/NP monosyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Her			elma			ve	armut			yedim
+Her			elma			ve	armut			ye-di-m
+every.SG	apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate every apple and pear.'
+
+### len=2 NP monosyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Bir		elma			ve	bir		armut			yedim
+Bir		elma			ve	bir		armut			ye-di-m
+a.SG	apple.3SG.ACC	and	a.SG	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple and a pear.'
+
+### len=2 VP mono/polysyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Ben				geldim				ve	çıktım
+Ben				gel-di-m			ve	çık-tı-m
+pronoun.1SG.NOM	come-PF.NPST-1SG	and	exit-PF.NPST-1SG
+'I arrived and left.'
+
+##### LEN=2 OMNISYNDETON #####
+
+### len=2 N/NP omnisyndeton (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {coordination}
+Ve	elma			ve	armut			yedim
+Ve	elma			ve	armut			ye-di-m
+and	apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple and (a) pear.'
+
+##### LEN>2 ASYNDETON #####
+
+### len>2 N/NP asyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Elma			armut			ayva			yedim
+Elma			armut			ayva			ye-di-m
+apple.3SG.ACC	pear.3SG.ACC	quince.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple, (a) pear, and (a) quince.'
+
+##### LEN>2 MONOSYNDETON #####
+
+### len>2 N/NP monosyndeton (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Elma			armut			ve	ayva			yedim
+Elma			armut			ve	ayva			ye-di-m
+apple.3SG.ACC	pear.3SG.ACC	and	quince.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple, (a) pear, and (a) quince.'
+
+##### LEN>2 POLYSYNDETON #####
+
+### len>2 N/NP polysyndeton (g) ###
+# fine, I guess
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Elma			ve	armut			ve	ayva			yedim
+Elma			ve	armut			ve	ayva			ye-di-m
+apple.3SG.ACC	and	pear.3SG.ACC	and	quince.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple, (a) pear, and (a) quince.'
+
+##### LEN>2 OMNISYNDETON #####
+
+### len>2 N/NP omnisyndeton (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {coordination}
+Ve	elma			ve	armut			ve	ayva			yedim
+Ve	elma			ve	armut			ve	ayva			ye-di-m
+and	apple.3SG.ACC	and	pear.3SG.ACC	and	quince.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple, (a) pear, and (a) quince.'
+
+##### SHOULDN'T PARSE BECAUSE SOMETHING AGREEMENTY #####
+
+### ACC+DAT (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {coordination}
+Elma			ve	armuda			yedim
+Elma			ve	armud-a			ye-di-m
+apple.3SG.ACC	and	pear.3SG-DAT	eat-PF.NPST-1SG
+'I ate an apple and (a) pear.'
+
+##### SUSPENDED AFFIXATION #####
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Ben				geldi				ve	çıktım
+Ben				gel-di				ve	çık-tı-m
+pronoun.1SG.NOM	come-PF.NPST		and	exit-PF.NPST-1SG
+'I arrived and left.'
+
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Ben				gelip				çıktım
+Ben				gel-ip				çık-tı-m
+pronoun.1SG.NOM	come-CONV		exit-PF.NPST-1SG
+'I arrived and left.'
+
+########################
+#COORDINATION AGREEMENT#
+########################
+
+##### 1+ANY & ANY+1 = 1PL #####
+
+### 3SG+1SG subj, 1PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination agreement}
+O				ve	ben				çıktık
+O				ve	ben				çık-tı-k
+pronoun.3SG.NOM	ve	pronoun.1SG.NOM	exit-PF.NPST-1PL
+'He/she/it and I left.'
+
+### 1SG+3SG subj, 1PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination agreement}
+Ben				ve	o				çıktık
+Ben				ve	o				çık-tı-k
+pronoun.1SG.NOM	ve	pronoun.3SG.NOM	exit-PF.NPST-1PL
+'He/she/it and I left.'
+
+### 2SG+1SG subj, 1PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination agreement}
+Sen				ve	ben				çıktık
+Sen				ve	ben				çık-tı-k
+pronoun.2SG.NOM	ve	pronoun.1SG.NOM	exit-PF.NPST-1PL
+'You (sg) and I left.'
+
+### 1SG+2SG subj, 1PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination agreement}
+Ben				ve	sen				çıktık
+Ben				ve	sen				çık-tı-k
+pronoun.1SG.NOM	ve	pronoun.2SG.NOM	exit-PF.NPST-1PL
+'You (sg) and I left.'
+
+### 3SG+1SG subj, 1SG agreement (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {coordination agreement}
+O				ve	ben				çıktım
+O				ve	ben				çık-tı-m
+pronoun.3SG.NOM	ve	pronoun.1SG.NOM	exit-PF.NPST-1SG
+'He/she/it and I left.'
+
+### 2SG+1SG subj, 2PL agreement (u) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination agreement}
+Sen				ve	ben				çıktınız
+Sen				ve	ben				çık-tı-nız
+pronoun.2SG.NOM	ve	pronoun.1SG.NOM	exit-PF.NPST-2PL
+'You (sg) and I left.'
+
+##### 2+NOT-1 & NOT-1+2 = 2PL #####
+
+### 3SG+2SG subj, 2PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination agreement}
+O				ve	sen				çıktınız
+O				ve	sen				çık-tı-nız
+pronoun.3SG.NOM	ve	pronoun.2SG.NOM	exit-PF.NPST-2PL
+'He/she/it and you left.'
+
+### 2SG+3SG subj, 2PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination agreement}
+Sen				ve	o				çıktınız
+Sen				ve	o				çık-tı-nız
+pronoun.2SG.NOM	ve	pronoun.3SG.NOM	exit-PF.NPST-2PL
+'He/she/it and you left.'
+
+### 3SG+2SG subj, 3PL agreement (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {coordination agreement}
+O				ve	sen				çıktılar
+O				ve	sen				çık-tı-lar
+pronoun.3SG.NOM	ve	pronoun.2SG.NOM	exit-PF.NPST-3PL
+'He/she/it and you left.'
+
+##### 3 & 3 = 3PL #####
+
+### 3SG+3SG subj, 3PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Kadın			ve	kedi			çıktılar
+Kadın			ve	kedi			çık-tı-lar
+woman.3SG.NOM	ve	kedi.3SG.NOM	exit-PF.NPST-3PL
+'The woman and the cat left.'
+
+### 3SG+3SG subj, 3PL agreement (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {coordination}
+Kadın			ve	kedi			çıktı
+Kadın			ve	kedi			çık-tı
+woman.3SG.NOM	ve	kedi.3SG.NOM	exit-PF.NPST.3PL
+'The woman and the cat left.'
+
+### 3SG+3SG subj, 1PL agreement (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {coordination}
+Kadın			ve	kedi			çıktık
+Kadın			ve	kedi			çık-tı-k
+woman.3SG.NOM	ve	kedi.3SG.NOM	exit-PF.NPST-1PL
+'The woman and the cat left.'
+
+########################
+####### ADJECTIVES #####
+########################
+
+### BARE ADJ + NOUN (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adjectives, word order}
+Güzel		kedi		gördüm
+Güzel		kedi		gör-dü-m
+beautiful	cat.3SG.ACC	see-PF.NPST-1SG
+'I saw a beautiful cat.'
+
+### BARE NOUN + ADJ (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adjectives, word order}
+Kedi		güzel		gördüm
+Kedi		güzel		gör-dü-m
+cat.3SG.ACC	beautiful	see-PF.NPST-1SG
+'I saw a beautiful cat.'
+
+### DET + ADJ + NOUN (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adjectives, determiners, word order}
+Bir		güzel		kedi		gördüm
+Bir		güzel		kedi		gör-dü-m
+a.SG	beautiful	cat.3SG.ACC	see-PF.NPST-1SG
+'I saw a beautiful cat.'
+
+### ADJ + DET + NOUN (g) ###
+# yeah, not gonna get parsed for now
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adjectives, determiners, word order}
+Güzel		bir		kedi		gördüm
+Güzel		bir		kedi		gör-dü-m
+beautiful	a.SG	cat.3SG.ACC	see-PF.NPST-1SG
+'I saw a beautiful cat.'
+
+### DET + NOUN + ADJ (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adjectives, word order}
+Bir		kedi		güzel		gördüm
+Bir		kedi		güzel		gör-dü-m
+a.SG	cat.3SG.ACC	beautiful	see-PF.NPST-1SG
+'I saw a beautiful cat.'
+
+########################
+######## ADVERBS #######
+########################
+
+##### NOT GONNA PARSE FOR NOW #####
+
+### ADV + SUBJ + VERB (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Hızlı	ben					çıktım
+Hızlı	ben					çık-tı-m
+quickly	pronoun.1SG.NOM		exit-PF.NPST-1SG
+'I left quickly.'
+
+### SUBJ + ADV + VERB (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Ben				hızlı	çıktım
+Ben				hızlı	çık-tı-m
+pronoun.1SG.NOM	quickly	exit-PF.NPST-1SG
+'I quickly left.'
+
+### SUBJ + VERB + ADV (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Ben				çıktım				hızlı
+Ben				çık-tı-m			hızlı
+pronoun.1SG.NOM	exit-PF.NPST-1SG	quickly
+'I left quickly.'
+
+### SUBJ + ADV + OBJ + VERB (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Ben				hızlı	elma			yedim
+Ben				hızlı	seni			ye-di-m
+pronoun.1SG.NOM	quickly	apple.3SG.ACC	eat-PF-1SG
+'I quickly at the apple.'
+
+### SUBJ + OBJ + ADV + VERB (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adverbs, word order}
+Ben				elma			hızlı	yedim
+Ben				elma			hızlı	ye-di-m
+pronoun.1SG.NOM	apple.3SG.ACC	quickly	eat-PF-1SG
+'I quickly ate the apple.'
+
+########################
+# EMBEDDED DECLARATIVES#
+########################
+
+##### NOT GONNA PARSE FOR NOW #####
+
+### no complementizer (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {embedded declaratives}
+Kedi 		uyudu				diyorlar
+Kedi 		uyu-du				d-iyor-lar
+cat.3SG.NOM	sleep-PF.NPST.3SG	say-IMPF.NPST-3PL
+"They're saying (that) the cat slept."
+
+### diye-complementizer before verb (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {embedded declaratives, word order}
+Kedi 		uyudu				diye	köpek		düşünür
+Kedi 		uyu-du				diye	köpek		düşün-ür
+cat.3SG.NOM	sleep-PF.NPST.3SG	that	dog.3SG.NOM	think-HAB.NPST.3SG
+"The dog thinks that the cat slept."
+
+### diye-complementizer after verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {embedded declaratives, word order}
+Köpek		düşünür				diye	kedi 		uyudu
+Köpek		düşün-ür			diye	kedi 		uyu-du
+dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF.NPST.3SG
+"The dog thinks that the cat slept."
+
+### ki-complementizer after verb (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {embedded declaratives, word order}
+Köpek		düşünür				ki		kedi 		uyudu
+Köpek		düşün-ür			ki		kedi 		uyu-du
+dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF.NPST.3SG
+"The dog thinks that the cat slept."
+
+### ki-complementizer before verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {embedded declaratives, word order}
+Kedi 		uyudu				ki		köpek		düşünür
+Kedi 		uyu-du				ki		köpek		düşün-ür
+cat.3SG.NOM	sleep-PF.NPST.3SG	that	dog.3SG.NOM	think-HAB.NPST.3SG
+"The dog thinks that the cat slept."
+
+### (non-finite) verbal noun / participle (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {embedded declaratives, argument optionality}
+Senin			piyano			çaldığını			bilmiyordum
+Senin			piyano			çal-dığ-ın-ı		bil-m-iyor-du-m
+pronoun.2SG.GEN piano.3SG.ACC	play-VN-2SGPOSS-ACC	know-NEG-IMPF-PST-1SG
+"I didn't know (that) you played the piano."
+
+#########################
+#EMBEDDED INTERROGATIVES#
+#########################
+
+##### NOT GONNA PARSE FOR NOW #####
+
+### no complementizer (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {embedded interrogatives}
+Kedi 		uyudu				mu					diyorlar
+Kedi 		uyu-du				mu					d-iyor-lar
+cat.3SG.NOM	sleep-PF.NPST.3SG	question.NPST.3SG	say-IMPF.NPST-3PL
+"They're asking, did the cat sleep?"
+
+### diye-complementizer after verb (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {embedded interrogatives}
+Kedi 		uyudu		mu					diye	sordu
+Kedi 		uyu-du		mu					diye	sor-du
+cat.3SG.NOM	sleep-PF	question.NPST.3SG	that	ask-PF.NPST.3SG
+"They're asking, did the cat sleep?"
+
+### ki-complementizer after verb (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {embedded declaratives}
+Köpek		düşünür				ki		kedi 		uyudu		mu
+Köpek		düşün-ür			ki		kedi 		uyu-du		mu
+dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF	question.NPST.3SG
+"The dog wonders whether the cat slept."
+
+########################
+# NON-VERBAL PREDICATES#
+########################
+
+##### NOT CURRENTLY WORKING BUT PROBABLY SHOULD??? #####
+
+### FINITE ADJ + NO-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates}
+Ben				mutluyum
+Ben				mutlu-yum
+pronoun.1SG.NOM	happy.NPST-1SG
+"I am happy."
+
+### NON-FINITE ADJ + POS-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates}
+Ben				mutlu	olurum
+Ben				mutlu	ol-ur-um
+pronoun.1SG.NOM	happy	be-HAB.NPST-1SG
+"I am happy."
+
+### NON-FINITE ADJ + ADJ NEG-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates}
+Ben				mutlu	değilim
+Ben				mutlu	değil-im
+pronoun.1SG.NOM	happy	neg.NPST-1SG
+"I am not happy."
+
+### NON-FINITE ADJ + NO-COP (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {non-verbal predicates}
+Ben				mutlu
+Ben				mutlu
+pronoun.1SG.NOM	happy
+"I am happy."
+
+##### NOT GONNA PARSE FOR NOW #####
+
+### FINITE NOUN + NO-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates}
+Ben				oğrenciyim
+Ben				oğrenci-yim
+pronoun.1SG.NOM	student.NPST-1SG
+"I am a student."
+
+### NON-FINITE NOUN + POS-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates}
+Ben				oğrenci	olurum
+Ben				oğrenci	ol-ur-um
+pronoun.1SG.NOM	student	be-HAB.NPST-1SG
+"I am a student."
+
+### NON-FINITE NOUN + NEG-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates}
+Ben				oğrenci	değilim
+Ben				oğrenci	değil-im
+pronoun.1SG.NOM	student	neg.NPST-1SG
+"I am not a student."
+
+### NON-FINITE NOUN + NO-COP (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {non-verbal predicates}
+Ben				oğrenci
+Ben				oğrenci
+pronoun.1SG.NOM	student
+"I am a student."
+
+########################
+### COGNITIVE STATUS ###
+########################
+
+### indef-det + indef-acc (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cognitive status, determiners}
+Bir		hediye			getirdim
+Bir		hediye			getir-di-m
+a.SG	present.3SG.ACC	bring-PF.NPST-1SG
+'I brought a present.'
+
+### indef-det + def-acc -- actually indef+specific (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cognitive status, determiners}
+Bir		hediyeyi		getirdim
+Bir		hediye-yi		getir-di-m
+a.SG	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought a present.'
+
+### bare zero-acc (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cognitive status}
+Hediye			getirdim
+Hediye			getir-di-m
+present.3SG.ACC	bring-PF.NPST-1SG
+'I brought a present.'
+
+### bare zero-acc (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cognitive status}
+Hediyeyi		getirdim
+Hediye-yi		getir-di-m
+present.3SG-ACC	bring-PF.NPST-1SG
+'I brought the present.'
+
+### def-det + indef-acc -- specificity clash (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {cognitive status, determiners}
+Bu		hediye			getirdim
+Bu		hediye			getir-di-m
+this	present.3SG.ACC	bring-PF.NPST-1SG
+'I brought a/this present.'
+
+### def-det + def-acc (g) ###
+### proximal-demonstrative ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cognitive status, determiners}
+Bu		hediyeyi		getirdim
+Bu		hediye-yi		getir-di-m
+this	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought this present.'
+
+### distal/hearer-demonstrative ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cognitive status, determiners}
+Şu		hediyeyi		getirdim
+Şu		hediye-yi		getir-di-m
+this	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought this/that present.'
+
+### distal/remote-demonstrative ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {cognitive status, determiners}
+O		hediyeyi		getirdim
+O		hediye-yi		getir-di-m
+that	present.3SG-ACC	bring-PF.NPST-1SG
+'I brought that present.'
+
+########################
+######## NONSENSE ######
+########################
+
+###### STUFF THAT PARSES WITH NUTSO SEMANTICS ######
+
+### ACC subject (u) ###
+# ends up parsing with the 3SG-ACC as 3SGPOSS, i.e., "His woman arrived."
+# which is technically, syntactically OK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Kadını			geldi
+Kadın-ı			gel-di
+woman.3SG-ACC	come-PF.NPST.3SG
+'The woman arrived.'
+
+### GEN subject (u) ###
+# ends up parsing with the 3SG-GEN as 2SGPOSS, i.e., "Your woman arrived."
+# which is technically, syntactically OK
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Kadının			geldi
+Kadın-ın		gel-di
+woman.3SG-GEN	come-PF.NPST.3SG
+'The woman arrived.'
+
+### ACC subject, ACC object (u) ###
+# ends up getting two parses: "His woman read the letter" and "His letter read the woman"
+# ridonkulous but it's technically grammatical that way so???
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Kadını			mektubu			okudu
+Kadın-ı			mektub-u		oku-du
+woman.3SG-ACC	letter.3SG-ACC	read-PF.NPST.3SG
+'The woman read the letter.'
+
+###### STUFF THAT'S PHONOLOGICALLY CRAPPY BUT PARSES OVERGENERATINGLY ######
+
+# vowel harmony issue
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {tense aspect mood}
+Kadın			çıktu
+Kadın			çık-tu
+woman.3SG.NOM	exit-PF.NPST.3SG
+'The woman left.'
+
+# vowel harmony issue
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {case}
+Kadın			kediyı		gördü
+Kadın			kedi-yı		gör-dü
+woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+'The woman saw the cat.'
+
+# wrong agreement form (should be -k)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {agreement}
+Biz				çıktıız
+Biz				çık-tı-ız
+pronoun.1PL.NOM	exit-PF.NPST-1PL
+'We left.'
+
+# wrong agreement form (should be -uz)
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {agreement}
+Biz				çıkıyork
+Biz				çık-ıyor-k
+pronoun.1PL.NOM	exit-IMPF.NPST-1PL
+'We are leaving.'
+
