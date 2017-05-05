@@ -31,3 +31,36 @@ mu_gr := arg0e_gtr &
 mü_gr := arg0e_gtr &
   [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
     FLAGS.TRIGGER "mü" ].
+
+;ol_2_gr := generator_rule &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "ol_2" ].
+
+;mi_gr := generator_rule &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "mi" ].
+
+;com-marker_gr := generator_rule &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "com-marker" ].
+
+;mı_gr := generator_rule &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "mı" ].
+
+;mü_gr := generator_rule &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "mü" ].
+
+;mu_gr := generator_rule &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "mu" ].
+
+;ki_gr := comp_gtr &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "ki" ].
+
+;diye_gr := comp_gtr &
+;[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+;  FLAGS.TRIGGER "diye" ].
+

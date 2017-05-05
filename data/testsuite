@@ -1172,10 +1172,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {coordination}
-Her			elma			her		armut			yedim
-Her			elma			her		armut			ye-di-m
-every.SG	apple.3SG.ACC	every	pear.3SG.ACC	eat-PF.NPST-1SG
-'I ate every apple and every pear.'
+Bir		elma			bir		armut			yedim
+Bir		elma			bir		armut			ye-di-m
+a.SG	apple.3SG.ACC	a.SG	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple and a pear.'
 
 ### len=2 VP asyndeton (g) ###
 Source: author
@@ -1214,10 +1214,10 @@ Source: author
 Vetted: f
 Judgment: g
 Phenomena: {coordination}
-Her			elma			ve	her		armut			yedim
-Her			elma			ve	her		armut			ye-di-m
-every.SG	apple.3SG.ACC	and	every	pear.3SG.ACC	eat-PF.NPST-1SG
-'I ate every apple and every pear.'
+Bir		elma			ve	bir		armut			yedim
+Bir		elma			ve	bir		armut			ye-di-m
+a.SG	apple.3SG.ACC	and	a.SG	pear.3SG.ACC	eat-PF.NPST-1SG
+'I ate an apple and a pear.'
 
 ### len=2 VP mono/polysyndeton (g) ###
 Source: author

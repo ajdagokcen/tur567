@@ -18,50 +18,33 @@ non-mod-lex-item := lex-item &
 ;;; Matrix Type Addenda
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-+np :+ [ CASE case,
-    CASE-MARKED bool ].
-
 head :+ [ PRD bool,
           FORM form,
           AUX bool,
-          PRON bool ].
+          PRON bool,
+          INIT bool,
+          NEG bool,
+          CASE case,
+          CASE-MARKED bool ].
 
-inflected :+ [ NEG-LEX-RULE-FLAG luk,
-    NUMBER-COMMON-NOUN-FLAG luk,
-    BASIC-ADJECTIVE_OPT_COP-FLAG luk,
-    NEG-COP-LEX-RULE-FLAG luk,
-    TENSE-VERB-FLAG luk,
-    ASPECT-VERB-FLAG luk,
-    CASE-COMMON-NOUN-FLAG luk,
-    POSS-FLAG luk,
-    AGREEMENT-VERB-FLAG luk,
-    TENSE-ADJECTIVE-FLAG luk,
-    POLARITY-VERB-FLAG luk,
-    AGREEMENT-COPULA-FLAG luk,
-    POLARITY-COPULA-FLAG luk,
-    TENSE-COPULA-FLAG luk,
-    AGREEMENT-ADJECTIVE-FLAG luk,
-    ASPECT-COPULA-FLAG luk ].
+inflected :+ [ NUMBER-FLAG luk,
+               ADJECTIVE-ROLE-FLAG luk,
+               TENSE-FLAG luk,
+               ASPECT-FLAG luk,
+               CASE-FLAG luk,
+               AGREEMENT-FLAG luk,
+               POLARITY-FLAG luk ].
 
-infl-satisfied :+ [ NEG-LEX-RULE-FLAG na-or-+,
-    NUMBER-COMMON-NOUN-FLAG na-or-+,
-    BASIC-ADJECTIVE_OPT_COP-FLAG na-or-+,
-    NEG-COP-LEX-RULE-FLAG na-or-+,
-    TENSE-VERB-FLAG na-or-+,
-    ASPECT-VERB-FLAG na-or-+,
-    CASE-COMMON-NOUN-FLAG na-or-+,
-    POSS-FLAG na-or-+,
-    AGREEMENT-VERB-FLAG na-or-+,
-    TENSE-ADJECTIVE-FLAG na-or-+,
-    POLARITY-VERB-FLAG na-or-+,
-    AGREEMENT-COPULA-FLAG na-or-+,
-    POLARITY-COPULA-FLAG na-or-+,
-    TENSE-COPULA-FLAG na-or-+,
-    AGREEMENT-ADJECTIVE-FLAG na-or-+,
-    ASPECT-COPULA-FLAG na-or-+ ].
+infl-satisfied :+ [ NUMBER-FLAG na-or-+,
+                    ADJECTIVE-ROLE-FLAG na-or-+,
+                    TENSE-FLAG na-or-+,
+                    ASPECT-FLAG na-or-+,
+                    CASE-FLAG na-or-+,
+                    AGREEMENT-FLAG na-or-+,
+                    POLARITY-FLAG na-or-+ ].
 
 png :+ [ PER person,
-    NUM number ].
+         NUM number ].
 
 basic-head-comp-phrase :+ [ SYNSEM.LOCAL.CAT.MC #mc,
     HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
@@ -70,6 +53,9 @@ basic-head-mod-phrase-simple :+ [ SYNSEM.LOCAL.CAT.MC #mc,
     NON-HEAD-DTR.SYNSEM.LOCAL.CAT.MC #mc ].
 
 basic-head-opt-subj-phrase :+ [ HEAD-DTR.SYNSEM.LOCAL.CAT.VAL.COMPS < > ].
+basic-head-opt-subj-phrase :+ [ SYNSEM.LOCAL.CAT.HEAD.FORM finite ].
+
+;; TODO: changed above rule and head-subj to require FORM finite!
 
 ; We can't just use the V-final and V-initial word
 ; order modules together to get a good free word order
@@ -98,7 +84,21 @@ synsem :+ [ ATTACH xmod ].
 ; in for head-adjunct phrases here:
 
 head-mod-phrase :+ [ SYNSEM.ATTACH #attach,
-    HEAD-DTR.SYNSEM.ATTACH #attach ].
+                     HEAD-DTR.SYNSEM.ATTACH #attach ].
+
+;TODO: gave head-adj more of the traits adj-head has that was causing it to misbehave???
+head-adj-phrase :+
+  [ SYNSEM [ LOCAL.CAT.POSTHEAD #ph,
+             MODIFIED rmod & [ PERIPH #periph ],
+                               LIGHT #light ],
+    HEAD-DTR.SYNSEM [ LOCAL.CAT.POSTHEAD #ph,
+                      LIGHT #light ],
+    NON-HEAD-DTR.SYNSEM [ LOCAL.CAT [ VAL.COMPS < >,
+                                      POSTHEAD + ],
+                          NON-LOCAL [ SLASH 0-dlist,
+                                      REL 0-dlist,
+                                      QUE 0-dlist ],
+                          MODIFIED.PERIPH #periph ] ].
 
 ;;; Demonstrative relations
 
@@ -178,25 +178,21 @@ no-spr-noun-lex := noun-lex &
 ; Rules for building NPs.  Note that the Matrix uses SPR for
 ; the specifier of nouns and SUBJ for the subject (specifier) of verbs.
 
-head-spec-phrase := basic-head-spec-phrase & head-final &
-  [ NON-HEAD-DTR.SYNSEM.OPT - ].
+head-spec-phrase := basic-head-spec-phrase & head-initial &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT -,
+    NON-HEAD-DTR.SYNSEM [ OPT -,
+                          LOCAL.CAT.HEAD.INIT - ] ].
+
+;;; TODO: we want this but only for genitives?? regular determiners can't be head-initial
+spec-head-phrase := basic-head-spec-phrase & head-final &
+  [ NON-HEAD-DTR.SYNSEM [ OPT -,
+                          LOCAL.CAT.HEAD.INIT + ] ].
 
 ;;; TODO
 
-;;; OK, SO, the introduction of the FLAG - features needs to happen at the branching
-;;; point rules, e.g., when finiteness is applied or whatever??? yeah!!!
-;;; FOR NOUNS: this means that the case flag - happens when we branch between pred/finite & not
-;common-noun-lex := noun-lex & case-common-noun-rule-dtr & poss-common-noun-rule-dtr &
-;  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.PNG.PER 3rd,
-;                   CAT.HEAD.PRON - ],
-;    INFLECTED [ CASE-COMMON-NOUN-FLAG -,
-;                NUMBER-COMMON-NOUN-FLAG - ] ].
-
-common-noun-lex := noun-lex & case-common-noun-rule-dtr & poss-common-noun-rule-dtr &
+common-noun-lex := noun-lex & number-common-noun-rule-dtr &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.PNG.PER 3rd,
-                   CAT.HEAD.PRON - ],
-    INFLECTED [ CASE-COMMON-NOUN-FLAG -,
-                NUMBER-COMMON-NOUN-FLAG - ] ].
+                   CAT.HEAD.PRON - ] ].
 
 personal-pronoun-lex := no-spr-noun-lex &
   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX [ COG-ST activ-or-more,
@@ -397,13 +393,27 @@ com-3pl-pronoun-noun-lex := 3pl-pronoun-noun-lex &
 ;;; Verbs
 
 verb-lex := non-mod-lex-item &
-  [ SYNSEM.LOCAL.CAT.HEAD verb,
-    INFLECTED.NEG-LEX-RULE-FLAG na-or-- ].
+  [ SYNSEM.LOCAL.CAT.HEAD verb ].
 
 ;;; TODO
 
-;main-verb-lex := verb-lex & basic-verb-lex & agreement-verb-rule-dtr & aspect-verb-rule-dtr & polarity-verb-rule-dtr & tense-verb-rule-dtr &
-main-verb-lex := verb-lex & basic-verb-lex & polarity-verb-rule-dtr & 
+;transitive-lex-item := basic-two-arg-no-hcons & basic-icons-lex-item &
+replacement-transitive-lex-item := basic-two-arg & basic-icons-lex-item &
+  [ ARG-ST < [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind1,
+                                 ICONS-KEY.IARG1 #clause ] ],
+             [ LOCAL.CONT.HOOK [ INDEX ref-ind & #ind2,
+                                 ICONS-KEY.IARG1 #clause ] ] >,
+    SYNSEM [ LKEYS.KEYREL [ ARG1 #ind1,
+                            ARG2 #ind2 ],
+             LOCAL.CONT.HOOK.CLAUSE-KEY #clause ] ].
+
+;;norm-sem-lex-item := norm-hook-lex-item & single-rel-lex-item.
+
+;basic-verb-lex := basic-verb-lex-super & norm-sem-lex-item &
+replacement-basic-verb-lex := basic-verb-lex-super & norm-hook-lex-item &
+  [ SYNSEM.LKEYS.KEYREL event-relation ].
+
+main-verb-lex := verb-lex & replacement-basic-verb-lex &
   [ SYNSEM.LOCAL [ CAT [ HEAD.AUX -,
                          VAL [ SPR < >,
                                SPEC < >,
@@ -412,26 +422,16 @@ main-verb-lex := verb-lex & basic-verb-lex & polarity-verb-rule-dtr &
     ARG-ST.FIRST #subj &
                  [ LOCAL [ CAT.VAL [ SPR < >,
                                      COMPS < > ],
-                           CONT.HOOK.INDEX #xarg ] ],
-    INFLECTED [ POLARITY-VERB-FLAG -,
-                TENSE-VERB-FLAG - ] ].
-;    INFLECTED [ AGREEMENT-VERB-FLAG -,
-;                POLARITY-VERB-FLAG -,
-;                TENSE-VERB-FLAG -,
-;                ASPECT-VERB-FLAG - ] ].
+                           CONT.HOOK.INDEX #xarg ] ] ].
 
-;aux-lex := verb-lex & agreement-verb-rule-dtr & tense-verb-rule-dtr &
 aux-lex := verb-lex & tense-verb-rule-dtr &
-  [ SYNSEM.LOCAL.CAT.HEAD.AUX +,
-    INFLECTED.TENSE-VERB-FLAG - ].
-;    INFLECTED [ TENSE-VERB-FLAG -,
-;                AGREEMENT-VERB-FLAG - ] ].
+  [ SYNSEM.LOCAL.CAT.HEAD.AUX + ].
 
 intransitive-verb-lex := main-verb-lex & intransitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < >,
     ARG-ST.FIRST.LOCAL.CAT.HEAD +np ].
 
-transitive-verb-lex := main-verb-lex & transitive-lex-item &
+transitive-verb-lex := main-verb-lex & replacement-transitive-lex-item &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS < #comps >,
     ARG-ST < [ LOCAL.CAT.HEAD +np ],
              #comps &
@@ -440,28 +440,25 @@ transitive-verb-lex := main-verb-lex & transitive-lex-item &
                            HEAD +np ] ] > ].
 
 nom-intransitive-verb-lex := intransitive-verb-lex &
-  [ ARG-ST.FIRST.LOCAL.CAT.HEAD noun &
-                                [ CASE nom ],
+  [ ARG-ST.FIRST.LOCAL.CAT.HEAD noun & [ CASE nom ],
     SYNSEM.LOCAL.CAT.VAL.SUBJ < [ LOCAL.CAT.HEAD.CASE-MARKED + ] > ].
 
 nom-acc-transitive-verb-lex := transitive-verb-lex &
-  [ ARG-ST < [ LOCAL.CAT.HEAD noun &
-                              [ CASE nom ] ],
-             [ LOCAL.CAT.HEAD noun &
-                              [ CASE acc ] ] >,
+  [ ARG-ST < [ LOCAL.CAT.HEAD noun & [ CASE nom ] ],
+             [ LOCAL.CAT.HEAD noun & [ CASE acc ] ] >,
     SYNSEM.LOCAL.CAT.VAL [ SUBJ < [ LOCAL.CAT.HEAD.CASE-MARKED + ] >,
                            COMPS < [ LOCAL.CAT.HEAD.CASE-MARKED + ] > ] ].
 
-itr-verb-lex := nom-intransitive-verb-lex.
+itr-verb-lex := nom-intransitive-verb-lex & polarity-verb-rule-dtr.
 
-acc-tr-verb-lex := nom-acc-transitive-verb-lex &
+acc-tr-verb-lex := nom-acc-transitive-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE acc,
                                                           CASE-MARKED + ],
                                          OPT - ] ] ].
 
-dat-tr-verb-lex := transitive-verb-lex &
+dat-tr-verb-lex := transitive-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE dat,
@@ -469,7 +466,7 @@ dat-tr-verb-lex := transitive-verb-lex &
                                          OPT +,
                                          OPT-CS activ-or-more ] ] ].
 
-abl-tr-verb-lex := transitive-verb-lex &
+abl-tr-verb-lex := transitive-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE abl,
@@ -477,7 +474,7 @@ abl-tr-verb-lex := transitive-verb-lex &
                                          OPT +,
                                          OPT-CS activ-or-more ] ] ].
 
-loc-tr-verb-lex := transitive-verb-lex &
+loc-tr-verb-lex := transitive-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE loc,
@@ -485,13 +482,78 @@ loc-tr-verb-lex := transitive-verb-lex &
                                          OPT +,
                                          OPT-CS activ-or-more ] ] ].
 
-com-tr-verb-lex := transitive-verb-lex &
+com-tr-verb-lex := transitive-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
                                                        CASE-MARKED + ],
                            COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE com,
                                                           CASE-MARKED + ],
                                          OPT +,
                                          OPT-CS activ-or-more ] ] ].
+
+;; TODO: this is the copula for nominal compliments
+nom-tr-verb-lex := transitive-verb-lex &
+  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+                                                       CASE-MARKED + ],
+                           COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE nom,
+                                                          CASE-MARKED + ],
+                                         OPT - ] ] ].
+
+positive-nom-tr-verb-lex := nom-tr-verb-lex & polarity-verb-rule-dtr.
+
+negative-nom-tr-verb-lex := nom-tr-verb-lex & tense-verb-rule-dtr &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD.AUX -,
+                           VAL [ SPR < >,
+                                 SPEC < >,
+                                 SUBJ < #subj >,
+                                 COMPS < #comp > ] ],
+                     CONT [ HOOK [ LTOP #nh,
+                                   INDEX #s,
+                                   XARG #xarg ],
+                                   RELS <! #cop &
+                                           [ LBL #h,
+                                             ARG0 #s,
+                                             ARG1 #xarg,
+                                             ARG2 #compindex ],
+                                           #neg & event-relation &
+                                           [ LBL #nh,
+                                             ARG1 #scopehandle ] !>,
+                                   HCONS <! qeq &
+                                            [ HARG #scopehandle,
+                                              LARG #h ] !> ] ],
+             LKEYS [ KEYREL #cop,
+                     ALTKEYREL #neg ] ],
+    ARG-ST < #subj &
+             [ LOCAL [ CAT [ HEAD noun ,
+                             VAL [ SPR < >,
+                                   COMPS < > ] ],
+                       CONT.HOOK.INDEX #xarg ] ],
+             #comp &
+             [ LOCAL [ CAT [ HEAD +np ,
+                             VAL [ SPR < >,
+                                   COMPS < > ] ],
+                       CONT.HOOK.INDEX #compindex ] ] > ].
+
+;;; Clausal Complement Verbs
+
+clausal-comp-verb-lex := main-verb-lex & clausal-second-arg-trans-lex-item &
+                         polarity-verb-rule-dtr &
+  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+                                                       CASE-MARKED + ],
+                           COMPS < #comps & 
+                                   [ LOCAL.CAT [ HEAD +vc & [ FORM finite ],
+                                                 VAL [ SUBJ < >,
+                                                       COMPS < > ] ] ] > ],
+    ARG-ST.REST.FIRST #comps ].
+
+declarative-comp-verb-lex := clausal-comp-verb-lex &
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL [ CAT.HEAD comp,
+                                             CONT.HOOK.INDEX.SF prop ] ].
+
+interrogative-comp-verb-lex := clausal-comp-verb-lex &
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL [ CAT.HEAD comp,
+                                             CONT.HOOK.INDEX.SF ques ] ].
+
+;;; ???
 
 no-obj-drop-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
@@ -509,8 +571,7 @@ subj-raise-aux := aux-lex & trans-first-arg-raising-lex-item &
                              SUBJ < #subj > ],
                    CONT.HOOK.XARG #xarg ],
     ARG-ST < #subj &
-             [ LOCAL [ CAT [ HEAD noun &
-                                  [ CASE nom ],
+             [ LOCAL [ CAT [ HEAD noun & [ CASE nom ],
                              VAL [ SUBJ < >,
                                    SPR < >,
                                    SPEC < >,
@@ -544,52 +605,100 @@ interrogative-aux-lex := subj-raise-aux-no-pred &
 ;;; Copulas
 
 ;;; TODO -- should HEAD.PRD + be accompanied by HEAD.FORM nonfinite ?
+;;; ACTUALLY: COMPS < SUBJ > was empty?!?!?  sooo I fixed thattt bc it should be the opposite
+;;; also made the head of the subj and of the comps' subj equivalent to preserve case
 
-;cop-lex := basic-verb-lex-super & trans-first-arg-raising-lex-item-2 & agreement-copula-rule-dtr & tense-copula-rule-dtr &
-cop-lex := basic-verb-lex-super & trans-first-arg-raising-lex-item-2 &
+;raise-sem-lex-item := no-hcons-lex-item &
+replacement-raise-sem-lex-item := lex-item &
+  [ SYNSEM.LOCAL [ CONT.HOOK #hook,
+                   CAT.VAL.COMPS < [ LOCAL.CONT.HOOK #hook ] , ... > ] ].
+
+;trans-first-arg-raising-lex-item-2 := trans-first-arg-raising-lex-item &
+replacement-trans-first-arg-raising-lex-item-2 := trans-first-arg-raising-lex-item &
+                                                  replacement-raise-sem-lex-item &
+                                                  no-icons-lex-item &
+  [ ARG-ST < [ LOCAL.CONT.HOOK.ICONS-KEY.IARG1 #clause ],
+             [ LOCAL.CONT.HOOK.CLAUSE-KEY #clause ] > ].
+
+;cop-lex := basic-verb-lex-super & trans-first-arg-raising-lex-item-2 &
+cop-lex := basic-verb-lex-super & replacement-trans-first-arg-raising-lex-item-2 &
   [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < [ LOCAL [ CONT.HOOK.INDEX #xarg,
                                               CAT [ VAL [ SPR < >,
                                                           COMPS < > ],
-                                                    HEAD noun ] ] ] >,
-                             COMPS < [ LOCAL.CAT [ HEAD [ PRD +, FORM nonfinite ],
-                                                   VAL [ SUBJ < >,
+                                                    HEAD #head ] ] ] >,
+                             COMPS < [ LOCAL.CAT [ HEAD [ PRD +,
+                                                          FORM nonfinite ],
+                                                   VAL [ SUBJ < [ LOCAL.CAT.HEAD #head ] >,
                                                          COMPS < > ] ] ] >,
                              SPR < >,
                              SPEC < > ],
-                   CONT.HOOK.XARG #xarg ],
-    INFLECTED.NEG-COP-LEX-RULE-FLAG na-or-- ].
+                   CONT.HOOK.XARG #xarg ] ].
 
 ; Copula type taking adjectival complements.
 ; Need to define more for additional complement types.
 
 adj-comp-copula-verb-lex := cop-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD adj ].
+;  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD +jp ].
 
-positive-copula-cop-lex := adj-comp-copula-verb-lex &
-  [ INFLECTED [ POLARITY-COPULA-FLAG -,
-                TENSE-COPULA-FLAG - ] ].
-;  [ INFLECTED [ POLARITY-COPULA-FLAG -,
-;                TENSE-COPULA-FLAG -,
-;                ASPECT-COPULA-FLAG -,
-;                AGREEMENT-COPULA-FLAG - ] ].
+;; TODO
+noun-comp-copula-verb-lex := cop-lex &
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD noun ].
 
+positive-copula-cop-lex := adj-comp-copula-verb-lex & polarity-verb-rule-dtr.
 
 ;negative-copula-cop-lex := adj-comp-copula-verb-lex &
-negative-copula-cop-lex := adj-comp-copula-verb-lex & tense-copula-rule-dtr &
-  [ INFLECTED.TENSE-COPULA-FLAG - ].
-;                AGREEMENT-COPULA-FLAG - ] ].
+negative-copula-cop-lex := adj-comp-copula-verb-lex & tense-verb-rule-dtr &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD.AUX -,
+                           VAL [ SPR < >,
+                                 SPEC < >,
+                                 SUBJ < #subj >,
+                                 COMPS < #comp > ] ],
+                     CONT [ HOOK [ 
+                                   LTOP #nh,
+                                   XARG #xarg ],
+                                   RELS <! #neg & event-relation &
+                                           [ LBL #nh,
+                                             ARG1 #scopehandle ] !>,
+                                   HCONS <! qeq &
+                                            [ HARG #scopehandle,
+                                              LARG #nh ] !> ] ],
+             LKEYS.KEYREL #neg ],
+    ARG-ST < #subj &
+             [ LOCAL [ CAT [ HEAD noun ,
+                             VAL [ SPR < >,
+                                   COMPS < > ] ],
+                       CONT.HOOK.INDEX #xarg ] ],
+             #comp &
+             [ LOCAL [ CAT [ HEAD adj,
+                             VAL [ COMPS < > ] ] ] ] > ].
+;                             VAL.COMPS < > ],
+;                       CONT.HOOK [ INDEX #scopehandle,
+;                                   LTOP #ind ] ] ] > ].
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;                     CONT [ HOOK [ INDEX #ind,
+
+
+;  [ SYNSEM [ LOCAL [ CAT [ HEAD [ AUX - ],
+;                           VAL [ COMPS #comps & [ FIRST [ LOCAL [ CONT.HOOK [ INDEX #ind,
+;                                                                              LTOP #objhd ] ] ] ] ] ],
+;                     CONT [ HOOK [ LTOP #hand,
+;                                   INDEX #ind ],
+;                            RELS <! event-relation & 
+;                                    [ LBL #hand, 
+;                                      ARG1 #arg ] !>,
+;                            HCONS <! qeq &
+;                                     [ HARG #arg,
+;                                       LARG #objhd ] !> ] ],
+;             NON-LOCAL.QUE <! !> ],
+;        ARG-ST < #subj, #comps & [ LOCAL] ].
+
 
 ;;; Adjectives
 
 ;adj-lex := basic-intersective-adjective-lex & agreement-adjective-rule-dtr & tense-adjective-rule-dtr.
 adj-lex := basic-intersective-adjective-lex.
 
-basic-adjective-adj-lex := adj-lex &
-  [ INFLECTED.BASIC-ADJECTIVE_OPT_COP-FLAG - ].
-;basic-adjective-adj-lex := adj-lex &
-;  [ INFLECTED [ AGREEMENT-ADJECTIVE-FLAG -,
-;                TENSE-ADJECTIVE-FLAG -,
-;                BASIC-ADJECTIVE_OPT_COP-FLAG - ] ].
+basic-adjective-adj-lex := adj-lex & basic-adjective-role-rule-dtr.
 
 ;;; Others
 
@@ -598,9 +707,8 @@ basic-adjective-adj-lex := adj-lex &
 ;;; be modifiers.
 
 case-marking-adp-lex := basic-one-arg & raise-sem-lex-item &
-  [ SYNSEM.LOCAL.CAT [ HEAD adp &
-                            [ CASE #case,
-                              MOD < > ],
+  [ SYNSEM.LOCAL.CAT [ HEAD adp & [ CASE #case,
+                                    MOD < > ],
                        VAL [ SPR < >,
                              SUBJ < >,
                              COMPS < #comps >,
@@ -613,18 +721,20 @@ case-marking-adp-lex := basic-one-arg & raise-sem-lex-item &
 
 ;;; Determiners
 
+;; SYNSEM.LOCAL.CAT.POSTHEAD
 determiner-lex-supertype := norm-hook-lex-item &
                             basic-zero-arg &
                             no-icons-lex-item &
-  [ SYNSEM [ LOCAL [ CAT [ HEAD det & [ MOD < > ],
-               VAL [ SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind,
-                                                  LTOP #larg ],
-                                SPR < >,
-                                SUBJ < >,
-                                COMPS < >] ],
+  [ SYNSEM [ LOCAL [ CAT [ HEAD det & [ INIT +,
+                                        MOD < > ],
+                           VAL [ SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind,
+                                                              LTOP #larg ],
+                                 SPR < >,
+                                 SUBJ < >,
+                                 COMPS < > ] ],
              CONT.HCONS < ! qeq &
-                 [ HARG #harg,
-                   LARG #larg ] ! > ],
+                            [ HARG #harg,
+                              LARG #larg ] ! > ],
          LKEYS.KEYREL quant-relation &
            [ ARG0 #ind,
              RSTR #harg ] ] ].
@@ -667,15 +777,44 @@ pl-indefinite-determiner-lex := indefinite-determiner-lex &
 ;  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT [ HEAD verb,
 ;                                                    VAL.COMPS < > ] ]>,
 adverb-lex := basic-adverb-lex & intersective-mod-lex &
-  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD verb ]>,
-               VAL [ SPR < >,
-                 SUBJ < >,
-                 COMPS < >,
-                 SPEC < > ]]]]].
+  [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD verb ] >,
+                           VAL [ SPR < >,
+                                 SUBJ < >,
+                                 COMPS < >,
+                                 SPEC < > ] ] ] ] ].
 
 ;manner-adverb-adv-lex := adverb-lex.
 manner-adverb-adv-lex := adverb-lex &
   [ SYNSEM.LOCAL.CAT.HEAD.MOD < [ LOCAL.CAT.VAL.COMPS < > ] > ].
+
+;;; Complementizers
+
+comp_gtr := generator_rule &
+ [ CONTEXT [ RELS <! [ ARG2 #h & handle ],
+                     [ ARG0 #e & event ] !> ],
+   FLAGS [ EQUAL < #e, #h > ] ].
+;           TRIGGER "name_of_comp_entry" ] ].
+
+complementizer-lex-item := raise-sem-lex-item & basic-one-arg &
+  [ SYNSEM.LOCAL.CAT [ HEAD comp & [ MOD < > ],
+                       VAL [ SPR < >,
+                             SUBJ < >,
+                             COMPS < #comp > ] ],
+    ARG-ST < #comp &
+             [ LOCAL.CAT [
+                           HEAD verb,
+                           VAL [ SUBJ < >,
+                                 COMPS < > ] ] ] > ].
+
+;;
+
+declarative-complementizer-lex := complementizer-lex-item &
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF prop ].
+
+interrogative-complementizer-lex := complementizer-lex-item &
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques ].
+
+;;TODO: INIT +/-
 
 ;;;;;;;;;;;;;;;;;;;
 ;;; Lexical Rules
@@ -692,62 +831,59 @@ attr-adj-lex-rule := add-only-no-ccont-rule &
 
 ; Stative predicate adjective lexical rule definition
 
+;; TODO: added [ CASE nom ] because non-verbal predicates were taking subjects of any case
+;; now gotta make sure copulas get it too; auxiliaries already do
 stative-pred-lex-rule := add-only-no-ccont-rule &
-  [ SYNSEM.LOCAL [ CAT.VAL.SUBJ < [ LOCAL [ CONT.HOOK.INDEX #xarg,
-                                            CAT [ VAL [ SPR < >,
-                                                        COMPS < > ],
-                                                  HEAD noun ] ] ] >,
+  [ SYNSEM.LOCAL [ CAT [ HEAD.INIT -,
+                         VAL.SUBJ < [ LOCAL [ CONT.HOOK.INDEX #xarg,
+                                              CAT [ VAL [ SPR < >,
+                                                          COMPS < > ],
+                                                    HEAD noun & [ CASE nom ] ] ] ] > ],
                    CONT.HOOK.XARG #xarg ] ].
+;  [ ARG-ST.FIRST.LOCAL.CAT.HEAD noun &
+;                                [ CASE nom ],
+;  [ NON-HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.INIT + ].
 
 ;;; Intermediate rule types
 
-tense-verb-rule-dtr := word-or-lexrule.
-agreement-adjective-rule-dtr := word-or-lexrule.
-tense-copula-rule-dtr := word-or-lexrule.
-aspect-copula-rule-dtr := word-or-lexrule.
-agreement-verb-rule-dtr := word-or-lexrule.
-agreement-copula-rule-dtr := word-or-lexrule.
 polarity-verb-rule-dtr := word-or-lexrule.
-poss-common-noun-rule-dtr := word-or-lexrule.
-aspect-verb-rule-dtr := word-or-lexrule.
+tense-verb-rule-dtr := word-or-lexrule.
 tense-adjective-rule-dtr := word-or-lexrule.
+aspect-verb-rule-dtr := word-or-lexrule.
+agreement-verb-rule-dtr := word-or-lexrule.
+agreement-adjective-rule-dtr := word-or-lexrule.
+number-common-noun-rule-dtr := word-or-lexrule.
+poss-common-noun-rule-dtr := word-or-lexrule.
 case-common-noun-rule-dtr := word-or-lexrule.
+basic-adjective-role-rule-dtr := word-or-lexrule.
+
+polarity-verb-rule-dtr :+ [ INFLECTED.POLARITY-FLAG - ].
+tense-verb-rule-dtr :+ [ INFLECTED.TENSE-FLAG - ].
+tense-adjective-rule-dtr :+ [ INFLECTED.TENSE-FLAG - ].
+aspect-verb-rule-dtr :+ [ INFLECTED.ASPECT-FLAG - ].
+agreement-verb-rule-dtr :+ [ INFLECTED.AGREEMENT-FLAG - ].
+agreement-adjective-rule-dtr :+ [ INFLECTED.AGREEMENT-FLAG - ].
+number-common-noun-rule-dtr :+ [ INFLECTED.NUMBER-FLAG - ].
+case-common-noun-rule-dtr :+ [ INFLECTED.CASE-FLAG - ].
+basic-adjective-role-rule-dtr :+ [ INFLECTED.ADJECTIVE-ROLE-FLAG - ].
 
 ;;; Lexical rule types
 
 number-common-noun-lex-rule-super := add-only-no-ccont-rule & case-common-noun-rule-dtr & poss-common-noun-rule-dtr &
-  [ INFLECTED [ NUMBER-COMMON-NOUN-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
-    DTR common-noun-lex &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+  [ INFLECTED [ NUMBER-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                TENSE-FLAG #tense-flag,
+                ASPECT-FLAG #aspect-flag,
+                AGREEMENT-FLAG #agreement-flag,
+                CASE-FLAG #case-flag,
+                POLARITY-FLAG #polarity-flag ],
+    DTR number-common-noun-rule-dtr &
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      TENSE-FLAG #tense-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      AGREEMENT-FLAG #agreement-flag,
+                      CASE-FLAG #case-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
 
 sg-lex-rule-lex-rule := const-lex-rule & number-common-noun-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
@@ -776,56 +912,27 @@ poss-common-noun-lex-rule-super := same-ctxt-lex-rule &
                                    same-mc-lex-rule &
                                    infl-lex-rule &
                                    case-common-noun-rule-dtr &
-  [ INFLECTED [ POSS-FLAG +,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
-   SYNSEM [ LKEYS.ALTKEYREL.ARG0.PNG #png,
-            LOCAL.CAT.VAL [ SPR < [ LOCAL [ CAT [ HEAD noun & [ CASE gen ] ],
-                                  CONT.HOOK.INDEX #index2 ] ] >, 
-                            SPEC #spec,
-                            COMPS #comps,
-                            SUBJ #subj ] ],
-   DTR poss-common-noun-rule-dtr & [ SYNSEM.LOCAL [ CONT.HOOK [ INDEX #index,
-                                                                LTOP #lbl ],
-                                        CAT.VAL [ SPEC #spec,
-                                                  COMPS #comps,
-                                                  SUBJ #subj ] ],
-       INFLECTED [ CASE-COMMON-NOUN-FLAG #case-common-noun,
-                   NEG-LEX-RULE-FLAG #neg-lex-rule,
-                   TENSE-ADJECTIVE-FLAG #tense-adjective,
-                   BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                   TENSE-VERB-FLAG #tense-verb,
-                   AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                   ASPECT-VERB-FLAG #aspect-verb,
-                   AGREEMENT-VERB-FLAG #agreement-verb,
-                   NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                   POLARITY-VERB-FLAG #polarity-verb,
-                   AGREEMENT-COPULA-FLAG #agreement-copula,
-                   POLARITY-COPULA-FLAG #polarity-copula,
-                   TENSE-COPULA-FLAG #tense-copula,
-                   NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                   ASPECT-COPULA-FLAG #aspect-copula ] ],
-   C-CONT [ HOOK [ INDEX #index,
-           LTOP #lbl ],
-        RELS < ! arg12-ev-relation &
-          [ PRED "poss_rel",
-            LBL #lbl,
-            ARG1 #index,
-            ARG2 #index2 & [ PNG #png ] ] ! >,
-        ICONS < ! ! > ] ].
+  [ INFLECTED #infl,
+    SYNSEM [ LKEYS.ALTKEYREL.ARG0.PNG #png,
+             LOCAL.CAT.VAL [ SPR < [ LOCAL [ CAT [ HEAD noun & [ CASE gen ] ],
+                                     CONT.HOOK.INDEX #index2 ] ] >, 
+                             SPEC #spec,
+                             COMPS #comps,
+                             SUBJ #subj ] ],
+    DTR poss-common-noun-rule-dtr & [ SYNSEM.LOCAL [ CONT.HOOK [ INDEX #index,
+                                                                 LTOP #lbl ],
+                                                     CAT.VAL [ SPEC #spec,
+                                                               COMPS #comps,
+                                                               SUBJ #subj ] ],
+                                      INFLECTED #infl ],
+    C-CONT [ HOOK [ INDEX #index,
+                    LTOP #lbl ],
+             RELS < ! arg12-ev-relation &
+                      [ PRED "poss_rel",
+                        LBL #lbl,
+                        ARG1 #index,
+                        ARG2 #index2 & [ PNG #png ] ] ! >,
+             ICONS < ! ! > ] ].
 
 1sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
   [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM sg ] ].
@@ -846,38 +953,20 @@ poss-common-noun-lex-rule-super := same-ctxt-lex-rule &
   [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 3rd, NUM pl ] ].
 
 case-common-noun-lex-rule-super := add-only-no-ccont-rule &
-  [ INFLECTED [ CASE-COMMON-NOUN-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                POSS-FLAG #poss,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
+  [ INFLECTED [ CASE-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                TENSE-FLAG #tense-flag,
+                ASPECT-FLAG #aspect-flag,
+                AGREEMENT-FLAG #agreement-flag,
+                NUMBER-FLAG #number-flag,
+                POLARITY-FLAG #polarity-flag ],
     DTR case-common-noun-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      POSS-FLAG #poss,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      TENSE-FLAG #tense-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      AGREEMENT-FLAG #agreement-flag,
+                      NUMBER-FLAG #number-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
 
 nom-lex-rule-lex-rule := case-common-noun-lex-rule-super & const-lex-rule &
   [ SYNSEM.LOCAL.CAT.HEAD [ CASE nom,
@@ -918,51 +1007,102 @@ case-common-noun-synth-com-lex-rule := case-common-noun-lex-rule-super & const-l
                             CASE-MARKED - ] ].
 
 ;;; TODO: nominal predicates!!! may need to add SPR <> and SPEC <> back to copula...
+;;; ok we really just need something to give nouns a PRED feature... tbh be honest...
 
-;basic-noun_stative_pred-lex-rule := tense-adjective-rule-dtr & add-only-no-ccont-rule & const-lex-rule &
-;  [ SYNSEM.LOCAL.CAT.HEAD.PRD +,
-;    INFLECTED.TENSE-ADJECTIVE-FLAG - ].
-;;    DTR.INFLECTED.BASIC-ADJECTIVE_OPT_COP-FLAG
+;basic-noun-pred-role-lex-rule := stative-pred-lex-rule & tense-adjective-rule-dtr & const-lex-rule &
+basic-noun-pred-role-lex-rule := tense-adjective-rule-dtr & const-lex-rule &
+  [ SYNSEM.LOCAL.CAT [ HEAD.PRD +,
+                       VAL [ COMPS < >,
+                             SUBJ < [ LOCAL.CAT [ HEAD noun & [ CASE nom ],
+                                                  VAL.SPR < > ] ] > ] ] ].
+;  [ SYNSEM.LOCAL.CAT.HEAD.PRD + ].
+;;    DTR.INFLECTED.ADJECTIVE-ROLE-FLAG
+
+;;; EMILY LOOK HERE
+
+;n-bar-predicate-rule := unary-phrase & nocoord & tense-adjective-rule-dtr &
+;basic-noun-pred-role-lex-rule := tense-adjective-rule-dtr & const-lex-rule &
+dummy-basic-noun-pred-role-lex-rule := tense-adjective-rule-dtr & const-lex-rule &
+  [ SYNSEM.LOCAL.CAT [ HEAD verb,
+                       VAL [ COMPS < >,
+                             SUBJ < [ LOCAL [ CONT.HOOK.INDEX #arg1,
+                                              CAT [ HEAD noun & [ CASE nom ],
+                                                    VAL.SPR < > ] ] ] > ] ],
+    DTR.SYNSEM.LOCAL.CAT.HEAD noun & [ CASE nom, CASE-MARKED + ],
+    C-CONT [ HOOK [ LTOP #ltop,
+            INDEX #index,
+            XARG #arg1 ],
+         RELS <! arg12-ev-relation &
+           [ PRED "_be_v_id_rel",
+             LBL #ltop,
+             ARG0 #index,
+             ARG1 #arg1,
+             ARG2 #arg2 ],
+           quant-relation &
+           [ PRED "exist_q_rel",
+             ARG0 #arg2,
+             RSTR #harg ] !>,
+         HCONS <! qeq & [ HARG #harg, LARG #larg ] !> ],
+    ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD noun,
+                                  VAL.SPR cons ],
+                CONT.HOOK [ INDEX #arg2,
+                            LTOP #larg ] ] ] >,
+    INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                CASE-FLAG +,
+                NUMBER-FLAG + ],
+    DTR case-common-noun-lex-rule-super &
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      CASE-FLAG +,
+                      NUMBER-FLAG + ] ] ].
+
+;n-bar-predicate-rule := unary-phrase & nocoord & tense-adjective-rule-dtr &
+n-bar-predicate-rule := unary-phrase & nocoord &
+  [ SYNSEM.LOCAL.CAT [ HEAD verb,
+                       VAL [ COMPS < >,
+                             SUBJ < [ LOCAL [ CONT.HOOK.INDEX #arg1,
+                                              CAT [ HEAD noun & [ CASE nom ],
+                                                    VAL.SPR < > ] ] ] > ] ],
+    C-CONT [ HOOK [ LTOP #ltop,
+            INDEX #index,
+            XARG #arg1 ],
+         RELS <! arg12-ev-relation &
+           [ PRED "_be_v_id_rel",
+             LBL #ltop,
+             ARG0 #index,
+             ARG1 #arg1,
+             ARG2 #arg2 ],
+           quant-relation &
+           [ PRED "exist_q_rel",
+             ARG0 #arg2,
+             RSTR #harg ] !>,
+         HCONS <! qeq & [ HARG #harg, LARG #larg ] !> ],
+    ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD noun,
+                                  VAL.SPR < > ],
+                CONT.HOOK [ INDEX #arg2,
+                            LTOP #larg ] ] ] > ].
 
 ;polarity-verb-lex-rule-super := agreement-verb-rule-dtr & aspect-verb-rule-dtr & lex-rule & tense-verb-rule-dtr &
 polarity-verb-lex-rule-super := aspect-verb-rule-dtr & lex-rule &
-  [ INFLECTED [ POLARITY-VERB-FLAG +,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
+  [ INFLECTED [ POLARITY-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                TENSE-FLAG #tense-flag,
+                ASPECT-FLAG #aspect-flag,
+                AGREEMENT-FLAG #agreement-flag,
+                CASE-FLAG #case-flag,
+                NUMBER-FLAG #number-flag ],
     DTR polarity-verb-rule-dtr &
-        [ INFLECTED [ TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      TENSE-FLAG #tense-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      AGREEMENT-FLAG #agreement-flag,
+                      CASE-FLAG #case-flag,
+                      NUMBER-FLAG #number-flag ] ] ].
 
 ; This adds negative semantics to the verb's
 ; RELS list.
 
 neg-lex-rule-lex-rule := cont-change-only-lex-rule & infl-lex-rule & polarity-verb-lex-rule-super &
-  [ INFLECTED.NEG-LEX-RULE-FLAG +,
-    C-CONT [ HOOK [ XARG #xarg,
+  [ C-CONT [ HOOK [ XARG #xarg,
                     LTOP #ltop,
                     INDEX #ind ],
              RELS <! event-relation &
@@ -972,7 +1112,8 @@ neg-lex-rule-lex-rule := cont-change-only-lex-rule & infl-lex-rule & polarity-ve
              HCONS <! qeq &
                       [ HARG #harg,
                         LARG #larg ] !> ],
-    SYNSEM.LKEYS #lkeys,
+    SYNSEM [ LKEYS #lkeys,
+             LOCAL.CAT.HEAD.NEG + ],
     DTR.SYNSEM [ LKEYS #lkeys,
                  LOCAL [ CONT.HOOK [ XARG #xarg,
                                      INDEX #ind,
@@ -980,47 +1121,32 @@ neg-lex-rule-lex-rule := cont-change-only-lex-rule & infl-lex-rule & polarity-ve
                          CAT.HEAD verb ] ] ].
 
 pos-lex-rule-lex-rule := add-only-no-ccont-rule & const-lex-rule & polarity-verb-lex-rule-super &
-  [ INFLECTED.NEG-LEX-RULE-FLAG #neg-lex-rule,
-    DTR.INFLECTED.NEG-LEX-RULE-FLAG #neg-lex-rule ].
+  [ SYNSEM.LOCAL.CAT.HEAD.NEG - ].
 
 ;aspect-verb-lex-rule-super := add-only-no-ccont-rule & agreement-verb-rule-dtr & tense-verb-rule-dtr &
 aspect-verb-lex-rule-super := add-only-no-ccont-rule & tense-verb-rule-dtr &
-  [ INFLECTED [ ASPECT-VERB-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
+  [ INFLECTED [ ASPECT-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                TENSE-FLAG #tense-flag,
+                AGREEMENT-FLAG #agreement-flag,
+                CASE-FLAG #case-flag,
+                NUMBER-FLAG #number-flag,
+                POLARITY-FLAG #polarity-flag ],
     DTR aspect-verb-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      TENSE-FLAG #tense-flag,
+                      AGREEMENT-FLAG #agreement-flag,
+                      CASE-FLAG #case-flag,
+                      NUMBER-FLAG #number-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
+
+hab-lex-rule-lex-rule := aspect-verb-lex-rule-super & infl-lex-rule &
+  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT habitual,
+                   CAT.HEAD.NEG - ] ].
 
 neg-hab-lex-rule-lex-rule := aspect-verb-lex-rule-super & const-lex-rule &
-  [ DTR.INFLECTED.NEG-LEX-RULE-FLAG +,
-    SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT habitual ].
+  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.E.ASPECT habitual,
+                   CAT.HEAD.NEG + ] ].
 
 impf-lex-rule-lex-rule := aspect-verb-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT imperfective ].
@@ -1028,54 +1154,32 @@ impf-lex-rule-lex-rule := aspect-verb-lex-rule-super & infl-lex-rule &
 pf-lex-rule-lex-rule := aspect-verb-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT perfective ].
 
-hab-lex-rule-lex-rule := aspect-verb-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT habitual ].
-
 prsp-lex-rule-lex-rule := aspect-verb-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT prospective ].
 
 tense-verb-lex-rule-super := add-only-no-ccont-rule &
-  [ INFLECTED [ TENSE-VERB-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ],
+  [ INFLECTED [ TENSE-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                ASPECT-FLAG #aspect-flag,
+                AGREEMENT-FLAG #agreement-flag,
+                CASE-FLAG #case-flag,
+                NUMBER-FLAG #number-flag,
+                POLARITY-FLAG #polarity-flag ],
     DTR tense-verb-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ] ] ].
-;  [ INFLECTED.TENSE-VERB-FLAG +,
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      AGREEMENT-FLAG #agreement-flag,
+                      CASE-FLAG #case-flag,
+                      NUMBER-FLAG #number-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
+;  [ INFLECTED.TENSE-FLAG +,
 ;    DTR tense-verb-rule-dtr ].
 
 pre-aux-lex-rule-lex-rule := const-lex-rule & tense-verb-lex-rule-super &
   [ SYNSEM.LOCAL.CAT.HEAD.FORM nonfinite ].
 
 no-aux-lex-rule-lex-rule := agreement-verb-rule-dtr & tense-verb-lex-rule-super &
-  [ SYNSEM.LOCAL.CAT.HEAD.FORM finite,
-    INFLECTED.AGREEMENT-VERB-FLAG - ].
+  [ SYNSEM.LOCAL.CAT.HEAD.FORM finite ].
 
 npst-lex-rule-lex-rule := const-lex-rule & no-aux-lex-rule-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE nonpast ].
@@ -1084,38 +1188,20 @@ pst-lex-rule-lex-rule := infl-lex-rule & no-aux-lex-rule-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE past ].
 
 agreement-verb-lex-rule-super := add-only-no-ccont-rule &
-  [ INFLECTED [ AGREEMENT-VERB-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
+  [ INFLECTED [ AGREEMENT-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                TENSE-FLAG #tense-flag,
+                ASPECT-FLAG #aspect-flag,
+                CASE-FLAG #case-flag,
+                NUMBER-FLAG #number-flag,
+                POLARITY-FLAG #polarity-flag ],
     DTR agreement-verb-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      TENSE-FLAG #tense-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      CASE-FLAG #case-flag,
+                      NUMBER-FLAG #number-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
 
 1sg-lex-rule-lex-rule := agreement-verb-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 1st,
@@ -1141,56 +1227,33 @@ agreement-verb-lex-rule-super := add-only-no-ccont-rule &
                                                                 NUM pl ] ].
 ;;; TODO
 
-;basic-adjective_opt_cop-lex-rule-super := add-only-no-ccont-rule & agreement-adjective-rule-dtr & const-lex-rule & tense-adjective-rule-dtr &
-basic-adjective_opt_cop-lex-rule-super := add-only-no-ccont-rule & const-lex-rule &
-  [ INFLECTED [ BASIC-ADJECTIVE_OPT_COP-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
-    DTR basic-adjective-adj-lex &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+;basic-adjective-role-lex-rule-super := add-only-no-ccont-rule & agreement-adjective-rule-dtr & const-lex-rule & tense-adjective-rule-dtr &
+basic-adjective-role-lex-rule-super := add-only-no-ccont-rule & const-lex-rule &
+  [ INFLECTED [ ADJECTIVE-ROLE-FLAG +,
+                TENSE-FLAG #tense-flag,
+                ASPECT-FLAG #aspect-flag,
+                AGREEMENT-FLAG #agreement-flag,
+                CASE-FLAG #case-flag,
+                NUMBER-FLAG #number-flag,
+                POLARITY-FLAG #polarity-flag ],
+    DTR basic-adjective-role-rule-dtr &
+        [ INFLECTED [ TENSE-FLAG #tense-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      AGREEMENT-FLAG #agreement-flag,
+                      CASE-FLAG #case-flag,
+                      NUMBER-FLAG #number-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
 
-;basic-adjective_adj_comp-lex-rule := basic-adjective_opt_cop-lex-rule-super & stative-pred-lex-rule &
+;basic-adjective_adj_comp-lex-rule := basic-adjective-role-lex-rule-super & stative-pred-lex-rule &
 ;  [ SYNSEM.LOCAL.CAT.HEAD [ MOD < >,
 ;                            PRD + ] ].
-;;    INFLECTED.TENSE-ADJECTIVE-FLAG - ].
-;;                            PRD - ] ].
 
-;basic-adjective_stative_pred-lex-rule := basic-adjective_opt_cop-lex-rule-super & stative-pred-lex-rule &
-basic-adjective_stative_pred-lex-rule := basic-adjective_opt_cop-lex-rule-super & stative-pred-lex-rule & tense-adjective-rule-dtr &
+basic-adjective-pred-role-lex-rule := basic-adjective-role-lex-rule-super & stative-pred-lex-rule & tense-adjective-rule-dtr &
   [ SYNSEM.LOCAL.CAT.HEAD [ MOD < >,
-                            PRD + ],
-    INFLECTED.TENSE-ADJECTIVE-FLAG - ].
-;                            PRD - ] ].
+                            PRD + ] ].
 
-;basic-adjective_attr-lex-rule := attr-adj-lex-rule & const-lex-rule &
-basic-adjective_attr-lex-rule := attr-adj-lex-rule & basic-adjective_opt_cop-lex-rule-super &
+;basic-adjective-attr-role-lex-rule := attr-adj-lex-rule & const-lex-rule &
+basic-adjective-attr-role-lex-rule := attr-adj-lex-rule & basic-adjective-role-lex-rule-super &
   [ SYNSEM.LOCAL.CAT [ VAL.SUBJ < >,
                        HEAD.PRD -,
                        POSTHEAD - ] ].
@@ -1199,45 +1262,31 @@ basic-adjective_attr-lex-rule := attr-adj-lex-rule & basic-adjective_opt_cop-lex
 ;  [ SYNSEM.LOCAL.CAT [ VAL [ SUBJ < >, SPR < >, COMPS < >, SPEC < > ],
 
 tense-adjective-lex-rule-super := add-only-no-ccont-rule &
-  [ INFLECTED [ TENSE-ADJECTIVE-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
+  [ INFLECTED [ TENSE-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                ASPECT-FLAG #aspect-flag,
+                AGREEMENT-FLAG #agreement-flag,
+                CASE-FLAG #case-flag,
+                NUMBER-FLAG #number-flag,
+                POLARITY-FLAG #polarity-flag ],
     DTR tense-adjective-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      AGREEMENT-FLAG #agreement-flag,
+                      CASE-FLAG #case-flag,
+                      NUMBER-FLAG #number-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
+
+;;; TODO: ugh, okay, so right now pre-aux adjectives can take subjects
+;;;;;;;;; and that's a problem and I don't know how to stop it
 
 pre-aux-adj-lex-rule-lex-rule := const-lex-rule & tense-adjective-lex-rule-super &
   [ SYNSEM.LOCAL.CAT.HEAD.FORM nonfinite ].
+;  [ SYNSEM.LOCAL.CAT [ HEAD.FORM nonfinite,
+;                       VAL.SUBJ < > ] ].
 
 no-aux-adj-lex-rule-lex-rule := agreement-adjective-rule-dtr & tense-adjective-lex-rule-super &
-  [ SYNSEM.LOCAL.CAT.HEAD.FORM finite,
-    INFLECTED.AGREEMENT-ADJECTIVE-FLAG - ].
+  [ SYNSEM.LOCAL.CAT.HEAD.FORM finite ].
 
 npst-adj-lex-rule-lex-rule := const-lex-rule & no-aux-adj-lex-rule-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE nonpast ].
@@ -1246,38 +1295,20 @@ pst-adj-lex-rule-lex-rule := infl-lex-rule & no-aux-adj-lex-rule-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE past ].
 
 agreement-adjective-lex-rule-super := add-only-no-ccont-rule &
-  [ INFLECTED [ AGREEMENT-ADJECTIVE-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
+  [ INFLECTED [ AGREEMENT-FLAG +,
+                ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                TENSE-FLAG #tense-flag,
+                ASPECT-FLAG #aspect-flag,
+                CASE-FLAG #case-flag,
+                NUMBER-FLAG #number-flag,
+                POLARITY-FLAG #polarity-flag ],
     DTR agreement-adjective-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+        [ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+                      TENSE-FLAG #tense-flag,
+                      ASPECT-FLAG #aspect-flag,
+                      CASE-FLAG #case-flag,
+                      NUMBER-FLAG #number-flag,
+                      POLARITY-FLAG #polarity-flag ] ] ].
 
 1sg-adj-lex-rule-lex-rule := agreement-adjective-lex-rule-super & infl-lex-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.XARG.PNG [ PER 1st,
@@ -1302,201 +1333,6 @@ agreement-adjective-lex-rule-super := add-only-no-ccont-rule &
   [ SYNSEM.LOCAL.CONT.HOOK.XARG.PNG [ PER 3rd,
                                       NUM pl ] ].
 
-;polarity-copula-lex-rule-super := add-only-no-ccont-rule & agreement-copula-rule-dtr & aspect-copula-rule-dtr & tense-copula-rule-dtr &
-polarity-copula-lex-rule-super := add-only-no-ccont-rule & aspect-copula-rule-dtr &
-  [ INFLECTED [ POLARITY-COPULA-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                POSS-FLAG #poss,
-                CASE-COMMON-NOUN-FLAG #case-common-noun ],
-    DTR positive-copula-cop-lex &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      POSS-FLAG #poss,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun ] ] ].
-
-neg-cop-lex-rule-lex-rule := infl-lex-rule & polarity-copula-lex-rule-super &
-  [ INFLECTED.NEG-COP-LEX-RULE-FLAG + ].
-
-pos-cop-lex-rule-lex-rule := const-lex-rule & polarity-copula-lex-rule-super &
-  [ INFLECTED.NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-    DTR.INFLECTED.NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ].
-
-;aspect-copula-lex-rule-super := add-only-no-ccont-rule & agreement-copula-rule-dtr & tense-copula-rule-dtr &
-aspect-copula-lex-rule-super := add-only-no-ccont-rule & tense-copula-rule-dtr &
-  [ INFLECTED [ ASPECT-COPULA-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ],
-    DTR aspect-copula-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ] ] ].
-
-neg-hab-cop-lex-rule-lex-rule := aspect-copula-lex-rule-super & const-lex-rule &
-  [ DTR.INFLECTED.NEG-COP-LEX-RULE-FLAG +,
-    SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT habitual ].
-
-impf-cop-lex-rule-lex-rule := aspect-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT imperfective ].
-
-pf-cop-lex-rule-lex-rule := aspect-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT perfective ].
-
-hab-cop-lex-rule-lex-rule := aspect-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT habitual ].
-
-prsp-cop-lex-rule-lex-rule := aspect-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT prospective ].
-
-tense-copula-lex-rule-super := add-only-no-ccont-rule &
-  [ INFLECTED [ TENSE-COPULA-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                AGREEMENT-COPULA-FLAG #agreement-copula,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                ASPECT-COPULA-FLAG #aspect-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ],
-    DTR tense-copula-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      AGREEMENT-COPULA-FLAG #agreement-copula,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      ASPECT-COPULA-FLAG #aspect-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule ] ] ].
-
-pre-aux-cop-lex-rule-lex-rule := const-lex-rule & tense-copula-lex-rule-super &
-  [ SYNSEM.LOCAL.CAT.HEAD.FORM nonfinite ].
-
-no-aux-cop-lex-rule-lex-rule := agreement-copula-rule-dtr & tense-copula-lex-rule-super &
-  [ SYNSEM.LOCAL.CAT.HEAD.FORM finite,
-    INFLECTED.AGREEMENT-COPULA-FLAG - ].
-
-npst-cop-lex-rule-lex-rule := const-lex-rule & no-aux-cop-lex-rule-lex-rule &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE nonpast ].
-
-pst-cop-lex-rule-lex-rule := infl-lex-rule & no-aux-cop-lex-rule-lex-rule &
-  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.TENSE past ].
-
-agreement-copula-lex-rule-super := add-only-no-ccont-rule &
-  [ INFLECTED [ AGREEMENT-COPULA-FLAG +,
-                NEG-LEX-RULE-FLAG #neg-lex-rule,
-                TENSE-ADJECTIVE-FLAG #tense-adjective,
-                BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                TENSE-VERB-FLAG #tense-verb,
-                AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                ASPECT-VERB-FLAG #aspect-verb,
-                AGREEMENT-VERB-FLAG #agreement-verb,
-                CASE-COMMON-NOUN-FLAG #case-common-noun,
-                POSS-FLAG #poss,
-                NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                POLARITY-VERB-FLAG #polarity-verb,
-                POLARITY-COPULA-FLAG #polarity-copula,
-                TENSE-COPULA-FLAG #tense-copula,
-                NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                ASPECT-COPULA-FLAG #aspect-copula ],
-    DTR agreement-copula-rule-dtr &
-        [ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-                      TENSE-ADJECTIVE-FLAG #tense-adjective,
-                      BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-                      TENSE-VERB-FLAG #tense-verb,
-                      AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-                      ASPECT-VERB-FLAG #aspect-verb,
-                      AGREEMENT-VERB-FLAG #agreement-verb,
-                      CASE-COMMON-NOUN-FLAG #case-common-noun,
-                      POSS-FLAG #poss,
-                      NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-                      POLARITY-VERB-FLAG #polarity-verb,
-                      POLARITY-COPULA-FLAG #polarity-copula,
-                      TENSE-COPULA-FLAG #tense-copula,
-                      NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-                      ASPECT-COPULA-FLAG #aspect-copula ] ] ].
-
-1sg-cop-lex-rule-lex-rule := agreement-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 1st,
-                                                                NUM sg ] ].
-
-1pl-cop-lex-rule-lex-rule := agreement-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 1st,
-                                                                NUM pl ] ].
-
-2sg-cop-lex-rule-lex-rule := agreement-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 2nd,
-                                                                NUM sg ] ].
-
-2pl-cop-lex-rule-lex-rule := agreement-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 2nd,
-                                                                NUM pl ] ].
-
-3sgpl-cop-lex-rule-lex-rule := agreement-copula-lex-rule-super & const-lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG.PER 3rd ].
-
-3pl-cop-lex-rule-lex-rule := agreement-copula-lex-rule-super & infl-lex-rule &
-  [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CONT.HOOK.INDEX.PNG [ PER 3rd,
-                                                                NUM pl ] ].
-
 ;;;;;;;;;;;;;;;;;;;
 ;;; Phrasal Types
 ;;;;;;;;;;;;;;;;;;;
@@ -1511,15 +1347,18 @@ head-initial-head-nexus := head-initial &
 head-final-head-nexus := head-final &
   [ SYNSEM.ATTACH rmod ].
 
-head-subj-phrase := decl-head-subj-phrase & head-initial-head-nexus.
+head-subj-phrase := decl-head-subj-phrase & head-initial-head-nexus &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD [ INIT +,
+                                     FORM finite ] ].
 
-subj-head-phrase := decl-head-subj-phrase & head-final-head-nexus.
+subj-head-phrase := decl-head-subj-phrase & head-final-head-nexus &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD [ INIT -,
+                                     FORM finite ] ].
 
 ; The head of head-comp-phrase can't be: ['adp']
 
 head-comp-phrase := basic-head-1st-comp-phrase & head-initial-head-nexus &
-  [ SYNSEM.LOCAL.CAT.HEAD +nvjrcdmo &
-                          [ AUX - ] ].
+  [ SYNSEM.LOCAL.CAT.HEAD +nvjrcdmo & [ AUX - ] ].
 
 comp-head-phrase := basic-head-1st-comp-phrase & head-final-head-nexus.
 
@@ -1534,37 +1373,29 @@ comp-head-phrase-2 := basic-head-2nd-comp-phrase & head-final-head-nexus.
 
 bare-np-phrase := basic-bare-np-phrase &
   [ C-CONT.RELS <! [ PRED "exist_q_rel" ] !> ].
-;  [ C-CONT.RELS <! [ PRED "exist_q_rel" ] !>,
-;    SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST activ-or-more ].
 
-;  [ HEAD-DTR personal-pronoun-lex ].
 bare-pronoun-np-phrase := bare-np-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON + ].
-;  [ HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX [ COG-ST activ-or-more,
-;                                            SPECI + ] ].
 
-;  [ HEAD-DTR common-noun-lex ].
 bare-common-np-phrase := bare-np-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON -,
     SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST uniq+fam+act ].
-;  [ HEAD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST uniq+fam+act,
-;    SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST uniq+fam+act ].
 
 ;basic-bare-np-phrase := head-only & head-valence-phrase &
 ;bare-poss-np-phrase := bare-np-phrase & 
 bare-poss-np-phrase := head-only & head-valence-phrase &
   [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
-			   SUBJ < >,
-			   COMPS < >,
-			   SPEC < > ],
+               SUBJ < >,
+               COMPS < >,
+               SPEC < > ],
     HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD noun,
-				  VAL [ SPR < unexpressed & 
-				      	      [ LOCAL.CAT [ HEAD noun & [ CASE gen ] ],
-						OPT + ] >,
-					SUBJ < >,
-					COMPS < > ] ],
-			    CONT.HOOK [ INDEX #index,
-					        LTOP #larg ] ],
+                  VAL [ SPR < unexpressed & 
+                                [ LOCAL.CAT [ HEAD noun & [ CASE gen ] ],
+                        OPT + ] >,
+                    SUBJ < >,
+                    COMPS < > ] ],
+                CONT.HOOK [ INDEX #index,
+                            LTOP #larg ] ],
                 LKEYS.ALTKEYREL #altkeyrel ],
     C-CONT [ RELS <! quant-relation &
                      [ PRED "exist_q_rel",
@@ -1572,24 +1403,51 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
                        RSTR #harg,
                        BODY #larg ],
                      quant-relation &
-		             [ PRED "exist_q_rel",
+                     [ PRED "exist_q_rel",
                        ARG0 #arg2,
-		               RSTR #harg2 ],
+                       RSTR #harg2 ],
                      #altkeyrel & noun-relation &
-		             [ PRED "pron_rel",			 
-		               LBL #larg2,
-		               ARG0 #arg2 & [ COG-ST activ-or-more,
-				                      SPECI + ] ] !>,
-	     HCONS <! qeq & 
-		          [ HARG #harg,
-		            LARG #larg ],
+                     [ PRED "pron_rel",             
+                       LBL #larg2,
+                       ARG0 #arg2 & [ COG-ST activ-or-more,
+                                      SPECI + ] ] !>,
+         HCONS <! qeq & 
+                  [ HARG #harg,
+                    LARG #larg ],
                   qeq &
                   [ HARG #harg2,
                     LARG #larg2 ] !>,
-	     ICONS <! !>,
-	     HOOK [ INDEX #index ] ] ].
+         ICONS <! !>,
+         HOOK [ INDEX #index ] ] ].
 ;  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.CASE gen ].
 ;  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM sg ] ].
+
+;;; TODO: NP non-branching phrase rule
+
+;n-bar-predicate-rule := unary-phrase & nocoord &
+;  [ SYNSEM.LOCAL.CAT [ HEAD verb,
+;               VAL [ COMPS < >,
+;                 SUBJ < [ LOCAL [ CONT.HOOK.INDEX #arg1,
+;                          CAT [ HEAD noun,
+;                          VAL.SPR < > ] ] ] > ] ],
+;    C-CONT [ HOOK [ LTOP #ltop,
+;            INDEX #index,
+;            XARG #arg1 ],
+;         RELS <! arg12-ev-relation &
+;           [ PRED "_be_v_id_rel",
+;             LBL #ltop,
+;             ARG0 #index,
+;             ARG1 #arg1,
+;             ARG2 #arg2 ],
+;           quant-relation &
+;           [ PRED "exist_q_rel",
+;             ARG0 #arg2,
+;             RSTR #harg ] !>,
+;         HCONS <! qeq & [ HARG #harg, LARG #larg ] !> ],
+;    ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD noun,
+;                  VAL.SPR cons ],
+;                CONT.HOOK [ INDEX #arg2,
+;                    LTOP #larg ]]] > ].
 
 ;;;;;;;;;;;;;;;;;;
 ;;; Coordination
@@ -1597,7 +1455,7 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
 
 ;;; TODO: maybe fixed some ambiguity, hopefully???
 
-unary-headlike-coord-phrase := bottom-coord-phrase & 
+bottom-coord-phrase :+
   [ SYNSEM.LOCAL.CAT.HEAD #head,
     NONCONJ-DTR.SYNSEM.LOCAL.CAT.HEAD #head ].
 
@@ -1605,12 +1463,15 @@ binary-headlike-coord-phrase := coord-phrase &
   [ SYNSEM.LOCAL.CAT.HEAD #head,
     LCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD #head,
     RCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD #head ].
-;  [ SYNSEM.LOCAL.CAT.HEAD [ CASE #case,
-;                            PRON #pron ],
-;    LCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD [ CASE #case,
-;                                       PRON #pron ],
-;    RCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD [ CASE #case,
-;                                       PRON #pron ] ].
+
+basic-n-top-coord-rule :+ binary-headlike-coord-phrase.
+basic-n-mid-coord-rule :+ binary-headlike-coord-phrase.
+basic-np-top-coord-rule :+ binary-headlike-coord-phrase.
+basic-np-mid-coord-rule :+ binary-headlike-coord-phrase.
+basic-vp-top-coord-rule :+ binary-headlike-coord-phrase.
+basic-vp-mid-coord-rule :+ binary-headlike-coord-phrase.
+basic-s-top-coord-rule :+ binary-headlike-coord-phrase.
+basic-s-mid-coord-rule :+ binary-headlike-coord-phrase.
 
 ;;; Feature Resolution Rules
 
@@ -1651,172 +1512,172 @@ pass-up-png-coord-rule := bottom-coord-phrase &
 
 ;;; Coordination Strategy 1
 
-n1-1st-any-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-1st-any-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-1st-any-1st-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-1st-any-1st-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-2nd-2nd-2nd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-2nd-2nd-2nd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-2nd-3rd-2nd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-2nd-3rd-2nd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-3rd-3rd-3rd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-3rd-3rd-3rd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-any-1st-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-any-1st-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-any-1st-1st-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-any-1st-1st-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & monopoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-3rd-2nd-2nd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n1-3rd-2nd-2nd-any-any-pl-mid-coord-rule := basic-n-mid-coord-rule & monopoly-mid-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-n1-bottom-coord-rule := conj-first-bottom-coord-rule & n-bottom-coord-phrase & pass-up-png-coord-rule & unary-headlike-coord-phrase &
+n1-bottom-coord-rule := conj-first-bottom-coord-rule & n-bottom-coord-phrase & pass-up-png-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
 ;;; Coordination Strategy 1
 
-np1-1st-any-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-1st-any-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-1st-any-1st-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-1st-any-1st-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-2nd-2nd-2nd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-2nd-2nd-2nd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-2nd-3rd-2nd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-2nd-3rd-2nd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-3rd-3rd-3rd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-3rd-3rd-3rd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-any-1st-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-any-1st-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-any-1st-1st-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-any-1st-1st-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & monopoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-3rd-2nd-2nd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np1-3rd-2nd-2nd-any-any-pl-mid-coord-rule := basic-np-mid-coord-rule & monopoly-mid-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
-np1-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase & pass-up-png-coord-rule & unary-headlike-coord-phrase &
+np1-bottom-coord-rule := conj-first-bottom-coord-rule & np-bottom-coord-phrase & pass-up-png-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "1" ].
 
 ;;; Feature Resolution Rules
 
 ;;; Coordination Strategy 2
 
-n2-1st-any-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n2-1st-any-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-n2-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n2-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-n2-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n2-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-n2-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n2-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-n2-any-1st-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n2-any-1st-1st-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-n2-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+n2-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-n-top-coord-rule & apoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-n2-bottom-coord-rule := unary-bottom-coord-rule & n-bottom-coord-phrase & pass-up-png-coord-rule & unary-headlike-coord-phrase &
+n2-bottom-coord-rule := unary-bottom-coord-rule & n-bottom-coord-phrase & pass-up-png-coord-rule &
   [ SYNSEM.LOCAL [ COORD-STRAT "2",
                    COORD-REL.PRED "_and_coord_rel" ] ].
 
 ;;; Coordination Strategy 2
 
-np2-1st-any-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np2-1st-any-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 1st-any-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-np2-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np2-2nd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 2nd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-np2-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np2-2nd-3rd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 2nd-3rd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-np2-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np2-3rd-3rd-3rd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 3rd-3rd-3rd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-np2-any-1st-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np2-any-1st-1st-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & any-1st-1st-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-np2-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule & binary-headlike-coord-phrase &
+np2-3rd-2nd-2nd-any-any-pl-top-coord-rule := basic-np-top-coord-rule & apoly-top-coord-rule & 3rd-2nd-2nd-per-coord-rule & any-any-pl-num-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "2" ].
 
-np2-bottom-coord-rule := unary-bottom-coord-rule & np-bottom-coord-phrase & pass-up-png-coord-rule & unary-headlike-coord-phrase &
+np2-bottom-coord-rule := unary-bottom-coord-rule & np-bottom-coord-phrase & pass-up-png-coord-rule &
   [ SYNSEM.LOCAL [ COORD-STRAT "2",
                    COORD-REL.PRED "_and_coord_rel" ] ].
 
 ;;; Coordination Strategy 3
 
-vp3-top-coord-rule := basic-vp-top-coord-rule & monopoly-top-coord-rule & binary-headlike-coord-phrase &
+vp3-top-coord-rule := basic-vp-top-coord-rule & monopoly-top-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "3" ].
 
-vp3-mid-coord-rule := basic-vp-mid-coord-rule & monopoly-mid-coord-rule & binary-headlike-coord-phrase &
+vp3-mid-coord-rule := basic-vp-mid-coord-rule & monopoly-mid-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "3" ].
 
-vp3-bottom-coord-rule := conj-first-bottom-coord-rule & vp-bottom-coord-phrase & unary-headlike-coord-phrase &
+vp3-bottom-coord-rule := conj-first-bottom-coord-rule & vp-bottom-coord-phrase &
   [ SYNSEM.LOCAL.COORD-STRAT "3" ].
 
 ;;; Coordination Strategy 3
 
-s3-top-coord-rule := basic-s-top-coord-rule & monopoly-top-coord-rule & binary-headlike-coord-phrase &
+s3-top-coord-rule := basic-s-top-coord-rule & monopoly-top-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "3" ].
 
-s3-mid-coord-rule := basic-s-mid-coord-rule & monopoly-mid-coord-rule & binary-headlike-coord-phrase &
+s3-mid-coord-rule := basic-s-mid-coord-rule & monopoly-mid-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "3" ].
 
-s3-bottom-coord-rule := conj-first-bottom-coord-rule & s-bottom-coord-phrase & unary-headlike-coord-phrase &
+s3-bottom-coord-rule := conj-first-bottom-coord-rule & s-bottom-coord-phrase &
   [ SYNSEM.LOCAL.COORD-STRAT "3" ].
 
 ;;; Coordination Strategy 4
 
-vp4-top-coord-rule := basic-vp-top-coord-rule & apoly-top-coord-rule & binary-headlike-coord-phrase &
+vp4-top-coord-rule := basic-vp-top-coord-rule & apoly-top-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "4" ].
 
-vp4-bottom-coord-rule := unary-bottom-coord-rule & vp-bottom-coord-phrase & unary-headlike-coord-phrase &
+vp4-bottom-coord-rule := unary-bottom-coord-rule & vp-bottom-coord-phrase &
   [ SYNSEM.LOCAL [ COORD-STRAT "4",
                    COORD-REL.PRED "_and_coord_rel" ] ].
 
 ;;; Coordination Strategy 4
 
-s4-top-coord-rule := basic-s-top-coord-rule & apoly-top-coord-rule & binary-headlike-coord-phrase &
+s4-top-coord-rule := basic-s-top-coord-rule & apoly-top-coord-rule &
   [ SYNSEM.LOCAL.COORD-STRAT "4" ].
 
-s4-bottom-coord-rule := unary-bottom-coord-rule & s-bottom-coord-phrase & unary-headlike-coord-phrase &
+s4-bottom-coord-rule := unary-bottom-coord-rule & s-bottom-coord-phrase &
   [ SYNSEM.LOCAL [ COORD-STRAT "4",
                    COORD-REL.PRED "_and_coord_rel" ] ].

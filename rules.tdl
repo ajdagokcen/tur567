@@ -23,6 +23,8 @@ head-spec := head-spec-phrase.
 
 spec-head := spec-head-phrase.
 
+;n-bar-predicate := n-bar-predicate-rule.
+
 ;bare-np := bare-np-phrase.
 
 bare-pronoun-np := bare-pronoun-np-phrase.

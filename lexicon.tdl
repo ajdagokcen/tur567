@@ -611,18 +611,6 @@ y := acc-tr-verb-lex &
   [ STEM < "y" >,
     SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
 
-de := acc-tr-verb-lex &
-  [ STEM < "de" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
-
-d := acc-tr-verb-lex &
-  [ STEM < "d" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
-
-sor := acc-tr-verb-lex &
-  [ STEM < "sor" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
-
 inan := dat-tr-verb-lex &
   [ STEM < "inan" >,
     SYNSEM.LKEYS.KEYREL.PRED "_believe_v_rel" ].
@@ -647,6 +635,40 @@ ilgilen := com-tr-verb-lex &
   [ STEM < "ilgilen" >,
     SYNSEM.LKEYS.KEYREL.PRED "_care_v_rel" ].
 
+ol_1 := positive-nom-tr-verb-lex &
+  [ STEM < "ol" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_be_v_id_rel" ].
+
+değil_1 := negative-nom-tr-verb-lex &
+  [ STEM < "değil" >,
+    SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
+		           ALTKEYREL.PRED "neg_rel" ] ].
+
+de := declarative-comp-verb-lex &
+  [ STEM < "de" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+
+d := declarative-comp-verb-lex &
+  [ STEM < "d" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+
+sor := interrogative-comp-verb-lex &
+  [ STEM < "sor" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
+
+düşün := declarative-comp-verb-lex &
+  [ STEM < "düşün" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_think_v_rel" ].
+
+ki := declarative-complementizer-lex &
+  [ STEM < "ki" > ].
+
+diye_1 := declarative-complementizer-lex &
+  [ STEM < "diye" > ].
+
+diye_2 := interrogative-complementizer-lex &
+  [ STEM < "diye" > ].
+
 ;;; Auxiliaries
 
 mi := interrogative-aux-lex &
@@ -663,11 +685,12 @@ mü := interrogative-aux-lex &
 
 ;;; Copulas
 
-ol := positive-copula-cop-lex &
+ol_2 := positive-copula-cop-lex &
   [ STEM < "ol" > ].
 
-değil := negative-copula-cop-lex &
-  [ STEM < "değil" > ].
+değil_2 := negative-copula-cop-lex &
+  [ STEM < "değil" >,
+    SYNSEM.LKEYS.KEYREL.PRED "neg_rel" ].
 
 ;;; Determiners
 

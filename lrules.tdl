@@ -17,26 +17,14 @@ pre-aux-lex-rule-lex := pre-aux-lex-rule-lex-rule.
 
 3sgpl-lex-rule-lex := 3sgpl-lex-rule-lex-rule.
 
-basic-noun_stative_pred-lex := basic-noun_stative_pred-lex-rule.
+;basic-noun-pred-role-lex := basic-noun-pred-role-lex-rule.
 
-;basic-adjective_adj_comp-lex := basic-adjective_adj_comp-lex-rule.
+basic-adjective-pred-role-lex := basic-adjective-pred-role-lex-rule.
 
-basic-adjective_stative_pred-lex := basic-adjective_stative_pred-lex-rule.
-
-basic-adjective_attr-lex := basic-adjective_attr-lex-rule.
+basic-adjective-attr-role-lex := basic-adjective-attr-role-lex-rule.
 
 npst-adj-lex-rule-lex := npst-adj-lex-rule-lex-rule.
 
 pre-aux-adj-lex-rule-lex := pre-aux-adj-lex-rule-lex-rule.
 
 3sgpl-adj-lex-rule-lex := 3sgpl-adj-lex-rule-lex-rule.
-
-pos-cop-lex-rule-lex := pos-cop-lex-rule-lex-rule.
-
-neg-hab-cop-lex-rule-lex := neg-hab-cop-lex-rule-lex-rule.
-
-npst-cop-lex-rule-lex := npst-cop-lex-rule-lex-rule.
-
-pre-aux-cop-lex-rule-lex := pre-aux-cop-lex-rule-lex-rule.
-
-3sgpl-cop-lex-rule-lex := 3sgpl-cop-lex-rule-lex-rule.
