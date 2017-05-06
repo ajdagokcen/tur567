@@ -8,6 +8,17 @@ Lab 6
 
 ####################
 
+##### PART 0 #####
+
+	NOTES
+
+		Some simpler sentences, like basic intransitive verbs, do appear to "generate," though 
+		they don't come up with anything other than the given variant, albeit usually a 
+		(unsurprising) phonological bastardization thereof.
+
+		Sentences involving copulas and such have too many edges and don't generate, 
+		unfortunately.
+
 ##### PART 1, 2, 3, & 4 #####
 #1:	A descriptive statement of the facts of your language.
 #2:	Illustrative IGT examples from your testsuite.
@@ -99,7 +110,142 @@ Lab 6
 
 		3.	TDL snippets & descriptions
 
+		The interrogative auxiliary is a predicate-less subject raising auxiliary, so it 
+		inherits from the following two types:
+
+			> turkish.tdl
+
+			subj-raise-aux := aux-lex & trans-first-arg-raising-lex-item &
+			  [ SYNSEM.LOCAL [ CAT.VAL [ SPR < >,
+										 SPEC < >,
+										 COMPS < #comps >,
+										 SUBJ < #subj > ],
+							   CONT.HOOK.XARG #xarg ],
+				ARG-ST < #subj &
+						 [ LOCAL [ CAT [ HEAD +nvp & [ CASE nom ],
+										 VAL [ SUBJ < >,
+											   SPR < >,
+											   SPEC < >,
+											   COMPS < > ] ],
+								   CONT.HOOK.INDEX #xarg ] ],
+						 #comps &
+						 [ LOCAL.CAT [ VAL [ SUBJ < unexpressed >,
+											 COMPS < > ],
+									   HEAD [ FORM nonfinite, RAISED + ] ] ] > ].
+
+			subj-raise-aux-no-pred := subj-raise-aux & raise-sem-lex-item &
+			  [ ARG-ST < [ ],
+						 [ LOCAL.CAT.HEAD.AUX - ] > ].
+
+		And the specific type is interrogative-aux-lex, which introduces the [ SF ques ] 
+		feature:
+
+			> turkish.tdl
+
+			interrogative-aux-lex := subj-raise-aux-no-pred &
+			  [ SYNSEM.LOCAL [ CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD [ FORM nonfinite, RAISED + ],
+							   CONT.HOOK.INDEX.SF ques ] ].
+
+		...instantiated as follows:
+
+			> lexicon.tdl
+
+			mi := interrogative-aux-lex &
+			  [ STEM < "mi" > ].
+
+			mı := interrogative-aux-lex &
+			  [ STEM < "mı" > ].
+
+			mu := interrogative-aux-lex &
+			  [ STEM < "mu" > ].
+
+			mü := interrogative-aux-lex &
+			  [ STEM < "mü" > ].
+
+		The proper inflection of the auxiliary is enforced by the eventual inheritance from 
+		aux-lex, which is a daughter of tense-verb-rule-dtr:
+
+			> turkish.tdl
+
+			aux-lex := verb-lex & tense-verb-rule-dtr &
+			  [ SYNSEM.LOCAL.CAT.HEAD.AUX + ].
+
+		...which is identified as the type of DTR for tense-verb-lex-rule-super, the supertype 
+		for all of the tense rules, and the -dtr rule sets the flag that ensures the 
+		application of said rule is required for the auxiliary to "play" in the syntax:
+
+			> turkish.tdl
+
+			tense-verb-rule-dtr := word-or-lexrule.
+
+			tense-verb-rule-dtr :+ [ INFLECTED.TENSE-FLAG - ].
+
+			tense-verb-lex-rule-super := add-only-no-ccont-rule &
+			  [ SYNSEM.LOCAL.CAT.VAL.SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom, CASE-MARKED + ],
+				INFLECTED [ TENSE-FLAG +,
+							ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+							ASPECT-FLAG #aspect-flag,
+							AGREEMENT-FLAG #agreement-flag,
+							CASE-FLAG #case-flag,
+							NUMBER-FLAG #number-flag,
+							POLARITY-FLAG #polarity-flag ],
+				DTR tense-verb-rule-dtr &
+					[ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+								  ASPECT-FLAG #aspect-flag,
+								  AGREEMENT-FLAG #agreement-flag,
+								  CASE-FLAG #case-flag,
+								  NUMBER-FLAG #number-flag,
+								  POLARITY-FLAG #polarity-flag ] ] ].
+
+		In order to ensure that the interrogative auxiliary worked, we did a lot to make sure 
+		inflectional flags were working and in the right places, since it is required that 
+		the auxiliary take a VP complement that is nonfinite, whereas the finite form is 
+		required in other places.  Various *-dtr rules were our friends for this part, like the 
+		tense-verb-rule-dtr shown above.  Here is the full array of them:
+
+			> turkish.tdl
+
+			polarity-verb-rule-dtr := word-or-lexrule.
+			tense-verb-rule-dtr := word-or-lexrule.
+			tense-adjective-rule-dtr := word-or-lexrule.
+			aspect-verb-rule-dtr := word-or-lexrule.
+			agreement-verb-rule-dtr := word-or-lexrule.
+			agreement-adjective-rule-dtr := word-or-lexrule.
+			number-common-noun-rule-dtr := word-or-lexrule.
+			poss-common-noun-rule-dtr := word-or-lexrule.
+			case-rule-dtr := word-or-lexrule.
+			basic-adjective-role-rule-dtr := word-or-lexrule.
+
+			polarity-verb-rule-dtr :+ [ INFLECTED.POLARITY-FLAG - ].
+			tense-verb-rule-dtr :+ [ INFLECTED.TENSE-FLAG - ].
+			tense-adjective-rule-dtr :+ [ INFLECTED.TENSE-FLAG - ].
+			aspect-verb-rule-dtr :+ [ INFLECTED.ASPECT-FLAG - ].
+			agreement-verb-rule-dtr :+ [ INFLECTED.AGREEMENT-FLAG - ].
+			agreement-adjective-rule-dtr :+ [ INFLECTED.AGREEMENT-FLAG - ].
+			number-common-noun-rule-dtr :+ [ INFLECTED.NUMBER-FLAG - ].
+			case-rule-dtr :+ [ INFLECTED.CASE-FLAG - ].
+			basic-adjective-role-rule-dtr :+ [ INFLECTED.ADJECTIVE-ROLE-FLAG - ].
+
+		Properly placed inheritance from these rules is paramount to our morphology working 
+		in all the right places.  It wasn't working last lab, so yes-no questions weren't 
+		working as a result, but now all is as it should be, more or less!
+
 		4.	Problems encountered
+
+		At the moment, matrix yes-no questions are working as desired, with all* of the 
+		sentences in the testsuite that ought to parse parsing, and all those that oughtn't 
+		parse not-parsing.
+
+		*The exception would be the focused question case, which we did not work toward 
+		implementing.
+
+		HEAVY DISCLAIMER: If we do give up the ghost and let there be clitics, then it may be 
+		worthwhile to reanalyze the question auxiliary as a particle in general, and the tense+
+		agreement marking as the same same clitic that allows predicative nouns (and potentially 
+		adjectives), or at least a homophonic clitic to that one.
+
+		We also did not implement a trigger rule for the various forms of the interrogative 
+		auxiliary, though it being semantically empty it does need one.
 
     EMBEDDED COMPLIMENT CLAUSES {emb-d, emb-q}
 
@@ -236,7 +382,220 @@ Lab 6
 
 		3.	TDL snippets & descriptions
 
+		Here is the basic type for complementizers:
+
+			> turkish.tdl
+
+			complementizer-lex-item := raise-sem-lex-item & basic-one-arg &
+			  [ SYNSEM.LOCAL.CAT [ HEAD comp & [ MOD < > ],
+								   VAL [ SPR < >,
+										 SUBJ < >,
+										 COMPS < #comp > ] ],
+				ARG-ST < #comp &
+						 [ LOCAL.CAT [ HEAD verb,
+									   VAL [ SUBJ < >,
+											 COMPS < > ] ] ] > ].
+
+		It is further divided into those that can take declarative complements, and those that 
+		can take interrogative complements:
+
+			> turkish.tdl
+
+			declarative-complementizer-lex := complementizer-lex-item &
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF prop ].
+
+			interrogative-complementizer-lex := complementizer-lex-item &
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques ].
+
+		...and also those that need to precede their complements vs. those that need to follow 
+		them:
+
+			> turkish.tdl
+
+			cp-init-complementizer-lex := complementizer-lex-item &
+			  [ SYNSEM.LOCAL.CAT.HEAD.PRE-COMPS + ].
+
+			cp-final-complementizer-lex := complementizer-lex-item &
+			  [ SYNSEM.LOCAL.CAT.HEAD.PRE-COMPS - ].
+
+		Note the new boolean head feature PRE-COMPS, named so specifically because the use of a 
+		generic INIT rule for all ordering-related limitations resulted in some of the 
+		complementizers creating phrases that couldn't appear after their subjects, since the 
+		complementizers are of course the heads of the CPs.
+
+		Here are the adjusted complement phrasal rules that utilize these features:
+
+			> turkish.tdl
+
+			head-comp-phrase := basic-head-1st-comp-phrase & head-initial-head-nexus &
+			  [ SYNSEM.LOCAL.CAT.HEAD +nvjrcdmo & [ AUX - ],
+				HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-COMPS + ].
+
+			comp-head-phrase := basic-head-1st-comp-phrase & head-final-head-nexus &
+			  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-COMPS - ].
+
+			head-comp-phrase-2 := basic-head-2nd-comp-phrase & head-initial-head-nexus &
+			  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-COMPS + ].
+
+			comp-head-phrase-2 := basic-head-2nd-comp-phrase & head-final-head-nexus &
+			  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-COMPS - ].
+
+		The result is the following types that the lexical entries immediately inherit from:
+
+			> turkish.tdl
+
+			cp-init-declarative-complementizer-lex := declarative-complementizer-lex &
+													  cp-init-complementizer-lex.
+
+			cp-final-declarative-complementizer-lex := declarative-complementizer-lex &
+													   cp-final-complementizer-lex.
+
+			cp-final-interrogative-complementizer-lex := interrogative-complementizer-lex &
+														 cp-final-complementizer-lex.
+
+		...instantiated thusly:
+
+			> lexicon.tdl
+
+			ki := cp-init-declarative-complementizer-lex &
+			  [ STEM < "ki" > ].
+
+			diye_1 := cp-final-declarative-complementizer-lex &
+			  [ STEM < "diye" > ].
+
+			diye_2 := cp-final-interrogative-complementizer-lex &
+			  [ STEM < "diye" > ].
+
+		In order to make use of these, we made a new type of verb that takes clausal complements:
+
+			> turkish.tdl
+
+			clausal-comp-verb-lex := main-verb-lex & clausal-second-arg-trans-lex-item &
+									 polarity-verb-rule-dtr &
+			  [ SYNSEM.LOCAL.CAT.VAL [ COMPS < #comps & 
+											   [ LOCAL.CAT [ HEAD +vc,
+															 VAL [ SUBJ < >,
+																   COMPS < > ] ] ] > ],
+				ARG-ST.REST.FIRST #comps ].
+
+		...split, of course, based on the SF value of the complement:
+
+			> turkish.tdl
+
+			declarative-comp-verb-lex := clausal-comp-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL [ CAT.HEAD comp,
+														 CONT.HOOK.INDEX.SF prop ] ].
+
+			interrogative-comp-verb-lex := clausal-comp-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL [ CAT.HEAD comp,
+														 CONT.HOOK.INDEX.SF ques ] ].
+
+		And lastly, since there is the one verb ("demek"/'say') that can take an finite clausal 
+		complement without a complementizer, we instate one more type for it:
+
+			> turkish.tdl
+
+			sentential-comp-verb-lex := clausal-comp-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD verb ].
+
+		...and populate the lexicon as follows:
+
+			> lexicon.tdl
+
+			de_1 := sentential-comp-verb-lex &
+			  [ STEM < "de" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+
+			d_1 := sentential-comp-verb-lex &
+			  [ STEM < "d" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+
+			de_2 := declarative-comp-verb-lex &
+			  [ STEM < "de" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+
+			d_2 := declarative-comp-verb-lex &
+			  [ STEM < "d" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+
+			bil := declarative-comp-verb-lex &
+			  [ STEM < "bil" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_know_v_rel" ].
+
+			düşün := declarative-comp-verb-lex &
+			  [ STEM < "düşün" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_think_v_rel" ].
+
+			sor := interrogative-comp-verb-lex &
+			  [ STEM < "sor" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_ask_v_rel" ].
+
+		As for the nonfinite participle form... it currently doesn't work, but we did take 
+		steps toward making it do so.  It currently exists in complementary distribution with 
+		the aspect "slot" of the morphology, though we may change this because evidence 
+		suggests that it is more similar in distribution with tense:
+
+			> turkish.tdl
+
+			participle-verb-lex-rule-super := add-only-no-ccont-rule & 
+			                                  case-rule-dtr & poss-common-noun-rule-dtr &
+			  [ SYNSEM.LOCAL.CAT [ HEAD [ FORM nonfinite, RAISED - ],
+								   VAL.SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE gen, CASE-MARKED + ] ],
+				INFLECTED [ ASPECT-FLAG +,
+							ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+							TENSE-FLAG #tense-flag,
+							AGREEMENT-FLAG #agreement-flag,
+							CASE-FLAG #case-flag,
+							NUMBER-FLAG #number-flag,
+							POLARITY-FLAG #polarity-flag ],
+				DTR aspect-verb-rule-dtr &
+					[ INFLECTED [ ADJECTIVE-ROLE-FLAG #adjective-role-flag,
+								  TENSE-FLAG #tense-flag,
+								  AGREEMENT-FLAG #agreement-flag,
+								  CASE-FLAG #case-flag,
+								  NUMBER-FLAG #number-flag,
+								  POLARITY-FLAG #polarity-flag ] ] ].
+
+		Note that this inherits from case-rule-dtr and poss-common-noun-rule-dtr.  The former 
+		is the same rule that applies to nouns to give them case, while the latter is going to 
+		need to change because, while on the surface participles seem to be a part of genitive-
+		possessive compounds, the semantics are different, with the possessor serving the role 
+		of the subject (as show by the subject being [ CASE gen ] in the rule definition 
+		above).
+
+		And there are in fact two forms, corresponding to either a difference in aspect or in 
+		tense -- which is not entirely clear, but we allow it to be aspect because the 
+		alternative would be that we need to change the sense system to include "future" and 
+		"nonfuture" as tenses... no, thanks.
+
+			> turkish.tdl
+
+			pf-part-lex-rule-lex-rule := participle-verb-lex-rule-super & infl-lex-rule &
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT perfective ].
+
+			prsp-part-lex-rule-lex-rule := participle-verb-lex-rule-super & infl-lex-rule &
+			  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.E.ASPECT prospective ].
+
+		These still don't quite work, though, so onto the next section to talk about that!
+
 		4.	Problems encountered
+
+		One issue wit simply feeding the participle to the case rule is that the accusative 
+		cases cannot apply as-is... they have SPECI features, which verbs of course do not 
+		have in the base grammar.
+
+		In addition, any verb that can take a clausal complement should be able to take 
+		participle complements, but we couldn't figure out a clean way to accomplish this 
+		without simply making a separate type for all of the verbs that require complementizers 
+		when finite clauses are embedded.
+
+		The verb "demek," which takes verb-headed (i.e., sentential) complements, does in fact 
+		work with participles as-is.  The event vs ref-ind type class within HOOK seems to be 
+		a hurdle we keep running into with this, without really understanding what it means 
+		other than an issue with using verby things as nouny things.
+
+		We did not get around to implementing trigger rules, though we certainly need them for 
+		the semantically empty complementizers.
 
 	NON-VERBAL PREDICATES [cop]
 
@@ -323,368 +682,333 @@ Lab 6
 			pronoun.1SG.NOM	student
 			"I am a student."
 
+		3.	TDL snippets & descriptions
+
+		Predicative adjectives inherit from the following rule:
+
+			> turkish.tdl
+
+			stative-pred-lex-rule := add-only-no-ccont-rule &
+			  [ SYNSEM.LOCAL [ CAT [ HEAD.PRE-SUBJ -,
+									 VAL.SUBJ < [ LOCAL [ CONT.HOOK.INDEX #xarg,
+														  CAT [ VAL [ SPR < >,
+																	  COMPS < > ],
+																HEAD +nvp & [ CASE nom ] ] ] ] > ],
+							   CONT.HOOK.XARG #xarg ] ].
+
+		...and are shoehorned into their role as predicates rather than attributives like so:
+
+			> turkish.tdl
+
+			basic-adjective-pred-role-lex-rule := basic-adjective-role-lex-rule-super & 
+												  stative-pred-lex-rule & 
+			                                      tense-adjective-rule-dtr &
+			  [ SYNSEM.LOCAL.CAT.HEAD [ MOD < >,
+										PRD + ] ].
+
+		By inheriting from tense-adjective-rule-dtr, the resultant adjectives have a - flag 
+		for tense that can only be resolved by undergoing some subtype of tense-adjective-lex-
+		rule-super.  One subtype of this, of course, is the pre-aux rule which makes the 
+		adjective non-finite and allows it to take an explicit copula:
+
+			> turkish.tdl
+
+			pre-aux-adj-lex-rule-lex-rule := const-lex-rule & tense-adjective-lex-rule-super &
+			  [ SYNSEM.LOCAL.CAT.HEAD [ FORM nonfinite, RAISED + ] ].
+
+		Explicit copulas (which take adjectival complements) inherit from the following type:
+
+			> turkish.tdl
+
+			cop-lex := basic-verb-lex-super & replacement-trans-first-arg-raising-lex-item-2 &
+			  [ SYNSEM.LOCAL [ CAT.VAL [ SUBJ < [ LOCAL [ CONT.HOOK.INDEX #xarg,
+														  CAT [ VAL [ SPR < >,
+																	  COMPS < > ],
+																HEAD #head ] ] ] >,
+										 COMPS < [ LOCAL.CAT [ HEAD [ PRD +,
+																	  FORM nonfinite, RAISED + ],
+															   VAL [ SUBJ < [ LOCAL.CAT.HEAD #head ] >,
+																	 COMPS < > ] ] ] >,
+										 SPR < >,
+										 SPEC < > ],
+							   CONT.HOOK.XARG #xarg ] ].
+
+		...and are  further divided into positive ("ol") and negative ("değil") subtypes:
+
+			> turkish.tdl
+
+			positive-copula-cop-lex := adj-comp-copula-verb-lex & polarity-verb-rule-dtr.
+
+			negative-copula-cop-lex := adj-comp-copula-verb-lex & tense-verb-rule-dtr &
+			  [ SYNSEM [ LOCAL [ CAT [ HEAD.AUX -,
+									   VAL [ SPR < >,
+											 SPEC < >,
+											 SUBJ < #subj >,
+											 COMPS < #comp > ] ],
+								 CONT [ HOOK [ 
+											   LTOP #nh,
+											   XARG #xarg ],
+											   RELS <! #neg & event-relation &
+													   [ LBL #nh,
+														 ARG1 #scopehandle ] !>,
+											   HCONS <! qeq &
+														[ HARG #scopehandle,
+														  LARG #nh ] !> ] ],
+						 LKEYS.KEYREL #neg ],
+				ARG-ST < #subj &
+						 [ LOCAL [ CAT [ HEAD noun ,
+										 VAL [ SPR < >,
+											   COMPS < > ] ],
+								   CONT.HOOK.INDEX #xarg ] ],
+						 #comp &
+						 [ LOCAL [ CAT [ HEAD adj,
+										 VAL [ COMPS < > ] ] ] ] > ].
+
+		The latter is tricky because it needs to introduce the negative predication, which we 
+		allowed by replacing trans-first-arg-raising-lex-item-2 with slight adjustment to it 
+		and its ancestor, raise-sem-lex-item:
+
+			> turkish.tdl
+
+			replacement-raise-sem-lex-item := lex-item &
+			  [ SYNSEM.LOCAL [ CONT.HOOK #hook,
+							   CAT.VAL.COMPS < [ LOCAL.CONT.HOOK #hook ] , ... > ] ].
+
+			replacement-trans-first-arg-raising-lex-item-2 := trans-first-arg-raising-lex-item &
+															  replacement-raise-sem-lex-item &
+															  no-icons-lex-item &
+			  [ ARG-ST < [ LOCAL.CONT.HOOK.ICONS-KEY.IARG1 #clause ],
+						 [ LOCAL.CONT.HOOK.CLAUSE-KEY #clause ] > ].
+
+		The lexical entries for adjectival complement copulas look like so:
+
+			> turkish.tdl
+
+			ol_3 := positive-copula-cop-lex &
+			  [ STEM < "ol" > ].
+
+			değil_3 := negative-copula-cop-lex &
+			  [ STEM < "değil" >,
+				SYNSEM.LKEYS.KEYREL.PRED "neg_rel" ].
+
+		As for nominal predicates...
+
+		We only accounted for the explicit "ol"/"değil" copular forms; see the "problems" 
+		section for a brief discussion about that.
+
+		In order to give these copulas proper semantics, we defined the type negative-tr-
+		verb-lex:
+
+			> turkish.tdl
+
+			negative-tr-verb-lex := transitive-verb-lex &
+			  [ SYNSEM [ LOCAL [ CAT [ HEAD.AUX -,
+									   VAL [ SPR < >,
+											 SPEC < >,
+											 SUBJ < #subj >,
+											 COMPS < #comp > ] ],
+								 CONT [ HOOK [ LTOP #nh,
+											   INDEX #s,
+											   XARG #xarg ],
+											   RELS <! #cop &
+													   [ LBL #h,
+														 ARG0 #s,
+														 ARG1 #xarg,
+														 ARG2 #compindex ],
+													   #neg & event-relation &
+													   [ LBL #nh,
+														 ARG1 #scopehandle ] !>,
+											   HCONS <! qeq &
+														[ HARG #scopehandle,
+														  LARG #h ] !> ] ],
+						 LKEYS [ KEYREL #cop,
+								 ALTKEYREL #neg ] ],
+				ARG-ST < #subj &
+						 [ LOCAL [ CAT [ HEAD noun ,
+										 VAL [ SPR < >,
+											   COMPS < > ] ],
+								   CONT.HOOK.INDEX #xarg ] ],
+						 #comp &
+						 [ LOCAL [ CAT [ HEAD +np ,
+										 VAL [ SPR < >,
+											   COMPS < > ] ],
+								   CONT.HOOK.INDEX #compindex ] ] > ].
+
+		...to allow negative copulas with nominal complement to have a negative predicate in 
+		addition to a "be" predicate.
+
+		For basic nominal copulas, the following types do:
+
+			> turkish.tdl
+
+			nom-tr-verb-lex := transitive-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE nom,
+																	  CASE-MARKED + ],
+													 OPT - ] ] ].
+
+			positive-nom-tr-verb-lex := nom-tr-verb-lex & polarity-verb-rule-dtr.
+
+			negative-nom-tr-verb-lex := nom-tr-verb-lex & negative-tr-verb-lex & tense-verb-rule-dtr.
+
+		And for locative noun complements, which act as PPs, we instead define these types:
+
+			> turkish.tdl
+
+			loc-tr-verb-lex := transitive-verb-lex &
+			  [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE loc,
+																	  CASE-MARKED + ],
+													 OPT +,
+													 OPT-CS activ-or-more ] ] ].
+
+			positive-loc-tr-verb-lex := loc-tr-verb-lex & polarity-verb-rule-dtr.
+
+			negative-loc-tr-verb-lex := loc-tr-verb-lex & negative-tr-verb-lex & tense-verb-rule-dtr.
+
+		Here are the relevant lexical entries for what essentially act as PPs and NPs, 
+		respectively:
+
+			> lexicon.tdl
+
+			ol_1 := positive-loc-tr-verb-lex &
+			  [ STEM < "ol" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_be_v_id_rel" ].
+
+			değil_1 := negative-loc-tr-verb-lex &
+			  [ STEM < "değil" >,
+				SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
+							   ALTKEYREL.PRED "neg_rel" ] ].
+
+			ol_2 := positive-nom-tr-verb-lex &
+			  [ STEM < "ol" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_be_v_id_rel" ].
+
+			değil_2 := negative-nom-tr-verb-lex &
+			  [ STEM < "değil" >,
+				SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
+							   ALTKEYREL.PRED "neg_rel" ] ].
+
+		Note that they have "be" predicates in addition to the negative predicates for the 
+		negative variants, unlike the adjectival complement version.  But not all is 
+		well in semantics-land...
+
+		4.	Problems encountered
+
+		...as we were unsure of how to add an additional predicate to locative-case nouns 
+		in order to differentiate them semantically from other cases, since nominative and 
+		accusative nouns naturally do not have additional semantics.  As a result, the MRSs 
+		for copulas with both nominative and locative complements are identical.
+
+		The testuite does not include predicative locatives at the moment, but an example 
+		would be "evde olur," meaning 'he/she/it is at the house,' but the current grammar 
+		would assign it semantics identical to "ev olur," or 'he/she/it is a house.'
+
+		We currently cannot parse nominal predicates that aren't complements of the  "ol"/
+		"değil" nominative-complement-transitive verbs.  We may want to implement the 
+		apparent bare nominal predicates as taking clitics rather than tense morphology, but 
+		this would have some serious implications about the rest of the grammar, too, and 
+		would take some revision of the testsuite, as well.
+
+		It's not directly related, but while working on this, we realized that the 
+		morphological negation has a neg_rel, but for some reason it doesn't make it to the 
+		final MRS representation, making sentences with negated verbs semantically identical 
+		to sentences with non-negated verbs.
+
 	OTHER
-	
-	POSSESSIVES {poss}
 
-		1.	Description of linguistic facts
+		We added some trigger rules, so the grammar "generates" without freezing for at least 
+		some sentences (the basic ones with accusative-transitive verbs work, but non-verbal
+		predicates... not so much), but doesn't come up with much of anything good?
 
+			> trigger.mtr
+
+			mi_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "mi" ].
+
+			diye_2_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "diye_2" ].
+
+			com-marker_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "com-marker" ].
+
+			mı_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "mı" ].
+
+			ki_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "ki" ].
+
+			mü_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "mü" ].
+
+			ol_3_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "ol_3" ].
+
+			mu_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "mu" ].
+
+			diye_1_gr := generator_rule &
+			[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+			  FLAGS.TRIGGER "diye_1" ].
+
+		We shrunk down irules.tdl pretty nicely per advice, e.g.:
+
+			> irules.tdl
+
+			spec-acc-lex-rule-suffix1 :=
+			%suffix (* yi) (* yı) (* yu) (* yü) (* i) (* ı) (* u) (* ü) (* ni) (* nı) (* nu) (* nü)
+			spec-acc-lex-rule-lex-rule.
+
+		We also continued to tweak possessives from the previous lab.  As a reminder:
 		Turkish allows for an optional possessor (which must have genitive case) on either 
 		(left or right) edge of the NP, along with a required (head noun) possessum that must 
 		be inflected with a possessive suffix whose number and person features agree with those 
 		of the possessor.
 
-		2.	Examples from testsuite
+		Currently, genitive specifiers still do not work.
 
-		Here are some examples of possessive constructions with both the required suffix on the 
-		possessum and an explicit genitive pronoun agreeing with it, varying by whether the 
-		possessor comes before or after the possessum:
-
-			### 1SG, with genitive ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {possessives}
-			Benim			ailem					geldi
-			benim			aile-m					gel-di
-			pronoun.1SG.GEN	family.3SG.NOM-POSS.1SG	come-PF.3SG
-			'My family arrived.'
-
-			### 1SG, with genitive, possessive before genitive ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {possessives, word order}
-			Ailem					benim			geldi
-			Aile-m					benim			gel-di
-			family.3SG.NOM-1SGPOSS	pronoun.1SG.GEN	come-PF.NPST.3SG
-			'My family arrived.'
-
-		And here is a similar (and still grammatical) example, but with the genitive pronoun 
-		omitted:
-
-			### 1SG, without genitive ###
-			Source: author
-			Vetted: f
-			Judgment: g
-			Phenomena: {possessives}
-			Ailem					geldi
-			Aile-m					gel-di
-			family.3SG.NOM-POSS.1SG	come-PF.3SG
-			'My family arrived.'
-
-		Finally, here is an ungrammatical example demonstrating that the possessive inflection 
-		on the possessum is required:
-
-			### 1SG, without possessive ###
-			Source: author
-			Vetted: f
-			Judgment: u
-			Phenomena: {possessives}
-			Benim			aile			geldi
-			benim			aile			gel-di
-			pronoun.1SG.GEN	family.3SG.NOM	come-PF.3SG
-			'My family arrived.'
-
-		3.	TDL snippets & descriptions
-
-		Here is the absolutely unwieldy bit of code that allows for the possessum to be 
-		inflected; it is as unwieldy as it is because we needed to inherit from a valence 
-		changing type but infl-val-change-only-lex-rule prevented C-CONT from being 
-		non-empty, and also because Turkish inflectional morphology is so complicated. 
-		The case-common-noun-rule-dtr supertype means that this rule applies just prior to 
-		the case inflectional rules being applied.
+		Coordination is all better and no longer leads to (unreasonable/preventable) 
+		ambiguity! Here's how we did it:
 
 			> turkish.tdl
 
-			poss-common-noun-lex-rule-super := same-ctxt-lex-rule &
-											   same-cont-lex-rule &
-											   same-agr-lex-rule &
-											   same-head-lex-rule &
-											   same-hc-light-lex-rule &
-											   same-posthead-lex-rule &
-											   same-mc-lex-rule &
-											   infl-lex-rule &
-											   case-common-noun-rule-dtr &
-			  [ INFLECTED [ POSS-FLAG +,
-							CASE-COMMON-NOUN-FLAG #case-common-noun,
-							NEG-LEX-RULE-FLAG #neg-lex-rule,
-							TENSE-ADJECTIVE-FLAG #tense-adjective,
-							BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-							TENSE-VERB-FLAG #tense-verb,
-							AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-							ASPECT-VERB-FLAG #aspect-verb,
-							AGREEMENT-VERB-FLAG #agreement-verb,
-							NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-							POLARITY-VERB-FLAG #polarity-verb,
-							AGREEMENT-COPULA-FLAG #agreement-copula,
-							POLARITY-COPULA-FLAG #polarity-copula,
-							TENSE-COPULA-FLAG #tense-copula,
-							NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-							ASPECT-COPULA-FLAG #aspect-copula ],
-			   SYNSEM [ LKEYS.ALTKEYREL.ARG0.PNG #png,
-						LOCAL.CAT.VAL [ SPR < [ LOCAL [ CAT [ HEAD noun & [ CASE gen ] ],
-											  CONT.HOOK.INDEX #index2 ] ] >, 
-										SPEC #spec,
-										COMPS #comps,
-										SUBJ #subj ] ],
-			   DTR poss-common-noun-rule-dtr & [ SYNSEM.LOCAL [ CONT.HOOK [ INDEX #index,
-																			LTOP #lbl ],
-													CAT.VAL [ SPEC #spec,
-															  COMPS #comps,
-															  SUBJ #subj ] ],
-				   INFLECTED [ CASE-COMMON-NOUN-FLAG #case-common-noun,
-							   NEG-LEX-RULE-FLAG #neg-lex-rule,
-							   TENSE-ADJECTIVE-FLAG #tense-adjective,
-							   BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-							   TENSE-VERB-FLAG #tense-verb,
-							   AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-							   ASPECT-VERB-FLAG #aspect-verb,
-							   AGREEMENT-VERB-FLAG #agreement-verb,
-							   NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-							   POLARITY-VERB-FLAG #polarity-verb,
-							   AGREEMENT-COPULA-FLAG #agreement-copula,
-							   POLARITY-COPULA-FLAG #polarity-copula,
-							   TENSE-COPULA-FLAG #tense-copula,
-							   NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-							   ASPECT-COPULA-FLAG #aspect-copula ] ],
-			   C-CONT [ HOOK [ INDEX #index,
-					   LTOP #lbl ],
-					RELS < ! arg12-ev-relation &
-					  [ PRED "poss_rel",
-						LBL #lbl,
-						ARG1 #index,
-						ARG2 #index2 & [ PNG #png ] ] ! >,
-					ICONS < ! ! > ] ].
+			bottom-coord-phrase :+
+			  [ SYNSEM.LOCAL.CAT.HEAD #head,
+				NONCONJ-DTR.SYNSEM.LOCAL.CAT.HEAD #head ].
 
-		This should ostensibly make it so that possession-inflected NPs look for genitive 
-		noun specifiers, but see the "Problems encountered" section for an explanation that, 
-		basically, "it doesn't work and we don't know why."
+			binary-headlike-coord-phrase := coord-phrase & 
+			  [ SYNSEM.LOCAL.CAT.HEAD #head,
+				LCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD #head,
+				RCOORD-DTR.SYNSEM.LOCAL.CAT.HEAD #head ].
 
-		Note that the pronoun and existence relations are not in the RELS list, because 
-		those may be supplied later on by either a bare-NP-like phrase or by the genitive 
-		possessor specifier.
+			basic-n-top-coord-rule :+ binary-headlike-coord-phrase.
+			basic-n-mid-coord-rule :+ binary-headlike-coord-phrase.
+			basic-np-top-coord-rule :+ binary-headlike-coord-phrase.
+			basic-np-mid-coord-rule :+ binary-headlike-coord-phrase.
+			basic-vp-top-coord-rule :+ binary-headlike-coord-phrase.
+			basic-vp-mid-coord-rule :+ binary-headlike-coord-phrase.
+			basic-s-top-coord-rule :+ binary-headlike-coord-phrase.
+			basic-s-mid-coord-rule :+ binary-headlike-coord-phrase.
 
-		To that end, here is the bare-NP-like phrase that allows inflected possessa to 
-		appear without any specifier:
-
-			> turkish.tdl
-
-			bare-poss-np-phrase := head-only & head-valence-phrase &
-			  [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
-						   SUBJ < >,
-						   COMPS < >,
-						   SPEC < > ],
-				HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD noun,
-							  VAL [ SPR < unexpressed & 
-										  [ LOCAL.CAT [ HEAD noun & [ CASE gen ] ],
-									OPT + ] >,
-								SUBJ < >,
-								COMPS < > ] ],
-							CONT.HOOK [ INDEX #index,
-										LTOP #larg ] ],
-							LKEYS.ALTKEYREL #altkeyrel ],
-				C-CONT [ RELS <! quant-relation &
-								 [ PRED "exist_q_rel",
-								   ARG0 #index, 
-								   RSTR #harg,
-								   BODY #larg ],
-								 quant-relation &
-								 [ PRED "exist_q_rel",
-								   ARG0 #arg2,
-								   RSTR #harg2 ],
-								 #altkeyrel & noun-relation &
-								 [ PRED "pron_rel",			 
-								   LBL #larg2,
-								   ARG0 #arg2 & [ COG-ST activ-or-more,
-												  SPECI + ] ] !>,
-					 HCONS <! qeq & 
-							  [ HARG #harg,
-								LARG #larg ],
-							  qeq &
-							  [ HARG #harg2,
-								LARG #larg2 ] !>,
-					 ICONS <! !>,
-					 HOOK [ INDEX #index ] ] ].
-
-		Here are the person-and-number-specific subtypes of the above rule:
-
-			> turkish.tdl
-
-			1sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
-			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM sg ] ].
-
-			1pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
-			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM pl ] ].
-
-			2sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
-			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 2nd, NUM sg ] ].
-
-			2pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
-			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 2nd, NUM pl ] ].
-
-			3sgpl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
-			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 3rd ] ].
-
-			3pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
-			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 3rd, NUM pl ] ].
-
-		Here is the case inflection rule from which the genitive inflection rule inherits 
-		(unchanged from the customization system's output):
-
-			> turkish.tdl
-
-			case-common-noun-lex-rule-super := add-only-no-ccont-rule &
-			  [ INFLECTED [ CASE-COMMON-NOUN-FLAG +,
-							NEG-LEX-RULE-FLAG #neg-lex-rule,
-							POSS-FLAG #poss,
-							TENSE-ADJECTIVE-FLAG #tense-adjective,
-							BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-							TENSE-VERB-FLAG #tense-verb,
-							AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-							ASPECT-VERB-FLAG #aspect-verb,
-							AGREEMENT-VERB-FLAG #agreement-verb,
-							NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-							POLARITY-VERB-FLAG #polarity-verb,
-							AGREEMENT-COPULA-FLAG #agreement-copula,
-							POLARITY-COPULA-FLAG #polarity-copula,
-							TENSE-COPULA-FLAG #tense-copula,
-							NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-							ASPECT-COPULA-FLAG #aspect-copula ],
-				DTR case-common-noun-rule-dtr &
-					[ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
-								  POSS-FLAG #poss,
-								  TENSE-ADJECTIVE-FLAG #tense-adjective,
-								  BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
-								  TENSE-VERB-FLAG #tense-verb,
-								  AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
-								  ASPECT-VERB-FLAG #aspect-verb,
-								  AGREEMENT-VERB-FLAG #agreement-verb,
-								  NUMBER-COMMON-NOUN-FLAG #number-common-noun,
-								  POLARITY-VERB-FLAG #polarity-verb,
-								  AGREEMENT-COPULA-FLAG #agreement-copula,
-								  POLARITY-COPULA-FLAG #polarity-copula,
-								  TENSE-COPULA-FLAG #tense-copula,
-								  NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
-								  ASPECT-COPULA-FLAG #aspect-copula ] ] ].
-
-		...and the genitive inflectional rule in particular:
-
-			> turkish.tdl
-
-			gen-lex-rule-lex-rule := case-common-noun-lex-rule-super & infl-lex-rule &
-			  [ SYNSEM.LOCAL.CAT.HEAD [ CASE gen,
-										CASE-MARKED + ] ].
-
-		As well as the specific suffixes for the rule (from irules.tdl):
-
-			> irules.tdl
-
-			gen-lex-rule-suffix1 :=
-			%suffix (* nin)
-			gen-lex-rule-lex-rule.
-
-			gen-lex-rule-suffix2 :=
-			%suffix (* nın)
-			gen-lex-rule-lex-rule.
-
-			gen-lex-rule-suffix3 :=
-			%suffix (* nun)
-			gen-lex-rule-lex-rule.
-
-			gen-lex-rule-suffix4 :=
-			%suffix (* nün)
-			gen-lex-rule-lex-rule.
-
-			gen-lex-rule-suffix5 :=
-			%suffix (* in)
-			gen-lex-rule-lex-rule.
-
-			gen-lex-rule-suffix6 :=
-			%suffix (* ın)
-			gen-lex-rule-lex-rule.
-
-			gen-lex-rule-suffix7 :=
-			%suffix (* un)
-			gen-lex-rule-lex-rule.
-
-			gen-lex-rule-suffix8 :=
-			%suffix (* ün)
-			gen-lex-rule-lex-rule.
-
-		And since we declared all pronominal inflections as separate lexical entries because 
-		of their irregularities, here is the most immediately inherited type for the 1SG 
-		genitive pronoun, as an example:
-
-			> turkish.tdl
-
-			gen-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
-			  [ SYNSEM.LOCAL.CAT.HEAD [ CASE gen,
-										CASE-MARKED + ] ].
-
-		And its declaration in the lexicon:
-
-			> lexicon.tdl
-
-			benim := gen-1sg-pronoun-noun-lex &
-			  [ STEM < "benim" >,
-				SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-		Here is the section of rules.tdl where we defined a spec-head rule in addition to 
-		the head-spec rule, to allow for the flexibility of genitive possessors being on 
-		either the right or the left of the noun:
-
-			> rules.tdl
-
-			head-spec := head-spec-phrase.
-
-			spec-head := spec-head-phrase.
-
-		And here is the section where we defined the bare possessive NP (-like) phrase:
-
-			> rules.tdl
-
-			bare-poss-np := bare-poss-np-phrase.
-
-		4.	Problems encountered
-
-		Oh, golly.  This part was tough and we definitely did not get it working.
-
-		Inflectional marking of possession sans the genitive does parse!
-
-		The semantics in the case of the bare-NP-like possessive are mostly correct, but 
-		we could not figure out how to identify the ARG0 of the pron_rel with the ARG2 
-		of the poss_rel.  ARG2 of the poss_rel has the right PNG, features at least, while 
-		ARG0 of the pron_rel has the proper [ COG-ST activ-or-more ].
-
-		...but we could not get the head-spec rule to combine the possessors and possessa. 
-		Presumably the issue lies in the unwieldy poss-common-noun-lex-rule-super, which is 
-		where the [ HEAD noun & [ CASE gen ] ] features of inflected possessa are supposed 
-		to originate.
-
-		At one point the genitive possessors seemed to work, but then we realized that it 
-		was actually combining via head-comp, which was very weird.  The current version 
-		of the grammar does not have this behavior.
-
-	OTHER
-
-		Coordination was adding way too many parses, so as we worked we commented out all 
-		of the many, many coordination and coordination agreement rules in rules.tdl, e.g.,
-
-			> rules.tdl
-
-			;n1-1st-any-1st-any-any-pl-top-coord := n1-1st-any-1st-any-any-pl-top-coord-rule.
-			(...)
-			;s4-bottom-coord := s4-bottom-coord-rule.
-
-		We un-commented them before getting the final results, but omitting them vastly 
-		fixed a lot of our overgeneration problems.
+		This could lead to some issues if we wanted to coordinate common nouns and pronouns, 
+		but other than that (of which there are no examples in the testsuite), it is pretty 
+		reasonable to impose this sort of pseudo-headedness onto coordination.
 
 ##### PART 5 #####
 #	In addition, your write up should include a statement of the current coverage of your 
 #	grammar over your test suite (using numbers you can get from Analyze | Coverage and 
 #	Analyze | Overgeneration in [incr tsdb()]) and a comparison between your baseline test 
 #	suite run and your final one for this lab (see Compare | Competence).
+
+	NOTE: The baseline testsuite hasn't changed from that of the previous lab.  Hopefully 
+	we weren't supposed to use the last labs' results as the baseline?  We improved, either 
+	way!
 
 	BASELINE GRAMMAR TESTSUITE STATS
 
@@ -711,20 +1035,20 @@ Lab 6
 		Coverage:
 
 			Positive Items #:		112
-			Total Results #:		91
+			Total Results #:		103
 			Word String 0:			3.09
-			Lexical Items 0:		7.71
-			Distinct Analyses 0:	15.97
-			Overall Coverage %:		81.2
+			Lexical Items 0:		6.26
+			Distinct Analyses 0:	1.63
+			Overall Coverage %:		92.0
 
 		Overgeneration:
 
 			Negative Items #:		61
-			Total Results #:		14
+			Total Results #:		10
 			Word String 0:			2.84
-			Lexical Items 0:		7.96
-			Distinct Analyses 0:	8.64
-			Overall Coverage %:		23.0
+			Lexical Items 0:		6.27
+			Distinct Analyses 0:	1.70
+			Overall Coverage %:		16.4
 
 	FROM COMPARE | COMPETENCE
 
@@ -737,8 +1061,8 @@ Lab 6
 
 		Final:
 
-			Lexical:				2.52
-			Analyses:				14.99
-			In:						81.2
-			Out:					23.0
+			Lexical:				2.03
+			Analyses:				1.64
+			In:						92.0
+			Out:					16.4
 

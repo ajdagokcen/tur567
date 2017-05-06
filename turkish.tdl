@@ -537,14 +537,14 @@ negative-nom-tr-verb-lex := nom-tr-verb-lex & negative-tr-verb-lex & tense-verb-
 
 clausal-comp-verb-lex := main-verb-lex & clausal-second-arg-trans-lex-item &
                          polarity-verb-rule-dtr &
-  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
-                                                       CASE-MARKED + ],
-                           COMPS < #comps & 
+  [ SYNSEM.LOCAL.CAT.VAL [ COMPS < #comps & 
                                    [ LOCAL.CAT [ HEAD +vc,
                                                  VAL [ SUBJ < >,
                                                        COMPS < > ] ] ] > ],
     ARG-ST.REST.FIRST #comps ].
 ;                                   [ LOCAL.CAT [ HEAD +vc & [ FORM finite ],
+;  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
+;                                                       CASE-MARKED + ],
 
 sentential-comp-verb-lex := clausal-comp-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD verb ].
@@ -792,24 +792,15 @@ manner-adverb-adv-lex := adverb-lex &
 
 ;;; Complementizers
 
-comp_gtr := generator_rule &
- [ CONTEXT [ RELS <! [ ARG2 #h & handle ],
-                     [ ARG0 #e & event ] !> ],
-   FLAGS [ EQUAL < #e, #h > ] ].
-;           TRIGGER "name_of_comp_entry" ] ].
-
 complementizer-lex-item := raise-sem-lex-item & basic-one-arg &
   [ SYNSEM.LOCAL.CAT [ HEAD comp & [ MOD < > ],
                        VAL [ SPR < >,
                              SUBJ < >,
                              COMPS < #comp > ] ],
     ARG-ST < #comp &
-             [ LOCAL.CAT [
-                           HEAD verb,
+             [ LOCAL.CAT [ HEAD verb,
                            VAL [ SUBJ < >,
                                  COMPS < > ] ] ] > ].
-
-;;
 
 declarative-complementizer-lex := complementizer-lex-item &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF prop ].
@@ -817,7 +808,6 @@ declarative-complementizer-lex := complementizer-lex-item &
 interrogative-complementizer-lex := complementizer-lex-item &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques ].
 
-;;TODO: INIT +/-
 cp-init-complementizer-lex := complementizer-lex-item &
   [ SYNSEM.LOCAL.CAT.HEAD.PRE-COMPS + ].
 
@@ -1144,13 +1134,15 @@ pos-lex-rule-lex-rule := add-only-no-ccont-rule & const-lex-rule & polarity-verb
   [ SYNSEM.LOCAL.CAT.HEAD.NEG - ].
 
 ;event-or-ref-index := [ E tam,
-;                        SF iforce,
-;                        COG-ST cog-st,
-;                        SPECI bool ].
+;individual :+ [ E tam,
+;                SF iforce,
+;                COG-ST cog-st,
+;                SPECI bool ].
 
 ;  [ SYNSEM.LOCAL.CAT.VAL [ SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE nom,
 ;                                                       CASE-MARKED + ],
-participle-verb-lex-rule-super := add-only-no-ccont-rule & case-rule-dtr & poss-common-noun-rule-dtr &
+participle-verb-lex-rule-super := add-only-no-ccont-rule & 
+                                  case-rule-dtr & poss-common-noun-rule-dtr &
   [ SYNSEM.LOCAL.CAT [ HEAD [ FORM nonfinite, RAISED - ],
                        VAL.SUBJ.FIRST.LOCAL.CAT.HEAD [ CASE gen, CASE-MARKED + ] ],
     INFLECTED [ ASPECT-FLAG +,
@@ -1224,8 +1216,6 @@ tense-verb-lex-rule-super := add-only-no-ccont-rule &
                       CASE-FLAG #case-flag,
                       NUMBER-FLAG #number-flag,
                       POLARITY-FLAG #polarity-flag ] ] ].
-;  [ INFLECTED.TENSE-FLAG +,
-;    DTR tense-verb-rule-dtr ].
 
 pre-aux-lex-rule-lex-rule := const-lex-rule & tense-verb-lex-rule-super &
   [ SYNSEM.LOCAL.CAT.HEAD [ FORM nonfinite, RAISED + ] ].
@@ -1300,7 +1290,8 @@ basic-adjective-role-lex-rule-super := add-only-no-ccont-rule & const-lex-rule &
 ;  [ SYNSEM.LOCAL.CAT.HEAD [ MOD < >,
 ;                            PRD + ] ].
 
-basic-adjective-pred-role-lex-rule := basic-adjective-role-lex-rule-super & stative-pred-lex-rule & tense-adjective-rule-dtr &
+basic-adjective-pred-role-lex-rule := basic-adjective-role-lex-rule-super & 
+                                      stative-pred-lex-rule & tense-adjective-rule-dtr &
   [ SYNSEM.LOCAL.CAT.HEAD [ MOD < >,
                             PRD + ] ].
 
