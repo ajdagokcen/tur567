@@ -1,0 +1,744 @@
+
+####################
+
+Ajda Gokcen & Kekoa Riggin
+LING 567 (S17)
+May 5, 2017
+Lab 6
+
+####################
+
+##### PART 1, 2, 3, & 4 #####
+#1:	A descriptive statement of the facts of your language.
+#2:	Illustrative IGT examples from your testsuite.
+#3:	A statement of how you implemented the phenomenon, in terms of types you added/modified 
+#	and particular tdl constraints. That is, I want to see actual tdl snippets with prose 
+#	descriptions around them. If the tdl as given on this page worked, please include it 
+#	anyway, and note that it wasn't changed. If you needed to make modifications, document 
+#	what those were.
+#4:	If the analysis is not (fully) working, a description of the problems you are encountering.
+	
+	MATRIX YES-NO QUESTIONS {q}
+
+		1.	Description of linguistic facts
+
+		Turkish employs an interrogative auxiliary to form matrix yes-no questions.  This 
+		auxiliary follows its VP complement, raises the subject (which it requires to be 
+		nominative, as do all finite verbs), and requires that the complement be non-finite 
+		(meaning it may be inflected for negation and aspect, but not for tense or agreement).
+
+		The auxiliary itself cannot take negation or aspect morphemes, and must be inflected 
+		for tense and subject agreement (i.e., it must be finite).  The tense and agreement 
+		suffixes are the same as they are for any non-auxiliary verb.
+
+		However, matrix yes-no questions which draw focus to certain arguments use the 
+		interrogative marker as an uninflected particle instead, appearing immediately after 
+		the element that is being focused.
+
+		2.	Examples from testsuite
+
+		Here are some examples of properly finite interrogative auxiliaries with non-finite 
+		VP complements:
+
+			### IMPF comp, NPST+3SG aux (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {matrix yes-no questions}
+			Kadın			çıkıyor			mu
+			Kadın			çık-ıyor		mu
+			woman.3SG.NOM	exit-IMPF		question.NPST.3SG
+			'Is the woman leaving?'
+
+			### IMPF comp, PST+3SG aux (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {matrix yes-no questions}
+			Kadın			çıkıyor			muydu
+			Kadın			çık-ıyor		mu-ydu
+			woman.3SG.NOM	exit-IMPF		question-PST.3SG
+			'Was the woman leaving?'
+
+		And here are some ungrammatical examples where the auxiliary has an aspect suffix and 
+		the VP complement is finite, respectively:
+
+			### _ comp, IMPF+NPST+3SG aux (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {matrix yes-no questions}
+			Kadın			çık		mııyor
+			Kadın			çık		mı-ıyor
+			woman.3SG.NOM	exit	question-IMPF.NPST.3SG
+			'Is the woman leaving?'
+
+			### IMPF+PST+3SG comp, _ aux (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {matrix yes-no questions}
+			Kadın			çıkıyordu				mu
+			Kadın			çık-ıyor-du				mu
+			woman.3SG.NOM	exit-IMPF-PST.3SG		question
+			'Is the woman leaving?'
+
+		Finally, here is an example of the question marker instead acting as a particle and 
+		appearing directly after the focused argument under question:
+
+			### questioning subject (g) ###
+			# unclear whether tense+person is actually on the auxiliary in this case?
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {matrix yes-no questions, word order}
+			Kadın			mı			çıkıyor
+			Kadın			mı			çık-ıyor
+			woman.3SG.NOM	question	exit-IMPF.NPST.3SG
+			'Is it the woman who is leaving?'
+
+		3.	TDL snippets & descriptions
+
+		4.	Problems encountered
+
+    EMBEDDED COMPLIMENT CLAUSES {emb-d, emb-q}
+
+		1.	Description of linguistic facts
+    
+		Finite embedded declaratives are a little tricky in Turkish because non-finite 
+		complements are much preferred, but the former still does exist.  These can occur 
+		as complements of verbs like "düşünmek" ('think') or "demek" ('say').
+
+		No complementizer is needed if the matrix verb is "demek."  Otherwise, the 
+		complementizer "ki" licenses the sentential complement after the matrix verb, while 
+		the complementizer "diye" licenses the sentential complement before.
+
+		Embedded interrogatives are pretty rare in Turkish, but as long as they're in a 
+		quotation-like context, they can occur as complements of the verb "demek" ('say'), 
+		or with the complementizer "diye."  They cannot occur with the complement "ki,"
+		regardless of the word order.
+
+		2.	Examples from testsuite
+
+		Here's an example of a quotative construction where no complementizer is needed:
+
+			### no complementizer (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {embedded declaratives}
+			Kedi		uyudu				diyorlar
+			Kedi		uyu-du				d-iyor-lar
+			cat.3SG.NOM	sleep-PF.NPST.3SG	say-IMPF.NPST-3PL
+			"They're saying (that) the cat slept."
+
+		Here are examples of properly ordered constructions with "diye" and "ki" 
+		complementizers:
+
+			### diye-complementizer before verb (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {embedded declaratives, word order}
+			Kedi		uyudu				diye	köpek		düşünür
+			Kedi		uyu-du				diye	köpek		düşün-ür
+			cat.3SG.NOM	sleep-PF.NPST.3SG	that	dog.3SG.NOM	think-HAB.NPST.3SG
+			"The dog thinks that the cat slept."
+
+			### ki-complementizer after verb (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {embedded declaratives, word order}
+			Köpek		düşünür				ki		kedi		uyudu
+			Köpek		düşün-ür			ki		kedi		uyu-du
+			dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF.NPST.3SG
+			"The dog thinks that the cat slept."
+
+		And here are examples of improperly ordered constructions with "diye" and "ki" 
+		complementizers:
+
+			### diye-complementizer after verb (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {embedded declaratives, word order}
+			Köpek		düşünür				diye	kedi		uyudu
+			Köpek		düşün-ür			diye	kedi		uyu-du
+			dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF.NPST.3SG
+			"The dog thinks that the cat slept."
+
+			### ki-complementizer before verb (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {embedded declaratives, word order}
+			Kedi		uyudu				ki		köpek		düşünür
+			Kedi		uyu-du				ki		köpek		düşün-ür
+			cat.3SG.NOM	sleep-PF.NPST.3SG	that	dog.3SG.NOM	think-HAB.NPST.3SG
+			"The dog thinks that the cat slept."
+
+		Non-finite participle complements, meanwhile, are formed by suffixing a verb with 
+		-dIk, allowing it to combine with its complement if it has one, and then treating it 
+		as a noun.  In this form, the subject is expressed through a genitive-possessive 
+		construction, with a possessive suffix on the verbal and an optional genitive agreeing 
+		with the possessive suffix in person and number.  The verbal also takes case suffixes.
+
+		Here is an example of such a verbal noun / participle complement construction:
+
+			### verbal noun / participle (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {embedded declaratives, argument optionality}
+			Senin			piyano			çaldığını				bilmiyordum
+			Senin			piyano			çal-dığ-ın-ı			bil-m-iyor-du-m
+			pronoun.2SG.GEN piano.3SG.ACC	play-VN-2SG.POSS-ACC	know-NEG-IMPF-PST-1SG
+			"I didn't know (that) you played the piano."
+
+		As for embedded interrogatives...
+
+		Here's an example of a quotative construction where no complementizer is needed:
+
+			### no complementizer (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {embedded interrogatives}
+			Kedi		uyudu				mu					diyorlar
+			Kedi		uyu-du				mu					d-iyor-lar
+			cat.3SG.NOM	sleep-PF.NPST.3SG	question.NPST.3SG	say-IMPF.NPST-3PL
+			"They're asking, did the cat sleep?"
+
+		Here is an example with the complementizer "diye":
+
+			### diye-complementizer after verb (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {embedded interrogatives}
+			Kedi		uyudu		mu					diye	sordu
+			Kedi		uyu-du		mu					diye	sor-du
+			cat.3SG.NOM	sleep-PF	question.NPST.3SG	that	ask-PF.NPST.3SG
+			"They're asking, did the cat sleep?"
+
+		And here is an ungrammatical example with the complementizer "ki" (order irrelevant):
+
+			### ki-complementizer after verb (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {embedded declaratives}
+			Köpek		düşünür				ki		kedi		uyudu		mu
+			Köpek		düşün-ür			ki		kedi		uyu-du		mu
+			dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF	question.NPST.3SG
+			"The dog wonders whether the cat slept."
+
+		3.	TDL snippets & descriptions
+
+		4.	Problems encountered
+
+	NON-VERBAL PREDICATES [cop]
+
+		1.	Description of linguistic facts
+
+		Adjectives and NPs can act as predicates in Turkish, with or without a copula.  If 
+		there is no copula, then the adjective or noun must take tense and agreement suffixes, 
+		just as a normal verb does (but, importantly, these non-verbal predicates cannot take 
+		negation or aspect suffixes).  If there is a copula, then the adjective or noun 
+		must remain non-finite, and the copula must be finite.
+
+		There are two copulas.  One copula is a to-be verb "ol" that must be used if one wishes 
+		to introduce aspect to a non-verbal predicate.  This copula can and must take all of the 
+		suffixes of a normal verb.  The other is the negative copula "değil," which has an 
+		inherent negation feature and must take tense and agreement suffixes but cannot take 
+		negation or aspect suffixes.
+
+		2.	Examples from testsuite
+
+		Here are examples of predicative adjectives and nouns without copulas:
+
+			### FINITE ADJ + NO-COP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {non-verbal predicates}
+			Ben				mutluyum
+			Ben				mutlu-yum
+			pronoun.1SG.NOM	happy.NPST-1SG
+			"I am happy."
+
+			### FINITE NOUN + NO-COP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {non-verbal predicates}
+			Ben				oğrenciyim
+			Ben				oğrenci-yim
+			pronoun.1SG.NOM	student.NPST-1SG
+			"I am a student."
+
+		Here are examples of predicative adjectives and nouns with copulas:
+
+			### NON-FINITE ADJ + POS-COP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {non-verbal predicates}
+			Ben				mutlu	olurum
+			Ben				mutlu	ol-ur-um
+			pronoun.1SG.NOM	happy	be-HAB.NPST-1SG
+			"I am happy."
+
+			### NON-FINITE NOUN + POS-COP (g) ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {non-verbal predicates}
+			Ben				oğrenci	değilim
+			Ben				oğrenci	değil-im
+			pronoun.1SG.NOM	student	neg.NPST-1SG
+			"I am not a student."
+
+		And here are ungrammatical examples where there are neither copulas nor finite 
+		suffixes on the nouns and adjectives:
+
+			### NON-FINITE ADJ + NO-COP (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {non-verbal predicates}
+			Ben				mutlu
+			Ben				mutlu
+			pronoun.1SG.NOM	happy
+			"I am happy."
+
+			### NON-FINITE NOUN + NO-COP (u) ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {non-verbal predicates}
+			Ben				oğrenci
+			Ben				oğrenci
+			pronoun.1SG.NOM	student
+			"I am a student."
+
+	OTHER
+	
+	POSSESSIVES {poss}
+
+		1.	Description of linguistic facts
+
+		Turkish allows for an optional possessor (which must have genitive case) on either 
+		(left or right) edge of the NP, along with a required (head noun) possessum that must 
+		be inflected with a possessive suffix whose number and person features agree with those 
+		of the possessor.
+
+		2.	Examples from testsuite
+
+		Here are some examples of possessive constructions with both the required suffix on the 
+		possessum and an explicit genitive pronoun agreeing with it, varying by whether the 
+		possessor comes before or after the possessum:
+
+			### 1SG, with genitive ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {possessives}
+			Benim			ailem					geldi
+			benim			aile-m					gel-di
+			pronoun.1SG.GEN	family.3SG.NOM-POSS.1SG	come-PF.3SG
+			'My family arrived.'
+
+			### 1SG, with genitive, possessive before genitive ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {possessives, word order}
+			Ailem					benim			geldi
+			Aile-m					benim			gel-di
+			family.3SG.NOM-1SGPOSS	pronoun.1SG.GEN	come-PF.NPST.3SG
+			'My family arrived.'
+
+		And here is a similar (and still grammatical) example, but with the genitive pronoun 
+		omitted:
+
+			### 1SG, without genitive ###
+			Source: author
+			Vetted: f
+			Judgment: g
+			Phenomena: {possessives}
+			Ailem					geldi
+			Aile-m					gel-di
+			family.3SG.NOM-POSS.1SG	come-PF.3SG
+			'My family arrived.'
+
+		Finally, here is an ungrammatical example demonstrating that the possessive inflection 
+		on the possessum is required:
+
+			### 1SG, without possessive ###
+			Source: author
+			Vetted: f
+			Judgment: u
+			Phenomena: {possessives}
+			Benim			aile			geldi
+			benim			aile			gel-di
+			pronoun.1SG.GEN	family.3SG.NOM	come-PF.3SG
+			'My family arrived.'
+
+		3.	TDL snippets & descriptions
+
+		Here is the absolutely unwieldy bit of code that allows for the possessum to be 
+		inflected; it is as unwieldy as it is because we needed to inherit from a valence 
+		changing type but infl-val-change-only-lex-rule prevented C-CONT from being 
+		non-empty, and also because Turkish inflectional morphology is so complicated. 
+		The case-common-noun-rule-dtr supertype means that this rule applies just prior to 
+		the case inflectional rules being applied.
+
+			> turkish.tdl
+
+			poss-common-noun-lex-rule-super := same-ctxt-lex-rule &
+											   same-cont-lex-rule &
+											   same-agr-lex-rule &
+											   same-head-lex-rule &
+											   same-hc-light-lex-rule &
+											   same-posthead-lex-rule &
+											   same-mc-lex-rule &
+											   infl-lex-rule &
+											   case-common-noun-rule-dtr &
+			  [ INFLECTED [ POSS-FLAG +,
+							CASE-COMMON-NOUN-FLAG #case-common-noun,
+							NEG-LEX-RULE-FLAG #neg-lex-rule,
+							TENSE-ADJECTIVE-FLAG #tense-adjective,
+							BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+							TENSE-VERB-FLAG #tense-verb,
+							AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+							ASPECT-VERB-FLAG #aspect-verb,
+							AGREEMENT-VERB-FLAG #agreement-verb,
+							NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+							POLARITY-VERB-FLAG #polarity-verb,
+							AGREEMENT-COPULA-FLAG #agreement-copula,
+							POLARITY-COPULA-FLAG #polarity-copula,
+							TENSE-COPULA-FLAG #tense-copula,
+							NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+							ASPECT-COPULA-FLAG #aspect-copula ],
+			   SYNSEM [ LKEYS.ALTKEYREL.ARG0.PNG #png,
+						LOCAL.CAT.VAL [ SPR < [ LOCAL [ CAT [ HEAD noun & [ CASE gen ] ],
+											  CONT.HOOK.INDEX #index2 ] ] >, 
+										SPEC #spec,
+										COMPS #comps,
+										SUBJ #subj ] ],
+			   DTR poss-common-noun-rule-dtr & [ SYNSEM.LOCAL [ CONT.HOOK [ INDEX #index,
+																			LTOP #lbl ],
+													CAT.VAL [ SPEC #spec,
+															  COMPS #comps,
+															  SUBJ #subj ] ],
+				   INFLECTED [ CASE-COMMON-NOUN-FLAG #case-common-noun,
+							   NEG-LEX-RULE-FLAG #neg-lex-rule,
+							   TENSE-ADJECTIVE-FLAG #tense-adjective,
+							   BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+							   TENSE-VERB-FLAG #tense-verb,
+							   AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+							   ASPECT-VERB-FLAG #aspect-verb,
+							   AGREEMENT-VERB-FLAG #agreement-verb,
+							   NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+							   POLARITY-VERB-FLAG #polarity-verb,
+							   AGREEMENT-COPULA-FLAG #agreement-copula,
+							   POLARITY-COPULA-FLAG #polarity-copula,
+							   TENSE-COPULA-FLAG #tense-copula,
+							   NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+							   ASPECT-COPULA-FLAG #aspect-copula ] ],
+			   C-CONT [ HOOK [ INDEX #index,
+					   LTOP #lbl ],
+					RELS < ! arg12-ev-relation &
+					  [ PRED "poss_rel",
+						LBL #lbl,
+						ARG1 #index,
+						ARG2 #index2 & [ PNG #png ] ] ! >,
+					ICONS < ! ! > ] ].
+
+		This should ostensibly make it so that possession-inflected NPs look for genitive 
+		noun specifiers, but see the "Problems encountered" section for an explanation that, 
+		basically, "it doesn't work and we don't know why."
+
+		Note that the pronoun and existence relations are not in the RELS list, because 
+		those may be supplied later on by either a bare-NP-like phrase or by the genitive 
+		possessor specifier.
+
+		To that end, here is the bare-NP-like phrase that allows inflected possessa to 
+		appear without any specifier:
+
+			> turkish.tdl
+
+			bare-poss-np-phrase := head-only & head-valence-phrase &
+			  [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
+						   SUBJ < >,
+						   COMPS < >,
+						   SPEC < > ],
+				HEAD-DTR.SYNSEM [ LOCAL [ CAT [ HEAD noun,
+							  VAL [ SPR < unexpressed & 
+										  [ LOCAL.CAT [ HEAD noun & [ CASE gen ] ],
+									OPT + ] >,
+								SUBJ < >,
+								COMPS < > ] ],
+							CONT.HOOK [ INDEX #index,
+										LTOP #larg ] ],
+							LKEYS.ALTKEYREL #altkeyrel ],
+				C-CONT [ RELS <! quant-relation &
+								 [ PRED "exist_q_rel",
+								   ARG0 #index, 
+								   RSTR #harg,
+								   BODY #larg ],
+								 quant-relation &
+								 [ PRED "exist_q_rel",
+								   ARG0 #arg2,
+								   RSTR #harg2 ],
+								 #altkeyrel & noun-relation &
+								 [ PRED "pron_rel",			 
+								   LBL #larg2,
+								   ARG0 #arg2 & [ COG-ST activ-or-more,
+												  SPECI + ] ] !>,
+					 HCONS <! qeq & 
+							  [ HARG #harg,
+								LARG #larg ],
+							  qeq &
+							  [ HARG #harg2,
+								LARG #larg2 ] !>,
+					 ICONS <! !>,
+					 HOOK [ INDEX #index ] ] ].
+
+		Here are the person-and-number-specific subtypes of the above rule:
+
+			> turkish.tdl
+
+			1sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM sg ] ].
+
+			1pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 1st, NUM pl ] ].
+
+			2sg-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 2nd, NUM sg ] ].
+
+			2pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 2nd, NUM pl ] ].
+
+			3sgpl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 3rd ] ].
+
+			3pl-poss-lex-rule-lex-rule := poss-common-noun-lex-rule-super &
+			  [ SYNSEM.LKEYS.ALTKEYREL.ARG0.PNG [ PER 3rd, NUM pl ] ].
+
+		Here is the case inflection rule from which the genitive inflection rule inherits 
+		(unchanged from the customization system's output):
+
+			> turkish.tdl
+
+			case-common-noun-lex-rule-super := add-only-no-ccont-rule &
+			  [ INFLECTED [ CASE-COMMON-NOUN-FLAG +,
+							NEG-LEX-RULE-FLAG #neg-lex-rule,
+							POSS-FLAG #poss,
+							TENSE-ADJECTIVE-FLAG #tense-adjective,
+							BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+							TENSE-VERB-FLAG #tense-verb,
+							AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+							ASPECT-VERB-FLAG #aspect-verb,
+							AGREEMENT-VERB-FLAG #agreement-verb,
+							NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+							POLARITY-VERB-FLAG #polarity-verb,
+							AGREEMENT-COPULA-FLAG #agreement-copula,
+							POLARITY-COPULA-FLAG #polarity-copula,
+							TENSE-COPULA-FLAG #tense-copula,
+							NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+							ASPECT-COPULA-FLAG #aspect-copula ],
+				DTR case-common-noun-rule-dtr &
+					[ INFLECTED [ NEG-LEX-RULE-FLAG #neg-lex-rule,
+								  POSS-FLAG #poss,
+								  TENSE-ADJECTIVE-FLAG #tense-adjective,
+								  BASIC-ADJECTIVE_OPT_COP-FLAG #basic-adjective_opt_cop,
+								  TENSE-VERB-FLAG #tense-verb,
+								  AGREEMENT-ADJECTIVE-FLAG #agreement-adjective,
+								  ASPECT-VERB-FLAG #aspect-verb,
+								  AGREEMENT-VERB-FLAG #agreement-verb,
+								  NUMBER-COMMON-NOUN-FLAG #number-common-noun,
+								  POLARITY-VERB-FLAG #polarity-verb,
+								  AGREEMENT-COPULA-FLAG #agreement-copula,
+								  POLARITY-COPULA-FLAG #polarity-copula,
+								  TENSE-COPULA-FLAG #tense-copula,
+								  NEG-COP-LEX-RULE-FLAG #neg-cop-lex-rule,
+								  ASPECT-COPULA-FLAG #aspect-copula ] ] ].
+
+		...and the genitive inflectional rule in particular:
+
+			> turkish.tdl
+
+			gen-lex-rule-lex-rule := case-common-noun-lex-rule-super & infl-lex-rule &
+			  [ SYNSEM.LOCAL.CAT.HEAD [ CASE gen,
+										CASE-MARKED + ] ].
+
+		As well as the specific suffixes for the rule (from irules.tdl):
+
+			> irules.tdl
+
+			gen-lex-rule-suffix1 :=
+			%suffix (* nin)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix2 :=
+			%suffix (* nın)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix3 :=
+			%suffix (* nun)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix4 :=
+			%suffix (* nün)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix5 :=
+			%suffix (* in)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix6 :=
+			%suffix (* ın)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix7 :=
+			%suffix (* un)
+			gen-lex-rule-lex-rule.
+
+			gen-lex-rule-suffix8 :=
+			%suffix (* ün)
+			gen-lex-rule-lex-rule.
+
+		And since we declared all pronominal inflections as separate lexical entries because 
+		of their irregularities, here is the most immediately inherited type for the 1SG 
+		genitive pronoun, as an example:
+
+			> turkish.tdl
+
+			gen-1sg-pronoun-noun-lex := 1sg-pronoun-noun-lex &
+			  [ SYNSEM.LOCAL.CAT.HEAD [ CASE gen,
+										CASE-MARKED + ] ].
+
+		And its declaration in the lexicon:
+
+			> lexicon.tdl
+
+			benim := gen-1sg-pronoun-noun-lex &
+			  [ STEM < "benim" >,
+				SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
+
+		Here is the section of rules.tdl where we defined a spec-head rule in addition to 
+		the head-spec rule, to allow for the flexibility of genitive possessors being on 
+		either the right or the left of the noun:
+
+			> rules.tdl
+
+			head-spec := head-spec-phrase.
+
+			spec-head := spec-head-phrase.
+
+		And here is the section where we defined the bare possessive NP (-like) phrase:
+
+			> rules.tdl
+
+			bare-poss-np := bare-poss-np-phrase.
+
+		4.	Problems encountered
+
+		Oh, golly.  This part was tough and we definitely did not get it working.
+
+		Inflectional marking of possession sans the genitive does parse!
+
+		The semantics in the case of the bare-NP-like possessive are mostly correct, but 
+		we could not figure out how to identify the ARG0 of the pron_rel with the ARG2 
+		of the poss_rel.  ARG2 of the poss_rel has the right PNG, features at least, while 
+		ARG0 of the pron_rel has the proper [ COG-ST activ-or-more ].
+
+		...but we could not get the head-spec rule to combine the possessors and possessa. 
+		Presumably the issue lies in the unwieldy poss-common-noun-lex-rule-super, which is 
+		where the [ HEAD noun & [ CASE gen ] ] features of inflected possessa are supposed 
+		to originate.
+
+		At one point the genitive possessors seemed to work, but then we realized that it 
+		was actually combining via head-comp, which was very weird.  The current version 
+		of the grammar does not have this behavior.
+
+	OTHER
+
+		Coordination was adding way too many parses, so as we worked we commented out all 
+		of the many, many coordination and coordination agreement rules in rules.tdl, e.g.,
+
+			> rules.tdl
+
+			;n1-1st-any-1st-any-any-pl-top-coord := n1-1st-any-1st-any-any-pl-top-coord-rule.
+			(...)
+			;s4-bottom-coord := s4-bottom-coord-rule.
+
+		We un-commented them before getting the final results, but omitting them vastly 
+		fixed a lot of our overgeneration problems.
+
+##### PART 5 #####
+#	In addition, your write up should include a statement of the current coverage of your 
+#	grammar over your test suite (using numbers you can get from Analyze | Coverage and 
+#	Analyze | Overgeneration in [incr tsdb()]) and a comparison between your baseline test 
+#	suite run and your final one for this lab (see Compare | Competence).
+
+	BASELINE GRAMMAR TESTSUITE STATS
+
+		Coverage:
+
+			Positive Items #:		112
+			Total Results #:		86
+			Word String 0:			3.09
+			Lexical Items 0:		8.30
+			Distinct Analyses 0:	12.59
+			Overall Coverage %:		77.5
+
+		Overgeneration:
+
+			Negative Items #:		61
+			Total Results #:		15
+			Word String 0:			2.84
+			Lexical Items 0:		8.80
+			Distinct Analyses 0:	8.00
+			Overall Coverage %:		24.2
+
+	FINAL GRAMMAR TESTSUITE STATS
+
+		Coverage:
+
+			Positive Items #:		112
+			Total Results #:		91
+			Word String 0:			3.09
+			Lexical Items 0:		7.71
+			Distinct Analyses 0:	15.97
+			Overall Coverage %:		81.2
+
+		Overgeneration:
+
+			Negative Items #:		61
+			Total Results #:		14
+			Word String 0:			2.84
+			Lexical Items 0:		7.96
+			Distinct Analyses 0:	8.64
+			Overall Coverage %:		23.0
+
+	FROM COMPARE | COMPETENCE
+
+		Baseline:
+
+			Lexical:				2.71
+			Analyses:				11.91
+			In:						77.5
+			Out:					24.2
+
+		Final:
+
+			Lexical:				2.52
+			Analyses:				14.99
+			In:						81.2
+			Out:					23.0
+
