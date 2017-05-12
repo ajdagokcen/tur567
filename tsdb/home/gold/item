@@ -103,11 +103,11 @@
 103@author@@@1@matrixwhquestions@Kime		çıktı@@@@0@2@who.3SG.DAT	exit-PF.NPST.3SG'Who left?'@ajda gokcen and kekoa riggin@april 28, 2017
 104@author@@@1@crd@Elma			armut			yedim@@@@1@3@apple.3SG.ACC	pear.3SG.ACC	eat-PF.NPST-1SG'I ate an apple and (a) pear.'@ajda gokcen and kekoa riggin@april 28, 2017
 105@author@@@1@crd@Her			elma			armut			yedim@@@@1@4@every.SG	apple.3SG.ACC	pear.3SG.ACC	eat-PF.NPST-1SG'I ate every apple and pear.'@ajda gokcen and kekoa riggin@april 28, 2017
-106@author@@@1@crd@Her			elma			her		armut			yedim@@@@1@5@every.SG	apple.3SG.ACC	every	pear.3SG.ACC	eat-PF.NPST-1SG'I ate every apple and every pear.'@ajda gokcen and kekoa riggin@april 28, 2017
+106@author@@@1@crd@Bir		elma			bir		armut			yedim@@@@1@5@a.SG	apple.3SG.ACC	a.SG	pear.3SG.ACC	eat-PF.NPST-1SG'I ate an apple and a pear.'@ajda gokcen and kekoa riggin@april 28, 2017
 107@author@@@1@crd@Ben				geldim				çıktım@@@@1@3@pronoun.1SG.NOM	come-PF.NPST-1SG	exit-PF.NPST-1SG'I arrived and left.'@ajda gokcen and kekoa riggin@april 28, 2017
 108@author@@@1@crd@Elma			ve	armut			yedim@@@@1@4@apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG'I ate an apple and (a) pear.'@ajda gokcen and kekoa riggin@april 28, 2017
 109@author@@@1@crd@Her			elma			ve	armut			yedim@@@@1@5@every.SG	apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG'I ate every apple and pear.'@ajda gokcen and kekoa riggin@april 28, 2017
-110@author@@@1@crd@Her			elma			ve	her		armut			yedim@@@@1@6@every.SG	apple.3SG.ACC	and	every	pear.3SG.ACC	eat-PF.NPST-1SG'I ate every apple and every pear.'@ajda gokcen and kekoa riggin@april 28, 2017
+110@author@@@1@crd@Bir		elma			ve	bir		armut			yedim@@@@1@6@a.SG	apple.3SG.ACC	and	a.SG	pear.3SG.ACC	eat-PF.NPST-1SG'I ate an apple and a pear.'@ajda gokcen and kekoa riggin@april 28, 2017
 111@author@@@1@crd@Ben				geldim				ve	çıktım@@@@1@4@pronoun.1SG.NOM	come-PF.NPST-1SG	and	exit-PF.NPST-1SG'I arrived and left.'@ajda gokcen and kekoa riggin@april 28, 2017
 112@author@@@1@crd@Ve	elma			ve	armut			yedim@@@@0@5@and	apple.3SG.ACC	and	pear.3SG.ACC	eat-PF.NPST-1SG'I ate an apple and (a) pear.'@ajda gokcen and kekoa riggin@april 28, 2017
 113@author@@@1@crd@Elma			armut			ayva			yedim@@@@1@4@apple.3SG.ACC	pear.3SG.ACC	quince.3SG.ACC	eat-PF.NPST-1SG'I ate an apple, (a) pear, and (a) quince.'@ajda gokcen and kekoa riggin@april 28, 2017
@@ -157,7 +157,7 @@
 157@author@@@1@non-verbalpredicates@Ben				oğrenci	değilim@@@@1@3@pronoun.1SG.NOM	student	neg.NPST-1SG"I am not a student."@ajda gokcen and kekoa riggin@april 28, 2017
 158@author@@@1@non-verbalpredicates@Ben				oğrenci@@@@0@2@pronoun.1SG.NOM	student"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
 159@author@@@1@cognitivestatus,det@Bir		hediye			getirdim@@@@1@3@a.SG	present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
-160@author@@@1@cognitivestatus,det@Bir		hediyeyi		getirdim@@@@0@3@a.SG	present.3SG-ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
+160@author@@@1@cognitivestatus,det@Bir		hediyeyi		getirdim@@@@1@3@a.SG	present.3SG-ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
 161@author@@@1@cognitivestatus@Hediye			getirdim@@@@1@2@present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
 162@author@@@1@cognitivestatus@Hediyeyi		getirdim@@@@1@2@present.3SG-ACC	bring-PF.NPST-1SG'I brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
 163@author@@@1@cognitivestatus,det@Bu		hediye			getirdim@@@@0@3@this	present.3SG.ACC	bring-PF.NPST-1SG'I brought a/this present.'@ajda gokcen and kekoa riggin@april 28, 2017
