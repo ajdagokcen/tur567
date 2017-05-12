@@ -89,6 +89,14 @@ piyano := common-noun-lex &
   [ STEM < "piyano" >,
     SYNSEM.LKEYS.KEYREL.PRED "_piano_n_rel" ].
 
+son := common-noun-lex &
+  [ STEM < "son" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_end_n_rel" ].
+
+hırsız := common-noun-lex &
+  [ STEM < "hırsız" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thief_n_rel" ].
+
 ben_1 := nom-1sg-pronoun-noun-lex &
   [ STEM < "ben" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -213,14 +221,6 @@ o_1 := nom-3sgpl-pronoun-noun-lex &
   [ STEM < "o" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-ne_1 := nom-3sgpl-pronoun-noun-lex &
-  [ STEM < "ne" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kim_1 := nom-3sgpl-pronoun-noun-lex &
-  [ STEM < "kim" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 bunu := acc-3sgpl-pronoun-noun-lex &
   [ STEM < "bunu" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -232,14 +232,6 @@ bunu := acc-3sgpl-pronoun-noun-lex &
 onu := acc-3sgpl-pronoun-noun-lex &
   [ STEM < "onu" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-neyi := acc-3sgpl-pronoun-noun-lex &
-  [ STEM < "neyi" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimi := acc-3sgpl-pronoun-noun-lex &
-  [ STEM < "kimi" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
 
 bu_2 := acc-3sgpl-pronoun-noun-lex &
   [ STEM < "bu" >,
@@ -253,14 +245,6 @@ o_2 := acc-3sgpl-pronoun-noun-lex &
   [ STEM < "o" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-ne_2 := acc-3sgpl-pronoun-noun-lex &
-  [ STEM < "ne" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kim_2 := acc-3sgpl-pronoun-noun-lex &
-  [ STEM < "kim" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 buna := dat-3sgpl-pronoun-noun-lex &
   [ STEM < "buna" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -272,14 +256,6 @@ buna := dat-3sgpl-pronoun-noun-lex &
 ona := dat-3sgpl-pronoun-noun-lex &
   [ STEM < "ona" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-neye := dat-3sgpl-pronoun-noun-lex &
-  [ STEM < "neye" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kime := dat-3sgpl-pronoun-noun-lex &
-  [ STEM < "kime" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
 
 bundan := abl-3sgpl-pronoun-noun-lex &
   [ STEM < "bundan" >,
@@ -293,14 +269,6 @@ ondan := abl-3sgpl-pronoun-noun-lex &
   [ STEM < "ondan" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-neden := abl-3sgpl-pronoun-noun-lex &
-  [ STEM < "neden" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimden := abl-3sgpl-pronoun-noun-lex &
-  [ STEM < "kimden" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 bunun := gen-3sgpl-pronoun-noun-lex &
   [ STEM < "bunun" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -312,14 +280,6 @@ bunun := gen-3sgpl-pronoun-noun-lex &
 onun := gen-3sgpl-pronoun-noun-lex &
   [ STEM < "onun" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-nenin := gen-3sgpl-pronoun-noun-lex &
-  [ STEM < "nenin" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimin := gen-3sgpl-pronoun-noun-lex &
-  [ STEM < "kimin" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
 
 bunda := loc-3sgpl-pronoun-noun-lex &
   [ STEM < "bunda" >,
@@ -333,14 +293,6 @@ onda := loc-3sgpl-pronoun-noun-lex &
   [ STEM < "onda" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-nede := loc-3sgpl-pronoun-noun-lex &
-  [ STEM < "nede" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimde := loc-3sgpl-pronoun-noun-lex &
-  [ STEM < "kimde" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 bunlar_1 := nom-3pl-pronoun-noun-lex &
   [ STEM < "bunlar" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -352,14 +304,6 @@ bunlar_1 := nom-3pl-pronoun-noun-lex &
 onlar_1 := nom-3pl-pronoun-noun-lex &
   [ STEM < "onlar" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-neler_1 := nom-3pl-pronoun-noun-lex &
-  [ STEM < "neler" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimler_1 := nom-3pl-pronoun-noun-lex &
-  [ STEM < "kimler" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
 
 bunları := acc-3pl-pronoun-noun-lex &
   [ STEM < "bunları" >,
@@ -373,14 +317,6 @@ onları := acc-3pl-pronoun-noun-lex &
   [ STEM < "onları" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-neleri := acc-3pl-pronoun-noun-lex &
-  [ STEM < "neleri" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimleri := acc-3pl-pronoun-noun-lex &
-  [ STEM < "kimleri" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 bunlar_2 := acc-3pl-pronoun-noun-lex &
   [ STEM < "bunlar" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -392,14 +328,6 @@ bunlar_2 := acc-3pl-pronoun-noun-lex &
 onlar_2 := acc-3pl-pronoun-noun-lex &
   [ STEM < "onlar" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-neler_2 := acc-3pl-pronoun-noun-lex &
-  [ STEM < "neler" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimler_2 := acc-3pl-pronoun-noun-lex &
-  [ STEM < "kimler" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
 
 bunlara := dat-3pl-pronoun-noun-lex &
   [ STEM < "bunlara" >,
@@ -413,14 +341,6 @@ onlara := dat-3pl-pronoun-noun-lex &
   [ STEM < "onlara" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-nelere := dat-3pl-pronoun-noun-lex &
-  [ STEM < "nelere" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimlere := dat-3pl-pronoun-noun-lex &
-  [ STEM < "kimlere" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 bunlardan := abl-3pl-pronoun-noun-lex &
   [ STEM < "bunlardan" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -432,14 +352,6 @@ bunlardan := abl-3pl-pronoun-noun-lex &
 onlardan := abl-3pl-pronoun-noun-lex &
   [ STEM < "onlardan" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-nelerden := abl-3pl-pronoun-noun-lex &
-  [ STEM < "nelerden" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimlerden := abl-3pl-pronoun-noun-lex &
-  [ STEM < "kimlerden" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
 
 bunların := gen-3pl-pronoun-noun-lex &
   [ STEM < "bunların" >,
@@ -453,14 +365,6 @@ onların := gen-3pl-pronoun-noun-lex &
   [ STEM < "onların" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-nelerin := gen-3pl-pronoun-noun-lex &
-  [ STEM < "nelerin" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimlerin := gen-3pl-pronoun-noun-lex &
-  [ STEM < "kimlerin" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 bunlarda := loc-3pl-pronoun-noun-lex &
   [ STEM < "bunlarda" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -472,14 +376,6 @@ bunlarda := loc-3pl-pronoun-noun-lex &
 onlarda := loc-3pl-pronoun-noun-lex &
   [ STEM < "onlarda" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
-
-nelerde := loc-3pl-pronoun-noun-lex &
-  [ STEM < "nelerde" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimlerde := loc-3pl-pronoun-noun-lex &
-  [ STEM < "kimlerde" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
 
 benle := com-1sg-pronoun-noun-lex &
   [ STEM < "benle" >,
@@ -509,14 +405,6 @@ oyla := com-3sgpl-pronoun-noun-lex &
   [ STEM < "oyla" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-neyle := com-3sgpl-pronoun-noun-lex &
-  [ STEM < "neyle" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
-
-kimle := com-3sgpl-pronoun-noun-lex &
-  [ STEM < "kimle" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
-
 bunlarla := com-3pl-pronoun-noun-lex &
   [ STEM < "bunlarla" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
@@ -529,13 +417,133 @@ onlarla := com-3pl-pronoun-noun-lex &
   [ STEM < "onlarla" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
 
-nelerle := com-3pl-pronoun-noun-lex &
-  [ STEM < "nelerle" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_what_n_rel" ].
+ne_1 := nom-whsgpl-pronoun-noun-lex &
+  [ STEM < "ne" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
 
-kimlerle := com-3pl-pronoun-noun-lex &
+kim_1 := nom-whsgpl-pronoun-noun-lex &
+  [ STEM < "kim" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+neyi := acc-whsgpl-pronoun-noun-lex &
+  [ STEM < "neyi" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimi := acc-whsgpl-pronoun-noun-lex &
+  [ STEM < "kimi" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+ne_2 := acc-whsgpl-pronoun-noun-lex &
+  [ STEM < "ne" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kim_2 := acc-whsgpl-pronoun-noun-lex &
+  [ STEM < "kim" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+neye := dat-whsgpl-pronoun-noun-lex &
+  [ STEM < "neye" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kime := dat-whsgpl-pronoun-noun-lex &
+  [ STEM < "kime" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+neden := abl-whsgpl-pronoun-noun-lex &
+  [ STEM < "neden" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimden := abl-whsgpl-pronoun-noun-lex &
+  [ STEM < "kimden" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+nenin := gen-whsgpl-pronoun-noun-lex &
+  [ STEM < "nenin" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimin := gen-whsgpl-pronoun-noun-lex &
+  [ STEM < "kimin" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+nede := loc-whsgpl-pronoun-noun-lex &
+  [ STEM < "nede" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimde := loc-whsgpl-pronoun-noun-lex &
+  [ STEM < "kimde" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+neyle := com-whsgpl-pronoun-noun-lex &
+  [ STEM < "neyle" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimle := com-whsgpl-pronoun-noun-lex &
+  [ STEM < "kimle" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+neler_1 := nom-whpl-pronoun-noun-lex &
+  [ STEM < "neler" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimler_1 := nom-whpl-pronoun-noun-lex &
+  [ STEM < "kimler" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+neleri := acc-whpl-pronoun-noun-lex &
+  [ STEM < "neleri" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimleri := acc-whpl-pronoun-noun-lex &
+  [ STEM < "kimleri" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+neler_2 := acc-whpl-pronoun-noun-lex &
+  [ STEM < "neler" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimler_2 := acc-whpl-pronoun-noun-lex &
+  [ STEM < "kimler" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+nelere := dat-whpl-pronoun-noun-lex &
+  [ STEM < "nelere" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimlere := dat-whpl-pronoun-noun-lex &
+  [ STEM < "kimlere" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+nelerden := abl-whpl-pronoun-noun-lex &
+  [ STEM < "nelerden" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimlerden := abl-whpl-pronoun-noun-lex &
+  [ STEM < "kimlerden" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+nelerin := gen-whpl-pronoun-noun-lex &
+  [ STEM < "nelerin" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimlerin := gen-whpl-pronoun-noun-lex &
+  [ STEM < "kimlerin" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+nelerde := loc-whpl-pronoun-noun-lex &
+  [ STEM < "nelerde" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimlerde := loc-whpl-pronoun-noun-lex &
+  [ STEM < "kimlerde" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+nelerle := com-whpl-pronoun-noun-lex &
+  [ STEM < "nelerle" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_thing_n_rel" ].
+
+kimlerle := com-whpl-pronoun-noun-lex &
   [ STEM < "kimlerle" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_who_n_rel" ].
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
 
 ;;; Adjectives
 
@@ -635,7 +643,7 @@ kork := abl-tr-verb-lex &
   [ STEM < "kork" >,
     SYNSEM.LKEYS.KEYREL.PRED "_fear_v_rel" ].
 
-diret := positive-loc-tr-verb-lex &
+diret := regular-loc-tr-verb-lex &
   [ STEM < "diret" >,
     SYNSEM.LKEYS.KEYREL.PRED "_insist_v_rel" ].
 
@@ -646,7 +654,7 @@ ol_1 := positive-loc-tr-verb-lex &
 değil_1 := negative-loc-tr-verb-lex &
   [ STEM < "değil" >,
     SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
-		           ALTKEYREL.PRED "neg_rel" ] ].
+                   ALTKEYREL.PRED "neg_rel" ] ].
 
 ilgilen := com-tr-verb-lex &
   [ STEM < "ilgilen" >,
@@ -659,7 +667,7 @@ ol_2 := positive-nom-tr-verb-lex &
 değil_2 := negative-nom-tr-verb-lex &
   [ STEM < "değil" >,
     SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
-		           ALTKEYREL.PRED "neg_rel" ] ].
+                   ALTKEYREL.PRED "neg_rel" ] ].
 
 de_1 := sentential-comp-verb-lex &
   [ STEM < "de" >,

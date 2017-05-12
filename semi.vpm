@@ -65,3 +65,8 @@ E.ASPECT : E.ASPECT
 
 E.MOOD : E.MOOD
   * <> *
+
+E.EVID : E.EVID
+  direct <> direct
+  indirect <> indirect
+  * <> *

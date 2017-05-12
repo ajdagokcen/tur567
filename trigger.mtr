@@ -1,39 +1,38 @@
 ;;; -*- Mode: TDL; Coding: utf-8 -*-
 ;;; Semantically Empty Lexical Entries
 
-mi_gr := generator_rule &
-[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
-  FLAGS.TRIGGER "mi" ].
-
-diye_2_gr := generator_rule &
-[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
-  FLAGS.TRIGGER "diye_2" ].
-
 com-marker_gr := generator_rule &
 [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
   FLAGS.TRIGGER "com-marker" ].
-
-mı_gr := generator_rule &
-[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
-  FLAGS.TRIGGER "mı" ].
 
 ki_gr := generator_rule &
 [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
   FLAGS.TRIGGER "ki" ].
 
-mü_gr := generator_rule &
+diye_1_gr := generator_rule &
 [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
-  FLAGS.TRIGGER "mü" ].
+  FLAGS.TRIGGER "diye_1" ].
+
+diye_2_gr := generator_rule &
+[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
+  FLAGS.TRIGGER "diye_2" ].
 
 ol_3_gr := generator_rule &
 [ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
   FLAGS.TRIGGER "ol_3" ].
 
+mi_gr := generator_rule &
+  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
+    FLAGS.TRIGGER "mi" ].
+
+mı_gr := generator_rule &
+  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
+    FLAGS.TRIGGER "mı" ].
+
 mu_gr := generator_rule &
-[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
-  FLAGS.TRIGGER "mu" ].
+  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
+    FLAGS.TRIGGER "mu" ].
 
-diye_1_gr := generator_rule &
-[ CONTEXT.RELS <! [ PRED "non_existing_rel" ] !>,
-  FLAGS.TRIGGER "diye_1" ].
-
+mü_gr := generator_rule &
+  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
+    FLAGS.TRIGGER "mü" ].

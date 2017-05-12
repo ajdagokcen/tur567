@@ -3,7 +3,8 @@ adj-head-int := adj-head-int-phrase.
 
 head-adj-int := head-adj-int-phrase.
 
-decl-head-opt-subj := decl-head-opt-subj-phrase.
+;decl-head-opt-subj := decl-head-opt-subj-phrase.
+head-opt-subj := replacement-basic-head-opt-subj-phrase.
 
 basic-head-opt-comp := basic-head-opt-comp-phrase.
 
@@ -22,6 +23,10 @@ comp-head-2 := comp-head-phrase-2.
 head-spec := head-spec-phrase.
 
 spec-head := spec-head-phrase.
+
+wh-int := wh-int-cl.
+
+adverbial-locative := adverbial-locative-phrase.
 
 ;n-bar-predicate := n-bar-predicate-rule.
 

@@ -3,129 +3,142 @@
 
 pl-lex-rule-suffix1 :=
 %suffix (* ler) (* lar)
-pl-lex-rule-lex-rule.
+pl-lex-rule.
 
 1sg-poss-lex-rule-suffix1 :=
-%suffix (* im) (* m) (* üm) (* um) (* ım)
-1sg-poss-lex-rule-lex-rule.
+%suffix (* im) (* üm) (* um) (* ım) (* m)
+1sg-poss-lex-rule.
 
 1pl-poss-lex-rule-suffix1 :=
 %suffix (* imiz) (* ımız) (* umuz) (* ümüz) (* miz) (* mız) (* muz) (* müz)
-1pl-poss-lex-rule-lex-rule.
+1pl-poss-lex-rule.
 
 2sg-poss-lex-rule-suffix1 :=
 %suffix (* in) (* ın) (* un) (* ün) (* n)
-2sg-poss-lex-rule-lex-rule.
+2sg-poss-lex-rule.
 
 2pl-poss-lex-rule-suffix1 :=
 %suffix (* iniz) (* ınız) (* unuz) (* ünüz) (* niz) (* nız) (* nuz) (* nüz)
-2pl-poss-lex-rule-lex-rule.
+2pl-poss-lex-rule.
 
 3sgpl-poss-lex-rule-suffix1 :=
-%suffix (* si) (* sı) (* su) (* sü) (* i) (* ı) (* ü) (* yu)
-3sgpl-poss-lex-rule-lex-rule.
+%suffix (* si) (* sı) (* su) (* sü) (* i) (* ı) (* u) (* ü) (* yu)
+3sgpl-poss-lex-rule.
 
 3pl-poss-lex-rule-suffix1 :=
 %suffix (* leri) (* ları)
-3pl-poss-lex-rule-lex-rule.
+3pl-poss-lex-rule.
 
 spec-acc-lex-rule-suffix1 :=
 %suffix (* yi) (* yı) (* yu) (* yü) (* i) (* ı) (* u) (* ü) (* ni) (* nı) (* nu) (* nü)
-spec-acc-lex-rule-lex-rule.
+spec-acc-lex-rule.
 
 dat-lex-rule-suffix1 :=
 %suffix (* ye) (* ya) (* e) (* a) (* ne) (* na)
-dat-lex-rule-lex-rule.
+dat-lex-rule.
 
 abl-lex-rule-suffix1 :=
 %suffix (* den) (* dan) (* ten) (* tan) (* nden) (* ndan)
-abl-lex-rule-lex-rule.
+abl-lex-rule.
 
 gen-lex-rule-suffix1 :=
 %suffix (* nin) (* nın) (* nun) (* nün) (* in) (* ın) (* un) (* ün)
-gen-lex-rule-lex-rule.
+gen-lex-rule.
+;(* 'nin) (* 'nın) (* 'nun) (* 'nün)
 
 loc-lex-rule-suffix1 :=
 %suffix (* de) (* da) (* te) (* ta) (* nde) (* nda)
-loc-lex-rule-lex-rule.
+loc-lex-rule.
 
 com-lex-rule-suffix1 :=
 %suffix (* yle) (* yla) (* le) (* la)
-com-lex-rule-lex-rule.
+com-lex-rule.
 
 neg-lex-rule-suffix1 :=
 %suffix (* me) (* ma) (* m)
-neg-lex-rule-lex-rule.
+neg-lex-rule.
 
 impf-lex-rule-suffix1 :=
 %suffix (* iyor) (* ıyor) (* uyor) (* üyor)
-impf-lex-rule-lex-rule.
+impf-lex-rule.
 
-pf-lex-rule-suffix1 :=
+direct-pf-lex-rule-suffix1 :=
 %suffix (* di) (* dı) (* du) (* dü) (* ti) (* tı) (* tu) (* tü)
-pf-lex-rule-lex-rule.
+direct-pf-lex-rule.
+
+indirect-pf-lex-rule-suffix1 :=
+%suffix (* miş) (* mış) (* muş) (* müş)
+indirect-pf-lex-rule.
 
 hab-lex-rule-suffix1 :=
 %suffix (* ir) (* ır) (* ur) (* ür) (* er) (* ar) (* z)
-hab-lex-rule-lex-rule.
+hab-lex-rule.
 
 prsp-lex-rule-suffix1 :=
 %suffix (* ecek) (* acak) (* yecek) (* yacak) (* eceğ) (* acağ) (* yeceğ) (* yacağ)
-prsp-lex-rule-lex-rule.
+prsp-lex-rule.
 
-pst-lex-rule-suffix1 :=
+direct-pst-lex-rule-suffix1 :=
 %suffix (* di) (* dı) (* du) (* dü) (* ti) (* tı) (* tu) (* tü) (* ydi) (* ydı) (* ydu) (* ydü)
-pst-lex-rule-lex-rule.
+direct-pst-lex-rule.
+
+indirect-pst-lex-rule-suffix1 :=
+%suffix (* miş) (* mış) (* muş) (* müş) (* ymiş) (* ymış) (* ymuş) (* ymüş)
+indirect-pst-lex-rule.
 
 1sg-lex-rule-suffix1 :=
 %suffix (* im) (* ım) (* um) (* üm) (* yim) (* yım) (* yum) (* yüm) (* m)
-1sg-lex-rule-lex-rule.
+1sg-lex-rule.
 
 1pl-lex-rule-suffix1 :=
 %suffix (* iz) (* ız) (* uz) (* üz) (* yiz) (* yız) (* yuz) (* yüz) (* k)
-1pl-lex-rule-lex-rule.
+1pl-lex-rule.
 
 2sg-lex-rule-suffix1 :=
 %suffix (* sin) (* sın) (* sun) (* sün) (* n)
-2sg-lex-rule-lex-rule.
+2sg-lex-rule.
 
 2pl-lex-rule-suffix1 :=
 %suffix (* siniz) (* sınız) (* sunuz) (* sünüz) (* niz) (* nız) (* nuz) (* nüz)
-2pl-lex-rule-lex-rule.
+2pl-lex-rule.
 
 3pl-lex-rule-suffix1 :=
 %suffix (* ler) (* lar)
-3pl-lex-rule-lex-rule.
+3pl-lex-rule.
 
-pst-adj-lex-rule-suffix1 :=
+direct-pst-adj-lex-rule-suffix1 :=
 %suffix (* di) (* dı) (* du) (* dü) (* ti) (* tı) (* tu) (* tü) (* ydi) (* ydı) (* ydu) (* ydü)
-pst-adj-lex-rule-lex-rule.
+direct-pst-adj-lex-rule.
+
+indirect-pst-adj-lex-rule-suffix1 :=
+%suffix (* miş) (* mış) (* muş) (* müş) (* ymiş) (* ymış) (* ymuş) (* ymüş)
+indirect-pst-adj-lex-rule.
 
 1sg-adj-lex-rule-suffix1 :=
 %suffix (* im) (* ım) (* um) (* üm) (* yim) (* yım) (* yum) (* yüm) (* m)
-1sg-adj-lex-rule-lex-rule.
+1sg-adj-lex-rule.
 
 1pl-adj-lex-rule-suffix1 :=
 %suffix (* iz) (* ız) (* uz) (* üz) (* yiz) (* yız) (* yuz) (* yüz) (* k)
-1pl-adj-lex-rule-lex-rule.
+1pl-adj-lex-rule.
 
 2sg-adj-lex-rule-suffix1 :=
 %suffix (* sin) (* sın) (* sun) (* sün) (* n)
-2sg-adj-lex-rule-lex-rule.
+2sg-adj-lex-rule.
 
 2pl-adj-lex-rule-suffix1 :=
 %suffix (* siniz) (* sınız) (* sunuz) (* sünüz) (* niz) (* nız) (* nuz) (* nüz)
-2pl-adj-lex-rule-lex-rule.
+2pl-adj-lex-rule.
 
 3pl-adj-lex-rule-suffix1 :=
 %suffix (* ler) (* lar)
-3pl-adj-lex-rule-lex-rule.
+3pl-adj-lex-rule.
 
 prsp-part-lex-rule-suffix1 :=
 %suffix (* ecek) (* acak) (* yecek) (* yacak) (* eceğ) (* acağ) (* yeceğ) (* yacağ)
-prsp-part-lex-rule-lex-rule.
+prsp-part-lex-rule.
 
 pf-part-lex-rule-suffix1 :=
 %suffix (* dik) (* dık) (* duk) (* dük) (* diğ) (* dığ) (* duğ) (* düğ)
-pf-part-lex-rule-lex-rule.
+pf-part-lex-rule.
 
