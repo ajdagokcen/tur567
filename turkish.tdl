@@ -929,8 +929,16 @@ pl-indefinite-determiner-lex := indefinite-determiner-lex &
 ;                                        SPEC < > ] ],
 ;                             COORD - ] ] > ].
 
+intersective-mod-phrase := unary-phrase &
+  [ SYNSEM [ LOCAL.CAT.HEAD.MOD < [ LOCAL intersective-mod & 
+					                      [ CONT.HOOK.INDEX #ind ] ] >,
+	         LKEYS.KEYREL.ARG1 #ind ],
+    C-CONT [ HOOK.XARG #ind,
+             HCONS <! !> ] ].
+
 ;locative-pp-phrase := unary-phrase &
-adverbial-locative-phrase := unary-phrase &
+;adverbial-locative-phrase := unary-phrase & intersective-mod-lex &
+adverbial-locative-phrase := intersective-mod-phrase &
   [ SYNSEM [ LOCAL.CAT [ HEAD adp & [ MOD < [ LOCAL intersective-mod &
                                                     [ CAT [ HEAD verb,
                                                             VAL.COMPS < > ] ] ] > ],
