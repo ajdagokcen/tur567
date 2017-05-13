@@ -595,6 +595,10 @@ uyu := itr-verb-lex &
   [ STEM < "uyu" >,
     SYNSEM.LKEYS.KEYREL.PRED "_sleep_v_rel" ].
 
+otur := itr-verb-lex &
+  [ STEM < "otur" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_sit_v_rel" ].
+
 getir := acc-tr-verb-lex &
   [ STEM < "getir" >,
     SYNSEM.LKEYS.KEYREL.PRED "_bring_v_rel" ].

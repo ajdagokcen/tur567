@@ -689,8 +689,9 @@ subj-raise-aux-no-pred := subj-raise-aux & raise-sem-lex-item &
 
 ;;; TODO
 interrogative-aux-lex := subj-raise-aux-no-pred &
-  [ SYNSEM.LOCAL [ CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD [ FORM nonfinite, RAISED + ],
-                   CONT.HOOK.INDEX.SF ques ] ].
+  [ SYNSEM [ LOCAL [ CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD [ FORM nonfinite, RAISED + ],
+                   CONT.HOOK.INDEX.SF ques ],
+             NON-LOCAL [ SLASH 0-dlist, REL 0-dlist, QUE 0-dlist ] ] ].
 ;  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.LOCAL.CAT.HEAD.FORM nonfinite ].
 ;SYNSEM.LOCAL.CONT.HOOK.INDEX.SF ques
 

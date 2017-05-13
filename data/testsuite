@@ -1511,8 +1511,6 @@ a.SG	cat.3SG.ACC	beautiful	see-PF.NPST-1SG
 ######## ADVERBS #######
 ########################
 
-##### NOT GONNA PARSE FOR NOW #####
-
 ### ADV + SUBJ + VERB (g) ###
 Source: author
 Vetted: f
@@ -1549,9 +1547,9 @@ Vetted: f
 Judgment: g
 Phenomena: {adverbs, word order}
 Ben				hızlı	elma			yedim
-Ben				hızlı	seni			ye-di-m
+Ben				hızlı	elma			ye-di-m
 pronoun.1SG.NOM	quickly	apple.3SG.ACC	eat-PF-1SG
-'I quickly at the apple.'
+'I quickly ate the apple.'
 
 ### SUBJ + OBJ + ADV + VERB (u) ###
 Source: author
@@ -1669,8 +1667,6 @@ dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF	question.NPST.3SG
 # NON-VERBAL PREDICATES#
 ########################
 
-##### NOT CURRENTLY WORKING BUT PROBABLY SHOULD??? #####
-
 ### FINITE ADJ + NO-COP (g) ###
 Source: author
 Vetted: f
@@ -1691,11 +1687,21 @@ Ben				mutlu	ol-ur-um
 pronoun.1SG.NOM	happy	be-HAB.NPST-1SG
 "I am happy."
 
+### NON-FINITE ADJ + POS-NEG-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates, negation}
+Ben				mutlu	olmam
+Ben				mutlu	ol-ma-m
+pronoun.1SG.NOM	happy	be-NEG.HAB.NPST-1SG
+"I am not happy."
+
 ### NON-FINITE ADJ + ADJ NEG-COP (g) ###
 Source: author
 Vetted: f
 Judgment: g
-Phenomena: {non-verbal predicates}
+Phenomena: {non-verbal predicates, negation}
 Ben				mutlu	değilim
 Ben				mutlu	değil-im
 pronoun.1SG.NOM	happy	neg.NPST-1SG
@@ -1712,7 +1718,6 @@ pronoun.1SG.NOM	happy
 "I am happy."
 
 ##### NOT GONNA PARSE FOR NOW #####
-
 ### FINITE NOUN + NO-COP (g) ###
 Source: author
 Vetted: f
@@ -1733,11 +1738,21 @@ Ben				oğrenci	ol-ur-um
 pronoun.1SG.NOM	student	be-HAB.NPST-1SG
 "I am a student."
 
+### NON-FINITE NOUN + POS-NEG-COP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {non-verbal predicates, negation}
+Ben				oğrenci	olmam
+Ben				oğrenci	ol-ma-m
+pronoun.1SG.NOM	student	be-NEG.HAB.NPST-1SG
+"I am not a student."
+
 ### NON-FINITE NOUN + NEG-COP (g) ###
 Source: author
 Vetted: f
 Judgment: g
-Phenomena: {non-verbal predicates}
+Phenomena: {non-verbal predicates, negation}
 Ben				oğrenci	değilim
 Ben				oğrenci	değil-im
 pronoun.1SG.NOM	student	neg.NPST-1SG
@@ -1837,6 +1852,94 @@ O		hediyeyi		getirdim
 O		hediye-yi		getir-di-m
 that	present.3SG-ACC	bring-PF.NPST-1SG
 'I brought that present.'
+
+########################
+##### EVIDENTIALS ######
+########################
+
+### perfective+nonpast (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood, evidentials}
+Aile			gelmiş
+Aile			gel-miş
+family.3SG.NOM	come-EVPF.NPST.3SG
+'The family (has) (supposedly) arrived.'
+
+### imperfective+past (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood, evidentials}
+Aile			geliyormuş
+Aile			gel-iyor-muş
+family.3SG.NOM	come-IMPF-EVPST.3SG
+'The family was (supposedly) coming.'
+
+### perfective+past (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {tense aspect mood, evidentials}
+Aile			gelmişmiş
+Aile			gel-miş-miş
+family.3SG.NOM	come-EVPF-EVPST.3SG
+'The family had (supposedly) arrived.'
+
+########################
+##### LOCATIVE PPs #####
+########################
+
+### ADP + SUBJ + VERB (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Evde		ben					oturdum
+Ev-de		ben					otur-du-m
+house-LOC	pronoun.1SG.NOM		sit-PF.NPST-1SG
+'I sat/stayed in the house.'
+
+### SUBJ + ADP + VERB (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Ben				evde		oturdum
+Ben				ev-de		otur-du-m
+pronoun.1SG.NOM	house-LOC	sit-PF.NPST-1SG
+'I sat/stayed in the house.'
+
+### SUBJ + VERB + ADP (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Ben				oturdum			evde
+Ben				otur-du-m		ev-de
+pronoun.1SG.NOM	sit-PF.NPST-1SG	house-LOC
+'I sat/stayed in the house.'
+
+### SUBJ + ADP + OBJ + VERB (g) ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {adverbs, word order}
+Ben				evde		elma			yedim
+Ben				ev-de		elma			ye-di-m
+pronoun.1SG.NOM	house-LOC	apple.3SG.ACC	eat-PF-1SG
+'I ate the apple in the house.'
+
+### SUBJ + OBJ + ADP + VERB (u) ###
+Source: author
+Vetted: f
+Judgment: u
+Phenomena: {adverbs, word order}
+Ben				elma			evde		yedim
+Ben				elma			ev-de		ye-di-m
+pronoun.1SG.NOM	apple.3SG.ACC	house-LOC	eat-PF-1SG
+'I ate the apple in the house.'
 
 ########################
 ######## NONSENSE ######
