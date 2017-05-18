@@ -1,4 +1,11 @@
 ;;; -*- Mode: TDL; Coding: utf-8 -*-
+
+;;; Names
+
+hoca := proper-noun-lex &
+ [ STEM < "Hoca" >,
+   SYNSEM.LKEYS.KEYREL.CARG "Hodja" ].
+
 ;;; Nouns
 
 aile := common-noun-lex &
@@ -93,9 +100,119 @@ son := common-noun-lex &
   [ STEM < "son" >,
     SYNSEM.LKEYS.KEYREL.PRED "_end_n_rel" ].
 
+ara := common-noun-lex &
+  [ STEM < "ara" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_interim_n_rel" ].
+
+alt := common-noun-lex &
+  [ STEM < "alt" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_bottom_n_rel" ].
+
 hırsız := common-noun-lex &
   [ STEM < "hırsız" >,
     SYNSEM.LKEYS.KEYREL.PRED "_thief_n_rel" ].
+
+dükkancı := common-noun-lex &
+  [ STEM < "dükkancı" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_shopkeeper_n_rel" ].
+
+çakşır := common-noun-lex &
+  [ STEM < "çakşır" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_shawl_n_rel" ].
+
+gün := common-noun-lex &
+  [ STEM < "gün" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_day_n_rel" ].
+
+oğul := common-noun-lex &
+  [ STEM < "oğul" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_son_n_rel" ].
+
+oğl := common-noun-lex &
+  [ STEM < "oğl" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_son_n_rel" ].
+
+rekabet := common-noun-lex &
+  [ STEM < "rekabet" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_competition_n_rel" ].
+
+rekabed := common-noun-lex &
+  [ STEM < "rekabed" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_competition_n_rel" ].
+
+para := common-noun-lex &
+  [ STEM < "para" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_money_n_rel" ].
+
+kuzu := common-noun-lex &
+  [ STEM < "kuzu" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_lamb_n_rel" ].
+
+kese := common-noun-lex &
+  [ STEM < "kese" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_pouch_n_rel" ].
+
+çakı := common-noun-lex &
+  [ STEM < "çakı" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_pocketknife_n_rel" ].
+
+minderin := common-noun-lex &
+  [ STEM < "minderin" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_cushion_n_rel" ].
+
+suç := common-noun-lex &
+  [ STEM < "suç" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_crime_n_rel" ].
+
+kişi := common-noun-lex &
+  [ STEM < "kişi" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_person_n_rel" ].
+
+mesele := common-noun-lex &
+  [ STEM < "mesele" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_issue_n_rel" ].
+
+yüz := common-noun-lex &
+  [ STEM < "yüz" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_face_n_rel" ].
+
+kavga := common-noun-lex &
+  [ STEM < "kavga" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_fight_n_rel" ].
+
+birader := common-noun-lex &
+  [ STEM < "birader" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_brother_n_rel" ].
+
+cevap := common-noun-lex &
+  [ STEM < "cevap" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_reply_n_rel" ].
+
+cevab := common-noun-lex &
+  [ STEM < "cevab" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_reply_n_rel" ].
+
+kasap := common-noun-lex &
+  [ STEM < "kasap" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_butcher_n_rel" ].
+
+kasab := common-noun-lex &
+  [ STEM < "kasab" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_butcher_n_rel" ].
+
+kilo := common-noun-lex &
+  [ STEM < "kilo" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_kilogram_n_rel" ].
+
+et := common-noun-lex &
+  [ STEM < "et" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_meat_n_rel" ].
+
+ed := common-noun-lex &
+  [ STEM < "ed" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_meat_n_rel" ].
+
+;;; Pronouns
 
 ben_1 := nom-1sg-pronoun-noun-lex &
   [ STEM < "ben" >,
@@ -571,6 +688,22 @@ kapalı := basic-adjective-adj-lex &
   [ STEM < "kapalı" >,
     SYNSEM.LKEYS.KEYREL.PRED "_closed_a_rel" ].
 
+küçük := basic-adjective-adj-lex &
+  [ STEM < "küçük" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_small_a_rel" ].
+
+haklı := basic-adjective-adj-lex &
+  [ STEM < "haklı" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_right_a_rel" ].
+
+eksik := basic-adjective-adj-lex &
+  [ STEM < "eksik" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_lacking_a_rel" ].
+
+ertesi := basic-adjective-adj-lex &
+  [ STEM < "ertesi" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_next_a_rel" ].
+
 ;;; Case-marking adpositions
 
 com-marker := case-marking-adp-lex &
@@ -631,6 +764,18 @@ y := acc-tr-verb-lex &
   [ STEM < "çal" >,
     SYNSEM.LKEYS.KEYREL.PRED "_play_v_rel" ].
 
+beğen := acc-tr-verb-lex &
+  [ STEM < "beğen" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_like_v_rel" ].
+
+sev := acc-tr-verb-lex &
+  [ STEM < "sev" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_love_v_rel" ].
+
+dene := acc-tr-verb-lex &
+  [ STEM < "dene" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_try_v_rel" ].
+
 inan := dat-tr-verb-lex &
   [ STEM < "inan" >,
     SYNSEM.LKEYS.KEYREL.PRED "_believe_v_rel" ].
@@ -638,6 +783,10 @@ inan := dat-tr-verb-lex &
 bayıl := dat-tr-verb-lex &
   [ STEM < "bayıl" >,
     SYNSEM.LKEYS.KEYREL.PRED "_adore_v_rel" ].
+
+bak := dat-tr-verb-lex &
+  [ STEM < "bak" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_look_v_rel" ].
 
 hoşlan := abl-tr-verb-lex &
   [ STEM < "hoşlan" >,

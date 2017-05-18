@@ -137,7 +137,7 @@
 137@author@@@1@adv,wo@Hızlı	ben					çıktım@@@@1@3@quickly	pronoun.1SG.NOM		exit-PF.NPST-1SG'I left quickly.'@ajda gokcen and kekoa riggin@april 28, 2017
 138@author@@@1@adv,wo@Ben				hızlı	çıktım@@@@1@3@pronoun.1SG.NOM	quickly	exit-PF.NPST-1SG'I quickly left.'@ajda gokcen and kekoa riggin@april 28, 2017
 139@author@@@1@adv,wo@Ben				çıktım				hızlı@@@@1@3@pronoun.1SG.NOM	exit-PF.NPST-1SG	quickly'I left quickly.'@ajda gokcen and kekoa riggin@april 28, 2017
-140@author@@@1@adv,wo@Ben				hızlı	elma			yedim@@@@1@4@pronoun.1SG.NOM	quickly	apple.3SG.ACC	eat-PF-1SG'I quickly at the apple.'@ajda gokcen and kekoa riggin@april 28, 2017
+140@author@@@1@adv,wo@Ben				hızlı	elma			yedim@@@@1@4@pronoun.1SG.NOM	quickly	apple.3SG.ACC	eat-PF-1SG'I quickly ate the apple.'@ajda gokcen and kekoa riggin@april 28, 2017
 141@author@@@1@adv,wo@Ben				elma			hızlı	yedim@@@@0@4@pronoun.1SG.NOM	apple.3SG.ACC	quickly	eat-PF-1SG'I quickly ate the apple.'@ajda gokcen and kekoa riggin@april 28, 2017
 142@author@@@1@emb-d@Kedi 		uyudu				diyorlar@@@@1@3@cat.3SG.NOM	sleep-PF.NPST.3SG	say-IMPF.NPST-3PL"They're saying (that) the cat slept."@ajda gokcen and kekoa riggin@april 28, 2017
 143@author@@@1@emb-d,wo@Kedi 		uyudu				diye	köpek		düşünür@@@@1@5@cat.3SG.NOM	sleep-PF.NPST.3SG	that	dog.3SG.NOM	think-HAB.NPST.3SG"The dog thinks that the cat slept."@ajda gokcen and kekoa riggin@april 28, 2017
@@ -150,24 +150,34 @@
 150@author@@@1@emb-d@Köpek		düşünür				ki		kedi 		uyudu		mu@@@@0@6@dog.3SG.NOM	think-HAB.NPST.3SG	that	cat.3SG.NOM	sleep-PF	question.NPST.3SG"The dog wonders whether the cat slept."@ajda gokcen and kekoa riggin@april 28, 2017
 151@author@@@1@non-verbalpredicates@Ben				mutluyum@@@@1@2@pronoun.1SG.NOM	happy.NPST-1SG"I am happy."@ajda gokcen and kekoa riggin@april 28, 2017
 152@author@@@1@non-verbalpredicates@Ben				mutlu	olurum@@@@1@3@pronoun.1SG.NOM	happy	be-HAB.NPST-1SG"I am happy."@ajda gokcen and kekoa riggin@april 28, 2017
-153@author@@@1@non-verbalpredicates@Ben				mutlu	değilim@@@@1@3@pronoun.1SG.NOM	happy	neg.NPST-1SG"I am not happy."@ajda gokcen and kekoa riggin@april 28, 2017
-154@author@@@1@non-verbalpredicates@Ben				mutlu@@@@0@2@pronoun.1SG.NOM	happy"I am happy."@ajda gokcen and kekoa riggin@april 28, 2017
-155@author@@@1@non-verbalpredicates@Ben				oğrenciyim@@@@1@2@pronoun.1SG.NOM	student.NPST-1SG"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
-156@author@@@1@non-verbalpredicates@Ben				oğrenci	olurum@@@@1@3@pronoun.1SG.NOM	student	be-HAB.NPST-1SG"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
-157@author@@@1@non-verbalpredicates@Ben				oğrenci	değilim@@@@1@3@pronoun.1SG.NOM	student	neg.NPST-1SG"I am not a student."@ajda gokcen and kekoa riggin@april 28, 2017
-158@author@@@1@non-verbalpredicates@Ben				oğrenci@@@@0@2@pronoun.1SG.NOM	student"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
-159@author@@@1@cognitivestatus,det@Bir		hediye			getirdim@@@@1@3@a.SG	present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
-160@author@@@1@cognitivestatus,det@Bir		hediyeyi		getirdim@@@@1@3@a.SG	present.3SG-ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
-161@author@@@1@cognitivestatus@Hediye			getirdim@@@@1@2@present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
-162@author@@@1@cognitivestatus@Hediyeyi		getirdim@@@@1@2@present.3SG-ACC	bring-PF.NPST-1SG'I brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
-163@author@@@1@cognitivestatus,det@Bu		hediye			getirdim@@@@0@3@this	present.3SG.ACC	bring-PF.NPST-1SG'I brought a/this present.'@ajda gokcen and kekoa riggin@april 28, 2017
-164@author@@@1@cognitivestatus,det@Bu		hediyeyi		getirdim@@@@1@3@this	present.3SG-ACC	bring-PF.NPST-1SG'I brought this present.'@ajda gokcen and kekoa riggin@april 28, 2017
-165@author@@@1@cognitivestatus,det@Şu		hediyeyi		getirdim@@@@1@3@this	present.3SG-ACC	bring-PF.NPST-1SG'I brought this/that present.'@ajda gokcen and kekoa riggin@april 28, 2017
-166@author@@@1@cognitivestatus,det@O		hediyeyi		getirdim@@@@1@3@that	present.3SG-ACC	bring-PF.NPST-1SG'I brought that present.'@ajda gokcen and kekoa riggin@april 28, 2017
-167@author@@@1@c@Kadını			geldi@@@@0@2@woman.3SG-ACC	come-PF.NPST.3SG'The woman arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
-168@author@@@1@c@Kadının			geldi@@@@0@2@woman.3SG-GEN	come-PF.NPST.3SG'The woman arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
-169@author@@@1@c@Kadını			mektubu			okudu@@@@0@3@woman.3SG-ACC	letter.3SG-ACC	read-PF.NPST.3SG'The woman read the letter.'@ajda gokcen and kekoa riggin@april 28, 2017
-170@author@@@1@tam@Kadın			çıktu@@@@0@2@woman.3SG.NOM	exit-PF.NPST.3SG'The woman left.'@ajda gokcen and kekoa riggin@april 28, 2017
-171@author@@@1@c@Kadın			kediyı		gördü@@@@0@3@woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
-172@author@@@1@agr@Biz				çıktıız@@@@0@2@pronoun.1PL.NOM	exit-PF.NPST-1PL'We left.'@ajda gokcen and kekoa riggin@april 28, 2017
-173@author@@@1@agr@Biz				çıkıyork@@@@0@2@pronoun.1PL.NOM	exit-IMPF.NPST-1PL'We are leaving.'@ajda gokcen and kekoa riggin@april 28, 2017
+153@author@@@1@non-verbalpredicates,neg@Ben				mutlu	olmam@@@@1@3@pronoun.1SG.NOM	happy	be-NEG.HAB.NPST-1SG"I am not happy."@ajda gokcen and kekoa riggin@april 28, 2017
+154@author@@@1@non-verbalpredicates,neg@Ben				mutlu	değilim@@@@1@3@pronoun.1SG.NOM	happy	neg.NPST-1SG"I am not happy."@ajda gokcen and kekoa riggin@april 28, 2017
+155@author@@@1@non-verbalpredicates@Ben				mutlu@@@@0@2@pronoun.1SG.NOM	happy"I am happy."@ajda gokcen and kekoa riggin@april 28, 2017
+156@author@@@1@non-verbalpredicates@Ben				oğrenciyim@@@@1@2@pronoun.1SG.NOM	student.NPST-1SG"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
+157@author@@@1@non-verbalpredicates@Ben				oğrenci	olurum@@@@1@3@pronoun.1SG.NOM	student	be-HAB.NPST-1SG"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
+158@author@@@1@non-verbalpredicates,neg@Ben				oğrenci	olmam@@@@1@3@pronoun.1SG.NOM	student	be-NEG.HAB.NPST-1SG"I am not a student."@ajda gokcen and kekoa riggin@april 28, 2017
+159@author@@@1@non-verbalpredicates,neg@Ben				oğrenci	değilim@@@@1@3@pronoun.1SG.NOM	student	neg.NPST-1SG"I am not a student."@ajda gokcen and kekoa riggin@april 28, 2017
+160@author@@@1@non-verbalpredicates@Ben				oğrenci@@@@0@2@pronoun.1SG.NOM	student"I am a student."@ajda gokcen and kekoa riggin@april 28, 2017
+161@author@@@1@cognitivestatus,det@Bir		hediye			getirdim@@@@1@3@a.SG	present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
+162@author@@@1@cognitivestatus,det@Bir		hediyeyi		getirdim@@@@1@3@a.SG	present.3SG-ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
+163@author@@@1@cognitivestatus@Hediye			getirdim@@@@1@2@present.3SG.ACC	bring-PF.NPST-1SG'I brought a present.'@ajda gokcen and kekoa riggin@april 28, 2017
+164@author@@@1@cognitivestatus@Hediyeyi		getirdim@@@@1@2@present.3SG-ACC	bring-PF.NPST-1SG'I brought the present.'@ajda gokcen and kekoa riggin@april 28, 2017
+165@author@@@1@cognitivestatus,det@Bu		hediye			getirdim@@@@0@3@this	present.3SG.ACC	bring-PF.NPST-1SG'I brought a/this present.'@ajda gokcen and kekoa riggin@april 28, 2017
+166@author@@@1@cognitivestatus,det@Bu		hediyeyi		getirdim@@@@1@3@this	present.3SG-ACC	bring-PF.NPST-1SG'I brought this present.'@ajda gokcen and kekoa riggin@april 28, 2017
+167@author@@@1@cognitivestatus,det@Şu		hediyeyi		getirdim@@@@1@3@this	present.3SG-ACC	bring-PF.NPST-1SG'I brought this/that present.'@ajda gokcen and kekoa riggin@april 28, 2017
+168@author@@@1@cognitivestatus,det@O		hediyeyi		getirdim@@@@1@3@that	present.3SG-ACC	bring-PF.NPST-1SG'I brought that present.'@ajda gokcen and kekoa riggin@april 28, 2017
+169@author@@@1@tam,evidentials@Aile			gelmiş@@@@1@2@family.3SG.NOM	come-EVPF.NPST.3SG'The family (has) (supposedly) arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
+170@author@@@1@tam,evidentials@Aile			geliyormuş@@@@1@2@family.3SG.NOM	come-IMPF-EVPST.3SG'The family was (supposedly) coming.'@ajda gokcen and kekoa riggin@april 28, 2017
+171@author@@@1@tam,evidentials@Aile			gelmişmiş@@@@1@2@family.3SG.NOM	come-EVPF-EVPST.3SG'The family had (supposedly) arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
+172@author@@@1@adv,wo@Evde		ben					oturdum@@@@1@3@house-LOC	pronoun.1SG.NOM		sit-PF.NPST-1SG'I sat/stayed in the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+173@author@@@1@adv,wo@Ben				evde		oturdum@@@@1@3@pronoun.1SG.NOM	house-LOC	sit-PF.NPST-1SG'I sat/stayed in the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+174@author@@@1@adv,wo@Ben				oturdum			evde@@@@1@3@pronoun.1SG.NOM	sit-PF.NPST-1SG	house-LOC'I sat/stayed in the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+175@author@@@1@adv,wo@Ben				evde		elma			yedim@@@@1@4@pronoun.1SG.NOM	house-LOC	apple.3SG.ACC	eat-PF-1SG'I ate the apple in the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+176@author@@@1@adv,wo@Ben				elma			evde		yedim@@@@0@4@pronoun.1SG.NOM	apple.3SG.ACC	house-LOC	eat-PF-1SG'I ate the apple in the house.'@ajda gokcen and kekoa riggin@april 28, 2017
+177@author@@@1@c@Kadını			geldi@@@@0@2@woman.3SG-ACC	come-PF.NPST.3SG'The woman arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
+178@author@@@1@c@Kadının			geldi@@@@0@2@woman.3SG-GEN	come-PF.NPST.3SG'The woman arrived.'@ajda gokcen and kekoa riggin@april 28, 2017
+179@author@@@1@c@Kadını			mektubu			okudu@@@@0@3@woman.3SG-ACC	letter.3SG-ACC	read-PF.NPST.3SG'The woman read the letter.'@ajda gokcen and kekoa riggin@april 28, 2017
+180@author@@@1@tam@Kadın			çıktu@@@@0@2@woman.3SG.NOM	exit-PF.NPST.3SG'The woman left.'@ajda gokcen and kekoa riggin@april 28, 2017
+181@author@@@1@c@Kadın			kediyı		gördü@@@@0@3@woman.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG'The woman saw the cat.'@ajda gokcen and kekoa riggin@april 28, 2017
+182@author@@@1@agr@Biz				çıktıız@@@@0@2@pronoun.1PL.NOM	exit-PF.NPST-1PL'We left.'@ajda gokcen and kekoa riggin@april 28, 2017
+183@author@@@1@agr@Biz				çıkıyork@@@@0@2@pronoun.1PL.NOM	exit-IMPF.NPST-1PL'We are leaving.'@ajda gokcen and kekoa riggin@april 28, 2017

@@ -71,7 +71,7 @@ indirect-pf-lex-rule-suffix1 :=
 indirect-pf-lex-rule.
 
 hab-lex-rule-suffix1 :=
-%suffix (* ir) (* ır) (* ur) (* ür) (* er) (* ar) (* z)
+%suffix (* ir) (* ır) (* ur) (* ür) (* er) (* ar) (* r) (* z)
 hab-lex-rule.
 
 prsp-lex-rule-suffix1 :=

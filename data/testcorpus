@@ -10,9 +10,9 @@ Source: a
 Vetted: f
 Judgment: g
 Phenomena: {}
-Dükkancı			çıkarıp			vermiş
-Dükkancı			çıkar-ıp		ver-miş
-shopkeeper.3SG.NOM	remove-CONV		give-EVPF.NPST.3SG
+Dükkancı			çıkarıp				vermiş
+Dükkancı			çık-ar-ıp			ver-miş
+shopkeeper.3SG.NOM	exit-CAUSE-CONV		give-EVPF.NPST.3SG
 'The shopkeeper took it out and handed it over.'
 
 ### 2 ###
@@ -30,9 +30,9 @@ Source: a
 Vetted: f
 Judgment: g
 Phenomena: {}
-Ertesi	gün		küçük	oğluna		gitmiş
-Ertesi	gün		küçük	oğlun-a		git-miş
-next	day.3SG	little	son.3SG-DAT	go-EVPF.NPST.3SG
+Ertesi	gün		küçük	oğluna				gitmiş
+Ertesi	gün		küçük	oğl-u-na			git-miş
+next	day.3SG	little	son.3SG-3SGPOSS-DAT	go-EVPF.NPST.3SG
 'The next day he went to his youngest son.'
 
 ### 4 ###
@@ -80,9 +80,9 @@ Source: a
 Vetted: f
 Judgment: g
 Phenomena: {}
-Öyleyse		para		kesesini			çıkar		bakalım
-Öyle-yse	para		kese-si-ni			çıkar		bak-alım
-so-COND.3SG	money.3SG	pouch-3SGPOSS-ACC	remove.IMP	look-OPT.1PL
+Öyleyse		para		kesesini			çıkar			bakalım
+Öyle-yse	para		kese-si-ni			çık-ar			bak-alım
+so-COND.3SG	money.3SG	pouch-3SGPOSS-ACC	exit-CAUS.IMP	look-OPT.1PL
 'If that's so, take out the money pouch and let's see.'
 
 ### 9 ###
@@ -90,9 +90,9 @@ Source: a
 Vetted: f
 Judgment: g
 Phenomena: {}
-Küçük	bir		çakı			bile	taşımak		suç				sayılır			olmuş
-Küçük	bir		çakı			bile	taşı-mak	suç				sayıl-ır		ol-muş
-little	a.SG	pocketknife.3SG	even	carry-INF	crime.3SG.ACC	consider-PASS	be-EVPF.NPST.3SG
+Küçük	bir		çakı			bile	taşımak		suç				sayılır				olmuş
+Küçük	bir		çakı			bile	taşı-mak	suç				say-ıl-ır			ol-muş
+little	a.SG	pocketknife.3SG	even	carry-INF	crime.3SG.ACC	consider-PASS-HAB	be-EVPF.NPST.3SG
 'Even carrying a small pocketnife was considered a crime.'
 
 ### 10 ###
@@ -112,7 +112,7 @@ Judgment: g
 Phenomena: {}
 Ne		var			o		minderin		altında
 Ne		var			o		minder-in		alt-ı-nda
-what	existent	that	cushion.3SG-GEN	below.3SG-3SGPOSS-LOC
+what	existent	that	cushion.3SG-GEN	bottom.3SG-3SGPOSS-LOC
 'What's there under that cushion?'
 
 ### 12 ###
@@ -120,10 +120,10 @@ Source: a
 Vetted: f
 Judgment: g
 Phenomena: {}
-İki	kişi					bir		mesele		yüzünden			kavga	etmişler
-İki	kiş-i					bir		mesele		yüz-ü-nden			kavga	et-miş-ler
-two	person.3PL-3SGPOSS.NOM	a.SG	issue.3SG	face-3SGPOSS-ABL	fight	make-EVPF.NPST-3PL
-'Two of the people had a fight because of an issue.'
+İki	kişi			bir		mesele		yüzünden			kavga	etmişler
+İki	kişi			bir		mesele		yüz-ü-nden			kavga	et-miş-ler
+two	person.3.NOM	a.SG	issue.3SG	face-3SGPOSS-ABL	fight	make-EVPF.NPST-3PL
+'Two people had a fight because of an issue.'
 
 ### 13 ###
 Source: a

@@ -38,15 +38,19 @@ COG-ST : COG-ST
 
 
 PNG.PER : PER
-  3rd <> 3rd
-  2nd <> 2nd
-  1st <> 1st
+  3rd <> third
+  2nd <> second
+  1st <> first
   * <> *
 
 PNG.NUM : NUM
   pl <> pl
   sg <> sg
-  * <> *
+  * >> *
+  sg << *
+  ;* <> *
+; everything that comes in underspecified is singular
+; * >> * is required to make sure NUMBER is included at all (as underspecified) rather than omitted
 
 PNG.GEND : GEND
   * <> *
@@ -63,6 +67,7 @@ E.ASPECT : ASPECT
   prospective <> prospective
   * >> no-aspect
   no-aspect << [e]
+  ;* <> *
 
 E.MOOD : MOOD
   * <> *
@@ -70,4 +75,8 @@ E.MOOD : MOOD
 E.EVID : EVID
   direct <> direct
   indirect <> indirect
-  * <> *
+  * >> *
+  direct << [e]
+  ;* <> *
+; everything that comes in underspecified is direct
+
