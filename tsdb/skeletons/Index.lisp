@@ -28,5 +28,7 @@
 ((:path . "lab6_corpus") (:content . "Test corpus collected for Lab 6."))
 ((:path . "lab7_suite") (:content . "Test suite collected for Lab 7."))
 ((:path . "lab7_corpus") (:content . "Test corpus collected for Lab 7."))
+((:path . "lab8_suite") (:content . "Test suite collected for Lab 8."))
+((:path . "lab8_corpus") (:content . "Test corpus collected for Lab 8."))
 )
 
