@@ -780,9 +780,9 @@ determiner-lex-supertype := norm-hook-lex-item &
                                  SPR < >,
                                  SUBJ < >,
                                  COMPS < > ] ],
-             CONT.HCONS < ! qeq &
+             CONT.HCONS <! qeq &
                             [ HARG #harg,
-                              LARG #larg ] ! > ],
+                              LARG #larg ] !> ],
          LKEYS.KEYREL quant-relation &
            [ ARG0 #ind,
              RSTR #harg ] ] ].
@@ -968,7 +968,10 @@ number-lex-rule-super := add-only-no-ccont-rule & case-rule-dtr & poss-rule-dtr 
                       CASE-FLAG #case-flag,
                       POLARITY-FLAG #polarity-flag ] ] ].
 
-sg-lex-rule := const-lex-rule & number-lex-rule-super.
+;; TODO: idk if nouns are really underspecified here or not? I feel like it's just verbishes
+;sg-lex-rule := const-lex-rule & number-lex-rule-super.
+sg-lex-rule := const-lex-rule & number-lex-rule-super &
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
 
 pl-lex-rule := infl-lex-rule & number-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.NUM pl ].
@@ -1002,11 +1005,11 @@ poss-lex-rule-super := same-ctxt-lex-rule &
                                       INFLECTED #infl ],
     C-CONT [ HOOK [ INDEX #index,
                     LTOP #lbl ],
-             RELS < ! arg12-ev-relation &
+             RELS <! arg12-ev-relation &
                       [ PRED "poss_rel",
                         LBL #lbl,
                         ARG1 #index,
-                        ARG2 #index2 & [ PNG #png ] ] ! >,
+                        ARG2 #index2 & [ PNG #png ] ] !>,
              HCONS <! !>,
              ICONS <! !> ] ].
 
@@ -1509,9 +1512,11 @@ bare-np-phrase := basic-bare-np-phrase &
 bare-pronoun-np-phrase := bare-np-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON + ].
 
+;; TODO: this was making "Dogs sleep" not generate because uhhh yeah.
+
 bare-common-np-phrase := bare-np-phrase &
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON -,
-    SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST uniq+fam+act ].
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON - ].
+;    SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST uniq+fam+act ].
 
 bare-poss-np-phrase := head-only & head-valence-phrase &
   [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,

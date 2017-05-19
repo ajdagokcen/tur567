@@ -110,3 +110,21 @@
        (let ((fs-type (type-of-fs fs)))
          (eql fs-type '-))))
 
+;;;
+;;; added to get rid of the annoying "ADD THE FOLLOWING TO trigger.mtr:" message
+;;;
+(defun make-trigger-tdl (empty-semantics-lexical-entries)
+  (let ((empty-no-trigger-entries 
+     (loop for id in empty-semantics-lexical-entries
+           unless (or #+:mt
+              (gethash id mt::*transfer-triggers*)
+              nil)
+           collect id)))
+   (loop for x in empty-no-trigger-entries
+      do
+    (format t "~%~%~a_gr := generator_rule &
+[ CONTEXT.RELS <! [ PRED \"non_existing_rel\" ] !>,
+  FLAGS.TRIGGER \"~a\" ]." 
+        (string-downcase x) 
+        (string-downcase x)))))
+

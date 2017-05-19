@@ -48,25 +48,32 @@ PNG.NUM : NUM
   sg <> sg
   * >> *
   sg << *
+
   ;* <> *
 ; everything that comes in underspecified is singular
 ; * >> * is required to make sure NUMBER is included at all (as underspecified) rather than omitted
 
-PNG.GEND : GEND
-  * <> *
+;PNG.GEND : GEND
+;  * <> *
 
 E.TENSE : TENSE
-  nonpast <> nonpast
+  nonpast <> present
   past <> past
-  * <> *
+  * >> *
+  nonpast << [e]
+;  tense <> *
 
 E.ASPECT : ASPECT
   perfective <> perfective
   imperfective <> imperfective
   habitual <> habitual
   prospective <> prospective
-  * >> no-aspect
-  no-aspect << [e]
+  * >> *
+  habitual << [e]
+
+;  * >> no-aspect
+;  no-aspect << [e]
+
   ;* <> *
 
 E.MOOD : MOOD
@@ -77,6 +84,7 @@ E.EVID : EVID
   indirect <> indirect
   * >> *
   direct << [e]
+
   ;* <> *
 ; everything that comes in underspecified is direct
 
