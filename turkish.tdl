@@ -160,7 +160,6 @@ past := tense.
 
 ;;; Aspect
 
-no-aspect := aspect.
 perfective := aspect.
 imperfective := aspect.
 habitual := aspect.
@@ -968,8 +967,6 @@ number-lex-rule-super := add-only-no-ccont-rule & case-rule-dtr & poss-rule-dtr 
                       CASE-FLAG #case-flag,
                       POLARITY-FLAG #polarity-flag ] ] ].
 
-;; TODO: idk if nouns are really underspecified here or not? I feel like it's just verbishes
-;sg-lex-rule := const-lex-rule & number-lex-rule-super.
 sg-lex-rule := const-lex-rule & number-lex-rule-super &
   [ SYNSEM.LOCAL.CONT.HOOK.INDEX.PNG.NUM sg ].
 
@@ -1512,11 +1509,8 @@ bare-np-phrase := basic-bare-np-phrase &
 bare-pronoun-np-phrase := bare-np-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON + ].
 
-;; TODO: this was making "Dogs sleep" not generate because uhhh yeah.
-
 bare-common-np-phrase := bare-np-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON - ].
-;    SYNSEM.LOCAL.CONT.HOOK.INDEX.COG-ST uniq+fam+act ].
 
 bare-poss-np-phrase := head-only & head-valence-phrase &
   [ SYNSEM.LOCAL.CAT.VAL [ SPR < >,
@@ -1561,8 +1555,6 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
 
 ;;; Coordination ambiguity fixing
 
-;; TODO: changed this because NEG feature was preventing some verbal coordination
-
 bottom-coord-phrase :+
   [ SYNSEM.LOCAL.CAT.HEAD [ PRON #pron,
                             CASE #case,
@@ -1601,11 +1593,15 @@ basic-vp-mid-coord-rule :+ binary-headlike-coord-phrase.
 basic-s-top-coord-rule :+ binary-headlike-coord-phrase.
 basic-s-mid-coord-rule :+ binary-headlike-coord-phrase.
 
-;; TODO: added this to make sure VP coordination semantics worked properly -- problem with matrix.tdl!
+;;; Verb-headed coordination (matrix.tdl fix)
 
 unary-bottom-coord-rule :+
   [ C-CONT.HOOK #hook,
     ARGS < [ SYNSEM.LOCAL.CONT.HOOK #hook ] > ].
+
+binary-bottom-coord-rule :+
+  [ C-CONT.HOOK #hook,
+    NONCONJ-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ].
 
 ;;; Feature Resolution Rules
 

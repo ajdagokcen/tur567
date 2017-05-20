@@ -744,12 +744,11 @@ gez := acc-tr-verb-lex &
   [ STEM < "gez" >,
     SYNSEM.LKEYS.KEYREL.PRED "_visit_v_rel" ].
 
-ye := acc-tr-verb-lex &
-  [ STEM < "ye" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
-
 y := acc-tr-verb-lex &
   [ STEM < "y" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
+ye := acc-tr-verb-lex &
+  [ STEM < "ye" >,
     SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
 
 çal := acc-tr-verb-lex &
@@ -814,20 +813,18 @@ değil_2 := negative-nom-tr-verb-lex &
     SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
                    ALTKEYREL.PRED "neg_rel" ] ].
 
-de_1 := sentential-comp-verb-lex &
-  [ STEM < "de" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
-
 d_1 := sentential-comp-verb-lex &
   [ STEM < "d" >,
     SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
-
-de_2 := declarative-comp-verb-lex &
+de_1 := sentential-comp-verb-lex &
   [ STEM < "de" >,
     SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
 
 d_2 := declarative-comp-verb-lex &
   [ STEM < "d" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+de_2 := declarative-comp-verb-lex &
+  [ STEM < "de" >,
     SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
 
 bil := declarative-comp-verb-lex &
@@ -853,17 +850,17 @@ diye_2 := cp-final-interrogative-complementizer-lex &
 
 ;;; Auxiliaries
 
-mi := interrogative-aux-lex &
-  [ STEM < "mi" > ].
-
-mı := interrogative-aux-lex &
-  [ STEM < "mı" > ].
-
 mu := interrogative-aux-lex &
   [ STEM < "mu" > ].
 
 mü := interrogative-aux-lex &
   [ STEM < "mü" > ].
+
+mı := interrogative-aux-lex &
+  [ STEM < "mı" > ].
+
+mi := interrogative-aux-lex &
+  [ STEM < "mi" > ].
 
 ;;; Copulas
 

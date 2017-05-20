@@ -1940,6 +1940,30 @@ pronoun.1SG.NOM	apple.3SG.ACC	house-LOC	eat-PF-1SG
 'I ate the apple in the house.'
 
 ########################
+##### PROPER NAMES #####
+########################
+
+### PN SUBJ ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {}
+Hoca			kediyi		gördü
+Hoca			kedi-yi		gör-dü
+Hodja.3SG.NOM	cat.3SG-ACC	see-PF.NPST.3SG
+'Hodja saw the cat.'
+
+### PN OBJ ###
+Source: author
+Vetted: f
+Judgment: g
+Phenomena: {}
+Kadın			Hocayı			gördü
+Kadın			Hoca-yı			gör-dü
+woman.3SG.NOM	Hodja.3SG-ACC	see-PF.NPST.3SG
+'The woman saw Hodja.'
+
+########################
 ######## NONSENSE ######
 ########################
 
