@@ -9,6 +9,11 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; THIS WEEK:
+; - fixed _pron_n_rel to pron_rel ... dumb
+; - still need to fix predicate pp semantics
+; - still need to allow for some acc-tr verbs (yemek) to drop the object
+
 ; Type assigning empty mod list. Added to basic types for nouns, verbs and determiners.
 
 non-mod-lex-item := lex-item &
