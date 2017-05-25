@@ -219,7 +219,7 @@ common-noun-lex := noun-lex & number-rule-dtr &
                    CAT.HEAD.PRON - ] ].
 
 personal-pronoun-lex := no-spr-noun-lex &
-  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX [ COG-ST activ-or-more,
+  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX [ COG-ST type-id,
                                      SPECI + ],
                    CAT.HEAD.PRON + ] ].
 
@@ -580,20 +580,26 @@ multiple-rel-tr-verb-lex := transitive-verb-lex &
 
 acc-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE acc,
-                                                          CASE-MARKED + ],
-                                         OPT - ] ] ].
+                                                          CASE-MARKED + ]]]].
+										 
+opt-acc-tr-verb-lex := acc-tr-verb-lex &
+	[ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST [OPT +,
+                                         OPT-CS type-id ]].
+
+req-acc-tr-verb-lex := acc-tr-verb-lex &
+	[ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
 
 dat-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE dat,
                                                           CASE-MARKED + ],
                                          OPT +,
-                                         OPT-CS activ-or-more ] ] ].
+                                         OPT-CS type-id ] ] ].
 
 abl-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE abl,
                                                           CASE-MARKED + ],
                                          OPT +,
-                                         OPT-CS activ-or-more ] ] ].
+                                         OPT-CS type-id ] ] ].
 
 loc-tr-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE loc,
@@ -601,7 +607,7 @@ loc-tr-verb-lex := transitive-verb-lex &
 
 regular-loc-tr-verb-lex := loc-tr-verb-lex & single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST [ OPT +,
-                                       OPT-CS activ-or-more ] ].
+                                       OPT-CS type-id ] ].
 
 copular-loc-tr-verb-lex := loc-tr-verb-lex &
   [ SYNSEM.LOCAL.CAT [ VAL.COMPS.FIRST.OPT -,
@@ -615,7 +621,7 @@ com-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE com,
                                                           CASE-MARKED + ],
                                          OPT +,
-                                         OPT-CS activ-or-more ] ] ].
+                                         OPT-CS type-id ] ] ].
 
 nom-tr-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT [ VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE nom,
@@ -1543,7 +1549,7 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
                      #altkeyrel & noun-relation &
                      [ PRED "pron_rel",             
                        LBL #larg2,
-                       ARG0 #arg2 & [ COG-ST activ-or-more,
+                       ARG0 #arg2 & [ COG-ST type-id,
                                       SPECI + ] ] !>,
              HCONS <! qeq & 
                       [ HARG #harg,

@@ -724,46 +724,46 @@ otur := itr-verb-lex &
   [ STEM < "otur" >,
     SYNSEM.LKEYS.KEYREL.PRED "_sit_v_rel" ].
 
-getir := acc-tr-verb-lex &
+getir := req-acc-tr-verb-lex &
   [ STEM < "getir" >,
     SYNSEM.LKEYS.KEYREL.PRED "_bring_v_rel" ].
 
-oku := acc-tr-verb-lex &
+oku := req-acc-tr-verb-lex &
   [ STEM < "oku" >,
     SYNSEM.LKEYS.KEYREL.PRED "_read_v_rel" ].
 
-gör := acc-tr-verb-lex &
+gör := req-acc-tr-verb-lex &
   [ STEM < "gör" >,
     SYNSEM.LKEYS.KEYREL.PRED "_see_v_rel" ].
 
-kovala := acc-tr-verb-lex &
+kovala := req-acc-tr-verb-lex &
   [ STEM < "kovala" >,
     SYNSEM.LKEYS.KEYREL.PRED "_chase_v_rel" ].
 
-gez := acc-tr-verb-lex &
+gez := req-acc-tr-verb-lex &
   [ STEM < "gez" >,
     SYNSEM.LKEYS.KEYREL.PRED "_visit_v_rel" ].
 
-y := acc-tr-verb-lex &
+y := opt-acc-tr-verb-lex &
   [ STEM < "y" >,
     SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
-ye := acc-tr-verb-lex &
+ye := opt-acc-tr-verb-lex &
   [ STEM < "ye" >,
     SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
 
-çal := acc-tr-verb-lex &
+çal := req-acc-tr-verb-lex &
   [ STEM < "çal" >,
     SYNSEM.LKEYS.KEYREL.PRED "_play_v_rel" ].
 
-beğen := acc-tr-verb-lex &
+beğen := req-acc-tr-verb-lex &
   [ STEM < "beğen" >,
     SYNSEM.LKEYS.KEYREL.PRED "_like_v_rel" ].
 
-sev := acc-tr-verb-lex &
+sev := req-acc-tr-verb-lex &
   [ STEM < "sev" >,
     SYNSEM.LKEYS.KEYREL.PRED "_love_v_rel" ].
 
-dene := acc-tr-verb-lex &
+dene := req-acc-tr-verb-lex &
   [ STEM < "dene" >,
     SYNSEM.LKEYS.KEYREL.PRED "_try_v_rel" ].
 
