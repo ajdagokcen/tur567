@@ -3,14 +3,15 @@ adj-head-int := adj-head-int-phrase.
 
 head-adj-int := head-adj-int-phrase.
 
-;decl-head-opt-subj := decl-head-opt-subj-phrase.
 head-opt-subj := replacement-basic-head-opt-subj-phrase.
 
 basic-head-opt-comp := basic-head-opt-comp-phrase.
 
-head-comp := head-comp-phrase.
+;; FOR GENERATION
 
-head-subj := head-subj-phrase.
+;head-comp := head-comp-phrase.
+
+;head-subj := head-subj-phrase.
 
 comp-head := comp-head-phrase.
 
@@ -28,9 +29,7 @@ wh-int := wh-int-cl.
 
 adverbial-locative := adverbial-locative-phrase.
 
-;n-bar-predicate := n-bar-predicate-rule.
-
-;bare-np := bare-np-phrase.
+predicative-locative := predicative-locative-phrase.
 
 bare-pronoun-np := bare-pronoun-np-phrase.
 
@@ -90,33 +89,35 @@ np1-3rd-2nd-2nd-any-any-pl-mid-coord := np1-3rd-2nd-2nd-any-any-pl-mid-coord-rul
 
 np1-bottom-coord := np1-bottom-coord-rule.
 
-n2-1st-any-1st-any-any-pl-top-coord := n2-1st-any-1st-any-any-pl-top-coord-rule.
+;; TODO: asyndeton gotten rid of for generation!!!
 
-n2-2nd-2nd-2nd-any-any-pl-top-coord := n2-2nd-2nd-2nd-any-any-pl-top-coord-rule.
-
-n2-2nd-3rd-2nd-any-any-pl-top-coord := n2-2nd-3rd-2nd-any-any-pl-top-coord-rule.
-
-n2-3rd-3rd-3rd-any-any-pl-top-coord := n2-3rd-3rd-3rd-any-any-pl-top-coord-rule.
-
-n2-any-1st-1st-any-any-pl-top-coord := n2-any-1st-1st-any-any-pl-top-coord-rule.
-
-n2-3rd-2nd-2nd-any-any-pl-top-coord := n2-3rd-2nd-2nd-any-any-pl-top-coord-rule.
-
-n2-bottom-coord := n2-bottom-coord-rule.
-
-np2-1st-any-1st-any-any-pl-top-coord := np2-1st-any-1st-any-any-pl-top-coord-rule.
-
-np2-2nd-2nd-2nd-any-any-pl-top-coord := np2-2nd-2nd-2nd-any-any-pl-top-coord-rule.
-
-np2-2nd-3rd-2nd-any-any-pl-top-coord := np2-2nd-3rd-2nd-any-any-pl-top-coord-rule.
-
-np2-3rd-3rd-3rd-any-any-pl-top-coord := np2-3rd-3rd-3rd-any-any-pl-top-coord-rule.
-
-np2-any-1st-1st-any-any-pl-top-coord := np2-any-1st-1st-any-any-pl-top-coord-rule.
-
-np2-3rd-2nd-2nd-any-any-pl-top-coord := np2-3rd-2nd-2nd-any-any-pl-top-coord-rule.
-
-np2-bottom-coord := np2-bottom-coord-rule.
+;n2-1st-any-1st-any-any-pl-top-coord := n2-1st-any-1st-any-any-pl-top-coord-rule.
+;
+;n2-2nd-2nd-2nd-any-any-pl-top-coord := n2-2nd-2nd-2nd-any-any-pl-top-coord-rule.
+;
+;n2-2nd-3rd-2nd-any-any-pl-top-coord := n2-2nd-3rd-2nd-any-any-pl-top-coord-rule.
+;
+;n2-3rd-3rd-3rd-any-any-pl-top-coord := n2-3rd-3rd-3rd-any-any-pl-top-coord-rule.
+;
+;n2-any-1st-1st-any-any-pl-top-coord := n2-any-1st-1st-any-any-pl-top-coord-rule.
+;
+;n2-3rd-2nd-2nd-any-any-pl-top-coord := n2-3rd-2nd-2nd-any-any-pl-top-coord-rule.
+;
+;n2-bottom-coord := n2-bottom-coord-rule.
+;
+;np2-1st-any-1st-any-any-pl-top-coord := np2-1st-any-1st-any-any-pl-top-coord-rule.
+;
+;np2-2nd-2nd-2nd-any-any-pl-top-coord := np2-2nd-2nd-2nd-any-any-pl-top-coord-rule.
+;
+;np2-2nd-3rd-2nd-any-any-pl-top-coord := np2-2nd-3rd-2nd-any-any-pl-top-coord-rule.
+;
+;np2-3rd-3rd-3rd-any-any-pl-top-coord := np2-3rd-3rd-3rd-any-any-pl-top-coord-rule.
+;
+;np2-any-1st-1st-any-any-pl-top-coord := np2-any-1st-1st-any-any-pl-top-coord-rule.
+;
+;np2-3rd-2nd-2nd-any-any-pl-top-coord := np2-3rd-2nd-2nd-any-any-pl-top-coord-rule.
+;
+;np2-bottom-coord := np2-bottom-coord-rule.
 
 vp3-top-coord := vp3-top-coord-rule.
 
@@ -130,10 +131,10 @@ s3-mid-coord := s3-mid-coord-rule.
 
 s3-bottom-coord := s3-bottom-coord-rule.
 
-vp4-top-coord := vp4-top-coord-rule.
-
-vp4-bottom-coord := vp4-bottom-coord-rule.
-
-s4-top-coord := s4-top-coord-rule.
-
-s4-bottom-coord := s4-bottom-coord-rule.
+;vp4-top-coord := vp4-top-coord-rule.
+;
+;vp4-bottom-coord := vp4-bottom-coord-rule.
+;
+;s4-top-coord := s4-top-coord-rule.
+;
+;s4-bottom-coord := s4-bottom-coord-rule.

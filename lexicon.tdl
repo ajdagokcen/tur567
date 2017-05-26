@@ -787,18 +787,9 @@ kork := abl-tr-verb-lex &
   [ STEM < "kork" >,
     SYNSEM.LKEYS.KEYREL.PRED "_fear_v_rel" ].
 
-diret := regular-loc-tr-verb-lex &
+diret := loc-tr-verb-lex &
   [ STEM < "diret" >,
     SYNSEM.LKEYS.KEYREL.PRED "_insist_v_rel" ].
-
-ol_1 := positive-loc-tr-verb-lex &
-  [ STEM < "ol" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_be_v_id_rel" ].
-
-değil_1 := negative-loc-tr-verb-lex &
-  [ STEM < "değil" >,
-    SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
-                   ALTKEYREL.PRED "neg_rel" ] ].
 
 ilgilen := com-tr-verb-lex &
   [ STEM < "ilgilen" >,

@@ -24,8 +24,10 @@ diye_2_gr := generator_rule &
   FLAGS [ EQUAL < #e, #h >,
           TRIGGER "diye_2" ] ].
 
+;; TODO: changed the regexp so it captures pp preds as well!!
+
 ol_3_gr := generator_rule &
-[ CONTEXT [ RELS <! [ PRED "~.*_a_"] !> ],
+[ CONTEXT [ RELS <! [ PRED "~.*_[ap]_"] !> ],
   FLAGS.TRIGGER "ol_3" ].
 
 mi_gr := generator_rule &

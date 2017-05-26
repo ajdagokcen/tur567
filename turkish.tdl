@@ -10,9 +10,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; THIS WEEK:
-; - fixed _pron_n_rel to pron_rel ... dumb
-; - still need to fix predicate pp semantics
+; - fixed _pron_n_rel to pron_rel in the lexicon ... dumb
+; - fixed predicate pp semantics
 ; - still need to allow for some acc-tr verbs (yemek) to drop the object
+; - still need to get genitive-possession working
 
 ; Type assigning empty mod list. Added to basic types for nouns, verbs and determiners.
 
@@ -219,7 +220,7 @@ common-noun-lex := noun-lex & number-rule-dtr &
                    CAT.HEAD.PRON - ] ].
 
 personal-pronoun-lex := no-spr-noun-lex &
-  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX [ COG-ST type-id,
+  [ SYNSEM.LOCAL [ CONT.HOOK.INDEX [ COG-ST activ-or-more,
                                      SPECI + ],
                    CAT.HEAD.PRON + ] ].
 
@@ -578,50 +579,47 @@ multiple-rel-tr-verb-lex := transitive-verb-lex &
                                    COMPS < > ] ],
                        CONT.HOOK.INDEX #compindex ] ] > ].
 
+;acc-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
+;  [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE acc,
+;                                                          CASE-MARKED + ],
+;                                         OPT - ] ] ].
+
 acc-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE acc,
-                                                          CASE-MARKED + ]]]].
+                                                          CASE-MARKED + ] ] ] ].
 										 
-opt-acc-tr-verb-lex := acc-tr-verb-lex &
-	[ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST [OPT +,
-                                         OPT-CS type-id ]].
-
 req-acc-tr-verb-lex := acc-tr-verb-lex &
-	[ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
+
+opt-acc-tr-verb-lex := acc-tr-verb-lex &
+  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST [ OPT +,
+                                       OPT-CS type-id ] ].
+
+;; TODO
 
 dat-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE dat,
                                                           CASE-MARKED + ],
                                          OPT +,
-                                         OPT-CS type-id ] ] ].
+                                         OPT-CS activ-or-more ] ] ].
 
 abl-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE abl,
                                                           CASE-MARKED + ],
                                          OPT +,
-                                         OPT-CS type-id ] ] ].
+                                         OPT-CS activ-or-more ] ] ].
 
-loc-tr-verb-lex := transitive-verb-lex &
+loc-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE loc,
-                                                          CASE-MARKED + ] ] ] ].
-
-regular-loc-tr-verb-lex := loc-tr-verb-lex & single-rel-tr-verb-lex & polarity-verb-rule-dtr &
-  [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST [ OPT +,
-                                       OPT-CS type-id ] ].
-
-copular-loc-tr-verb-lex := loc-tr-verb-lex &
-  [ SYNSEM.LOCAL.CAT [ VAL.COMPS.FIRST.OPT -,
-                       HEAD.PRE-COMPS - ] ].
-
-positive-loc-tr-verb-lex := copular-loc-tr-verb-lex & single-rel-tr-verb-lex & polarity-verb-rule-dtr.
-
-negative-loc-tr-verb-lex := copular-loc-tr-verb-lex & multiple-rel-tr-verb-lex & tense-verb-rule-dtr.
+                                                          CASE-MARKED + ],
+                                          OPT +,
+                                          OPT-CS activ-or-more ] ] ].
 
 com-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE com,
                                                           CASE-MARKED + ],
                                          OPT +,
-                                         OPT-CS type-id ] ] ].
+                                         OPT-CS activ-or-more ] ] ].
 
 nom-tr-verb-lex := transitive-verb-lex &
   [ SYNSEM.LOCAL.CAT [ VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE nom,
@@ -839,14 +837,13 @@ intersective-mod-phrase := unary-phrase &
     C-CONT [ HOOK.XARG #ind,
              HCONS <! !> ] ].
 
-adverbial-locative-phrase := intersective-mod-phrase &
-  [ SYNSEM [ LOCAL.CAT [ HEAD adp & [ MOD < [ LOCAL intersective-mod &
-                                                    [ CAT [ HEAD verb,
-                                                            VAL.COMPS < > ] ] ] > ],
+;locative-pp-phrase := intersective-mod-phrase &
+locative-pp-phrase := unary-phrase &
+  [ SYNSEM [ LOCAL.CAT [ HEAD adp,
                          VAL [ COMPS < >,
-                               SUBJ < >, 
                                SPR < >,
-                               SPEC < > ] ] ],
+                               SPEC < > ] ],
+             NON-LOCAL [ SLASH 0-dlist, REL 0-dlist, QUE 0-dlist ] ],
     C-CONT [ HOOK [ LTOP #ltop,
                     INDEX #index,
                     XARG #xarg ],
@@ -856,11 +853,22 @@ adverbial-locative-phrase := intersective-mod-phrase &
                        ARG0 #index,
                        ARG1 #xarg,
                        ARG2 #dtr ] !>,
-             HCONS <! !>  ],
+             HCONS <! !> ],
     ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD noun & [CASE loc],
                                   VAL.SPR < > ],
                             COORD -,
                             CONT.HOOK [ INDEX #dtr ] ] ] > ].
+
+adverbial-locative-phrase := intersective-mod-phrase & locative-pp-phrase &
+  [ SYNSEM.LOCAL.CAT [ HEAD [ PRD -,
+                              MOD < [ LOCAL intersective-mod &
+                                            [ CAT [ HEAD verb,
+                                                    VAL.COMPS < > ] ] ] > ],
+                       VAL.SUBJ < > ] ].
+
+predicative-locative-phrase := locative-pp-phrase &
+  [ SYNSEM.LOCAL.CAT.HEAD [ PRD +,
+                            MOD < > ] ].
 
 adverb-lex := basic-adverb-lex & intersective-mod-lex &
   [ SYNSEM [ LOCAL [ CAT [ HEAD.MOD < [ LOCAL.CAT.HEAD verb ] >,
@@ -1431,9 +1439,10 @@ replacement-basic-head-opt-subj-phrase := head-valence-phrase & head-only & head
              ICONS <! #ikey & non-focus & [ IARG1 #ckey,
                                             IARG2 #index ] !> ] ].
 
+;; TODO: enforced empty comps for generation
 replacement-basic-head-subj-phrase := head-valence-phrase & head-compositional & 
                                       basic-binary-headed-phrase &
-  [ SYNSEM phr-synsem & 
+  [ SYNSEM phr-synsem &
            [ LOCAL.CAT [ POSTHEAD +,
                          HC-LIGHT -,
                          VAL [ SUBJ < >,
@@ -1444,7 +1453,7 @@ replacement-basic-head-subj-phrase := head-valence-phrase & head-compositional &
              HCONS <! !>,
              ICONS <! !> ],
     HEAD-DTR.SYNSEM.LOCAL.CAT.VAL [ SUBJ < #synsem >,
-                                    COMPS #comps,    
+                                    COMPS #comps & < >,
                                     SPR #spr ],
     NON-HEAD-DTR.SYNSEM #synsem & canonical-synsem &
        [ LOCAL [ CAT [ VAL [ SUBJ olist,
@@ -1549,7 +1558,7 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
                      #altkeyrel & noun-relation &
                      [ PRED "pron_rel",             
                        LBL #larg2,
-                       ARG0 #arg2 & [ COG-ST type-id,
+                       ARG0 #arg2 & [ COG-ST activ-or-more,
                                       SPECI + ] ] !>,
              HCONS <! qeq & 
                       [ HARG #harg,
@@ -1604,15 +1613,39 @@ basic-vp-mid-coord-rule :+ binary-headlike-coord-phrase.
 basic-s-top-coord-rule :+ binary-headlike-coord-phrase.
 basic-s-mid-coord-rule :+ binary-headlike-coord-phrase.
 
-;;; Verb-headed coordination (matrix.tdl fix)
+;; TODO: make sure you don't get interrogative vp coordinands in a prop-or-ques sentence?!?
 
-unary-bottom-coord-rule :+
-  [ C-CONT.HOOK #hook,
-    ARGS < [ SYNSEM.LOCAL.CONT.HOOK #hook ] > ].
+agree-sf-coord-rule := coord-phrase &
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf,
+    LCOORD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf,
+    RCOORD-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf ].
 
-binary-bottom-coord-rule :+
-  [ C-CONT.HOOK #hook,
-    NONCONJ-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ].
+basic-vp-top-coord-rule :+ agree-sf-coord-rule.
+basic-vp-mid-coord-rule :+ agree-sf-coord-rule.
+basic-s-top-coord-rule :+ agree-sf-coord-rule.
+basic-s-mid-coord-rule :+ agree-sf-coord-rule.
+
+;pass-up-sf-coord-rule := bottom-coord-phrase &
+;  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf,
+;    NONCONJ-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf ].
+
+vp-bottom-coord-phrase :+
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf,
+    NONCONJ-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf ].
+
+s-bottom-coord-phrase :+
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf,
+    NONCONJ-DTR.SYNSEM.LOCAL.CONT.HOOK.INDEX.SF #sf ].
+
+;;; Verb-headed-coordinand coordination (matrix.tdl fix)
+
+;unary-bottom-coord-rule :+
+;  [ C-CONT.HOOK #hook,
+;    ARGS < [ SYNSEM.LOCAL.CONT.HOOK #hook ] > ].
+
+;binary-bottom-coord-rule :+
+;  [ C-CONT.HOOK #hook,
+;    NONCONJ-DTR.SYNSEM.LOCAL.CONT.HOOK #hook ].
 
 ;;; Feature Resolution Rules
 

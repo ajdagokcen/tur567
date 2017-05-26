@@ -52,8 +52,9 @@ PNG.NUM : NUM
 PNG.GEND : GEND
   * <> *
 
+;  nonpast <> present
 E.TENSE : TENSE
-  nonpast <> present
+  nonpast <> nonpast
   past <> past
   * >> *
   nonpast << [e]
