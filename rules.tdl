@@ -1,7 +1,9 @@
 ;;; -*- Mode: TDL; Coding: utf-8 -*-
 adj-head-int := adj-head-int-phrase.
 
-head-adj-int := head-adj-int-phrase.
+;; ALSO FOR GENERATION
+
+;head-adj-int := head-adj-int-phrase.
 
 head-opt-subj := replacement-basic-head-opt-subj-phrase.
 

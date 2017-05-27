@@ -9,15 +9,15 @@ case-synth-com-lex := case-synth-com-lex-rule.
 
 pos-lex-rule-lex := pos-lex-rule.
 
-neg-hab-lex-rule-lex := neg-hab-lex-rule.
+; removed for generation!
+
+;neg-hab-lex-rule-lex := neg-hab-lex-rule.
 
 npst-lex-rule-lex := npst-lex-rule.
 
 pre-aux-lex-rule-lex := pre-aux-lex-rule.
 
 3sgpl-lex-rule-lex := 3sgpl-lex-rule.
-
-;basic-noun-pred-role-lex := basic-noun-pred-role-lex-rule.
 
 basic-adjective-pred-role-lex := basic-adjective-pred-role-lex-rule.
 
