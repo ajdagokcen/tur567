@@ -587,7 +587,7 @@ multiple-rel-tr-verb-lex := transitive-verb-lex &
 acc-tr-verb-lex := single-rel-tr-verb-lex & polarity-verb-rule-dtr &
   [ SYNSEM.LOCAL.CAT.VAL [ COMPS.FIRST [ LOCAL.CAT.HEAD [ CASE acc,
                                                           CASE-MARKED + ] ] ] ].
-										 
+                                         
 req-acc-tr-verb-lex := acc-tr-verb-lex &
   [ SYNSEM.LOCAL.CAT.VAL.COMPS.FIRST.OPT - ].
 
@@ -854,7 +854,7 @@ locative-pp-phrase := unary-phrase &
                        ARG1 #xarg,
                        ARG2 #dtr ] !>,
              HCONS <! !> ],
-    ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD noun & [CASE loc],
+    ARGS < [ SYNSEM.LOCAL [ CAT [ HEAD noun & [ CASE loc ],
                                   VAL.SPR < > ],
                             COORD -,
                             CONT.HOOK [ INDEX #dtr ] ] ] > ].
@@ -1014,7 +1014,7 @@ poss-lex-rule-super := same-ctxt-lex-rule &
                              COMPS #comps,
                              SUBJ #subj ] ],
     DTR poss-rule-dtr & [ SYNSEM.LOCAL [ CONT.HOOK [ INDEX #index,
-                                                                 LTOP #lbl ],
+                                                     LTOP #lbl ],
                                                      CAT.VAL [ SPEC #spec,
                                                                COMPS #comps,
                                                                SUBJ #subj ] ],
@@ -1496,13 +1496,15 @@ comp-head-phrase-2 := basic-head-2nd-comp-phrase & head-final-head-nexus &
 ; Rules for building NPs.  Note that the Matrix uses SPR for
 ; the specifier of nouns and SUBJ for the subject (specifier) of verbs.
 
+;head-spec-phrase := basic-head-spec-phrase & head-initial &
 head-spec-phrase := basic-head-spec-phrase & head-initial &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-SPR -,
     NON-HEAD-DTR.SYNSEM [ OPT -,
                           LOCAL.CAT.HEAD.PRE-SPEC - ] ].
 
 spec-head-phrase := basic-head-spec-phrase & head-final &
-  [ NON-HEAD-DTR.SYNSEM [ OPT -,
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-SPR +,
+    NON-HEAD-DTR.SYNSEM [ OPT -,
                           LOCAL.CAT.HEAD.PRE-SPEC + ] ].
 
 wh-int-cl := clause & head-compositional & head-only &
@@ -1527,7 +1529,9 @@ bare-np-phrase := basic-bare-np-phrase &
   [ C-CONT.RELS <! [ PRED "exist_q_rel" ] !> ].
 
 bare-pronoun-np-phrase := bare-np-phrase &
-  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON + ].
+  [ SYNSEM.LOCAL.CONT.HOOK.INDEX #ind,
+    HEAD-DTR.SYNSEM.LOCAL [ CAT.HEAD.PRON +,
+                            CONT.HOOK.INDEX #ind ] ].
 
 bare-common-np-phrase := bare-np-phrase &
   [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRON - ].
@@ -1549,7 +1553,7 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
                       LKEYS.ALTKEYREL #altkeyrel ],
     C-CONT [ RELS <! quant-relation &
                      [ PRED "exist_q_rel",
-                       ARG0 #index, 
+                       ARG0 #index,
                        RSTR #harg ],
                      quant-relation &
                      [ PRED "exist_q_rel",
@@ -1568,6 +1572,80 @@ bare-poss-np-phrase := head-only & head-valence-phrase &
                         LARG #larg2 ] !>,
              ICONS <! !>,
              HOOK [ INDEX #index ] ] ].
+
+;determiner-lex-supertype := norm-hook-lex-item &
+;                            norm-zero-arg &
+;                            no-icons-lex-item &
+;  [ SYNSEM [ LOCAL [ CAT [ HEAD det & [ PRE-SPEC +,
+;                                        MOD < > ],
+;                           VAL [ SPEC.FIRST.LOCAL.CONT.HOOK [ INDEX #ind,
+;                                                              LTOP #larg ],
+;                                 SPR < >,
+;                                 SUBJ < >,
+;                                 COMPS < > ] ],
+;             CONT.HCONS <! qeq &
+;                            [ HARG #harg,
+;                              LARG #larg ] !> ],
+;         LKEYS.KEYREL quant-relation &
+;           [ ARG0 #ind,
+;             RSTR #harg ] ] ].
+
+;poss-phrase := head-final &
+basic-gen-poss-phrase := binary-headed-phrase &
+  [ SYNSEM [ LOCAL.CAT [ HEAD #head & [ MOD < > ],
+                         VAL [ SPR < >,
+                               COMPS < >,
+                               SUBJ < > ] ],
+             NON-LOCAL [ SLASH 0-dlist, REL 0-dlist, QUE 0-dlist ] ],
+    C-CONT [ HOOK.INDEX #index,
+             RELS <! quant-relation & [ PRED "exist_q_rel",
+                                        ARG0 #index,
+                                        RSTR #harg ] !>,
+             HCONS <! qeq & [ HARG #harg,
+                              LARG #lbl ] !>,
+             ICONS <! !> ],
+    HEAD-DTR.SYNSEM.LOCAL [ CAT [ HEAD #head & noun,
+                                  VAL [ SPR < unexpressed & 
+                                              [ LOCAL [ CAT [ HEAD +nvp & [ CASE gen ] ],
+                                                        CONT.HOOK.INDEX #arg2 ],
+                                                OPT + ] > ] ],
+                            CONT.HOOK [ INDEX #index & [ COG-ST uniq+fam+act ],
+                                        LTOP #lbl ] ],
+    NON-HEAD-DTR.SYNSEM.LOCAL [ CAT [ HEAD noun & [ CASE gen ],
+                                      VAL.SPR < > ],
+                                CONT.HOOK.INDEX #arg2 ] ].
+
+poss-gen-phrase := basic-gen-poss-phrase & head-initial &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-SPR -,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-SPEC - ].
+
+gen-poss-phrase := basic-gen-poss-phrase & head-final &
+  [ HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-SPR +,
+    NON-HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.PRE-SPEC + ].
+
+;  [ SYNSEM [ LOCAL.CAT [ HEAD det & [ MOD < > ],
+;genitive-det-phrase := unary-phrase &
+genitive-det-phrase := head-only &
+  [ SYNSEM [ LOCAL [ CAT [ HEAD noun & [ MOD < >,
+                                         CASE gen ],
+                           VAL [ SPEC < [ LOCAL.CONT.HOOK [ INDEX #index,
+                                                            LTOP #ltop ] ] >,
+                                 SPR < >,
+                                 SUBJ < >,
+                                 COMPS < > ] ] ],
+             NON-LOCAL [ SLASH 0-dlist, REL 0-dlist, QUE 0-dlist ] ],
+    C-CONT [ 
+             RELS <! quant-relation &
+                     [ PRED "exist_q_rel",
+                       ARG0 #index,
+                       RSTR #harg2 ] !>,
+             HCONS <! qeq &
+                      [ HARG #harg2,
+                        LARG #ltop ] !> ],
+    ARGS < [ SYNSEM [ LOCAL [ CAT [ HEAD noun & [ CASE gen ],
+                                    VAL.SPR < >,
+                                    VAL.SPEC < > ],
+                              COORD -  ] ] ] > ].
 
 ;;;;;;;;;;;;;;;;;;
 ;;; Coordination

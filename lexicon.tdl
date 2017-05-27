@@ -40,16 +40,16 @@ ev := common-noun-lex &
   [ STEM < "ev" >,
     SYNSEM.LKEYS.KEYREL.PRED "_house_n_rel" ].
 
-mektub := common-noun-lex &
-  [ STEM < "mektub" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_letter_n_rel" ].
+;mektub := common-noun-lex &
+;  [ STEM < "mektub" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_letter_n_rel" ].
 mektup := common-noun-lex &
   [ STEM < "mektup" >,
     SYNSEM.LKEYS.KEYREL.PRED "_letter_n_rel" ].
 
-köpeğ := common-noun-lex &
-  [ STEM < "köpeğ" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_dog_n_rel" ].
+;köpeğ := common-noun-lex &
+;  [ STEM < "köpeğ" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_dog_n_rel" ].
 köpek := common-noun-lex &
   [ STEM < "köpek" >,
     SYNSEM.LKEYS.KEYREL.PRED "_dog_n_rel" ].
@@ -70,9 +70,9 @@ elma := common-noun-lex &
   [ STEM < "elma" >,
     SYNSEM.LKEYS.KEYREL.PRED "_apple_n_rel" ].
 
-armud := common-noun-lex &
-  [ STEM < "armud" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_pear_n_rel" ].
+;armud := common-noun-lex &
+;  [ STEM < "armud" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_pear_n_rel" ].
 armut := common-noun-lex &
   [ STEM < "armut" >,
     SYNSEM.LKEYS.KEYREL.PRED "_pear_n_rel" ].
@@ -121,16 +121,16 @@ gün := common-noun-lex &
   [ STEM < "gün" >,
     SYNSEM.LKEYS.KEYREL.PRED "_day_n_rel" ].
 
-oğl := common-noun-lex &
-  [ STEM < "oğl" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_son_n_rel" ].
+;oğl := common-noun-lex &
+;  [ STEM < "oğl" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_son_n_rel" ].
 oğul := common-noun-lex &
   [ STEM < "oğul" >,
     SYNSEM.LKEYS.KEYREL.PRED "_son_n_rel" ].
 
-rekabed := common-noun-lex &
-  [ STEM < "rekabed" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_competition_n_rel" ].
+;rekabed := common-noun-lex &
+;  [ STEM < "rekabed" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_competition_n_rel" ].
 rekabet := common-noun-lex &
   [ STEM < "rekabet" >,
     SYNSEM.LKEYS.KEYREL.PRED "_competition_n_rel" ].
@@ -179,16 +179,16 @@ birader := common-noun-lex &
   [ STEM < "birader" >,
     SYNSEM.LKEYS.KEYREL.PRED "_brother_n_rel" ].
 
-cevab := common-noun-lex &
-  [ STEM < "cevab" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_reply_n_rel" ].
+;cevab := common-noun-lex &
+;  [ STEM < "cevab" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_reply_n_rel" ].
 cevap := common-noun-lex &
   [ STEM < "cevap" >,
     SYNSEM.LKEYS.KEYREL.PRED "_reply_n_rel" ].
 
-kasab := common-noun-lex &
-  [ STEM < "kasab" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_butcher_n_rel" ].
+;kasab := common-noun-lex &
+;  [ STEM < "kasab" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_butcher_n_rel" ].
 kasap := common-noun-lex &
   [ STEM < "kasap" >,
     SYNSEM.LKEYS.KEYREL.PRED "_butcher_n_rel" ].
@@ -197,9 +197,9 @@ kilo := common-noun-lex &
   [ STEM < "kilo" >,
     SYNSEM.LKEYS.KEYREL.PRED "_kilogram_n_rel" ].
 
-ed := common-noun-lex &
-  [ STEM < "ed" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_meat_n_rel" ].
+;ed := common-noun-lex &
+;  [ STEM < "ed" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_meat_n_rel" ].
 et := common-noun-lex &
   [ STEM < "et" >,
     SYNSEM.LKEYS.KEYREL.PRED "_meat_n_rel" ].
@@ -744,9 +744,9 @@ gez := req-acc-tr-verb-lex &
   [ STEM < "gez" >,
     SYNSEM.LKEYS.KEYREL.PRED "_visit_v_rel" ].
 
-y := opt-acc-tr-verb-lex &
-  [ STEM < "y" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
+;y := opt-acc-tr-verb-lex &
+;  [ STEM < "y" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
 ye := opt-acc-tr-verb-lex &
   [ STEM < "ye" >,
     SYNSEM.LKEYS.KEYREL.PRED "_eat_v_rel" ].
@@ -804,16 +804,16 @@ değil_2 := negative-nom-tr-verb-lex &
     SYNSEM.LKEYS [ KEYREL.PRED "_be_v_id_rel",
                    ALTKEYREL.PRED "neg_rel" ] ].
 
-d_1 := sentential-comp-verb-lex &
-  [ STEM < "d" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+;d_1 := sentential-comp-verb-lex &
+;  [ STEM < "d" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
 de_1 := sentential-comp-verb-lex &
   [ STEM < "de" >,
     SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
 
-d_2 := declarative-comp-verb-lex &
-  [ STEM < "d" >,
-    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
+;d_2 := declarative-comp-verb-lex &
+;  [ STEM < "d" >,
+;    SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
 de_2 := declarative-comp-verb-lex &
   [ STEM < "de" >,
     SYNSEM.LKEYS.KEYREL.PRED "_say_v_rel" ].
@@ -841,14 +841,14 @@ diye_2 := cp-final-interrogative-complementizer-lex &
 
 ;;; Auxiliaries
 
-mu := interrogative-aux-lex &
-  [ STEM < "mu" > ].
+;mu := interrogative-aux-lex &
+;  [ STEM < "mu" > ].
 
-mü := interrogative-aux-lex &
-  [ STEM < "mü" > ].
+;mü := interrogative-aux-lex &
+;  [ STEM < "mü" > ].
 
-mı := interrogative-aux-lex &
-  [ STEM < "mı" > ].
+;mı := interrogative-aux-lex &
+;  [ STEM < "mı" > ].
 
 mi := interrogative-aux-lex &
   [ STEM < "mi" > ].

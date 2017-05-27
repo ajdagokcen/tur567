@@ -34,14 +34,14 @@ mi_gr := generator_rule &
   [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
     FLAGS.TRIGGER "mi" ].
 
-mı_gr := generator_rule &
-  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
-    FLAGS.TRIGGER "mı" ].
+;mı_gr := generator_rule &
+;  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
+;    FLAGS.TRIGGER "mı" ].
 
-mu_gr := generator_rule &
-  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
-    FLAGS.TRIGGER "mu" ].
+;mu_gr := generator_rule &
+;  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
+;    FLAGS.TRIGGER "mu" ].
 
-mü_gr := generator_rule &
-  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
-    FLAGS.TRIGGER "mü" ].
+;mü_gr := generator_rule &
+;  [ CONTEXT.RELS <! [ ARG0.SF ques ] !>,
+;    FLAGS.TRIGGER "mü" ].

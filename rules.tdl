@@ -21,7 +21,7 @@ head-comp-2 := head-comp-phrase-2.
 
 comp-head-2 := comp-head-phrase-2.
 
-head-spec := head-spec-phrase.
+;head-spec := head-spec-phrase.
 
 spec-head := spec-head-phrase.
 
@@ -36,6 +36,10 @@ bare-pronoun-np := bare-pronoun-np-phrase.
 bare-common-np := bare-common-np-phrase.
 
 bare-poss-np := bare-poss-np-phrase.
+
+gen-poss := gen-poss-phrase.
+
+poss-gen := poss-gen-phrase.
 
 n1-1st-any-1st-any-any-pl-top-coord := n1-1st-any-1st-any-any-pl-top-coord-rule.
 
