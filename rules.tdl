@@ -41,7 +41,9 @@ bare-poss-np := bare-poss-np-phrase.
 
 gen-poss := gen-poss-phrase.
 
-poss-gen := poss-gen-phrase.
+;; AND AGAIN
+
+;poss-gen := poss-gen-phrase.
 
 n1-1st-any-1st-any-any-pl-top-coord := n1-1st-any-1st-any-any-pl-top-coord-rule.
 
